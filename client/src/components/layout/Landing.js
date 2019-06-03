@@ -2,8 +2,23 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
+import TextFieldGroup from '../common/TextFieldGroup'
+import { loginUser } from '../../actions/authActions'
 
 class Landing extends Component {
+  constructor () {
+    super();
+    this.state = {
+      emailId: '',
+      password: '',
+      errors: {}
+    };
+    this.changeHandler = this.changeHandler.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  changeHandler(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
   componentDidMount () {
     if(this.props.auth.isAuthenticated) {
@@ -11,37 +26,52 @@ class Landing extends Component {
     }
   }
 
+  componentWillReceiveProps (nextProps, nextContext) {
+    if(nextProps.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+    if(nextProps) {
+      this.setState({errors: nextProps.errors})
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const userData = {
+      emailId: this.state.emailId,
+      password: this.state.password
+    };
+    this.props.loginUser(userData);
+  }
   render() {
+    const {errors} = this.state;
+
     return (
       <div className="landing">
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
-            <div className="row">
+            <div className="row d-flex justify-content-center">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">GhotDen</h1>
-                <p className="lead">
+                <h1 className="display-3 mb-4">LVPEI Media Cloud</h1>
+                <p className="lead" style={{color: 'white'}}>
                   {' '}
-                  Ask us Anything
+                  Sign in to access account
                 </p>
                 <hr />
-                {/*<Link to="/register" className="btn btn-lg btn-info mr-2">*/}
-                  {/*Sign Up*/}
-                {/*</Link>*/}
-                {/*<Link to="/login" className="btn btn-lg btn-light">*/}
-                  {/*Login*/}
-                {/*</Link>*/}
-                <Link to="/login" className="btn btn-lg btn-info mr-2">
-                  <img src={require("../../img/student.png")} alt=""/>
-                    <h6 style={{fontStyle: 'inherit', fontWeight: 'bold'}}>Student</h6>
-                </Link>
-                <Link to="/facultyLogin" className="btn btn-lg btn-info mr-2">
-                  <img src={require("../../img/professor.png")} alt=""/>
-                    <h6 style={{fontStyle: 'inherit', fontWeight: 'bold'}}>Faculty</h6>
-                </Link>
-                <Link to="/hodLogin" className="btn btn-lg btn-info mr-2">
-                  <img src={require("../../img/hod.png")} alt=""/>
-                    <h6 style={{fontStyle: 'inherit', fontWeight: 'bold'}}>HOD</h6>
-                </Link>
+              </div>
+              <div className="col-md-6 text-center">
+
+                <form noValidate onSubmit={this.onSubmit}>
+                  <TextFieldGroup placeholder="Email Address" error={errors.emailId}
+                                  type="text" onChange={this.changeHandler} value={this.state.emailId} name="emailId"
+                  />
+                  <TextFieldGroup placeholder="Password" error={errors.password}
+                                  type="password" onChange={this.changeHandler} value={this.state.password} name="password"
+                  />
+                  <input type="submit" className="btn btn-info btn-block mt-4"/>
+                </form>
+                <p style={{color: 'white'}}>Forgot Password,
+                  <Link  to={"/ContactUs"} className={"text-primary"}> Click Here </Link> to contact Admins</p>
               </div>
             </div>
           </div>
@@ -52,11 +82,15 @@ class Landing extends Component {
 }
 
 Landing.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  loginUser:PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
+
 });
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps,{loginUser})(Landing);

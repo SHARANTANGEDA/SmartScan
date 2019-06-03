@@ -19,15 +19,9 @@ class ContactUs extends Component {
               <div className="row bg-dark">
                 <div className="col-6 col-lg-3 p-4 bg-dark">
                   <img className="img-fluid d-block mb-3  rounded-circle"
-                       src={require("../../img/us/sharan.jpeg")} alt="" width="100" />
+                       src={require("../../img/sharan.jpeg")} alt="" width="100" />
                     <h4 className="text-light"><b>Sai Sharan Tangeda</b></h4>
-                    <p className="mb-3 text-white">f20170241@hyderabad.bits-pilani.ac.in</p>
-                </div>
-                <div className="col-6 col-lg-3 p-4 bg-dark">
-                  <img className="img-fluid d-block mb-3 mx-auto rounded-circle"
-                       src={require("../../img/us/adapa.jpg")} alt="" width="100" />
-                    <h4 className="text-light"><b>Adapa Sai Vamsi</b></h4>
-                    <p className="mb-3 text-white">f20170023@hyderabad.bits-pilani.ac.in</p>
+                    <p className="mb-3 text-white">saisarantangeda@gmail.com</p>
                 </div>
               </div>
             </div>

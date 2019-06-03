@@ -17,7 +17,6 @@
   "author": "Sai Sharan Tangeda",
   "license": "MIT",
   "dependencies": {
-    "@sendgrid/mail": "^6.3.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
@@ -26,15 +25,16 @@
     "express": "^4.16.4",
     "get-json": "^1.0.1",
     "gravatar": "^1.8.0",
+    "gridfs-stream": "^1.1.1",
     "jsonwebtoken": "^8.4.0",
+    "method-override": "^3.0.0",
     "mongoose": "^5.4.11",
     "multer": "^1.4.1",
-    "nodemailer": "^5.1.1",
+    "multer-gridfs-storage": "^3.2.3",
     "passport": "^0.4.0",
-    "passport-google-oauth": "^2.0.0",
-    "passport-hotp": "0.0.1",
     "passport-jwt": "^4.0.0",
-    "validator": "^10.11.0"
+    "validator": "^10.11.0",
+    "mongodb": "^3.2.6"
   },
   "devDependencies": {
     "electron": "^5.0.2",

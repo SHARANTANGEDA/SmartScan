@@ -1,58 +1,51 @@
 const express = require('express');
-const expr=express();
+const app=express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const users = require('./routes/api/users');
-const questions = require('./routes/api/questions');
-const answers = require('./routes/api/answers');
-const comments = require('./routes/api/comments')
-const publicProfile = require('./routes/api/publicProfile');
-const admin = require('./routes/api/admin');
-const faculty = require('./routes/api/faculty');
-const hod = require('./routes/api/hod');
-const department = require('./routes/api/department')
-const google = require('./routes/api/google')
-const imageUpload=require('./routes/api/imageUpload')
+const uploads = require('./routes/api/upload');
+// const MongoClient = require('mongodb').MongoClient;
 
 const path = require('path');
+const methodOverride = require('method-override');
 
-//@MongoDB Atlas Connection
 const db = require('./config/keys').mongoURI;
-mongoose.connect(db)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
 
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("main").collection("devices");
+//   // perform actions on the collection object
+//   // client.close();
+// });
+mongoose.connect(db,{useNewUrlParser: true})
+  .then(() => {
+    console.log('MongoDB Connected')
+  })
+  .catch(err => console.log(err,'Not Connecting'));
 // Body parser middleware
-expr.use(bodyParser.urlencoded({ extended: false }));
-expr.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 //passport middleware and Config
-expr.use(passport.initialize());
+app.use(passport.initialize());
 require('./config/passport')(passport);
 
-expr.use('/api/users',users);
-expr.use('/api/questions',questions);
-expr.use('/api/answers',answers);
-expr.use('/api/comments',comments)
-expr.use('/api/publicProfile',publicProfile);
-expr.use('/api/admin',admin);
-expr.use('/api/faculty',faculty);
-expr.use('/api/hod',hod);
-expr.use('/api/department',department)
-// expr.use('/api/imageUpload',imageUpload)
-// expr.use('/uploads',expr.static('uploads'))
+app.use('/api/users',users);
+app.use('/api/upload',uploads)
 
 //Server static assets if in production
 if(process.env.NODE_ENV === 'production') {
   //Set static folder
   console.log({'IN node_env':process.env.NODE_ENV})
-  expr.use(expr.static('client/build'));
-  expr.get('*',(req,res) => {
+  app.use(app.static('client/build'));
+  app.get('*',(req,res) => {
     res.sendFile(path.resolve(__dirname,'client','build','index.html'));
   })
 }
 
 const port = process.env.PORT || 5000;
 
-expr.listen(port, () => console.log(`server running on port ${port}`));
+app.listen(port, () => console.log(`server running on port ${port}`));
+

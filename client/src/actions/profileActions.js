@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_ALL_PROFILES, GET_ERRORS, GET_MY_PROFILE, GET_OTHER_PROFILE, PROFILE_LOADING } from './types'
+import {  GET_ERRORS, GET_MY_PROFILE, PROFILE_LOADING } from './types'
 
 // Get current profile
 export const getMyAccount = () => dispatch => {
@@ -17,50 +17,6 @@ export const getMyAccount = () => dispatch => {
       dispatch({
         type: GET_MY_PROFILE,
         payload: {}
-      })
-    );
-};
-
-// Get profile by handle
-export const getProfileById = id => dispatch => {
-  console.log("Started Loading In profile")
-  dispatch(setProfileLoading());
-  console.log("In profile action")
-
-  axios
-    .get(`/api/publicProfile/${id}`)
-    .then(res =>
-      dispatch({
-        type: GET_OTHER_PROFILE,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_OTHER_PROFILE,
-        payload: null
-      })
-    );
-};
-
-// Get all profiles
-export const getAllProfiles = () => dispatch => {
-  console.log("Started Loading In AllUsers")
-
-  dispatch(setProfileLoading());
-  console.log("In All Profiles Action")
-  axios
-    .get('/api/publicProfile/')
-    .then(res =>
-      dispatch({
-        type: GET_ALL_PROFILES,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ALL_PROFILES,
-        payload: null
       })
     );
 };

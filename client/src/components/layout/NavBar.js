@@ -15,16 +15,16 @@ class Navbar extends Component {
     const authLinkO = (
       <Link className="navbar-brand" to="/dashboard" style={{fontFamily: "'Lobster', cursive",fontSize: '26px'}}>
         <img  style={{maxWidth: '20%',maxHeight: '25%'}}
-              src={require('../../img/logoIcon.png')} alt="GhotDen"
-              title=""/>GhotDen
+              src={require('../../img/logoIcon.png')} alt=""
+              title=""/>MRIStream
       </Link>
 
     );
     const guestLinkO = (
       <Link className="navbar-brand" to="/" style={{fontFamily: "'Lobster', cursive",fontSize: '26px'}}>
         <img  style={{maxWidth: '20%',maxHeight: '25%'}}
-              src={require('../../img/logoIcon.png')} alt="GhotDen"
-              title=""/>GhotDen
+              src={require('../../img/logoIcon.png')} alt=""
+              title=""/>MRIStream
       </Link>
     );
 
@@ -52,7 +52,7 @@ class Navbar extends Component {
         </li>
 
         <li className="nav-item pull-right">
-          <Link className="nav-link" to="/login" onClick={this.onLogoutClick.bind(this)}>
+          <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}>
             <img className="rounded-circle" style={{width: '25px',marginRight:'5px'}}
                  src={user.avatar} alt={user.firstName}
                  title=""/>
@@ -61,15 +61,15 @@ class Navbar extends Component {
         </li>
       </ul>
     );
-    const guestLinks = (
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="/adminLogin">
-            Admin Login
-          </Link>
-        </li>
-      </ul>
-    );
+    // const guestLinks = (
+    //   <ul className="navbar-nav ml-auto">
+    //     <li className="nav-item">
+    //       <Link className="nav-link" to="/adminLogin">
+    //         Admin Login
+    //       </Link>
+    //     </li>
+    //   </ul>
+    // );
 
     return (
       <nav className="navbar navbar-expand-sm navbar-dark">
@@ -86,7 +86,7 @@ class Navbar extends Component {
 
           <div className="collapse navbar-collapse" id="mobile-nav">
             {/*{isAuthenticated ? authLinksI: guestLinks}*/}
-            {isAuthenticated ? authLinksII : guestLinks}
+            {isAuthenticated ? authLinksII : null}
           </div>
         </div>
       </nav>
