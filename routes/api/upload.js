@@ -25,16 +25,24 @@ const storage = new GridFsStorage({
   url: require('../../config/keys').mongoURI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err)
-        }
-        const filename = buf.toString('hex') + file.name
+      // crypto.randomBytes(16, (err, buf) => {
+      //   if (err) {
+      //     return reject(err)
+      //   }
+      //   const filename =  buf.toString('hex')
+      //
+      // })
+      Patient.findOneAndUpdate({empty: true},{$inc: {photos:1}},{new: true}).then(patient => {
+        const filename =  patient.name+'_'+(patient.photos-1).toString()
+        console.log({patientUpload: patient})
         const fileInfo = {
           filename: filename,
           bucketName: 'uploads'
         }
+        console.log(fileInfo)
         resolve(fileInfo)
+      }).catch(err => {
+        console.log('You have not Added patient Name, please do it to complete upload')
       })
     })
   }
@@ -51,14 +59,8 @@ router.get('/', (req, res) => {
     } else {
       files.map(file => {
         //TODO Change
-        if (
-          file.contentType === 'image/jpeg' ||
-          file.contentType === 'image/png'
-        ) {
-          file.isImage = true
-        } else {
-          file.isImage = false
-        }
+        file.isImage = file.contentType === 'image/jpeg' ||
+          file.contentType === 'image/png';
       })
       res.render('index', { files: files })
     }
@@ -67,22 +69,15 @@ router.get('/', (req, res) => {
 
 // @route POST /upload
 // @desc  Uploads file to DB
-const date = Date()
 router.post('/upload',passport.authenticate('MRI',{session: false}),
   upload.array('file'), (req, res) => {
-  console.log('Uploaded')
   console.log(req.files)
-  return res.json({
-    success: true,
-  })
-  // Patient.findOne({empty: true}).then(patient => {
-  //   let arrayName = patient.name +'_'+ patient.time
-  //   upload.array(arrayName)
-  //   upload.array(`patient_MRI_${date.now()}`).then(res => {
-  //
-  //     res.json({done: 'All data are uploaded'});
-  //   })
-  // })
+    Patient.findOneAndUpdate({empty: true},{empty: false}).then(patient => {
+      console.log({patient: patient})
+      return res.json({
+        success: true
+      })
+    })
 })
 
 // @route GET /files

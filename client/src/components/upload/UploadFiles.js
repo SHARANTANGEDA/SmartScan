@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import FileUpload from '../common/FileUpload'
+
 class UploadFiles extends Component {
   constructor(props) {
     super(props);
     this.state = {
       files: [],
-      file: ''
+      file: '',
+      spinner: false,
+      error: null
     }
     // this.loadFiles = this.loadFiles.bind(this);
   }
@@ -46,46 +50,80 @@ class UploadFiles extends Component {
   // }
   uploadFile(event) {
     event.preventDefault();
-    let data = new FormData();
-    let d =new Date();
-
+    let data = new FormData()
     console.log({files:this.state.files})
-    let myFiles = this.state.files
-    let len = myFiles.length
-    console.log(Array.from(myFiles))
-    // Array.from(myFiles).forEach(file => {
-    //   console.log({file:file})
-    //   data.append('files[]', file,file.name)
-    // });
-    Array.from(myFiles).forEach((file, i) => {
+    console.log(Array.from(this.state.files))
+    if(Array.from(this.state.files).length===0)
+    {
+      this.setState({error: 'Please choose at least one file to upload'})
+      return
+    }
+    this.setState({spinner: true})
+
+    Array.from(this.state.files).forEach((file, i) => {
+      console.log({file: file})
       data.append("file", file, file.name);
     });
 
     console.log({data: data})
     axios.post('/api/upload/upload',data)
       .then(res => {
+        this.setState({spinner: false})
         console.log(res)
         if (res.data.success) {
           console.log('Success!!!')
+          window.location.href='/uploadSuccess'
           // this.loadFiles();
         } else {
           alert('Upload failed');
         }
       })
-    // fetch('/api/upload/upload', {
-    //   method: 'POST',
-    //   body: Array.from(myFiles)
-    // }).then(res => res.json('hello'))
-
   }
   render() {
     const { files } = this.state;
+    let spin = (
+      <div>
+        <FileUpload/>
+        <p style={{ color: 'white', background: 'green' }} className='btn w-100'>
+          You will be notified once upload is completed</p>
+      </div>
+    )
+    let info;
+    if(this.state.error!==null) {
+      info = (
+        <div>
+          <p style={{ color: 'red', fontStyle: 'italic'}} className='w-100'>
+            {this.state.error}</p>
+        </div>
+      )
+    } else {
+      info = (
+        <p style={{ color: 'white',background: 'rgba(187,65,147,0.5)',fontStyle: 'italic'}} className='w-100'>
+          You can choose multiple files at same time</p>
+      )
+    }
     return (
       <div className="uploadMultipleFiles">
-        <div className="App-content">
-          <input type="file" onChange={this.fileChanged.bind(this)} required multiple name='files'/>
-          <button onClick={this.uploadFile.bind(this)}>Upload</button>
-          {/*<table className="App-table">*/}
+        <div className="App-content row d-flex justify-content-center" >
+          <div className="grid text-center col-md-12">
+            <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
+              fontFamily: 'Lobster',
+              color: 'black', fontSize: '48px'
+            }}> Welcome L V Prasad MRI Docs Cloud</h1>
+          </div>
+          <div className="col-md-6 text-center" style={{width: '100%'}}>
+            <p style={{ color: 'white', background: 'green' }} className='btn w-100'>
+              Enter the Details below to upload the images</p>
+            {info}
+            <div className='row d-flex justify-content-center'>
+              <input type="file" onChange={this.fileChanged.bind(this)} required multiple name='files'
+                     style={{border: '1.5px', borderStyle: 'solid',
+                       borderRadius:'5px', margin: '5px',minWidth:'100%'}}/>
+              <button className='btn btn-success ' style={{background: 'green'}}
+                      onClick={this.uploadFile.bind(this)}>Upload</button>
+            </div>
+            {this.state.spinner ? spin : null}
+          </div>
           {/*  <thead>*/}
           {/*  <tr>*/}
           {/*    <th>File</th>*/}

@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { applyTA, getCourseCodes } from '../../actions/homeActions'
-import Select from 'react-select';
 
 class Sidebar extends Component {
 
@@ -66,4 +64,4 @@ const mapStateToProps = state => ({
   home: state.home,
 })
 
-export default connect(mapStateToProps, { getCourseCodes, applyTA })(Sidebar)
+export default connect(mapStateToProps)(Sidebar)

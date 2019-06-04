@@ -12,12 +12,6 @@ const methodOverride = require('method-override');
 
 const db = require('./config/keys').mongoURI;
 
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("main").collection("devices");
-//   // perform actions on the collection object
-//   // client.close();
-// });
 mongoose.connect(db,{useNewUrlParser: true})
   .then(() => {
     console.log('MongoDB Connected')

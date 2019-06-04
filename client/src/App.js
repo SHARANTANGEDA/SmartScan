@@ -3,9 +3,7 @@ import './App.css'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
 import { logoutUser, setCurrentUser } from './actions/authActions'
-
 import PrivateRoute from './components/common/PrivateRoute'
-
 import { Provider } from 'react-redux'
 import store from './store'
 import Footer from './components/layout/Footer'
@@ -18,8 +16,8 @@ import Sidebar from './components/layout/Sidebar'
 import MyAccount from './components/MyAccount/MyAccount'
 import ChangePassword from './components/MyAccount/ChangePassword'
 import ContactUs from './components/common/ContactUs'
-import UploadFolder from './components/upload/UploadFolder'
 import UploadFiles from './components/upload/UploadFiles'
+import Success from './components/upload/Success'
 
 
 //Check for token
@@ -59,10 +57,10 @@ class App extends Component {
               <PrivateRoute exact path='/changePassword' component={ChangePassword}/>
             </Switch>
           <Switch>
-            <PrivateRoute exact path='/uploadFiles' component={UploadFolder}/>
+            <PrivateRoute exact path='/uploadMultipleFiles' component={UploadFiles}/>
           </Switch>
           <Switch>
-            <PrivateRoute exact path='/uploadMultipleFiles' component={UploadFiles}/>
+            <PrivateRoute exact path='/uploadSuccess' component={Success}/>
           </Switch>
           </div>
         </div>
