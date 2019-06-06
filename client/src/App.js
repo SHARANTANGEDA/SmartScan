@@ -13,7 +13,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Register from './components/Register/Register'
 import Dashboard from './components/dashboard/Dashboard'
 import Sidebar from './components/layout/Sidebar'
-import MyAccount from './components/MyAccount/MyAccount'
 import ChangePassword from './components/MyAccount/ChangePassword'
 import ContactUs from './components/common/ContactUs'
 import UploadFiles from './components/upload/UploadFiles'
@@ -47,18 +46,17 @@ class App extends Component {
         <Route component={Sidebar}/>
 
         <div className="container">
-          <Route exact path="/register" component={Register} />
           <Switch>
             <PrivateRoute exact path='/dashboard' component={Dashboard}/>
           </Switch>
-            <Switch>
-              <PrivateRoute exact path='/myAccount' component={MyAccount}/>
-            </Switch>
             <Switch>
               <PrivateRoute exact path='/changePassword' component={ChangePassword}/>
             </Switch>
           <Switch>
             <PrivateRoute exact path='/displayFolder/:id' component={Display}/>
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path='/createAccount' component={Register}/>
           </Switch>
           <Switch>
             <PrivateRoute exact path='/uploadMultipleFiles' component={UploadFiles}/>

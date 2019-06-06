@@ -2,17 +2,13 @@ import axios from 'axios'
 
 import {
   CLEAR_ERRORS, FOLDER_LOADING,
-  GET_COURSES,
   GET_DETAILS,
   GET_FILES,
   GET_FILES_SINGLE_FOLDER,
-  GET_NO_COURSE, LOADING,
+  GET_NO_COURSE,
   NO_FILES,
   NO_FILES_IN_FOLDER
 } from './types'
-
-const FileDownload = require('js-file-download');
-
 
 
 export const getDetails = (userData) => dispatch => {
@@ -30,7 +26,31 @@ export const getDetails = (userData) => dispatch => {
     })
   )
 };
+export const deleteFile = (id) => dispatch => {
+  console.log('in delete')
+  axios.get(`/api/upload/deleteFile/${id}`).then(res => {
+    console.log(res)
+    window.location.reload()
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  )
+}
 
+export const deleteFolder = (id) => dispatch => {
+  console.log('in delete')
+  axios.get(`/api/upload/deleteFolder/${id}`).then(res => {
+    console.log(res)
+    window.location.reload()
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  )
+}
 export const downloadFile = (id) => dispatch => {
   axios.get(`/api/upload/downloadFile/${id}`,{responseType: 'blob'}).then(res => {
     const url = window.URL.createObjectURL(new Blob([res.data]));
@@ -54,6 +74,30 @@ export const downloadFile = (id) => dispatch => {
   );
 }
 
+export const downloadFolder  = (id) => dispatch => {
+  console.log('In download folder')
+  axios.get(`/api/upload/downloadFolder/${id}`,{responseType: 'blob'}).then(res => {
+    console.log(res)
+    const url = window.URL.createObjectURL(new Blob([res.data]));
+    const link = document.createElement('a');
+    console.log(url)
+    link.href = url;
+    link.setAttribute('download', id+'.zip');
+    document.body.appendChild(link);
+    link.click();
+    // console.log('download in progress')
+
+    // dispatch({
+    //   type: GET_IMAGE,
+    //   payload: res.data
+    // })
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  );
+}
 export const getFiles = () => dispatch => {
   axios.get('/api/upload/files').then(res => {
     dispatch({

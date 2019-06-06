@@ -21,23 +21,7 @@ export const getMyAccount = () => dispatch => {
     );
 };
 
-// Add education
-export const updateProfile = (data, history) => dispatch => {
-  console.log("Update Profile is running")
-  axios
-    .post('/api/users/myAccount/change', data)
-    .then(res => {
-      console.log({res})
-      window.location.reload();
-      history.push('/myAccount')
-    })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
+
 
 export const changePassword = (data, history) => dispatch => {
   console.log("Change Password is running")
@@ -45,7 +29,7 @@ export const changePassword = (data, history) => dispatch => {
     .post('/api/users/changePassword', data)
     .then(res => {
       console.log({change:res})
-      history.push('/myAccount')
+      history.push('/dashboard')
     })
     .catch(err =>
       dispatch({

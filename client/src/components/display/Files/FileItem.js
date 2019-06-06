@@ -2,18 +2,27 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import '../allFolders.css'
-import { downloadFile } from '../../../actions/homeActions'
+import { downloadFile,deleteFile } from '../../../actions/homeActions'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { NO_FILES } from '../../../actions/types'
 
 class FileItem extends Component {
   constructor () {
     super();
     this.onOpen = this.onOpen.bind(this);
+    this.onDelete = this.onDelete.bind(this)
   }
   onOpen(e) {
-    console.log('in open')
-    console.log(this.props.file.filename )
     this.props.downloadFile(this.props.file.filename )
+  }
+  onDelete(e) {
+    console.log('hello')
+    // axios.delete(`/api/upload/deleteFile/${this.props.file.filename}`).then(res => {
+    //   console.log(res)
+    //   window.location.reload()
+    // })
+    this.props.deleteFile(this.props.file.filename)
   }
   render () {
     const {file} = this.props;
@@ -25,7 +34,6 @@ class FileItem extends Component {
             <div className="frontside">
                 {/*<Link to={`/api/upload/downloadFile/${file.filename}`}>*/}
                   <span>
-                  <button onClick={this.onOpen.bind(this)}>
                     <div className="card" style={{minWidth: '200', borderStyle: 'none'}}>
                       <div className="card-body text-center">
                         <p><img className="img-fluid" src={require('../../../img/file.png')} alt=''/></p>
@@ -33,8 +41,14 @@ class FileItem extends Component {
                           <h4 className="card-title" style={{fontSize: '18px'}}>{file.filename}</h4>
                         </div>
                       </div>
+                      <div className="card-footer d-flex justify-content-start">
+                  <button className='btn-sm btn' style={{background: 'green', color: 'white',marginRight: '10px'}}
+                          onClick={this.onOpen.bind(this)}>Download</button>
+                  <button className='btn-sm btn' onClick={this.onDelete.bind(this)}
+                          style={{background: 'red', color: 'white',marginLeft: '10px'}}
+                  >Remove</button>
+                </div>
                     </div>
-                  </button>
                   </span>
                 {/*</Link>*/}
         </div>
@@ -53,4 +67,4 @@ FileItem.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(mapStateToProps, {downloadFile})(FileItem);
+export default connect(mapStateToProps, {downloadFile, deleteFile})(FileItem);

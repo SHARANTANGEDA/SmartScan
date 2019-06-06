@@ -43,10 +43,10 @@ class Navbar extends Component {
         <li className="nav-item dropdown" >
           <Link className="nav-link dropdown-toggle" to="" id="navbarDropdown" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false" style={{minWidth: '150px'}}>
-            My Account
+            {user.emailId}
           </Link>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <Link className="dropdown-item" to="/myAccount">Edit Profile</Link>
+            <Link className="dropdown-item" to="/createAccount">Create lab account</Link>
             <Link className="dropdown-item" to="/changePassword">Change Password</Link>
           </div>
         </li>

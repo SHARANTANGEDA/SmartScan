@@ -1,32 +1,24 @@
-import { GET_ALL_DEPARTMENTS, GET_ERRORS, GET_ERRORS_IN_APPLICATIONS, LOADING, SET_CURRENT_USER } from './types'
+import {
+  CLEAR_ERRORS,
+  GET_ALL_DEPARTMENTS,
+  GET_ERRORS,
+  GET_ERRORS_IN_APPLICATIONS,
+  LOADING,
+  SET_CURRENT_USER
+} from './types'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
 
-export const getDepartments = () => dispatch => {
-  console.log("Started Loading Ta applications page")
-  dispatch(setLoading());
-  console.log("In all applications actions")
-
-  axios
-    .get(`/api/department/allDepartments`)
-    .then(res =>
-      dispatch({
-        type: GET_ALL_DEPARTMENTS,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS_IN_APPLICATIONS,
-        payload: err.data
-      })
-    );
-}
 //Register User
 export const registerUser = (userData,history) => dispatch => {
+  clearErrors()
+  console.log('In register')
   axios.post('/api/users/register', userData)
-    .then(res => history.push('/login'))//TODO Write for jwt token here
+    .then(res => {
+      console.log(res)
+      window.location='/dashboard'
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -64,7 +56,11 @@ export const setCurrentUser = (decoded) => {
     payload: decoded
   }
 };
-
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
+}
 //Log User Out
 export const logoutUser = () => dispatch => {
   localStorage.removeItem('jwtToken');
