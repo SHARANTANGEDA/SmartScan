@@ -2,36 +2,41 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import './allUsers.css'
+import './allFolders.css'
+
 
 class FolderItem extends Component {
+  constructor () {
+    super();
+    this.state = {
+      file: false
+    };
+    this.onOpen = this.onOpen.bind(this);
+  }
+
+  onOpen(e) {
+    this.setState({file: true})
+  }
   render () {
-    const {user} = this.props;
-    const name = user.firstName+' '+user.lastName;
-    console.log({reputation:user})
-    // return (
-    //   <div className="col-md-4" style={{margin: '10px'}}>
-    //     <img className="rounded-circle" src={user.avatar} alt='http://pinegrow.com/placeholders/img19.jpg' style={{height: "20%", width: "35%"}}/>
-    //     <h3><Link to={`/publicProfile/${user._id}`}>{name}</Link></h3>
-    //     <p>{user.emailId}</p>
-    //     <p>{user.departmentName}</p>
-    //   </div>
-    // )
+    const {folder} = this.props;
+    console.log({folder:folder})
+
     return (
       //onTouchStart="this.classList.toggle('hover');
-      <div className="col-xs-12 col-sm-6 col-md-4">
+      <div className="">
         <div className="image-flip" >
           <div className="mainflip">
             <div className="frontside">
-              <Link to={`/publicProfile/${user._id}`} style={{color: 'white'}}>
-              <div className="card" >
+              <Link to={`displayFolder/${folder.id}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
+              <div className="card" style={{minWidth: '200', borderStyle: 'none'}}>
                 <div className="card-body text-center">
-                  <p><img className="img-fluid" src='../../img/folder.png' alt=''/></p>
+                  <p><img className="img-fluid" src={require('./folder.png')} alt=''/></p>
                   <div className='row d-flex justify-content-between'>
-                    <h4 className="card-title" style={{fontSize: '18px'}}>{name}</h4>
+                    <h4 className="card-title" style={{fontSize: '18px'}}>{folder.name}</h4>
                   </div>
                 </div>
               </div>
+              </span>
               </Link>
             </div>
           </div>
@@ -42,7 +47,7 @@ class FolderItem extends Component {
 }
 
 FolderItem.propTypes = {
-  user: PropTypes.object.isRequired,
+  folder: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({

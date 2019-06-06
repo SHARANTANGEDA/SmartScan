@@ -18,6 +18,7 @@ import ChangePassword from './components/MyAccount/ChangePassword'
 import ContactUs from './components/common/ContactUs'
 import UploadFiles from './components/upload/UploadFiles'
 import Success from './components/upload/Success'
+import Display from './components/display/Files/Display'
 
 
 //Check for token
@@ -56,6 +57,9 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/changePassword' component={ChangePassword}/>
             </Switch>
+          <Switch>
+            <PrivateRoute exact path='/displayFolder/:id' component={Display}/>
+          </Switch>
           <Switch>
             <PrivateRoute exact path='/uploadMultipleFiles' component={UploadFiles}/>
           </Switch>

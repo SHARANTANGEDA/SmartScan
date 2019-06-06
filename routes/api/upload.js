@@ -33,7 +33,7 @@ const storage = new GridFsStorage({
       //
       // })
       Patient.findOneAndUpdate({empty: true},{$inc: {photos:1}},{new: true}).then(patient => {
-        const filename =  patient.name+'_'+(patient.photos-1).toString()
+        const filename =  patient._id.toString()+'_'+(patient.photos-1).toString()
         console.log({patientUpload: patient})
         const fileInfo = {
           filename: filename,
@@ -43,6 +43,7 @@ const storage = new GridFsStorage({
         resolve(fileInfo)
       }).catch(err => {
         console.log('You have not Added patient Name, please do it to complete upload')
+        reject(err)
       })
     })
   }
@@ -82,34 +83,100 @@ router.post('/upload',passport.authenticate('MRI',{session: false}),
 
 // @route GET /files
 // @desc  Display all files in JSON
-router.get('/files', (req, res) => {
-  gfs.files.find().toArray((err, files) => {
+router.get('/files',passport.authenticate('lvpei',{session: false}), (req, res) => {
+  let arr=[];
+  Patient.find({empty: false}).then(patients => {
+    gfs.files.find().toArray((err, files) => {
+      // Check if files
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          err: 'No files exist'
+        })
+      }else {
+        patients.forEach(patient => {
+          let temp=[];
+          files.forEach(file => {
+            let nm = patient._id.toString()
+            console.log(file)
+            let ind = file.filename.lastIndexOf('_')
+            console.log(file.filename.substr(0,ind), nm)
+            if(file.filename.substr(0,ind)===nm) {
+              temp.push(file);
+            }
+          })
+          console.log({name: temp})
+          arr.push({name:patient.name,id: patient._id,files: temp})
+        })
+        // Files exist
+        return res.json(arr)
+      }
+    })
+  })
+
+})
+
+router.get('/files/:id', (req, res) => {
+  Patient.findById(req.params.id).then(patient => {
+    gfs.files.find().toArray((err, files) => {
+      // Check if files
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          err: 'No files exist'
+        })
+      }else {
+          let temp=[];
+          files.forEach(file => {
+            let nm = patient._id.toString()
+            console.log(file)
+            let ind = file.filename.lastIndexOf('_')
+            console.log(file.filename.substr(0,ind), nm)
+            if(file.filename.substr(0,ind)===nm) {
+              temp.push(file);
+            }
+          })
+        console.log({name: temp})
+        return res.json({name:patient.name,id: patient._id,files: temp})
+      }
+    })
+  })
+
+})
+
+router.get('/downloadFile/:id', (req, res) => {
+  gfs.files.find({filename: req.params.id}).toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
       return res.status(404).json({
         err: 'No files exist'
       })
     }
-
-    // Files exist
-    return res.json(files)
+    // create read stream
+    let readstream = gfs.createReadStream({
+      filename: files[0].filename,
+      root: "uploads"
+    });
+    // set the proper content type
+    res.set('Content-Type', files[0].contentType)
+    res.set('Content-Disposition', 'attachment; filename="' + files[0].contentType + '"');
+    // Return response
+    readstream.pipe(res);
   })
 })
 
-// @route GET /files/:filename
-// @desc  Display single file object
-router.get('/files/:filename', (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-    // Check if file
-    if (!file || file.length === 0) {
-      return res.status(404).json({
-        err: 'No file exists'
-      })
-    }
-    // File exists
-    return res.json(file)
-  })
-})
+// // @route GET /files/:filename
+// // @desc  Display single file object
+// router.get('/files/:filename', (req, res) => {
+//   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+//     // Check if file
+//     if (!file || file.length === 0) {
+//       return res.status(404).json({
+//         err: 'No file exists'
+//       })
+//     }
+//     // File exists
+//     return res.json(file)
+//   })
+// })
 
 // @route GET /image/:filename
 // @desc Display Image

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import FolderItem from './FolderItem'
+import FileItem from './FileItem'
 
-class FolderRow extends Component {
+class FileRow extends Component {
   render () {
-    const {folders} = this.props;
-    let showUsers = ( folders.map(folder => (
-      <FolderItem folder={folder} key={folder.id}/>
+    const {files} = this.props;
+    let showUsers = ( files.map(file => (
+      <FileItem file={file} key={file.filename}/>
     )));
     return (
       // style={{height: "20%", width: "100%",minWidth: "100%"}}   d-flex flex-grow-1
@@ -16,16 +16,16 @@ class FolderRow extends Component {
       </div>
     )
   }
-};
+}
 
-FolderRow.defaultProps = {
+FileRow.defaultProps = {
   showActions: true
 }
-FolderRow.propTypes = {
-  folders: PropTypes.array.isRequired,
+FileRow.propTypes = {
+  files: PropTypes.array.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(mapStateToProps)(FolderRow);
+export default connect(mapStateToProps)(FileRow);

@@ -17,6 +17,7 @@ class UploadFiles extends Component {
     // this.loadFiles();
   }
   loadFiles() {
+    axios.get('/api/upload/files')
     fetch('/api/files')
       .then(res => res.json())
       .then(files => {
