@@ -31,24 +31,7 @@ class UploadFiles extends Component {
   }
   fileChanged(event) {
     this.setState({ [event.target.name]: event.target.files });
-    //
-    // const f = event.target.files[0];
-    // this.setState({
-    //   file: f
-    // });
   }
-  // deleteFile(event) {
-  //   event.preventDefault();
-  //   const id = event.target.id;
-  //   fetch('/api/files/'+id, {
-  //     method: 'DELETE'
-  //   }).then(res => res.json())
-  //     .then(response => {
-  //       console.log(response);
-  //       if (response.success) this.loadFiles()
-  //       else alert('Delete Failed');
-  //     })
-  // }
   uploadFile(event) {
     event.preventDefault();
     let data = new FormData()
@@ -62,17 +45,13 @@ class UploadFiles extends Component {
     this.setState({spinner: true})
 
     Array.from(this.state.files).forEach((file, i) => {
-      console.log({file: file})
       data.append("file", file, file.name);
     });
 
-    console.log({data: data})
     axios.post('/api/upload/upload',data)
       .then(res => {
         this.setState({spinner: false})
-        console.log(res)
         if (res.data.success) {
-          console.log('Success!!!')
           window.location.href='/uploadSuccess'
           // this.loadFiles();
         } else {

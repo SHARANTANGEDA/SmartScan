@@ -10,18 +10,20 @@ class ContactUs extends Component {
       <div className="container contactUs">
         <div className="row">
           <div className="col-md-12">
-            <div className="container bg-dark">
+            <div className="container ">
               <div className="row">
                 <div className="col-md-12 bg-light">
                   <h1 className="text-capitalize pt-1 text-center bg-light text-dark">Our team</h1>
                 </div>
               </div>
-              <div className="row bg-dark">
-                <div className="col-6 col-lg-3 p-4 bg-dark">
+              <div>
+                <div className="col-6 col-lg-3 p-4">
                   <img className="img-fluid d-block mb-3  rounded-circle"
                        src={require("../../img/sharan.jpeg")} alt="" width="100" />
-                    <h4 className="text-light"><b>Sai Sharan Tangeda</b></h4>
-                    <p className="mb-3 text-white">saisarantangeda@gmail.com</p>
+                </div>
+                <div className="col-md-6">
+                <h4><strong>Sai Sharan Tangeda</strong></h4>
+                    <p className="mb-3">saisarantangeda@gmail.com</p>
                 </div>
               </div>
             </div>

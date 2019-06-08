@@ -26,6 +26,7 @@ class FileItem extends Component {
   }
   render () {
     const {file} = this.props;
+    let name = file.filename.substr( file.filename.indexOf('_')+1, file.filename.length)
     return (
       //onTouchStart="this.classList.toggle('hover');
       <div className="">
@@ -34,19 +35,19 @@ class FileItem extends Component {
             <div className="frontside">
                 {/*<Link to={`/api/upload/downloadFile/${file.filename}`}>*/}
                   <span>
-                    <div className="card" style={{minWidth: '200', borderStyle: 'none'}}>
+                    <div className="card" style={{minWidth: '200', borderStyle: 'solid'}}>
                       <div className="card-body text-center">
                         <p><img className="img-fluid" src={require('../../../img/file.png')} alt=''/></p>
-                        <div className='row d-flex justify-content-between'>
-                          <h4 className="card-title" style={{fontSize: '18px'}}>{file.filename}</h4>
+                        <div className='row d-flex justify-content-center'>
+                          <h4 className="card-title" style={{fontSize: '18px'}}>{name}</h4>
                         </div>
                       </div>
-                      <div className="card-footer d-flex justify-content-start">
+                      <div className="card-footer d-flex justify-content-around">
                   <button className='btn-sm btn' style={{background: 'green', color: 'white',marginRight: '10px'}}
-                          onClick={this.onOpen.bind(this)}>Download</button>
+                          onClick={this.onOpen.bind(this)}><i className="fa fa-download" aria-hidden="true"/></button>
                   <button className='btn-sm btn' onClick={this.onDelete.bind(this)}
                           style={{background: 'red', color: 'white',marginLeft: '10px'}}
-                  >Remove</button>
+                  ><i className="fa fa-trash" aria-hidden="true"/></button>
                 </div>
                     </div>
                   </span>

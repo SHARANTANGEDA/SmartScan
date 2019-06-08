@@ -40,24 +40,17 @@ class Navbar extends Component {
     // );
     const authLinksII = (
       <ul className="navbar-nav ml-auto" style={{minWidth: '300px'}}>
-        <li className="nav-item dropdown" >
-          <Link className="nav-link dropdown-toggle" to="" id="navbarDropdown" role="button" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false" style={{minWidth: '150px'}}>
+        <li className="nav-item" >
+          <Link className="nav-link" to="" style={{minWidth: '150px', color:'white'}}>
             {user.emailId}
           </Link>
-          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <Link className="dropdown-item" to="/createAccount">Create lab account</Link>
-            <Link className="dropdown-item" to="/changePassword">Change Password</Link>
-          </div>
+
         </li>
 
         <li className="nav-item pull-right">
-          <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}>
-            <img className="rounded-circle" style={{width: '25px',marginRight:'5px'}}
-                 src={user.avatar} alt={user.firstName}
-                 title=""/>
-                 {' '} Logout
-          </Link>
+          <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)} style={{color:'white'}}>
+            <i className="fa fa-power-off" aria-hidden="true"/>
+            {'  '}Logout</Link>
         </li>
       </ul>
     );

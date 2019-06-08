@@ -70,13 +70,13 @@ class ChangePassword extends Component {
     profileContent = (
       <div>
         <div className="col-sm-9">
-          <div className="row">
-            <div className="col-sm-10" style={{ fontFamily: 'Lobster', color: 'black', fontSize: '48px' }}><h1>Change
+          <div className="row col-md-8 m-auto">
+            <div className="col-sm-10" style={{ fontFamily: 'Lobster', color: 'black', fontSize: '48px' }}>
+              <h1>Change
               Password</h1></div>
           </div>
 
-          <div className="tab-content">
-            <div className="tab-pane active">
+            <div className="col-md-8 m-auto">
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
@@ -117,7 +117,6 @@ class ChangePassword extends Component {
                 </div>
               </form>
             </div>
-          </div>
         </div>
       </div>
     )

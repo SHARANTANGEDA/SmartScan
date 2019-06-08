@@ -28,13 +28,11 @@ const storage = new GridFsStorage({
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       Patient.findOneAndUpdate({ empty: true }, { $inc: { photos: 1 } }, { new: true }).then(patient => {
-        const filename = patient._id.toString() + '_' + (patient.photos - 1).toString()
-        console.log({ patientUpload: patient })
+        const filename = patient._id.toString() + '_' + file.originalname
         const fileInfo = {
           filename: filename,
           bucketName: 'uploads'
         }
-        console.log(fileInfo)
         resolve(fileInfo)
       }).catch(err => {
         console.log('You have not Added patient Name, please do it to complete upload')
@@ -67,9 +65,7 @@ const upload = multer({ storage })
 // @desc  Uploads file to DB
 router.post('/upload', passport.authenticate('MRI', { session: false }),
   upload.array('file'), (req, res) => {
-    console.log(req.files)
     Patient.findOneAndUpdate({ empty: true }, { empty: false }).then(patient => {
-      console.log({ patient: patient })
       return res.json({
         success: true
       })
@@ -92,9 +88,7 @@ router.get('/files', passport.authenticate('lvpei', { session: false }), (req, r
           let temp = []
           files.forEach(file => {
             let nm = patient._id.toString()
-            console.log(file)
             let ind = file.filename.lastIndexOf('_')
-            console.log(file.filename.substr(0, ind), nm)
             if (file.filename.substr(0, ind) === nm) {
               temp.push(file)
             }
@@ -123,9 +117,7 @@ router.get('/files/:id',  passport.authenticate('lvpei',{session: false}),(req, 
         let temp = []
         files.forEach(file => {
           let nm = patient._id.toString()
-          console.log(file)
           let ind = file.filename.lastIndexOf('_')
-          console.log(file.filename.substr(0, ind), nm)
           if (file.filename.substr(0, ind) === nm) {
             temp.push(file)
           }
@@ -174,7 +166,6 @@ router.post('/downloadNoZipFolder/:id', passport.authenticate('lvpei',{session: 
 
       files.forEach(file => {
         let nm = patient._id.toString()
-        console.log('In promise:', file.filename)
         let ind = file.filename.lastIndexOf('_')
 
         if (file.filename.substr(0, ind) === nm) {
@@ -209,12 +200,10 @@ router.get('/downloadFolder/:id', passport.authenticate('lvpei',{session: false}
       // archive.on('error', function (err) {
       //   throw err
       // })
-      console.log('backend point-1')
       archive.pipe(res)
       files.forEach(file => {
         dummy.push(new Promise((resolve, reject) => {
           let nm = patient._id.toString()
-          console.log('In promise:', file.filename)
           let ind = file.filename.lastIndexOf('_')
           if (file.filename.substr(0, ind) === nm) {
             let readstream = gfs.createReadStream({
@@ -225,16 +214,13 @@ router.get('/downloadFolder/:id', passport.authenticate('lvpei',{session: false}
             res.set('Content-Disposition', 'attachment; filename="' + file.contentType + '"')
             archive.append(readstream, { name: file.filename })
             resolve(readstream)
-            console.log('success')
           }
         }).catch(err => {
           console.log({ err: 'New error has occurred' })
         }))
       })
-      console.log('Operating in backend')
 
       await Promise.all([archive.finalize()]).then(res => {
-        console.log('In promise: ',dummy)
       }).catch(err => {
         console.log('error: '+err)
       })
@@ -304,7 +290,6 @@ router.get('/deleteFolder/:id', passport.authenticate('lvpei',{session: false}),
       } else {
           files.forEach(file => {
             let nm = patient._id.toString()
-            console.log(file)
             let ind = file.filename.lastIndexOf('_')
             if (file.filename.substr(0, ind) === nm) {
               gfs.files.remove({ filename: file.filename }, (err, gridStore) => {
@@ -319,7 +304,6 @@ router.get('/deleteFolder/:id', passport.authenticate('lvpei',{session: false}),
    })
   Patient.remove({_id:req.params.id}).then(patient => {
     res.redirect('/')
-    console.log(patient)
   }).catch(err => {
     console.log({error: err})
   })

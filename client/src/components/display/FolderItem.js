@@ -48,19 +48,18 @@ class FolderItem extends Component {
                     <h4 className="card-title" style={{fontSize: '18px'}}>{folder.name}</h4>
                   </div>
                 </div>
-                <div className="card-footer d-flex justify-content-start">
+                <div className="card-footer d-flex justify-content-around">
                   <button className='btn-sm btn' style={{background: 'green', color: 'white',marginRight: '10px'}}
-                          onClick={this.onDownload.bind(this)}>Download</button>
+                          onClick={this.onDownload.bind(this)}><i className="fa fa-download" aria-hidden="true"/>
+                  </button>
                   <button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}
-                          onClick={this.onDelete.bind(this)}>Remove</button>
+                          onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/>
+                  </button>
 
                 </div>
               </div>
               </span>
               </Link>
-
-              {/*<a href={`http://localhost:5000/api/upload/downloadFolder/${folder.id}`}>download</a>*/}
-
             </div>
           </div>
         </div>

@@ -9,9 +9,9 @@ class Sidebar extends Component {
 
   render () {
 
-    const { isAuthenticated, user } = this.props.auth
+    const { isAuthenticated } = this.props.auth
     let showContent
-    if (isAuthenticated && user.role === 'faculty') {
+    if (isAuthenticated) {
       showContent = (
         <nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
           <ul className="list-unstyled components" style={{ height: '100%' }}>
@@ -22,6 +22,13 @@ class Sidebar extends Component {
                 <i className="fas fa-home"/>
                 Home
               </Link>
+              <Link to="/createAccount" style={{ textDecoration: 'none' }}>
+                <i className="fa fa-cog" aria-hidden="true"/>
+                Create Account
+              </Link><Link to="/changePassword" style={{ textDecoration: 'none' }}>
+              <i className="fa fa-wrench" aria-hidden="true"/>
+              Change Password
+            </Link>
               {/*<Link to="/allQuestions" style={{ textDecoration: 'none' }}>*/}
               {/*  <i className="fas fa-question"/>*/}
               {/*  All Questions*/}

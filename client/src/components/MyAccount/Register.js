@@ -47,7 +47,8 @@ class Register extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create a new Lab account</h1>
+              <div className="col-sm-10" style={{ fontFamily: 'Lobster', color: 'black', fontSize: '48px' }}>
+                <h1>Create a new Lab account</h1></div>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="Lab Name" error={errors.emailId}
                                 info="Please use unique Lab name"
@@ -61,7 +62,9 @@ class Register extends Component {
                                 type="password" onChange={this.changeHandler} value={this.state.repassword}
                                 name="repassword"
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4"/>
+                <div className="col-xs-12">
+                <input type="submit" className="btn btn-info btn-block mt-4 btn-primary w-30 my-1"/>
+                </div>
               </form>
             </div>
           </div>

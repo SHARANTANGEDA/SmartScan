@@ -10,7 +10,6 @@ class FolderRow extends Component {
       <FolderItem folder={folder} key={folder.id}/>
     )));
     return (
-      // style={{height: "20%", width: "100%",minWidth: "100%"}}   d-flex flex-grow-1
       <div className="row" >
         {showUsers}
       </div>

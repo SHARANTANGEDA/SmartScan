@@ -10,7 +10,7 @@ import Footer from './components/layout/Footer'
 import NavBar from './components/layout/NavBar'
 import Landing from './components/layout/Landing'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Register from './components/Register/Register'
+import Register from './components/MyAccount/Register'
 import Dashboard from './components/dashboard/Dashboard'
 import Sidebar from './components/layout/Sidebar'
 import ChangePassword from './components/MyAccount/ChangePassword'
@@ -41,10 +41,8 @@ class App extends Component {
         <NavBar/>
         <Route exact path="/" component={Landing}/>
         <Route exact path='/contactUs' component={ContactUs}/>
-
         <div className="wrapper" >
         <Route component={Sidebar}/>
-
         <div className="container">
           <Switch>
             <PrivateRoute exact path='/dashboard' component={Dashboard}/>

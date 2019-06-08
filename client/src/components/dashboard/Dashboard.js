@@ -89,7 +89,7 @@ class Dashboard extends Component {
           )
         }else {
           allFoldersContent = (
-            <FolderRow folders={folders}/>
+              <FolderRow folders={folders}/>
           )
         }
       }

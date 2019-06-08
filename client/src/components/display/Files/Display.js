@@ -65,9 +65,8 @@ class Display extends Component {
           <div className="grid text-center col-md-12">
             <div className='row '>
               <div style={{margin: '10px'}}>
-                <Link to='/dashboard' className='btn btn-primary'>
-                  <i className="fa fa-chevron-circle-left" aria-hidden="true"/>
-                  back</Link>
+                <Link to='/dashboard' className='btn' style={{background: 'green', color: 'white'}}>
+                  <i className="fa fa-chevron-circle-left fa-2x" aria-hidden="true"/></Link>
               </div>
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
                 fontFamily: 'Lobster',

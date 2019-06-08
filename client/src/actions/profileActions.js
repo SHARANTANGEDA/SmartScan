@@ -1,25 +1,6 @@
 import axios from 'axios'
 
-import {  GET_ERRORS, GET_MY_PROFILE, PROFILE_LOADING } from './types'
-
-// Get current profile
-export const getMyAccount = () => dispatch => {
-  dispatch(setProfileLoading());
-  axios
-    .get('/api/users/myAccount')
-    .then(res =>
-      dispatch({
-        type:   GET_MY_PROFILE,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_MY_PROFILE,
-        payload: {}
-      })
-    );
-};
+import {  GET_ERRORS } from './types'
 
 
 
@@ -37,13 +18,6 @@ export const changePassword = (data, history) => dispatch => {
         payload: err.response.data
       })
     );
-};
-
-// Profile loading
-export const setProfileLoading = () => {
-  return {
-    type: PROFILE_LOADING
-  };
 };
 
 // Clear profile
