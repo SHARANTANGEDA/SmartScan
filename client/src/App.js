@@ -18,7 +18,6 @@ import ContactUs from './components/common/ContactUs'
 import UploadFiles from './components/upload/UploadFiles'
 import Success from './components/upload/Success'
 import Display from './components/display/Files/Display'
-import DownloadFolder from './components/display/DownloadFolder'
 
 
 //Check for token
@@ -62,9 +61,6 @@ class App extends Component {
           </Switch>
           <Switch>
             <PrivateRoute exact path='/uploadSuccess' component={Success}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/downloading' component={DownloadFolder}/>
           </Switch>
           </div>
         </div>
