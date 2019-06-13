@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import './allFolders.css'
 import { deleteFolder, downloadFolder } from '../../actions/homeActions'
-import TextFieldGroup from '../common/TextFieldGroup'
+import downloading from '../common/downloading.gif'
 
 
 
@@ -23,6 +23,7 @@ class FolderItem extends Component {
   }
   onDownload(e) {
     e.preventDefault()
+    this.setState({file: true})
     this.props.downloadFolder(this.props.folder.id )
   }
   onDelete(e) {
@@ -32,7 +33,19 @@ class FolderItem extends Component {
   }
   render () {
     const {folder} = this.props;
-    console.log({folder:folder})
+    let icon;
+    if(!this.state.file) {
+      icon= (<button className='btn-sm btn' style={{background: 'green', color: 'white',marginRight: '10px'}}
+                     onClick={this.onDownload.bind(this)}><i className="fa fa-download" aria-hidden="true"/>
+      </button>)
+    }else {
+      icon = (<button className='btn-sm btn' style={{background: 'white',marginRight: '10px'}}><img
+        src={downloading}
+        style={{ width: '25px', margin: 'auto', display: 'block' }}
+        alt="downloading..."
+      />
+      </button>)
+    }
 
     return (
       //onTouchStart="this.classList.toggle('hover');
@@ -40,26 +53,26 @@ class FolderItem extends Component {
         <div className="image-flip" >
           <div className="mainflip">
             <div className="frontside">
-              <Link to={`displayFolder/${folder.id}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
+
               <div className="card" style={{minWidth: '200px', borderStyle: 'solid'}}>
+                <Link to={`displayFolder/${folder.id}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
                 <div className="card-body text-center">
                   <p><img className="img-fluid" src={require('./folder.png')} alt=''/></p>
                   <div className='row text-center d-flex justify-content-center'>
                     <h4 className="card-title" style={{fontSize: '18px'}}>{folder.name}</h4>
                   </div>
                 </div>
+                </span>
+                </Link>
                 <div className="card-footer d-flex justify-content-around">
-                  <button className='btn-sm btn' style={{background: 'green', color: 'white',marginRight: '10px'}}
-                          onClick={this.onDownload.bind(this)}><i className="fa fa-download" aria-hidden="true"/>
-                  </button>
+                  {icon}
                   <button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}
                           onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/>
                   </button>
 
                 </div>
               </div>
-              </span>
-              </Link>
+
             </div>
           </div>
         </div>

@@ -44,9 +44,7 @@ class Navbar extends Component {
           <Link className="nav-link" to="" style={{minWidth: '150px', color:'white'}}>
             {user.emailId}
           </Link>
-
         </li>
-
         <li className="nav-item pull-right">
           <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)} style={{color:'white'}}>
             <i className="fa fa-power-off" aria-hidden="true"/>

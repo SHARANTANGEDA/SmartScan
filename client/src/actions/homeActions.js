@@ -85,12 +85,8 @@ export const downloadFolder  = (id) => dispatch => {
     link.setAttribute('download', id+'.zip');
     document.body.appendChild(link);
     link.click();
-    // console.log('download in progress')
+    window.location.href='/dashboard';
 
-    // dispatch({
-    //   type: GET_IMAGE,
-    //   payload: res.data
-    // })
   }).catch(err =>
     dispatch({
       type: NO_FILES,
