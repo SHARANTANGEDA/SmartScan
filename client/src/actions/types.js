@@ -10,3 +10,7 @@ export const NO_FILES = 'NO_FILES';
 export const GET_FILES_SINGLE_FOLDER = 'GET_FILES_SINGLE_FOLDER';
 export const NO_FILES_IN_FOLDER = 'NO_FILES_IN_FOLDER';
 export const GET_SA_HOME = 'GET_SA_HOME';
+export const GET_DA_HOME = 'GET_DA_HOME';
+export const HOME_LOADING = 'HOME_LOADING';
+export const GET_PATIENT_DETAILS = 'GET_PATIENT_DETAILS';
+export const GET_INVALID_MR = 'GET_INVALID_MR';

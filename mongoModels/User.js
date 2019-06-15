@@ -13,7 +13,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  admin: {
+  admin: { //Admin Id for Diag  people
       type: String
   },
   diagCentre: {

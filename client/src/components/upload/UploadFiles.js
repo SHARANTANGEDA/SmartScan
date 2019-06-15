@@ -85,14 +85,14 @@ class UploadFiles extends Component {
       <div className="uploadMultipleFiles">
         <div className="App-content row d-flex justify-content-center" >
           <div className="grid text-center col-md-12">
-            <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
+            <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
               fontFamily: 'Lobster',
-              color: 'black', fontSize: '48px'
-            }}> Welcome L V Prasad MRI Docs Cloud</h1>
+              color: 'black'
+            }}> Welcome L V Prasad MRI Docs Cloud</h3>
           </div>
           <div className="col-md-6 text-center" style={{width: '100%'}}>
-            <p style={{ color: 'white', background: 'green' }} className='btn w-100'>
-              Enter the Details below to upload the images</p>
+            {/*<p style={{ color: 'white', background: 'green' }} className='btn w-100'>*/}
+            {/*  Enter the Details below to upload the images</p>*/}
             {info}
             <div className='row d-flex justify-content-center'>
               <input type="file" onChange={this.fileChanged.bind(this)} required multiple name='files'

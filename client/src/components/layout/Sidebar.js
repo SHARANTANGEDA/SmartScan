@@ -9,27 +9,38 @@ class Sidebar extends Component {
 
   render () {
 
-    const { isAuthenticated } = this.props.auth
-    let showContent
-    if (isAuthenticated) {
+    const { isAuthenticated,user } = this.props.auth
+    let showContent=null
+    if (isAuthenticated && (user.role==='super_admin')) {
       showContent = (
         <nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
           <ul className="list-unstyled components" style={{ height: '100%' }}>
-            <li className="active">
-            </li>
             <li>
               <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                 <i className="fas fa-home"/>
                 Home
               </Link>
-              <Link to="/createAccount" style={{ textDecoration: 'none' }}>
+            </li>
+            <li>
+            <Link to="/createLVPEIUser" style={{ textDecoration: 'none' }}>
                 <i className="fa fa-cog" aria-hidden="true"/>
-                Create Account
-              </Link><Link to="/changePassword" style={{ textDecoration: 'none' }}>
+                Create LVPEI user
+              </Link>
+            </li>
+            <li>
+            <Link to="/addDiagnosticCentre" style={{ textDecoration: 'none' }}>
+                <i className="fa fa-cog" aria-hidden="true"/>
+                Add a new Diagnostic centre
+              </Link>
+            </li>
+            <li>
+            <Link to="/changePassword" style={{ textDecoration: 'none' }}>
               <i className="fa fa-wrench" aria-hidden="true"/>
               Change Password
             </Link>
-              {/*<Link to="/allQuestions" style={{ textDecoration: 'none' }}>*/}
+            </li>
+
+            {/*<Link to="/allQuestions" style={{ textDecoration: 'none' }}>*/}
               {/*  <i className="fas fa-question"/>*/}
               {/*  All Questions*/}
               {/*</Link>*/}
@@ -41,13 +52,12 @@ class Sidebar extends Component {
               {/*  <i className="fas fa-question"/>*/}
               {/*  TA Applications*/}
               {/*</Link>*/}
-            </li>
-            <li>
-              <Link to="/contactUs" style={{ textDecoration: 'none' }}>
-                <i className="fas fa-paper-plane"/>
-                Contact Us
-              </Link>
-            </li>
+            {/*<li>*/}
+            {/*  <Link to="/contactUs" style={{ textDecoration: 'none' }}>*/}
+            {/*    <i className="fas fa-paper-plane"/>*/}
+            {/*    Contact Us*/}
+            {/*  </Link>*/}
+            {/*</li>*/}
           </ul>
         </nav>
       )

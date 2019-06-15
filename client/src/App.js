@@ -10,7 +10,7 @@ import Footer from './components/layout/Footer'
 import NavBar from './components/layout/NavBar'
 import Landing from './components/layout/Landing'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Register from './components/MyAccount/Register'
+import CreateLVPEIUsers from './components/SuperAdmin/CreateLVPEIUsers'
 import Dashboard from './components/dashboard/Dashboard'
 import Sidebar from './components/layout/Sidebar'
 import ChangePassword from './components/MyAccount/ChangePassword'
@@ -18,6 +18,7 @@ import ContactUs from './components/common/ContactUs'
 import UploadFiles from './components/upload/UploadFiles'
 import Success from './components/upload/Success'
 import Display from './components/display/Files/Display'
+import AddDiagnosticCentre from './components/SuperAdmin/AddDiagnosticCentre'
 
 
 //Check for token
@@ -54,7 +55,10 @@ class App extends Component {
             <PrivateRoute exact path='/displayFolder/:id' component={Display}/>
           </Switch>
           <Switch>
-            <PrivateRoute exact path='/createAccount' component={Register}/>
+            <PrivateRoute exact path='/createLVPEIUser' component={CreateLVPEIUsers}/>
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path='/addDiagnosticCentre' component={AddDiagnosticCentre}/>
           </Switch>
           <Switch>
             <PrivateRoute exact path='/uploadMultipleFiles' component={UploadFiles}/>

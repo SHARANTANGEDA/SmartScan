@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import './scroll.css'
-import ShowTable from './tableDisplay/ShowTable'
+import ShowTable from '../SuperAdmin/tableDisplay/ShowTable'
 import Card from 'react-bootstrap/Card'
 
 class SADashboard extends Component {

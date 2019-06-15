@@ -27,7 +27,7 @@ const storage = new GridFsStorage({
   url: require('../../config/keys').mongoURI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
-      Patient.findOneAndUpdate({ empty: true }, { $inc: { photos: 1 } }, { new: true }).then(patient => {
+      Patient.findOne({ empty: true }, { $inc: { photos: 1 } }, { new: true }).then(patient => {
         const filename = patient._id.toString() + '_' + file.originalname
         const fileInfo = {
           filename: filename,

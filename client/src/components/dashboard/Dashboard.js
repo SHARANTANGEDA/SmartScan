@@ -5,17 +5,40 @@ import { getDetails, getFiles, getSADetails } from '../../actions/homeActions'
 import TextFieldGroup from '../common/TextFieldGroup'
 import Spinner from '../common/Spinner'
 import FolderRow from '../display/FolderRow'
-import SADashboard from './SADashboard'
+import SADashboard from '../SuperAdmin/SADashboard'
+import { getDAHome, getPatientDetails } from '../../actions/dAActions'
+import Modal from 'react-modal'
+import ShowTable from '../SuperAdmin/tableDisplay/ShowTable'
+import UploadFiles from '../upload/UploadFiles'
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '0',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 
 class Dashboard extends Component {
   constructor () {
     super();
     this.state = {
       patient: '',
-      errors: {}
+      errors: {},
+      modalIsOpen: false,
+      uploadModal: false
     };
     this.changeHandler = this.changeHandler.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.closeFlushModal = this.closeFlushModal.bind(this);
+    this.openNextModal = this.openNextModal.bind(this);
   }
 
   componentDidMount () {
@@ -24,14 +47,34 @@ class Dashboard extends Component {
     }else if(this.props.auth.user.role === 'super_admin') {
       console.log('Component mounted')
       this.props.getSADetails(this.props.match.params.id)
+    }else if(this.props.auth.user.role === 'diag_admin') {
+      this.props.getDAHome(this.props.match.params.id)
     }
   }
 
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  openNextModal() {
+    this.setState({uploadModal: true});
+  }
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // this.subtitle.style.color = '#f00';
+  }
+
+  closeFlushModal() {
+    this.setState({modalIsOpen: false, patient: ''})
+  }
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
   changeHandler(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   componentWillReceiveProps (nextProps, nextContext) {
-    if (this.props.auth.user.role === 'diag' || this.props.auth.user.role === 'diag_admin') {
+    if (this.props.auth.user.role === 'diag') {
       if (nextProps.auth.isAuthenticated) {
         this.props.history.push('/dashboard');
       }
@@ -43,15 +86,21 @@ class Dashboard extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    this.setState({modalIsOpen: true})
     const userData = {
-      name: this.state.patient
+      patient: this.state.patient
     };
     console.log(userData)
-    this.props.getDetails(userData);
+    if(this.state.patient.length!==0) {
+      // this.props.getDetails(userData);
+      this.props.getPatientDetails(userData);
+    }else {
+      this.setState({errors:{patient:'Please enter the MR No'}, patient:''})
+    }
   }
   render () {
     const {errors} = this.state;
-    if (this.props.auth.user.role === 'diag' || this.props.auth.user.role === 'diag_admin') {
+    if (this.props.auth.user.role === 'diag' ) {
       return (
         <div className='dashboard' style={{ width: '100%' }}>
           <div id="content" className="snippet-hidden ">
@@ -66,10 +115,11 @@ class Dashboard extends Component {
 
                 <div className="col-md-6 text-center" style={{width: '100%'}}>
                   <p style={{ color: 'white', background: 'green' }} className='btn w-100'>
-                    Enter the Details below to upload the images</p>
+                    Enter the MR Number below to upload the files</p>
                   <form noValidate onSubmit={this.onSubmit}>
                     <TextFieldGroup placeholder="Enter Patient Full Name" error={errors.patient}
-                                    type="text" onChange={this.changeHandler} value={this.state.patient} name="patient"
+                                    type="text" onChange={this.changeHandler} value={this.state.patient}
+                                    name="patient"
                     />
                     <input type="submit" className="btn btn-info btn-block mt-4"/>
                   </form>
@@ -119,8 +169,168 @@ class Dashboard extends Component {
         showContent=<SADashboard home={home}/>
       }
       return (
-        <div>
+        <div className='dashboard'>
           {showContent}
+
+        </div>
+      )
+    }else if( this.props.auth.user.role === 'diag_admin') {
+      const {loading, home} = this.props.home
+      let showContent, showModal
+      if(loading || home===null) {
+        showContent=<Spinner/>
+      }else {
+        showContent=(
+          <div className='row'>
+            <div className='row'>
+              <div className="grid text-center col-md-12">
+                <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
+                  fontFamily: 'Lobster',
+                  color: 'black', fontSize: '48px'
+                }}>Welcome to L V Prasad Cloud</h1>
+
+              </div>
+              <div className='row col-md-12' >
+                <div className='col-md-6' style={{borderStyle:'solid',borderWidth:'2px'}}>
+                  <h3 className='text-center' style={{borderWidth:'2px'
+                    ,borderRadius:'2px', fontFamily:'lobster'}}>{home.details.centreName} {' '} Admin Dashboard</h3>
+                </div>
+                <div className='row col-md-6' style={{borderStyle:'solid',borderWidth:'2px'
+                  ,borderRadius:'2px', fontFamily:'lobster'}}>
+                  <h3>Number of Accounts being used:{home.users.length}</h3>
+                </div>
+              </div>
+              <div className='row col-md-12'>
+                <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
+                  <h3 className='text-center' style={{borderStyle:'solid',borderWidth:'2px',background: 'green',
+                    color: 'white'
+                    ,borderRadius:'2px', fontFamily:'lobster'}}>Users in Your Organization</h3>
+                  <table className="table table-bordered table-striped mb-0">
+                    <thead>
+                    <tr>
+                      <th scope="col">Username</th>
+                      <th scope="col">Created On</th>
+                      <th scope="col">Manage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {/*<ShowTable data={lvpei} index={{type:'lvpei'}}/>*/}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="col-md-6" style={{width: '100%'}}>
+                  <h3 className='text-center' style={{borderStyle:'solid',borderWidth:'2px',background: 'green',
+                    color: 'white'
+                  ,borderRadius:'2px', fontFamily:'lobster'}}>Enter the Details below to upload the images</h3>
+
+                <form noValidate onSubmit={this.onSubmit}>
+                    <TextFieldGroup placeholder="Enter Patient MR.No" error={errors.patient}
+                                    type="text" onChange={this.changeHandler} value={this.state.patient} name="patient"
+                    />
+                    <input type="submit" className="btn btn-info btn-block mt-4"/>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      if(!this.state.uploadModal) {
+        const {loading2, patientData} = this.props.home
+        if(loading2 || patientData===null) {
+          showModal=<Spinner/>
+        }else {
+          if(patientData.invalid) {
+            showModal=(
+              <div id="mainbar" className='row d-flex justify-content-center'>
+                <div className="grid text-center col-md-10">
+                  <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
+                    fontFamily: 'Lobster',
+                    color: 'black'
+                  }}> Patient Details</h3>
+                </div>
+                <div className='col-md-2'>
+                  <button onClick={this.closeFlushModal} style={{borderStyle:'none',background:'white',color:'red'}}
+                  ><i className="fa fa-times fa-2x" aria-hidden="true"/>
+                  </button>
+                </div>
+                <p style={{color:'red',fontStyle:'italic'}}>You have entered invalid MR number</p>
+                <div className="col-md-6 text-center" style={{width: '100%'}}>
+                  <button onClick={this.closeFlushModal} className='btn btn-warning'>Close</button>
+                </div>
+              </div>
+            )
+          }else {
+            showModal= (
+              <div id="mainbar" className='row d-flex justify-content-center'>
+                <div className="grid text-center col-md-10">
+                  <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
+                    fontFamily: 'Lobster',
+                    color: 'black'
+                  }}> Confirm the Patient Details below to proceed</h3>
+                </div>
+                <div className='col-md-2'>
+                  <button onClick={this.closeModal} style={{borderStyle:'none',background:'white',color:'red'}}
+                  ><i className="fa fa-times fa-2x" aria-hidden="true"/>
+                  </button>
+                </div>
+
+                <div className="col-md-6" style={{width: '100%'}}>
+                  <table className="table table-bordered table-striped mb-0">
+                    <tbody>
+                    <tr>
+                      <td><h5>First Name</h5></td>
+                      <td> <h5>{patientData.patient.firstName}</h5></td>
+                    </tr>
+                    <tr>
+                      <td><h5>Last Name</h5></td>
+                      <td> <h5>{patientData.patient.lastName}</h5></td>
+                    </tr>
+                    <tr>
+                      <td><h5>LVPEI Centre Code</h5></td>
+                      <td> <h5>{patientData.patient.centerCode}</h5></td>
+                    </tr>
+                    <tr>
+                      <td><h5>Mobile Number</h5></td>
+                      <td> <h5>{patientData.patient.phone}</h5></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div className='row d-flex justify-content-around'>
+                    <button onClick={this.openNextModal} className='btn btn-sm' style={{background:'green', color:'white'}}>Continue to upload</button>
+                    <button onClick={this.closeFlushModal} className='btn btn-warning' style={{background:'red', color:'white'}}>discard</button>
+                  </div>
+
+                </div>
+              </div>
+            )
+          }
+        }
+      }else {
+        showModal=(
+          <div>
+            <UploadFiles/>
+            <div className='row d-flex justify-content-around'>
+              <button onClick={this.closeFlushModal} className='btn btn-warning' style={{background:'red', color:'white'}}>discard</button>
+            </div>
+          </div>
+
+        )
+      }
+      return (
+        <div className='dashboard'>
+          {showContent}
+          <div>
+            {/*<button onClick={this.openModal}>Open Modal</button>*/}
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              style={customStyles}
+              contentLabel="Patient Data"
+              ariaHideApp={false}
+            >{showModal}</Modal>
+          </div>
         </div>
       )
     }
@@ -131,11 +341,14 @@ Dashboard.propTypes = {
   home: PropTypes.object.isRequired,
   getDetails: PropTypes.func.isRequired,
   getFiles: PropTypes.func.isRequired,
-  getSADetails: PropTypes.func.isRequired
+  getSADetails: PropTypes.func.isRequired,
+  getDAHome: PropTypes.func.isRequired,
+  getPatientDetails: PropTypes.func.isRequired
+
 }
 const mapStateToProps = state => ({
   home: state.home,
   auth: state.auth,
   folder: state.folder
 })
-export default connect(mapStateToProps, {  getDetails, getFiles, getSADetails })(Dashboard)
+export default connect(mapStateToProps, {  getDetails, getFiles, getSADetails, getDAHome, getPatientDetails })(Dashboard)

@@ -44,7 +44,6 @@ export const getSADetails = () => dispatch => {
   )
 };
 export const deleteFile = (id) => dispatch => {
-  console.log('in delete')
   axios.get(`/api/upload/deleteFile/${id}`).then(res => {
     console.log(res)
     window.location.reload()
@@ -57,7 +56,6 @@ export const deleteFile = (id) => dispatch => {
 }
 
 export const deleteFolder = (id) => dispatch => {
-  console.log('in delete')
   axios.get(`/api/upload/deleteFolder/${id}`).then(res => {
     console.log(res)
     window.location.reload()

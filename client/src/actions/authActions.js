@@ -9,10 +9,10 @@ import setAuthToken from '../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
 
 //Register User
-export const registerUser = (userData,history) => dispatch => {
+export const registerUser = (userData) => dispatch => {
   clearErrors()
   console.log('In register')
-  axios.post('/api/users/register', userData)
+  axios.post('/api/superAdmin/register', userData)
     .then(res => {
       console.log(res)
       window.location='/dashboard'

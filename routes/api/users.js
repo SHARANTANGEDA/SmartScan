@@ -52,6 +52,7 @@ router.post('/login', (req, res) => {
         //TODO change secret key and signIn options
         jwt.sign(payload, keys.secretOrKey, { expiresIn: '12h' },
           (err, token) => {
+          console.log(payload)
             res.json({
               success: true,
               token: 'Bearer ' + token

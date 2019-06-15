@@ -2,21 +2,32 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PatientSchema = new Schema({
-  name: {
+  mrNo: {
     type: String,
     required:true
   },
-  empty: {
-    type: Boolean,
-    default:true
+  uploadedBy: {
+    type: String
   },
-  photos: {
-    type: Number,
-    default: 0
+  uploads: [{
+    files: {
+    type: Number
   },
-  time: {
+    uploadedOn: {
+      type: Date
+    }
+  }],
+  createdAt: {
     type: Date,
     default: Date.now
+  },
+  lastUploadAt: {
+    type: Date,
+    default: Date.now
+  },
+  transit: {
+    type: Boolean,
+    default: true
   }
 });
 
