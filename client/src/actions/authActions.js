@@ -1,8 +1,6 @@
 import {
   CLEAR_ERRORS,
-  GET_ALL_DEPARTMENTS,
   GET_ERRORS,
-  GET_ERRORS_IN_APPLICATIONS,
   LOADING,
   SET_CURRENT_USER
 } from './types'
@@ -37,12 +35,14 @@ export const loginUser = userData => dispatch => {
       setAuthToken(token);
       const decoded = jwt_decode(token);
       dispatch(setCurrentUser(decoded));
+
     })
     .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      }));
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+     );
 };
 export const setLoading = () => {
   return {

@@ -25,5 +25,6 @@
     <orderEntry type="library" name="@types/react-bootstrap" level="application" />
     <orderEntry type="library" name="@types/passport-google-oauth" level="application" />
     <orderEntry type="library" name="@types/chartist" level="application" />
+    <orderEntry type="library" name="@types/sequelize" level="application" />
   </component>
 </module>

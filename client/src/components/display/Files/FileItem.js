@@ -3,9 +3,7 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import '../allFolders.css'
 import { downloadFile,deleteFile } from '../../../actions/homeActions'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import { NO_FILES } from '../../../actions/types'
+
 
 class FileItem extends Component {
   constructor () {

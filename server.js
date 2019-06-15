@@ -5,12 +5,15 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const users = require('./routes/api/users');
 const uploads = require('./routes/api/upload');
+const superAdmin = require('./routes/api/superAdmin')
 // const MongoClient = require('mongodb').MongoClient;
 
 const path = require('path');
 const methodOverride = require('method-override');
 
 const db = require('./config/keys').mongoURI;
+
+const sqlDB = require("./models");
 
 mongoose.connect(db,{useNewUrlParser: true})
   .then(() => {
@@ -28,6 +31,7 @@ require('./config/passport')(passport);
 
 app.use('/api/users',users);
 app.use('/api/upload',uploads)
+app.use('/api/superAdmin',superAdmin)
 
 //Server static assets if in production
 if(process.env.NODE_ENV === 'production') {
@@ -41,5 +45,7 @@ if(process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`server running on port ${port}`));
+sqlDB.sequelize.sync().then(() => {
+  app.listen(port, () => console.log(`server running on port ${port}`));
+})
 

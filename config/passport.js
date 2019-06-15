@@ -3,12 +3,58 @@ const extractJWT = require('passport-jwt/lib').ExtractJwt;
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
 const keys = require('./keys');
+const db = require("../models");
 
 const opts = {};
 opts.jwtFromRequest = extractJWT.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = keys.secretOrKey;
 
 module.exports = passport => {
+  passport.use('super_admin',
+    new JWTStrategy(opts, (jwt_payload, done) => {
+      User.findById(jwt_payload.id)
+        .then(user => {
+          if(user) {
+            if(user.role==='super_admin') {
+              return done(null,user);
+            } else {
+              return done(null,false);
+            }          }
+          return done(null,false);
+        })
+        .catch(err=>console.log(err));
+    })
+  );
+  passport.use('diag_admin',
+    new JWTStrategy(opts, (jwt_payload, done) => {
+      User.findById(jwt_payload.id)
+        .then(user => {
+          if(user) {
+            if(user.role==='diag_admin') {
+              return done(null,user);
+            } else {
+              return done(null,false);
+            }          }
+          return done(null,false);
+        })
+        .catch(err=>console.log(err));
+    })
+  );
+  passport.use('diag',
+    new JWTStrategy(opts, (jwt_payload, done) => {
+      User.findById(jwt_payload.id)
+        .then(user => {
+          if(user) {
+            if(user.role==='diag') {
+              return done(null,user);
+            } else {
+              return done(null,false);
+            }          }
+          return done(null,false);
+        })
+        .catch(err=>console.log(err));
+    })
+  );
   passport.use('lvpei',
     new JWTStrategy(opts, (jwt_payload, done) => {
       User.findById(jwt_payload.id)
@@ -51,4 +97,11 @@ module.exports = passport => {
         .catch(err=>console.log(err));
     })
   );
+  passport.serializeUser(function(user, cb) {
+    cb(null, user);
+  });
+//
+  passport.deserializeUser(function(obj, cb) {
+    cb(null, obj);
+  });
 };

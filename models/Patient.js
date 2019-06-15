@@ -1,24 +1,32 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define("Patient", {
+    mrNo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      primaryKey: true
+    },
 
-const PatientSchema = new Schema({
-  name: {
-    type: String,
-    required:true
-  },
-  empty: {
-    type: Boolean,
-    default:true
-  },
-  photos: {
-    type: Number,
-    default: 0
-  },
-  time: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-module.exports = Patient = mongoose.model('patient',PatientSchema);
+    centerCode: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    phone: {
+      type: DataTypes.STRING(20),
+      allowNull: false
+    },
+    address: {
+      type: DataTypes.STRING(400),
+      allowNull: false
+    }
+  }, { timestamps: false });
+};
 

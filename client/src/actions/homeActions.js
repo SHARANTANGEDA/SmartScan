@@ -5,9 +5,9 @@ import {
   GET_DETAILS,
   GET_FILES,
   GET_FILES_SINGLE_FOLDER,
-  GET_NO_COURSE,
+  ON_POST_FAIL,
   NO_FILES,
-  NO_FILES_IN_FOLDER
+  NO_FILES_IN_FOLDER, GET_SA_HOME
 } from './types'
 
 
@@ -21,7 +21,24 @@ export const getDetails = (userData) => dispatch => {
       window.location.href='/uploadMultipleFiles'
     }).catch(err =>
     dispatch({
-      type: GET_NO_COURSE,
+      type: ON_POST_FAIL,
+      payload: null
+    })
+  )
+};
+
+
+export const getSADetails = () => dispatch => {
+  dispatch(setLoading());
+  axios.get('/api/superAdmin/home',)
+    .then(res => {
+      dispatch({
+        type: GET_SA_HOME,
+        payload: res.data
+      })
+    }).catch(err =>
+    dispatch({
+      type: ON_POST_FAIL,
       payload: null
     })
   )
@@ -51,13 +68,24 @@ export const deleteFolder = (id) => dispatch => {
     })
   )
 }
+
+// export const downloadFile = (id)=> async dispatch => {
+//   axios.get(`/api/upload/downloadFile/${id}`,{responseType: 'blob'}).then(res => {
+//     saveAs(new Blob([res.data],{type: "octet/stream"}),id)
+//   }).catch(err =>
+//     dispatch({
+//       type: NO_FILES,
+//       payload: err.data
+//     })
+//   );
+// }
 export const downloadFile = (id) => dispatch => {
   axios.get(`/api/upload/downloadFile/${id}`,{responseType: 'blob'}).then(res => {
-    const url = window.URL.createObjectURL(new Blob([res.data]));
+    const url = window.URL.createObjectURL(new Blob([res.data],{type: "octet/stream"}));
     const link = document.createElement('a');
     console.log(url)
     link.href = url;
-    link.setAttribute('download', id+'.dcm');
+    link.setAttribute('download', id);
     document.body.appendChild(link);
     link.click();
     // console.log('download in progress')

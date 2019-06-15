@@ -9,75 +9,16 @@ const passport = require('passport')
 const validateRegisterInput = require('../../validations/register')
 const validatePassword = require('../../validations/ChangePassword')
 const validateLoginInput = require('../../validations/login')
-const User = require('../../models/User');
-const Patient = require('../../models/Patient');
+const User = require('../../mongoModels/User');
+const Patient = require('../../mongoModels/Patient');
 
 const validateName = require('../../validations/name')
 
 // @desc Register
-router.post('/register', passport.authenticate('lvpei',{session: false}),(req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body)
-  if (!isValid) {
-    return res.status(400).json(errors)
-  }
-  User.findOne({ emailId: req.body.emailId }).then(user => {
 
-    if (user) {
-      errors.emailId = 'Account already exists please create with different name'
-      return res.status(400).json(errors)
-    } else {
-      const newUser = new User({
-        emailId: req.body.emailId,
-        password: req.body.password,
-        role: 'MRI'
-      })
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err
-          newUser.password = hash
-          newUser.save().then(res => {
-            res.json({success: true})
-          }).catch(err => {
-            console.log(err)
-            res.json({error: 'creating the user'})
-          })
-        })
-      })
-    }
-  })
-})
 
-//
-// router.post('/registerLVP',(req, res) => {
-//   // const { errors, isValid } = validateRegisterInput(req.body)
-//   // if (!isValid) {
-//   //   return res.status(400).json(errors)
-//   // }
-//   User.findOne({ emailId: req.body.emailId }).then(user => {
-//
-//     if (user) {
-//       return res.status(400).json('errors')
-//     } else {
-//       const newUser = new User({
-//         emailId: req.body.emailId,
-//         password: req.body.password,
-//         role: 'lvpei'
-//       })
-//       bcrypt.genSalt(10, (err, salt) => {
-//         bcrypt.hash(newUser.password, salt, (err, hash) => {
-//           if (err) throw err
-//           newUser.password = hash
-//           newUser.save().then(user => {
-//             res.json({success: true,user})
-//           }).catch(err => {
-//             console.log(err)
-//             res.json({error: 'creating the user'})
-//           })
-//         })
-//       })
-//     }
-//   })
-// })
+
+
 //@desc Login
 router.post('/login', (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body)
@@ -98,7 +39,16 @@ router.post('/login', (req, res) => {
     }
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { id: user.id,role: user.role, emailId: user.emailId}
+        let payload
+        if(user.role ==='super_admin') {
+          payload = { id: user.id,role: user.role, emailId: user.emailId}
+        }else if(user.role === 'diag_admin') {
+          payload = { id: user.id,role: user.role, emailId: user.emailId, diagId: user.diagCentre}
+        } else if(user.role === 'diag') {
+          payload = { id: user.id,role: user.role, emailId: user.emailId, diagId: user.diagCentre}
+        }else if(user.role === 'lvpei') {
+          payload = { id: user.id,role: user.role, emailId: user.emailId}
+        }
         //TODO change secret key and signIn options
         jwt.sign(payload, keys.secretOrKey, { expiresIn: '12h' },
           (err, token) => {

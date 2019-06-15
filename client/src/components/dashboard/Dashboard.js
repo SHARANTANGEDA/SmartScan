@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getDetails, getFiles } from '../../actions/homeActions'
+import { getDetails, getFiles, getSADetails } from '../../actions/homeActions'
 import TextFieldGroup from '../common/TextFieldGroup'
 import Spinner from '../common/Spinner'
 import FolderRow from '../display/FolderRow'
+import SADashboard from './SADashboard'
 
 class Dashboard extends Component {
   constructor () {
@@ -20,6 +21,9 @@ class Dashboard extends Component {
   componentDidMount () {
     if (this.props.auth.user.role === 'lvpei') {
       this.props.getFiles(this.props.match.params.id)
+    }else if(this.props.auth.user.role === 'super_admin') {
+      console.log('Component mounted')
+      this.props.getSADetails(this.props.match.params.id)
     }
   }
 
@@ -27,7 +31,7 @@ class Dashboard extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   componentWillReceiveProps (nextProps, nextContext) {
-    if (this.props.auth.user.role === 'MRI') {
+    if (this.props.auth.user.role === 'diag' || this.props.auth.user.role === 'diag_admin') {
       if (nextProps.auth.isAuthenticated) {
         this.props.history.push('/dashboard');
       }
@@ -47,7 +51,7 @@ class Dashboard extends Component {
   }
   render () {
     const {errors} = this.state;
-    if (this.props.auth.user.role === 'MRI') {
+    if (this.props.auth.user.role === 'diag' || this.props.auth.user.role === 'diag_admin') {
       return (
         <div className='dashboard' style={{ width: '100%' }}>
           <div id="content" className="snippet-hidden ">
@@ -106,6 +110,19 @@ class Dashboard extends Component {
           </div>
         </div>
       );
+    } else if(this.props.auth.user.role === 'super_admin') {
+      const {loading, home} = this.props.home
+      let showContent
+      if(loading || home===null) {
+        showContent=<Spinner/>
+      }else {
+        showContent=<SADashboard home={home}/>
+      }
+      return (
+        <div>
+          {showContent}
+        </div>
+      )
     }
   }
 }
@@ -113,11 +130,12 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   home: PropTypes.object.isRequired,
   getDetails: PropTypes.func.isRequired,
-  getFiles: PropTypes.func.isRequired
+  getFiles: PropTypes.func.isRequired,
+  getSADetails: PropTypes.func.isRequired
 }
 const mapStateToProps = state => ({
   home: state.home,
   auth: state.auth,
   folder: state.folder
 })
-export default connect(mapStateToProps, {  getDetails, getFiles })(Dashboard)
+export default connect(mapStateToProps, {  getDetails, getFiles, getSADetails })(Dashboard)

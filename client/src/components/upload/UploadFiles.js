@@ -60,7 +60,6 @@ class UploadFiles extends Component {
       })
   }
   render() {
-    const { files } = this.state;
     let spin = (
       <div>
         <FileUpload/>

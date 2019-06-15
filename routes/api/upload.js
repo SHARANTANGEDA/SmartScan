@@ -10,7 +10,7 @@ const fs = require('fs')
 //@MongoDB Atlas Connection
 const db = require('../../config/keys').mongoURI
 const mongoose = require('mongoose')
-const Patient = require('../../models/Patient')
+const Patient = require('../../mongoModels/Patient')
 // const zipStream = require('zip-stream')
 
 let gfs
@@ -280,6 +280,7 @@ router.get('/deleteFile/:id', passport.authenticate('lvpei',{session: false}), (
 })
 
 router.get('/deleteFolder/:id', passport.authenticate('lvpei',{session: false}), (req, res) => {
+  let errcnt=0;
   Patient.findById(req.params.id).then(patient => {
     gfs.files.find().toArray((err, files) => {
       // Check if files
@@ -292,8 +293,9 @@ router.get('/deleteFolder/:id', passport.authenticate('lvpei',{session: false}),
             let nm = patient._id.toString()
             let ind = file.filename.lastIndexOf('_')
             if (file.filename.substr(0, ind) === nm) {
-              gfs.files.remove({ filename: file.filename }, (err, gridStore) => {
+              gfs.remove({ filename: file.filename, root: 'uploads' }, (err, gridStore) => {
                 if (err) {
+                  errcnt=errcnt+1;
                   return res.status(404).json({ err: err })
                 }
               })
@@ -302,11 +304,17 @@ router.get('/deleteFolder/:id', passport.authenticate('lvpei',{session: false}),
       }
     })
    })
-  Patient.remove({_id:req.params.id}).then(patient => {
+  if(errcnt===0) {
+    Patient.remove({_id:req.params.id}).then(patient => {
+      res.redirect('/')
+    }).catch(err => {
+      console.log({error: err})
+    })
+  } else {
+    alert('Error in deletion, please try again!!!')
     res.redirect('/')
-  }).catch(err => {
-    console.log({error: err})
-  })
+
+  }
 })
 
 
