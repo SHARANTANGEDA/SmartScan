@@ -39,28 +39,49 @@ class Sidebar extends Component {
               Change Password
             </Link>
             </li>
-
-            {/*<Link to="/allQuestions" style={{ textDecoration: 'none' }}>*/}
-              {/*  <i className="fas fa-question"/>*/}
-              {/*  All Questions*/}
-              {/*</Link>*/}
-              {/*<Link to="/allProfiles" style={{ textDecoration: 'none' }}>*/}
-              {/*  <i className="fas fa-question"/>*/}
-              {/*  All Users*/}
-              {/*</Link>*/}
-              {/*<Link to="/taApplications" style={{ textDecoration: 'none' }}>*/}
-              {/*  <i className="fas fa-question"/>*/}
-              {/*  TA Applications*/}
-              {/*</Link>*/}
-            {/*<li>*/}
-            {/*  <Link to="/contactUs" style={{ textDecoration: 'none' }}>*/}
-            {/*    <i className="fas fa-paper-plane"/>*/}
-            {/*    Contact Us*/}
-            {/*  </Link>*/}
-            {/*</li>*/}
           </ul>
         </nav>
       )
+    }else if(isAuthenticated && (user.role==='diag_admin')) {
+      showContent = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
+        <ul className="list-unstyled components" style={{ height: '100%' }}>
+          <li>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+              <i className="fas fa-home"/>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/createUser" style={{ textDecoration: 'none' }}>
+              <i className="fa fa-cog" aria-hidden="true"/>
+              Create new user
+            </Link>
+          </li>
+          <li>
+            <Link to="/changePassword" style={{ textDecoration: 'none' }}>
+              <i className="fa fa-wrench" aria-hidden="true"/>
+              Change Password
+            </Link>
+          </li>
+        </ul>
+      </nav>)
+    } else if(isAuthenticated && (user.role==='diag')) {
+      showContent = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
+        <ul className="list-unstyled components" style={{ height: '100%' }}>
+          <li>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+              <i className="fas fa-home"/>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/changePassword" style={{ textDecoration: 'none' }}>
+              <i className="fa fa-wrench" aria-hidden="true"/>
+              Change Password
+            </Link>
+          </li>
+        </ul>
+      </nav>)
     }
     return (
       <div style={{ minHeight: '100%' }}>

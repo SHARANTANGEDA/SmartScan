@@ -3,10 +3,11 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { registerUser } from '../../actions/authActions'
 import TextFieldGroup from '../common/TextFieldGroup'
+import { createNewMembers } from '../../actions/dAActions'
 // import classnames from 'classnames'
 // import Select from 'react-select'
 
-class CreateLVPEIUsers extends Component {
+class CreateUsers extends Component {
   constructor () {
     super()
     this.state = {
@@ -43,22 +44,31 @@ class CreateLVPEIUsers extends Component {
       repassword: this.state.repassword
     }
     console.log(newUser)
-    this.props.registerUser(newUser, this.props.history)
+    if(this.props.auth.user.role==='super_admin') {
+      this.props.registerUser(newUser)
+    } else if(this.props.auth.user.role==='diag_admin') {
+      this.props.createNewMembers(newUser)
+    }
 
   }
 
   render () {
     const { errors } = this.state
-    return (
-      <div className="createLVPEIUser">
+    let heading
+    if(this.props.auth.user.role==='super_admin') {
+      heading=(<h1>Create a new LVPEI user account</h1>)
+    } else if(this.props.auth.user.role==='diag_admin') {
+      heading=(<h2>Create new user for Your Diagnostics</h2>)
+    }    return (
+      <div className="createUser">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <div className="col-sm-10" style={{ fontFamily: 'Lobster', color: 'black', fontSize: '48px' }}>
-                <h1>Create a new LVPEI user account</h1></div>
-              <form noValidate onSubmit={this.onSubmit}>
-                <TextFieldGroup placeholder="Lab Name" error={errors.emailId}
-                                info="Please use unique Lab name"
+                {heading}</div>
+              <form className='col-md-8 ' noValidate onSubmit={this.onSubmit}>
+                <TextFieldGroup placeholder="User name" error={errors.emailId}
+                                info="Please enter unique username for creating account successfully"
                                 type="email" onChange={this.onChange} value={this.state.emailId} name="emailId"
                 />
                 <TextFieldGroup placeholder="Password" error={errors.password}
@@ -69,19 +79,6 @@ class CreateLVPEIUsers extends Component {
                                 type="password" onChange={this.onChange} value={this.state.repassword}
                                 name="repassword"
                 />
-                {/*<div className="form-group w-75" style={{marginTop: '10px'}}>*/}
-                {/*  <label className="s-label mb4 d-block w-100" htmlFor="wmd-input">*/}
-                {/*    <h4>Course</h4>*/}
-                {/*  </label>*/}
-                {/*<Select options={[{value: 'diag_admin',label: 'Diagnostic Centre Admin'}]} className={classnames("isSearchable",*/}
-                {/*  {'is-invalid': errors.role})}*/}
-                {/*        placeholder="Select the role of user"*/}
-                {/*        name="role" value={role} onChange={this.onRoleChange}>*/}
-                {/*</Select>*/}
-                {/*{errors.role && (*/}
-                {/*  <div className="invalid-feedback">{errors.role}</div>*/}
-                {/*)}*/}
-                {/*</div>*/}
                 <div className="col-xs-12">
                    <input type="submit" className="btn btn-info btn-block mt-4 btn-primary w-30 my-1"/>
                 </div>
@@ -94,8 +91,9 @@ class CreateLVPEIUsers extends Component {
   }
 }
 
-CreateLVPEIUsers.propTypes = {
+CreateUsers.propTypes = {
   registerUser: PropTypes.func.isRequired,
+  createNewMembers: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
@@ -105,4 +103,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 })
 
-export default connect(mapStateToProps, { registerUser })(CreateLVPEIUsers)
+export default connect(mapStateToProps, { registerUser, createNewMembers })(CreateUsers)

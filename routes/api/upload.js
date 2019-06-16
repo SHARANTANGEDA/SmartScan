@@ -22,13 +22,13 @@ conn.once('open', () => {
   gfs = Grid(conn.db, mongoose.mongo)
   gfs.collection('uploads')
 })
-
 const storage = new GridFsStorage({
   url: require('../../config/keys').mongoURI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
-      Patient.findOne({ empty: true }, { $inc: { photos: 1 } }, { new: true }).then(patient => {
-        const filename = patient._id.toString() + '_' + file.originalname
+      Patient.findOneAndUpdate({ transit: true, uploadedBy: req.user.emailId },
+        { $inc:{ files: 1 }}, { new: true }).then(patient => {
+        const filename =patient.mrNo.toString()+'_'+patient._id.toString() + '_' + file.originalname
         const fileInfo = {
           filename: filename,
           bucketName: 'uploads'
@@ -63,9 +63,10 @@ const upload = multer({ storage })
 
 // @route POST /upload
 // @desc  Uploads file to DB
-router.post('/upload', passport.authenticate('MRI', { session: false }),
+router.post('/upload', passport.authenticate('all_diag', { session: false }),
   upload.array('file'), (req, res) => {
-    Patient.findOneAndUpdate({ empty: true }, { empty: false }).then(patient => {
+    Patient.findOneAndUpdate({ transit: true,uploadedBy: req.user.emailId },
+      { transit: false,lastUploadedAt: Date.now()}).then(patient => {
       return res.json({
         success: true
       })

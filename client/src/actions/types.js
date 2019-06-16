@@ -14,3 +14,4 @@ export const GET_DA_HOME = 'GET_DA_HOME';
 export const HOME_LOADING = 'HOME_LOADING';
 export const GET_PATIENT_DETAILS = 'GET_PATIENT_DETAILS';
 export const GET_INVALID_MR = 'GET_INVALID_MR';
+export const GET_MR = 'GET_MR';

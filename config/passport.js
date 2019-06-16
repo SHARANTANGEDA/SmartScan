@@ -82,12 +82,12 @@ module.exports = passport => {
         .catch(err=>console.log(err));
     })
   );
-  passport.use('MRI',
+  passport.use('all_diag',
     new JWTStrategy(opts, (jwt_payload, done) => {
       User.findById(jwt_payload.id)
         .then(user => {
           if(user) {
-            if(user.role==='MRI') {
+            if(user.role==='diag' || user.role === 'diag_admin') {
               return done(null,user);
             } else {
               return done(null,false);

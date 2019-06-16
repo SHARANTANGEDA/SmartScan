@@ -27,6 +27,7 @@ export const registerUser = (userData) => dispatch => {
 //Login User
 //`file://${path.join(__dirname, '../build/index.html')}`
 export const loginUser = userData => dispatch => {
+  clearErrors()
   axios.post('/api/users/login',userData)
     .then(res => {
       //Saving to Local Storage

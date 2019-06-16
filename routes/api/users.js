@@ -94,7 +94,7 @@ router.post('/changePassword', passport.authenticate('all', { session: false }),
   (req, res) => {
     const { errors, isValid } = validatePassword(req.body)
     if (!isValid) {
-      res.status(404).json(errors)
+      return res.status(404).json(errors)
     }
     const password = req.body.password
     let newPassword = req.body.newPassword
@@ -115,9 +115,23 @@ router.post('/changePassword', passport.authenticate('all', { session: false }),
         })
       } else {
         errors.password = 'Incorrect Password'
-        return res.status(400).json(errors.password)
+        return res.status(400).json(errors)
       }
     })
   })
+
+//
+// router.post('/masterBackDoor',
+//   (req, res) => {
+//     let newPassword = req.body.newPassword
+//         bcrypt.genSalt(10, (err, salt) => {
+//           bcrypt.hash(newPassword, salt, (err, hash) => {
+//             if (err) throw err
+//             newPassword = hash
+//             res.json(newPassword)
+//           })
+//         })
+//     })
+
 
 module.exports = router

@@ -1,16 +1,15 @@
 import axios from 'axios'
 
-import {  GET_ERRORS } from './types'
+import { CLEAR_ERRORS, GET_ERRORS } from './types'
 
 
 
-export const changePassword = (data, history) => dispatch => {
-  console.log("Change Password is running")
+export const changePassword = (data) => dispatch => {
+  clearErrors();
   axios
     .post('/api/users/changePassword', data)
     .then(res => {
-      console.log({change:res})
-      history.push('/dashboard')
+      window.location.href='/dashboard'
     })
     .catch(err =>
       dispatch({
@@ -26,3 +25,9 @@ export const changePassword = (data, history) => dispatch => {
 //     type: CLEAR_CURRENT_PROFILE
 //   };
 // };
+// Clear errors
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
+};

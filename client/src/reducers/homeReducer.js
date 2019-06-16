@@ -1,11 +1,12 @@
 import {
-  GET_SA_HOME, GET_DA_HOME, HOME_LOADING, GET_PATIENT_DETAILS, GET_INVALID_MR
+  GET_SA_HOME, GET_DA_HOME, HOME_LOADING, GET_PATIENT_DETAILS, GET_INVALID_MR, GET_MR
 } from '../actions/types'
 
 const initialState = {
   home: null,
   loading: true,
   loading2: true,
+  loading3: true,
   patientData: null,
   invalid: false
 };
@@ -17,7 +18,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        loading2:true
+        loading2:true,
+        loading3: true
+      }
+    case GET_MR:
+      return {
+        ...state,
+        mid: action.payload,
+        loading3: false
       }
     case GET_INVALID_MR:
       return {

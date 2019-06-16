@@ -9,14 +9,10 @@ const PatientSchema = new Schema({
   uploadedBy: {
     type: String
   },
-  uploads: [{
-    files: {
-    type: Number
+  files: {
+    type: Number,
+    default: 0
   },
-    uploadedOn: {
-      type: Date
-    }
-  }],
   createdAt: {
     type: Date,
     default: Date.now

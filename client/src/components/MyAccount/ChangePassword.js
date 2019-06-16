@@ -10,7 +10,6 @@ class ChangePassword extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      displaySocialInputs: false,
       password: '',
       newPassword: '',
       renewPassword: '',
@@ -25,21 +24,6 @@ class ChangePassword extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
     }
-
-    if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile
-
-      // profile.password = !isEmpty(profile.password) ? profile.password : '';
-      // profile.newPassword = !isEmpty(profile.newPassword) ? profile.newPassword : '';
-      // profile.renewPassword = !isEmpty(profile.renewPassword) ? profile.renewPassword : '';
-
-      // Set component fields state
-      this.setState({
-        password: profile.password,
-        newPassword: profile.newPassword,
-        renewPassword: profile.renewPassword
-      })
-    }
   }
 
   onChange (e) {
@@ -48,32 +32,22 @@ class ChangePassword extends Component {
 
   onSubmit (e) {
     e.preventDefault()
-
     const profileData = {
       password: this.state.password,
       newPassword: this.state.newPassword,
       renewPassword: this.state.renewPassword
     }
-    console.log({ profileData })
-    this.props.changePassword(profileData, this.props.history)
-    console.log('Change Password Logged')
-
+    this.props.changePassword(profileData)
   }
 
   render () {
     const { errors } = this.state
-    let profileContent
-
-    // if (profile === null || loading) {
-    //   profileContent = <Spinner />;
-    // } else {
-    profileContent = (
+    let profileContent = (
       <div>
         <div className="col-sm-9">
           <div className="row col-md-8 m-auto">
             <div className="col-sm-10" style={{ fontFamily: 'Lobster', color: 'black', fontSize: '48px' }}>
-              <h1>Change
-              Password</h1></div>
+              <h1>Change Password</h1></div>
           </div>
 
             <div className="col-md-8 m-auto">
@@ -134,11 +108,13 @@ class ChangePassword extends Component {
 
 ChangePassword.propTypes = {
   changePassword: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  auth: state.auth,
+  errors: state.errors,
 })
 
 export default connect(mapStateToProps, { changePassword })(ChangePassword)

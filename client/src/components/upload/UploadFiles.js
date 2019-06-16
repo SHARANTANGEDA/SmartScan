@@ -77,7 +77,7 @@ class UploadFiles extends Component {
       )
     } else {
       info = (
-        <p style={{ color: 'white',background: 'rgba(187,65,147,0.5)',fontStyle: 'italic'}} className='w-100'>
+        <p style={{ color: 'green',fontStyle: 'italic'}} className='w-100'>
           You can choose multiple files at same time</p>
       )
     }
@@ -88,7 +88,7 @@ class UploadFiles extends Component {
             <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
               fontFamily: 'Lobster',
               color: 'black'
-            }}> Welcome L V Prasad MRI Docs Cloud</h3>
+            }}>Select the files to upload</h3>
           </div>
           <div className="col-md-6 text-center" style={{width: '100%'}}>
             {/*<p style={{ color: 'white', background: 'green' }} className='btn w-100'>*/}

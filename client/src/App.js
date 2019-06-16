@@ -10,7 +10,7 @@ import Footer from './components/layout/Footer'
 import NavBar from './components/layout/NavBar'
 import Landing from './components/layout/Landing'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import CreateLVPEIUsers from './components/SuperAdmin/CreateLVPEIUsers'
+import CreateUsers from './components/MyAccount/CreateUsers'
 import Dashboard from './components/dashboard/Dashboard'
 import Sidebar from './components/layout/Sidebar'
 import ChangePassword from './components/MyAccount/ChangePassword'
@@ -55,13 +55,10 @@ class App extends Component {
             <PrivateRoute exact path='/displayFolder/:id' component={Display}/>
           </Switch>
           <Switch>
-            <PrivateRoute exact path='/createLVPEIUser' component={CreateLVPEIUsers}/>
+            <PrivateRoute exact path='/createUser' component={CreateUsers}/>
           </Switch>
           <Switch>
             <PrivateRoute exact path='/addDiagnosticCentre' component={AddDiagnosticCentre}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/uploadMultipleFiles' component={UploadFiles}/>
           </Switch>
           <Switch>
             <PrivateRoute exact path='/uploadSuccess' component={Success}/>

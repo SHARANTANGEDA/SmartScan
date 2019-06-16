@@ -93,47 +93,34 @@ router.get('/home', passport.authenticate('diag_admin', { session: false }), (re
   })
 });
 
-router.post('/patientDetails',passport.authenticate('all_diag',{session: false}), (req, res) => {
+router.post('/patientDetails',passport.authenticate('diag_admin',{session: false}), (req, res) => {
   const { errors, isValid } = uploadFilesInput(req.body)
   if (!isValid) {
     return res.status(400).json(errors)
   }
-  console.log('here')
   db.Patient.findByPk(req.body.patient).then(patient => {
     if(patient===null) {
       console.log("here")
       return res.json({patient: patient,invalid: true})
     }
-    res.json({patient: patient,invalid: false})
-    //
-    // const newUpload = new Patient({
-    //   mrNo: req.body.patient,
-    //   uploadedBy: req.user.emailId
-    // })
-    // newUpload.save().then(pat => {
-    // }).catch(err => {
-    //   console.log(err)
-    //   res.json({patient: patient,invalid: true})
-    // })
+    const newUpload = new Patient({
+      mrNo: req.body.patient,
+      uploadedBy: req.user.emailId
+    })
+    newUpload.save().then(pat => {
+      res.json({patient: patient,invalid: false,mid: pat._id})
+    }).catch(err => {
+      console.log(err)
+      res.json({patient: patient,invalid: true})
+    })
   }).catch(err => {
     res.status(400).json({inValid: 'Some thing is wrong try later'})
   })
 })
-router.post('/continueToUpload',passport.authenticate('all_diag', {session: false}),(req, res) => {
-  const newUpload = new Patient({
-    mrNo: req.body.patient,
-    uploadedBy: req.user.emailId
-  })
-  newUpload.save().then(pat => {
-    console.log({"created user":pat._id})
-    res.json({mid:pat._id})
-  }).catch(err => {
-    console.log(err)
-  })
-})
-router.post('/onDiscard',passport.authenticate('all_diag',{session: false}),(req, res) => {
+
+router.post('/onDiscard',passport.authenticate('diag_admin',{session: false}),(req, res) => {
   Patient.deleteOne({_id: req.body.mid}).then(patient => {
-    console.log({'Deleted User':req.body.mid});
+    console.log('Success');
   }).catch(err => {
     console.log('There is an error please bear with us')
   })

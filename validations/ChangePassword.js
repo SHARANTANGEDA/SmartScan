@@ -11,17 +11,17 @@ module.exports = (data) => {
     errors.password = 'Password field is required';
   }
   if (!Validator.isLength(data.newPassword, { min: 6, max: 30 })) {
-    errors.password = 'Password must be at least 6 characters';
+    errors.newPassword = 'Password must be at least 6 characters';
   }
   if (Validator.isEmpty(data.renewPassword)) {
-    errors.repassword = 'Confirm Password field is required';
+    errors.renewPassword = 'Confirm Password field is required';
   }
   if (Validator.equals(data.password, data.newPassword)) {
-    errors.sameAsOldPassword = 'This is same as your old password please try different one';
+    errors.password = 'This is same as your old password please try different one';
   }
 
   if (!Validator.equals(data.newPassword, data.renewPassword)) {
-    errors.repassword = 'Passwords must match';
+    errors.renewPassword = 'Passwords must match';
   }
   return {
     errors,
