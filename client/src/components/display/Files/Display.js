@@ -42,9 +42,10 @@ class Display extends Component {
 
   render() {
     const {files, loading, notFound} = this.props.folder
-    let allFoldersContent;
+    let allFoldersContent, heading;
     if (loading || files===null) {
       allFoldersContent = <Spinner/>
+      heading=null
     } else {
       if(notFound) {
         allFoldersContent = (
@@ -57,10 +58,13 @@ class Display extends Component {
         allFoldersContent = (
           <FileRow files={files.files}/>
         )
+        heading=(<h3>All files uploaded at {' '}{files.patient.lastUploadAt} {' '} of {' '}
+        {files.patient.mrNo}</h3>
+        )
       }
     }
     return (
-      <div className="displayFolder">
+      <div className="displayFiles">
         <div className="App-content row d-flex justify-content-center" >
           <div className="grid text-center col-md-12">
             <div className='row '>
@@ -71,7 +75,8 @@ class Display extends Component {
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
                 fontFamily: 'Lobster',
                 color: 'black', fontSize: '48px'
-              }}> Welcome L V Prasad MRI Docs Cloud</h1>
+              }}> Welcome to L V Prasad Cloud</h1>
+              {heading}
             </div>
           </div>
           {allFoldersContent}

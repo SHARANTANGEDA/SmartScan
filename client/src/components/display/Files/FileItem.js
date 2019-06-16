@@ -15,7 +15,6 @@ class FileItem extends Component {
     this.props.downloadFile(this.props.file.filename )
   }
   onDelete(e) {
-    console.log('hello')
     // axios.delete(`/api/upload/deleteFile/${this.props.file.filename}`).then(res => {
     //   console.log(res)
     //   window.location.reload()
@@ -24,7 +23,8 @@ class FileItem extends Component {
   }
   render () {
     const {file} = this.props;
-    let name = file.filename.substr( file.filename.indexOf('_')+1, file.filename.length)
+    console.log({FILE: file})
+    let name = file.filename.substr( file.filename.lastIndexOf(';')+1, file.filename.length)
     return (
       //onTouchStart="this.classList.toggle('hover');
       <div className="">
@@ -49,7 +49,6 @@ class FileItem extends Component {
                 </div>
                     </div>
                   </span>
-                {/*</Link>*/}
         </div>
           </div>
         </div>

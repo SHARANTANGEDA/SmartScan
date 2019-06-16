@@ -7,7 +7,7 @@ import {
   GET_FILES_SINGLE_FOLDER,
   ON_POST_FAIL,
   NO_FILES,
-  NO_FILES_IN_FOLDER, GET_SA_HOME
+  NO_FILES_IN_FOLDER, GET_SA_HOME, GET_PATIENTS_HOME
 } from './types'
 
 
@@ -67,6 +67,18 @@ export const deleteFolder = (id) => dispatch => {
   )
 }
 
+export const deletePatient = (id) => dispatch => {
+  axios.get(`/api/upload/deletePatient/${id}`).then(res => {
+    console.log(res)
+    window.location.reload()
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  )
+}
+
 // export const downloadFile = (id)=> async dispatch => {
 //   axios.get(`/api/upload/downloadFile/${id}`,{responseType: 'blob'}).then(res => {
 //     saveAs(new Blob([res.data],{type: "octet/stream"}),id)
@@ -83,7 +95,7 @@ export const downloadFile = (id) => dispatch => {
     const link = document.createElement('a');
     console.log(url)
     link.href = url;
-    link.setAttribute('download', id);
+    link.setAttribute('download', id.substr(id.lastIndexOf(';')+1,id.length));
     document.body.appendChild(link);
     link.click();
     // console.log('download in progress')
@@ -121,6 +133,7 @@ export const downloadFolder  = (id) => dispatch => {
   );
 }
 export const getFiles = () => dispatch => {
+  setLoading()
   axios.get('/api/upload/files').then(res => {
     dispatch({
       type: GET_FILES,
@@ -133,7 +146,34 @@ export const getFiles = () => dispatch => {
       })
   );
 };
-
+export const getHomeFolders = (id) => dispatch => {
+  setLoading()
+  axios.get(`/api/upload/folders/${id}`).then(res => {
+    dispatch({
+      type: GET_FILES,
+      payload: res.data
+    })
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  );
+}
+export const getAllPatients = () => dispatch => {
+  setLoading()
+  axios.get('/api/upload/patientsFolders').then(res => {
+    dispatch({
+      type: GET_PATIENTS_HOME,
+      payload: res.data
+    })
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  );
+}
 export const getFilesByFolder = (id) => dispatch => {
   setLoading()
   axios.get(`/api/upload/files/${id}`).then(res => {

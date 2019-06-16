@@ -7,7 +7,7 @@ class FolderRow extends Component {
   render () {
     const {folders} = this.props;
     let showUsers = ( folders.map(folder => (
-      <FolderItem folder={folder} key={folder.id}/>
+      <FolderItem folder={folder} key={folder._id}/>
     )));
     return (
       <div className="row" >

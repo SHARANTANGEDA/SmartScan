@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getDetails, getFiles, getSADetails } from '../../actions/homeActions'
+import { getAllPatients, getDetails, getFiles, getHomeFolders, getSADetails } from '../../actions/homeActions'
 import TextFieldGroup from '../common/TextFieldGroup'
 import Spinner from '../common/Spinner'
-import FolderRow from '../display/FolderRow'
 import SADashboard from '../SuperAdmin/SADashboard'
 import { continueToUpload, deleteResidual, getDAHome, getPatientDetails } from '../../actions/dAActions'
 import Modal from 'react-modal'
 import ShowTable from '../SuperAdmin/tableDisplay/ShowTable'
 import UploadFiles from '../upload/UploadFiles'
+import PatientRow from '../display/Patients/PatientRow'
 
 const customStyles = {
   content: {
@@ -43,9 +43,8 @@ class Dashboard extends Component {
 
   componentDidMount () {
     if (this.props.auth.user.role === 'lvpei') {
-      this.props.getFiles(this.props.match.params.id)
+      this.props.getAllPatients(this.props.match.params.id)
     } else if (this.props.auth.user.role === 'super_admin') {
-      console.log('Component mounted')
       this.props.getSADetails(this.props.match.params.id)
     } else if (this.props.auth.user.role === 'diag_admin') {
       this.props.getDAHome(this.props.match.params.id)
@@ -96,7 +95,7 @@ class Dashboard extends Component {
     }
     console.log({ user: userData })
     if (this.state.patient.length !== 0) {
-      console.log({ leng: 'not zero' })
+      console.log({ len: 'not zero' })
       // this.props.getDetails(userData);
       this.props.getPatientDetails(userData)
       this.setState({ patient: userData.patient })
@@ -108,7 +107,7 @@ class Dashboard extends Component {
   render () {
     const { errors } = this.state
     if (this.props.auth.user.role === 'lvpei') {
-      const { folders, loading, notFound } = this.props.folder
+      const { patients, loading, notFound } = this.props.folder
       let allFoldersContent
       if (loading) {
         allFoldersContent = <Spinner/>
@@ -121,7 +120,7 @@ class Dashboard extends Component {
           )
         } else {
           allFoldersContent = (
-            <FolderRow folders={folders}/>
+            <PatientRow folders={patients}/>
           )
         }
       }
@@ -132,7 +131,8 @@ class Dashboard extends Component {
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
                 fontFamily: 'Lobster',
                 color: 'black', fontSize: '48px'
-              }}> Welcome L V Prasad MRI Docs Cloud</h1>
+              }}> Welcome to L V Prasad Cloud</h1>
+              <h3>All Patients:</h3>
             </div>
             {allFoldersContent}
           </div>
@@ -361,12 +361,12 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   home: PropTypes.object.isRequired,
   getDetails: PropTypes.func.isRequired,
-  getFiles: PropTypes.func.isRequired,
   getSADetails: PropTypes.func.isRequired,
   getDAHome: PropTypes.func.isRequired,
   getPatientDetails: PropTypes.func.isRequired,
   deleteResidual: PropTypes.func.isRequired,
-  continueToUpload: PropTypes.func.isRequired
+  continueToUpload: PropTypes.func.isRequired,
+  getAllPatients: PropTypes.func.isRequired
 
 }
 const mapStateToProps = state => ({
@@ -375,7 +375,7 @@ const mapStateToProps = state => ({
   folder: state.folder
 })
 export default connect(mapStateToProps, {
-  getDetails, getFiles, getSADetails, getDAHome,
+  getDetails, getSADetails, getDAHome,
   getPatientDetails, continueToUpload,
-  deleteResidual
+  deleteResidual, getAllPatients
 })(Dashboard)

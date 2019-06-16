@@ -19,6 +19,7 @@ import UploadFiles from './components/upload/UploadFiles'
 import Success from './components/upload/Success'
 import Display from './components/display/Files/Display'
 import AddDiagnosticCentre from './components/SuperAdmin/AddDiagnosticCentre'
+import DisplayFolder from './components/display/Folders/DisplayFolder'
 
 
 //Check for token
@@ -52,7 +53,10 @@ class App extends Component {
               <PrivateRoute exact path='/changePassword' component={ChangePassword}/>
             </Switch>
           <Switch>
-            <PrivateRoute exact path='/displayFolder/:id' component={Display}/>
+            <PrivateRoute exact path='/displayFolder/:id' component={DisplayFolder}/>
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path='/displayFolder/displayFiles/:id' component={Display}/>
           </Switch>
           <Switch>
             <PrivateRoute exact path='/createUser' component={CreateUsers}/>

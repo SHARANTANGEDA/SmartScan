@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import './allFolders.css'
-import { deleteFolder, downloadFolder } from '../../actions/homeActions'
-import downloading from '../common/downloading.gif'
+import '../allFolders.css'
+import { deleteFolder, downloadFolder } from '../../../actions/homeActions'
+import downloading from '../../common/downloading.gif'
 
 
 
@@ -24,11 +24,11 @@ class FolderItem extends Component {
   onDownload(e) {
     e.preventDefault()
     this.setState({file: true})
-    this.props.downloadFolder(this.props.folder.id )
+    this.props.downloadFolder(this.props.folder._id )
   }
   onDelete(e) {
     e.preventDefault()
-    this.props.deleteFolder(this.props.folder.id )
+    this.props.deleteFolder(this.props.folder._id )
 
   }
   render () {
@@ -55,11 +55,11 @@ class FolderItem extends Component {
             <div className="frontside">
 
               <div className="card" style={{minWidth: '200px', borderStyle: 'solid'}}>
-                <Link to={`displayFolder/${folder.id}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
+                <Link to={`displayFiles/${folder._id}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
                 <div className="card-body text-center">
-                  <p><img className="img-fluid" src={require('./folder.png')} alt=''/></p>
+                  <p><img className="img-fluid" src={require('../folder.png')} alt=''/></p>
                   <div className='row text-center d-flex justify-content-center'>
-                    <h4 className="card-title" style={{fontSize: '18px'}}>{folder.name}</h4>
+                    <h4 className="card-title" style={{fontSize: '18px'}}>{folder.lastUploadAt}</h4>
                   </div>
                 </div>
                 </span>

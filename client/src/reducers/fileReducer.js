@@ -3,14 +3,15 @@ import {
   FOLDER_LOADING,
   NO_FILES,
   GET_FILES_SINGLE_FOLDER,
-  NO_FILES_IN_FOLDER,
+  NO_FILES_IN_FOLDER, GET_PATIENTS_HOME,
 } from '../actions/types'
 
 const initialState = {
   folders: [],
   notFound:true,
   loading: true,
-  files: null
+  files: null,
+  patients: null
 };
 
 export default function(state = initialState, action) {
@@ -21,8 +22,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        notFound: true
+        notFound: true,
+        folders: [],
+        files: null
       }
+    case GET_PATIENTS_HOME:
+      return {
+        ...state,
+        patients: action.payload,
+        notFound: false,
+        loading: false,
+        files: null,
+        folders: null
+      };
     case GET_FILES:
       return {
         ...state,
