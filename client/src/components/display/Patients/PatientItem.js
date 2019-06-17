@@ -55,8 +55,10 @@ class PatientItem extends Component {
 
               <div className="card" style={{minWidth: '200px', borderStyle: 'solid'}}>
                 <Link to={`displayFolder/${mrNo}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
-                <div className="card-body text-center">
-                  <p><img className="img-fluid" src={require('../folder.png')} alt=''/></p>
+                <div className="card-body text-center ">
+                  <div className='d-flex justify-content-center'>
+                    <img className="img-fluid" src={require('../folder.png')} alt=''/>
+                  </div>
                   <div className='row text-center d-flex justify-content-center'>
                     <h4 className="card-title" style={{fontSize: '18px'}}>{mrNo}</h4>
                   </div>
@@ -67,10 +69,8 @@ class PatientItem extends Component {
                   <button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}
                           onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/>
                   </button>
-
                 </div>
               </div>
-
             </div>
           </div>
         </div>

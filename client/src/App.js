@@ -3,7 +3,7 @@ import './App.css'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
 import { logoutUser, setCurrentUser } from './actions/authActions'
-import PrivateRoute from './components/common/PrivateRoute'
+import PrivateRoute from './components/common/Routes/PrivateRoute'
 import { Provider } from 'react-redux'
 import store from './store'
 import Footer from './components/layout/Footer'
@@ -20,6 +20,8 @@ import Success from './components/upload/Success'
 import Display from './components/display/Files/Display'
 import AddDiagnosticCentre from './components/SuperAdmin/AddDiagnosticCentre'
 import DisplayFolder from './components/display/Folders/DisplayFolder'
+import NotFound from './components/layout/NotFound'
+import Routes from './components/common/Routes/Routes'
 
 
 //Check for token
@@ -41,34 +43,14 @@ class App extends Component {
       <Router>
       <div className="App">
         <NavBar/>
+        <Switch>
         <Route exact path="/" component={Landing}/>
         <Route exact path='/contactUs' component={ContactUs}/>
         <div className="wrapper" >
         <Route component={Sidebar}/>
-        <div className="container">
-          <Switch>
-            <PrivateRoute exact path='/dashboard' component={Dashboard}/>
-          </Switch>
-            <Switch>
-              <PrivateRoute exact path='/changePassword' component={ChangePassword}/>
-            </Switch>
-          <Switch>
-            <PrivateRoute exact path='/displayFolder/:id' component={DisplayFolder}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/displayFolder/displayFiles/:id' component={Display}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/createUser' component={CreateUsers}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/addDiagnosticCentre' component={AddDiagnosticCentre}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/uploadSuccess' component={Success}/>
-          </Switch>
-          </div>
+        <Route component={Routes}/>
         </div>
+        </Switch>
         <Footer/>
       </div>
       </Router>

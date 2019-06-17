@@ -11,7 +11,7 @@ const initialState = {
   notFound:true,
   loading: true,
   files: null,
-  patients: null
+  patients: []
 };
 
 export default function(state = initialState, action) {
@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
         ...state,
         loading: true,
         notFound: true,
-        folders: [],
+        folders: null,
         files: null
       }
     case GET_PATIENTS_HOME:

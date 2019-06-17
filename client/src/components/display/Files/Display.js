@@ -42,45 +42,53 @@ class Display extends Component {
 
   render() {
     const {files, loading, notFound} = this.props.folder
-    let allFoldersContent, heading;
+    let  content;
     if (loading || files===null) {
-      allFoldersContent = <Spinner/>
-      heading=null
+      content=<Spinner/>
     } else {
       if(notFound) {
-        allFoldersContent = (
-          <div>
-            <p>Nothing is uploaded yet, please check back later</p>
-          </div>
-        )
-      }else {
-        console.log({files: files})
-        allFoldersContent = (
-          <FileRow files={files.files}/>
-        )
-        heading=(<h3>All files uploaded at {' '}{files.patient.lastUploadAt} {' '} of {' '}
-        {files.patient.mrNo}</h3>
-        )
-      }
-    }
-    return (
-      <div className="displayFiles">
-        <div className="App-content row d-flex justify-content-center" >
+        content=(<div className="App-content row d-flex justify-content-center" >
           <div className="grid text-center col-md-12">
             <div className='row '>
               <div style={{margin: '10px'}}>
-                <Link to='/dashboard' className='btn' style={{background: 'white', color: 'green'}}>
+                <Link to={`/displayFolder/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
                   <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
               </div>
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
                 fontFamily: 'Lobster',
                 color: 'black', fontSize: '48px'
               }}> Welcome to L V Prasad Cloud</h1>
-              {heading}
             </div>
           </div>
-          {allFoldersContent}
-        </div>
+          <div>
+            <p>Nothing is uploaded yet, please check back later</p>
+          </div>
+        </div>)
+      }else {
+        content=(
+          <div className="App-content row d-flex justify-content-center" >
+            <div className="grid text-center col-md-12">
+              <div className='row '>
+                <div style={{margin: '10px'}}>
+                  <Link to={`/displayFolder/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
+                    <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
+                </div>
+                <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
+                  fontFamily: 'Lobster',
+                  color: 'black', fontSize: '48px'
+                }}> Welcome to L V Prasad Cloud</h1>
+                <h3>All files uploaded at {' '}{files.patient.lastUploadAt} {' '} of {' '}
+                  {files.patient.mrNo}</h3>
+              </div>
+            </div>
+            <FileRow files={files.files} patient={files.patient}/>
+          </div>
+        )
+      }
+    }
+    return (
+      <div className="displayFiles">
+        {content}
       </div>
     );
   }

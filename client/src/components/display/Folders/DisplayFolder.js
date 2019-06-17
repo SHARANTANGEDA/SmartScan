@@ -33,7 +33,7 @@ class DisplayFolder extends Component {
         allFoldersContent = (
           <FolderRow folders={folders.contents}/>
         )
-        heading = (<h3>All Uploads of{' '} {folders.mrNo}:</h3>)
+        heading = (<h3>All Uploads of{' '} {folders.mrNo}</h3>)
       }
     }
     return (
@@ -49,9 +49,10 @@ class DisplayFolder extends Component {
                 fontFamily: 'Lobster',
                 color: 'black', fontSize: '48px'
               }}> Welcome to L V Prasad Cloud</h1>
-              {heading}
 
             </div>
+            {heading}
+
           </div>
           {allFoldersContent}
         </div>

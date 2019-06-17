@@ -5,9 +5,9 @@ import FileItem from './FileItem'
 
 class FileRow extends Component {
   render () {
-    const {files} = this.props;
+    const {files, patient} = this.props;
     let showUsers = ( files.map(file => (
-      <FileItem file={file} key={file.filename}/>
+      <FileItem file={file} patient={patient} key={file.filename}/>
     )));
     return (
       // style={{height: "20%", width: "100%",minWidth: "100%"}}   d-flex flex-grow-1
@@ -23,6 +23,7 @@ FileRow.defaultProps = {
 }
 FileRow.propTypes = {
   files: PropTypes.array.isRequired,
+  patient: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({

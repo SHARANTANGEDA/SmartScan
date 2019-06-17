@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+
 class Sidebar extends Component {
 
 
@@ -81,6 +82,24 @@ class Sidebar extends Component {
             </Link>
           </li>
         </ul>
+      </nav>)
+    } else if(isAuthenticated && (user.role==='lvpei')) {
+      showContent = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
+        <ul className="list-unstyled components" style={{ height: '100%' }}>
+          <li>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+              <i className="fas fa-home"/>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/changePassword" style={{ textDecoration: 'none' }}>
+              <i className="fa fa-wrench" aria-hidden="true"/>
+              Change Password
+            </Link>
+          </li>
+        </ul>
+
       </nav>)
     }
     return (

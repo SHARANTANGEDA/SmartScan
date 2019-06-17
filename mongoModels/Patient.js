@@ -21,6 +21,12 @@ const PatientSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  diagCentre: {
+    type: String
+  },
+  diagCentreName: {
+    type: String
+  },
   transit: {
     type: Boolean,
     default: true

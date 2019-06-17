@@ -132,7 +132,7 @@ class Dashboard extends Component {
                 fontFamily: 'Lobster',
                 color: 'black', fontSize: '48px'
               }}> Welcome to L V Prasad Cloud</h1>
-              <h3>All Patients:</h3>
+              <h3>All Patients</h3>
             </div>
             {allFoldersContent}
           </div>

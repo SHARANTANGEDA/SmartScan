@@ -7,7 +7,7 @@ import {
   GET_FILES_SINGLE_FOLDER,
   ON_POST_FAIL,
   NO_FILES,
-  NO_FILES_IN_FOLDER, GET_SA_HOME, GET_PATIENTS_HOME
+  NO_FILES_IN_FOLDER, GET_SA_HOME, GET_PATIENTS_HOME, GET_SEARCH_RESULTS, SEARCH_LOADING
 } from './types'
 
 
@@ -160,6 +160,21 @@ export const getHomeFolders = (id) => dispatch => {
     })
   );
 }
+
+export const getSearchResults = (data) => dispatch => {
+  setSearchLoading()
+  axios.post(`/api/users/search`, data).then(res => {
+    dispatch({
+      type: GET_SEARCH_RESULTS,
+      payload: res.data
+    })
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  );
+}
 export const getAllPatients = () => dispatch => {
   setLoading()
   axios.get('/api/upload/patientsFolders').then(res => {
@@ -194,6 +209,13 @@ export const setLoading = () => {
     type: FOLDER_LOADING
   };
 };
+
+export const setSearchLoading = () => {
+  return {
+    type: SEARCH_LOADING
+  };
+};
+
 // Clear errors
 export const clearErrors = () => {
   return {

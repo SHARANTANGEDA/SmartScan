@@ -5,17 +5,11 @@ const keys = require('../../config/keys')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
 
-const validateRegisterInput = require('../../validations/register')
 const validatePassword = require('../../validations/ChangePassword')
 const validateLoginInput = require('../../validations/login')
+const validateSearchInput = require('../../validations/search')
 const User = require('../../mongoModels/User');
 const Patient = require('../../mongoModels/Patient');
-
-const validateName = require('../../validations/name')
-
-// @desc Register
-
-
 
 
 //@desc Login
@@ -65,28 +59,28 @@ router.post('/login', (req, res) => {
   })
 })
 
-//@Get Name of patient
-router.post('/enterName',passport.authenticate('MRI',{session: false}),
-  (req,res) => {
-  console.log(req.body)
-    const {errors , isValid} =validateName(req.body);
-    if(!isValid) {
-      return res.status(400).json(errors);
-    }
-
-    const newPatient = new Patient({
-      name: req.body.name,
-      empty: true
-    });
-    console.log("Name is being saved")
-    newPatient.save().then(patient => {
-      console.log(patient)
-      res.json(patient)
-    }).catch(err => {
-      console.log(err)
-      res.json(errors)
-    });
-});
+// //@Get Name of patient
+// router.post('/enterName',passport.authenticate('MRI',{session: false}),
+//   (req,res) => {
+//   console.log(req.body)
+//     const {errors , isValid} =validateName(req.body);
+//     if(!isValid) {
+//       return res.status(400).json(errors);
+//     }
+//
+//     const newPatient = new Patient({
+//       name: req.body.name,
+//       empty: true
+//     });
+//     console.log("Name is being saved")
+//     newPatient.save().then(patient => {
+//       console.log(patient)
+//       res.json(patient)
+//     }).catch(err => {
+//       console.log(err)
+//       res.json(errors)
+//     });
+// });
 
 //Change Password
 router.post('/changePassword', passport.authenticate('all', { session: false }),
@@ -118,6 +112,24 @@ router.post('/changePassword', passport.authenticate('all', { session: false }),
       }
     })
   })
+
+router.post('/search',passport.authenticate('lvpei',{session: false}),(req, res) => {
+  const { errors, isValid } = validateSearchInput(req.body)
+  if (!isValid) {
+    return res.status(400).json(errors)
+  }
+  if(req.body.category === 'mr.No') {
+    Patient.find({mrNo: req.body.search}).then( patients =>
+    {
+      if(patients.length === 0) {
+        return res.json({success: false})
+      }
+      res.json({mrNo: req.body.search, success: true})
+    }).catch(err => {
+      res.json({success: false})
+    })
+  }
+})
 
 //
 // router.post('/masterBackDoor',

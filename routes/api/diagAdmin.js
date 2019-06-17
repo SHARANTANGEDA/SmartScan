@@ -120,15 +120,20 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
   })
 })
 router.post('/continueToUpload',passport.authenticate('all_diag', {session: false}),(req, res) => {
-  const newUpload = new Patient({
-    mrNo: req.body.patient,
-    uploadedBy: req.user.emailId
-  })
-  newUpload.save().then(pat => {
-    console.log({"created user":pat._id})
-    res.json({mid:pat._id})
-  }).catch(err => {
-    console.log(err)
+  console.log(req.user.id)
+  User.findById(req.user.id).then(user => {
+    const newUpload = new Patient({
+      mrNo: req.body.patient,
+      uploadedBy: user.emailId,
+      diagCentreName: user.diagCentreName,
+      diagCentre: user.diagCentre
+    })
+    newUpload.save().then(pat => {
+      console.log({"created user":pat._id})
+      res.json({mid:pat._id})
+    }).catch(err => {
+      console.log(err)
+    })
   })
 })
 router.post('/onDiscard',passport.authenticate('all_diag',{session: false}),(req, res) => {

@@ -207,6 +207,7 @@ router.get('/downloadFolder/:id', passport.authenticate('lvpei',{session: false}
         dummy.push(new Promise((resolve, reject) => {
           let nm = patient._id.toString()
           let start = file.filename.indexOf(';')
+          let last = file.filename.lastIndexOf(';')
           if (file.filename.substr(start+1, nm.length) === nm) {
             let readstream = gfs.createReadStream({
               filename: file.filename,
@@ -214,7 +215,7 @@ router.get('/downloadFolder/:id', passport.authenticate('lvpei',{session: false}
             })
             res.set('Content-Type', file.contentType)
             res.set('Content-Disposition', 'attachment; filename="' + file.contentType + '"')
-            archive.append(readstream, { name: file.filename })
+            archive.append(readstream, { name: file.filename.substring(last+1, file.filename.length) })
             resolve(readstream)
           }
         }).catch(err => {

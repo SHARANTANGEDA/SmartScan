@@ -5,17 +5,32 @@ import { connect } from 'react-redux'
 import '../allFolders.css'
 import { deleteFolder, downloadFolder } from '../../../actions/homeActions'
 import downloading from '../../common/downloading.gif'
+import Modal from 'react-modal'
 
-
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '0',
+    transform: 'translate(-50%, -50%)'
+  }
+}
 
 class FolderItem extends Component {
   constructor () {
     super();
     this.state = {
-      file: false
+      file: false,
+      modalIsOpen: false,
+      uploadModal: false
     };
     this.onOpen = this.onOpen.bind(this);
     this.onDownload = this.onDownload.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.afterOpenModal = this.afterOpenModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   onOpen(e) {
@@ -29,8 +44,29 @@ class FolderItem extends Component {
   onDelete(e) {
     e.preventDefault()
     this.props.deleteFolder(this.props.folder._id )
+  }
+
+
+  closeModal () {
+    this.setState({ modalIsOpen: false })
+  }
+
+  openModal () {
+    this.setState({ modalIsOpen: true })
+  }
+
+  // openNextModal () {
+  //   this.setState({ uploadModal: true })
+  //   const userData = {
+  //     patient: this.state.patient
+  //   }
+  //   this.props.continueToUpload(userData)
+  // }
+
+  afterOpenModal () {
 
   }
+
   render () {
     const {folder} = this.props;
     let icon;
@@ -46,7 +82,39 @@ class FolderItem extends Component {
       />
       </button>)
     }
-
+    let modalContent = (
+      <div id="mainbar" className='row d-flex justify-content-center'>
+        <div className="grid text-center col-md-10">
+          <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
+            fontFamily: 'Lobster',
+            color: 'black'
+          }}> Upload Details</h3>
+        </div>
+        <table className="table table-bordered table-striped mb-0">
+          <tbody>
+          <tr>
+            <td><h5>Uploaded By</h5></td>
+            <td><h5>{folder.diagCentreName}</h5></td>
+          </tr>
+          <tr>
+            <td><h5>Organization email Address</h5></td>
+            <td><h5>{folder.diagCentre}</h5></td>
+          </tr>
+          <tr>
+            <td><h5>uploaded At</h5></td>
+            <td><h5>{folder.lastUploadAt}</h5></td>
+          </tr>
+          <tr>
+            <td><h5>uploaded by user</h5></td>
+            <td><h5>{folder.uploadedBy}</h5></td>
+          </tr>
+          </tbody>
+        </table>
+        <div className="col-md-6 text-center" style={{ width: '100%' }}>
+          <button onClick={this.closeModal} className='btn btn-warning'>Close</button>
+        </div>
+      </div>
+    )
     return (
       //onTouchStart="this.classList.toggle('hover');
       <div className="">
@@ -55,6 +123,11 @@ class FolderItem extends Component {
             <div className="frontside">
 
               <div className="card" style={{minWidth: '200px', borderStyle: 'solid'}}>
+                <div className='d-flex justify-content-end'>
+                  <button onClick={this.openModal}
+                          style={{background:'white', color:'grey', borderStyle:'none'}}>
+                    <i className="fas fa-info-circle fa-2x"/></button>
+                </div>
                 <Link to={`displayFiles/${folder._id}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
                 <div className="card-body text-center">
                   <p><img className="img-fluid" src={require('../folder.png')} alt=''/></p>
@@ -71,6 +144,15 @@ class FolderItem extends Component {
                   </button>
 
                 </div>
+                <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={this.closeModal}
+                  style={customStyles}
+                  contentLabel="Patient Data"
+                  shouldCloseOnOverlayClick={false}
+                  ariaHideApp={false}
+                >{modalContent}</Modal>
               </div>
 
             </div>
