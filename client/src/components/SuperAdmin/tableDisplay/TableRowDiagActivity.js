@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import downloading from '../../common/downloading.gif'
 import { grantDiagAccess, removeDiagAccess } from '../../../actions/sAActions'
 
-class TableRowDiagAdmins extends Component {
+class TableRowDiagActivity extends Component {
   constructor () {
     super()
     this.state= {
@@ -17,18 +17,18 @@ class TableRowDiagAdmins extends Component {
   }
   onRemoveAccess(e) {
 
-    this.props.removeDiagAccess({emailId: this.props.data.user.emailId})
+    this.props.removeDiagAccess({emailId: this.props.data.adminId})
     this.setState({removeClick: true})
   }
 
   onGrantAccess(e) {
-    this.props.grantDiagAccess({emailId: this.props.data.user.emailId})
+    this.props.grantDiagAccess({emailId: this.props.data.adminId})
     this.setState({grantClick: true})
   }
   render () {
     const { data } = this.props
     let content
-    if(this.props.data.user.access) {
+    if(this.props.data.access) {
       if(!this.state.removeClick) {
         content = (
           <span style={{ fontSize: '13.3333330154419px', background: 'red',color: 'white', borderRadius: '5px'}}>
@@ -69,14 +69,17 @@ class TableRowDiagAdmins extends Component {
     }
     return (
       <tr className="">
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.diagCentreName}</span></td>
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.emailId}</span></td>
-
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.centreName}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.adminId}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.orgEmail}</span></td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.time}</span>
+          <span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.createdAt}</span>
         </td>
         <td>
-          <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.emp}</span>
+          <span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.lastUpdate}</span>
+        </td>
+        <td>
+          <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.members.length}</span>
         </td>
         <td>
           {content}
@@ -86,11 +89,11 @@ class TableRowDiagAdmins extends Component {
   }
 }
 
-TableRowDiagAdmins.defaultProps = {
+TableRowDiagActivity.defaultProps = {
   showActions: true
 }
 
-TableRowDiagAdmins.propTypes = {
+TableRowDiagActivity.propTypes = {
   data: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   removeDiagAccess: PropTypes.func.isRequired,
@@ -100,4 +103,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
   faculty:state.faculty
 })
-export default connect(mapStateToProps,{removeDiagAccess, grantDiagAccess})(TableRowDiagAdmins)
+export default connect(mapStateToProps,{removeDiagAccess, grantDiagAccess})(TableRowDiagActivity)

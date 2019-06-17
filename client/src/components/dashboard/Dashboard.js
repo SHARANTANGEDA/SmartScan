@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getAllPatients, getDetails, getFiles, getHomeFolders, getSADetails } from '../../actions/homeActions'
+import { getAllPatients, getFiles, getHomeFolders, getSADetails } from '../../actions/homeActions'
 import TextFieldGroup from '../common/TextFieldGroup'
 import Spinner from '../common/Spinner'
 import SADashboard from '../SuperAdmin/SADashboard'
@@ -176,55 +176,59 @@ class Dashboard extends Component {
           showContent = <Spinner/>
         } else {
           console.log(home.users)
-          showContent = (
-            <div className='row'>
+          if(home.users===null || home.details ===null) {
+            showContent = <Spinner/>
+          } else{
+            showContent = (
               <div className='row'>
-                <div className="grid text-center col-md-12">
-                  <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                    fontFamily: 'Lobster',
-                    color: 'black', fontSize: '48px'
-                  }}>Welcome to L V Prasad Cloud</h1>
+                <div className='row'>
+                  <div className="grid text-center col-md-12">
+                    <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
+                      fontFamily: 'Lobster',
+                      color: 'black', fontSize: '48px'
+                    }}>Welcome to L V Prasad Cloud</h1>
 
-                </div>
-                <div className='row col-md-12'>
-                  <div className='col-md-6' style={{ borderStyle: 'solid', borderWidth: '2px' }}>
-                    <h3 className='text-center' style={{
-                      borderWidth: '2px'
+                  </div>
+                  <div className='row col-md-12'>
+                    <div className='col-md-6' style={{ borderStyle: 'solid', borderWidth: '2px' }}>
+                      <h3 className='text-center' style={{
+                        borderWidth: '2px'
+                        , borderRadius: '2px', fontFamily: 'lobster'
+                      }}>{home.details.centreName} {' '} Admin Dashboard</h3>
+                    </div>
+                    <div className='row col-md-6 d-flex justify-content-center' style={{
+                      borderStyle: 'solid', borderWidth: '2px'
                       , borderRadius: '2px', fontFamily: 'lobster'
-                    }}>{home.details.centreName} {' '} Admin Dashboard</h3>
+                    }}>
+                      <h3 className='text-center'>Number of Accounts being used:{' '}{home.users.length}</h3>
+                    </div>
                   </div>
-                  <div className='row col-md-6 d-flex justify-content-center' style={{
-                    borderStyle: 'solid', borderWidth: '2px'
-                    , borderRadius: '2px', fontFamily: 'lobster'
-                  }}>
-                    <h3 className='text-center'>Number of Accounts being used:{' '}{home.users.length}</h3>
+                  <div className='row col-md-12'>
+                    <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
+                      <h3 className='text-center' style={{
+                        borderStyle: 'solid', borderWidth: '2px', background: 'green',
+                        color: 'white'
+                        , borderRadius: '2px', fontFamily: 'lobster'
+                      }}>Users in Your Organization</h3>
+                      <table className="table table-bordered table-striped mb-0">
+                        <thead>
+                        <tr>
+                          <th scope="col">Username</th>
+                          <th scope="col">Created On</th>
+                          <th scope="col">Manage</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ShowTable data={home.users} index={{ type: 'diag_admin_user' }}/>
+                        </tbody>
+                      </table>
+                    </div>
+                    {showForm}
                   </div>
-                </div>
-                <div className='row col-md-12'>
-                  <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
-                    <h3 className='text-center' style={{
-                      borderStyle: 'solid', borderWidth: '2px', background: 'green',
-                      color: 'white'
-                      , borderRadius: '2px', fontFamily: 'lobster'
-                    }}>Users in Your Organization</h3>
-                    <table className="table table-bordered table-striped mb-0">
-                      <thead>
-                      <tr>
-                        <th scope="col">Username</th>
-                        <th scope="col">Created On</th>
-                        <th scope="col">Manage</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <ShowTable data={home.users} index={{ type: 'diag_admin_user' }}/>
-                      </tbody>
-                    </table>
-                  </div>
-                  {showForm}
                 </div>
               </div>
-            </div>
-          )
+            )
+          }
         }
       } else if (this.props.auth.user.role === 'diag') {
         showContent = (
@@ -360,13 +364,15 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   home: PropTypes.object.isRequired,
-  getDetails: PropTypes.func.isRequired,
   getSADetails: PropTypes.func.isRequired,
   getDAHome: PropTypes.func.isRequired,
   getPatientDetails: PropTypes.func.isRequired,
   deleteResidual: PropTypes.func.isRequired,
   continueToUpload: PropTypes.func.isRequired,
-  getAllPatients: PropTypes.func.isRequired
+  getAllPatients: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  folder: PropTypes.object.isRequired
+
 
 }
 const mapStateToProps = state => ({
@@ -374,8 +380,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   folder: state.folder
 })
-export default connect(mapStateToProps, {
-  getDetails, getSADetails, getDAHome,
+export default connect(mapStateToProps, { getSADetails, getDAHome,
   getPatientDetails, continueToUpload,
   deleteResidual, getAllPatients
 })(Dashboard)

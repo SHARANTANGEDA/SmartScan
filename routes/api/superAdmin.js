@@ -86,17 +86,17 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
         centreName: req.body.centreName,
         adminId: req.body.adminId
       })
-      newCentre.save().then(diagnostics=> {
-
+      // newCentre.save().then(diagnostics=> {
         User.findOne({ emailId: req.body.adminId }).then(user => {
           if (user) {
             errors.adminId = 'Account already exists please create with different name'
             return res.status(400).json(errors)
           } else {
+            newCentre.save().then(diagnostics=> {
               const newUser = new User({
                 emailId: req.body.adminId,
                 password: req.body.password,
-                diagCentre: diagnostics.orgEmail, //to change
+                diagCentre: req.body.orgEmail, //to change
                 diagCentreName: req.body.centreName,
                 role: 'diag_admin'
               })
@@ -113,17 +113,87 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
                   })
                 })
               })
+            }).catch(err => {
+              return res.status(400).json('Please try again')
+            })
           }
         })
-      }).catch(err => {
-        return res.status(400).json('Please try again')
-      })
-
     }
   })
 
 })
 
+router.post('/removeAccess',passport.authenticate('super_admin', {session: false}),
+  (req, res) => {
+  console.log(Date.now())
+  Diagnostics.findOneAndUpdate({adminId: req.body.emailId},{access: false, lastUpdate: Date.now()}).
+  then(diagnostics => {
+    User.findOneAndUpdate({emailId: req.body.emailId},{access: false}).then(admin => {
+      User.find({admin: req.body.emailId}).then(users => {
+        users.map(user => {
+          User.findByIdAndUpdate(user._id,{access: false}).then(newUser => {
+            console.log(user)
+          }).catch(err => {
+            console.log('Error in removing')
+          })
+        })
+        res.json({success: true})
+      })
+    })
+  })
+})
+
+router.post('/grantAccess',passport.authenticate('super_admin', {session: false}),
+  (req, res) => {
+    Diagnostics.findOneAndUpdate({adminId: req.body.emailId},{access: true, lastUpdate: Date.now()}).
+    then(diagnostics => {
+      User.findOneAndUpdate({emailId: req.body.emailId},{access: true}).then(admin => {
+        User.find({admin: req.body.emailId}).then(users => {
+          users.map(user => {
+            User.findByIdAndUpdate(user._id,{access: true}).then(newUser => {
+              console.log(user)
+            }).catch(err => {
+              console.log('Error in adding')
+            })
+          })
+          res.json({success: true})
+        })
+      })
+    })
+  })
+
+
+router.post('/deleteLVPEIUser',passport.authenticate('super_admin', {session: false}),
+  (req, res) => {
+  User.deleteOne({emailId: req.body.emailId, role:'lvpei'}).then(data => {
+    res.json({success: true})
+  }).catch(err => {
+    res.json({success: false})
+  })
+})
+
+router.get('/activeCentres',passport.authenticate('super_admin', {session: false}),
+  (req, res) => {
+  Diagnostics.find({access: true}).then(diagnostics => {
+    res.json(diagnostics)
+  }).catch(err => {
+    console.log(err,'IN ACTIVE')
+    res.json({fail: true})
+  })
+})
+
+router.get('/inactiveDiags',passport.authenticate('super_admin', {session: false}),
+  (req, res) => {
+  console.log('here')
+    Diagnostics.find({access: false}).then(diagnostics => {
+      console.log('IN INACTIVE SUCCESS')
+      res.json(diagnostics)
+    }).catch(err => {
+      console.log(err,'IN IN-ACTIVE')
+
+      res.json({fail: true})
+    })
+  })
 router.get('/home', passport.authenticate('super_admin', { session: false }), (req, res) => {
   User.find().then(async users => {
     let lvpei = [], diag_admin = [], dummy = [], diag = [], centre = []
@@ -139,8 +209,10 @@ router.get('/home', passport.authenticate('super_admin', { session: false }), (r
       }))
     })
     diag_admin.map(user => {
-      dummy.push(new Promise((resolve, reject) => {
-        centre.push({user:user,emp: diag.filter(diag => {diag.admin === user._id})})
+      centre.push(new Promise((resolve, reject) => {
+        User.find({admin: user.emailId}).then(users => {
+          resolve({user:user,emp: users.length})
+        })
       }))
     })
     res.json({

@@ -35,11 +35,14 @@ router.post('/login', (req, res) => {
         let payload
         if(user.role ==='super_admin') {
           payload = { id: user.id,role: user.role, emailId: user.emailId}
-        }else if(user.role === 'diag_admin') {
-          payload = { id: user.id,role: user.role, emailId: user.emailId, diagId: user.diagCentre}
-        } else if(user.role === 'diag') {
-          payload = { id: user.id,role: user.role, emailId: user.emailId, diagId: user.diagCentre}
-        }else if(user.role === 'lvpei') {
+        }else if(user.role === 'diag_admin' || user.role==='diag') {
+          if(user.access) {
+            payload = { id: user.id,role: user.role, emailId: user.emailId, diagId: user.diagCentre}
+          }else {
+            errors.emailId='You are not Authorized to access this site!!'
+            return res.status(401).json(errors)
+          }
+        } else if(user.role === 'lvpei') {
           payload = { id: user.id,role: user.role, emailId: user.emailId}
         }
         //TODO change secret key and signIn options

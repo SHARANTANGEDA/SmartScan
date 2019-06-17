@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 import TableRowLVPEI from './TableRowLVPEI'
 import TableRowDiagAdmins from './TableRowDiagAdmins'
 import TableRowUsers from '../../dashboard/TableRowUsers'
+import TableRowDiagActivity from './TableRowDiagActivity'
 
 class ShowTable extends Component {
   render() {
@@ -20,6 +21,11 @@ class ShowTable extends Component {
     }else if(index.type==='diag_admin_user') {
       return data.map(data => (
         <TableRowUsers data={data} key={data._id}/>
+      ));
+    }
+    else if(index.type==='viewActivity') {
+      return data.map(data => (
+        <TableRowDiagActivity data={data} key={data._id}/>
       ));
     }
 

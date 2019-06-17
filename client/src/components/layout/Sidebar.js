@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 class Sidebar extends Component {
 
 
-
   render () {
 
     const { isAuthenticated,user } = this.props.auth
@@ -32,6 +31,18 @@ class Sidebar extends Component {
             <Link to="/addDiagnosticCentre" style={{ textDecoration: 'none' }}>
                 <i className="fa fa-cog" aria-hidden="true"/>
                 Add a new Diagnostic centre
+              </Link>
+            </li>
+            <li>
+              <Link to="/activeCentres" style={{ textDecoration: 'none' }}>
+                <i className="fa fa-cog" aria-hidden="true"/>
+                Active Centres
+              </Link>
+            </li>
+            <li>
+              <Link to="/removedCentres" style={{ textDecoration: 'none' }}>
+                <i className="fa fa-cog" aria-hidden="true"/>
+                Inactive Centres
               </Link>
             </li>
             <li>

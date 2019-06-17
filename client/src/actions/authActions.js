@@ -1,7 +1,6 @@
 import {
   CLEAR_ERRORS,
-  GET_ERRORS,
-  LOADING,
+  GET_ERRORS, HOME_LOADING,
   SET_CURRENT_USER
 } from './types'
 import axios from 'axios'
@@ -25,9 +24,9 @@ export const registerUser = (userData) => dispatch => {
 };
 
 //Login User
-//`file://${path.join(__dirname, '../build/index.html')}`
 export const loginUser = userData => dispatch => {
-  clearErrors()
+  dispatch(clearErrors())
+  dispatch(setLoading())
   axios.post('/api/users/login',userData)
     .then(res => {
       //Saving to Local Storage
@@ -47,7 +46,7 @@ export const loginUser = userData => dispatch => {
 };
 export const setLoading = () => {
   return {
-    type: LOADING
+    type: HOME_LOADING
   };
 };
 //Set Logged in User

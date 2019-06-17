@@ -19,7 +19,10 @@ export default function(state = initialState, action) {
         ...state,
         loading: true,
         loading2:true,
-        loading3: true
+        loading3: true,
+        home: null,
+        patientData: null,
+        invalid: false
       }
     case GET_MR:
       return {

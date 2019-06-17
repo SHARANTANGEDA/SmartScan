@@ -1,13 +1,13 @@
 import axios from 'axios'
 
 import {
-  CLEAR_ERRORS, FOLDER_LOADING,
-  GET_ERRORS
+  CLEAR_ERRORS, FOLDER_LOADING, GET_ACTIVE,
+  GET_ERRORS, GET_INACTIVE, GET_SA_HOME, HOME_LOADING, ON_POST_FAIL, VIEW_LOADING
 } from './types'
 
 
 export const addDiagnostics = (userData) => dispatch => {
-  clearErrors()
+  dispatch(clearErrors())
   axios.post('/api/superAdmin/addDiagnostic', userData)
     .then(res => {
       window.location.href='/dashboard'
@@ -19,12 +19,85 @@ export const addDiagnostics = (userData) => dispatch => {
   )
 };
 
+export const removeDiagAccess = (userData) => dispatch => {
+  dispatch(clearErrors())
+  axios.post('/api/superAdmin/removeAccess', userData)
+    .then(res => {
+      window.location.href='/dashboard'
+    }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  )
+};
 
+export const grantDiagAccess = (userData) => dispatch => {
+  dispatch(clearErrors())
+  axios.post('/api/superAdmin/grantAccess', userData)
+    .then(res => {
+      window.location.href='/dashboard'
+    }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  )
+};
 
+export const deleteLVPEIUser = (userData) => dispatch => {
+  dispatch(clearErrors())
+  axios.post('/api/superAdmin/deleteLVPEIUser', userData)
+    .then(res => {
+      window.location.href='/dashboard'
+    }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  )
+};
+
+export const activeCentres = () => dispatch => {
+  dispatch(setLoading())
+  axios.get('/api/superAdmin/activeCentres')
+    .then(res => {
+      dispatch({
+        type: GET_ACTIVE,
+        payload: res.data
+      })
+  }).catch(err =>
+    dispatch({
+    type: ON_POST_FAIL,
+    payload: null
+  }))
+}
+
+export const removedCentres = () => dispatch => {
+  console.log('In inactive')
+  dispatch(setLoading())
+  axios.get('/api/superAdmin/inactiveDiags')
+    .then(res => {
+      dispatch({
+        type: GET_INACTIVE,
+        payload: res.data
+      })
+    }).catch(err =>{
+    console.log(err)
+    dispatch({
+      type: ON_POST_FAIL,
+      payload: null
+    })})
+}
 
 export const setLoading = () => {
   return {
-    type: FOLDER_LOADING
+    type: VIEW_LOADING
+  };
+};
+export const homeLoading = () => {
+  return {
+    type: HOME_LOADING
   };
 };
 // Clear errors

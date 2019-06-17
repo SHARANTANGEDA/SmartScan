@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import UploadSuccess from '../common/UploadSuccess'
-import { getDetails } from '../../actions/homeActions'
 import { Link } from 'react-router-dom'
 
 class Success extends Component {
@@ -34,10 +33,9 @@ class Success extends Component {
 
 Success.propTypes = {
   home: PropTypes.object.isRequired,
-  getDetails: PropTypes.func.isRequired,
 }
 const mapStateToProps = state => ({
   home: state.home,
   auth: state.auth,
 })
-export default connect(mapStateToProps, {  getDetails })(Success)
+export default connect(mapStateToProps)(Success)

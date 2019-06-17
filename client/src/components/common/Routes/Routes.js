@@ -10,6 +10,8 @@ import AddDiagnosticCentre from '../../SuperAdmin/AddDiagnosticCentre'
 import Success from '../../upload/Success'
 import NotFound from '../../layout/NotFound'
 import SearchNotFound from '../../layout/SearchNotFound'
+import ActiveCentres from '../../SuperAdmin/ActiveCentres'
+import RemovedCentres from '../../SuperAdmin/RemovedCentres'
 
 const Routes = () => {
   return (
@@ -37,6 +39,8 @@ const Routes = () => {
         {/*<Switch>*/}
         <PrivateRoute exact path='/uploadSuccess' component={Success}/>
         <PrivateRoute exact path='/detailsNotFound' component={SearchNotFound}/>
+        <PrivateRoute exact path='/activeCentres' component={ActiveCentres}/>
+        <PrivateRoute exact path='/removedCentres' component={RemovedCentres} />
         {/*</Switch>*/}
         <Route path="*" component={NotFound} />
       </Switch>

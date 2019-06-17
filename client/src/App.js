@@ -10,17 +10,10 @@ import Footer from './components/layout/Footer'
 import NavBar from './components/layout/NavBar'
 import Landing from './components/layout/Landing'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import CreateUsers from './components/MyAccount/CreateUsers'
-import Dashboard from './components/dashboard/Dashboard'
+
 import Sidebar from './components/layout/Sidebar'
-import ChangePassword from './components/MyAccount/ChangePassword'
 import ContactUs from './components/common/ContactUs'
-import UploadFiles from './components/upload/UploadFiles'
-import Success from './components/upload/Success'
-import Display from './components/display/Files/Display'
-import AddDiagnosticCentre from './components/SuperAdmin/AddDiagnosticCentre'
-import DisplayFolder from './components/display/Folders/DisplayFolder'
-import NotFound from './components/layout/NotFound'
+
 import Routes from './components/common/Routes/Routes'
 
 

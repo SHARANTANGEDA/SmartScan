@@ -1,7 +1,6 @@
 export const GET_ERRORS = 'GET_ERRORS';
 export const SET_CURRENT_USER ='SET_CURRENT_USER';
 export const CLEAR_ERRORS='CLEAR_ERRORS';
-export const LOADING='LOADING';
 export const ON_POST_FAIL ='ON_POST_FAIL';
 export const GET_DETAILS='GET_DETAILS';
 export const GET_FILES='GET_FILES';
@@ -18,3 +17,6 @@ export const GET_MR = 'GET_MR';
 export const GET_PATIENTS_HOME = 'GET_PATIENTS_HOME';
 export const GET_SEARCH_RESULTS = 'GET_SEARCH_RESULTS';
 export const SEARCH_LOADING = 'SEARCH_LOADING';
+export const GET_INACTIVE='GET_INACTIVE';
+export const GET_ACTIVE='GET_ACTIVE';
+export const VIEW_LOADING='VIEW_LOADING';

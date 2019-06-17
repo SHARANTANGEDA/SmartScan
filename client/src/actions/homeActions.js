@@ -7,29 +7,30 @@ import {
   GET_FILES_SINGLE_FOLDER,
   ON_POST_FAIL,
   NO_FILES,
-  NO_FILES_IN_FOLDER, GET_SA_HOME, GET_PATIENTS_HOME, GET_SEARCH_RESULTS, SEARCH_LOADING
+  NO_FILES_IN_FOLDER, GET_SA_HOME, GET_PATIENTS_HOME, GET_SEARCH_RESULTS, SEARCH_LOADING, HOME_LOADING
 } from './types'
 
 
-export const getDetails = (userData) => dispatch => {
-  axios.post('/api/users/enterName', userData)
-    .then(res => {
-      dispatch({
-        type: GET_DETAILS,
-        payload: res.data
-      })
-      window.location.href='/uploadMultipleFiles'
-    }).catch(err =>
-    dispatch({
-      type: ON_POST_FAIL,
-      payload: null
-    })
-  )
-};
+// export const getDetails = (userData) => dispatch => {
+//   homeLoading()
+//   axios.post('/api/users/enterName', userData)
+//     .then(res => {
+//       dispatch({
+//         type: GET_DETAILS,
+//         payload: res.data
+//       })
+//       window.location.href='/uploadMultipleFiles'
+//     }).catch(err =>
+//     dispatch({
+//       type: ON_POST_FAIL,
+//       payload: null
+//     })
+//   )
+// };
 
 
 export const getSADetails = () => dispatch => {
-  dispatch(setLoading());
+  dispatch(homeLoading());
   axios.get('/api/superAdmin/home',)
     .then(res => {
       dispatch({
@@ -133,7 +134,7 @@ export const downloadFolder  = (id) => dispatch => {
   );
 }
 export const getFiles = () => dispatch => {
-  setLoading()
+  dispatch(setLoading())
   axios.get('/api/upload/files').then(res => {
     dispatch({
       type: GET_FILES,
@@ -147,7 +148,8 @@ export const getFiles = () => dispatch => {
   );
 };
 export const getHomeFolders = (id) => dispatch => {
-  setLoading()
+  dispatch(setLoading())
+  dispatch(homeLoading())
   axios.get(`/api/upload/folders/${id}`).then(res => {
     dispatch({
       type: GET_FILES,
@@ -162,7 +164,8 @@ export const getHomeFolders = (id) => dispatch => {
 }
 
 export const getSearchResults = (data) => dispatch => {
-  setSearchLoading()
+  dispatch(setSearchLoading())
+  dispatch(homeLoading())
   axios.post(`/api/users/search`, data).then(res => {
     dispatch({
       type: GET_SEARCH_RESULTS,
@@ -176,7 +179,8 @@ export const getSearchResults = (data) => dispatch => {
   );
 }
 export const getAllPatients = () => dispatch => {
-  setLoading()
+  dispatch(setLoading())
+  dispatch(homeLoading())
   axios.get('/api/upload/patientsFolders').then(res => {
     dispatch({
       type: GET_PATIENTS_HOME,
@@ -190,7 +194,8 @@ export const getAllPatients = () => dispatch => {
   );
 }
 export const getFilesByFolder = (id) => dispatch => {
-  setLoading()
+  dispatch(setLoading())
+  dispatch(homeLoading())
   axios.get(`/api/upload/files/${id}`).then(res => {
     dispatch({
       type: GET_FILES_SINGLE_FOLDER,
@@ -207,6 +212,11 @@ export const getFilesByFolder = (id) => dispatch => {
 export const setLoading = () => {
   return {
     type: FOLDER_LOADING
+  };
+};
+export const homeLoading = () => {
+  return {
+    type: HOME_LOADING
   };
 };
 
