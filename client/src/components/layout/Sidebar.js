@@ -22,7 +22,7 @@ class Sidebar extends Component {
               </Link>
             </li>
             <li>
-            <Link to="/createLVPEIUser" style={{ textDecoration: 'none' }}>
+            <Link to="/createUser" style={{ textDecoration: 'none' }}>
                 <i className="fa fa-cog" aria-hidden="true"/>
                 Create LVPEI user
               </Link>

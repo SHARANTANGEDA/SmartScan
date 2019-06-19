@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { deleteLVPEIUser } from '../../../actions/sAActions'
+import getLocalDate from '../../../utils/getLocalDate'
 
 class TableRowLVPEI extends Component {
   constructor () {
@@ -37,7 +38,7 @@ class TableRowLVPEI extends Component {
       <tr className="">
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.emailId}</span></td>
         <td>
-          <Link to="" style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.time}</Link>
+          <Link to="" style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(data.time)}</Link>
         </td>
         <td>
           {content}

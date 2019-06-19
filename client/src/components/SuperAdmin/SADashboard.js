@@ -8,7 +8,7 @@ import Spinner from '../common/Spinner'
 
 class SADashboard extends Component {
   render () {
-    let { lvpei, diag_admin, centre, diagLen } = this.props.home
+    let { lvpei, diag_admin, centre, diagLen , patientsLen} = this.props.home
     if (this.props.home.lvpei === null || this.props.home.centre === null ||
       this.props.home.diag_admin === null || this.props.home.diagLen === null) {
       return (
@@ -80,7 +80,7 @@ class SADashboard extends Component {
                 <div color="warning" className='text-center'>
                   <p className='' style={{ color: 'white' }}>Patient Details On Cloud</p>
                   <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
-                    {lvpei.length}
+                    {patientsLen}
                   </h1>
                 </div>
               </Card>
@@ -98,7 +98,7 @@ class SADashboard extends Component {
                 <th scope="col">User name</th>
 
                 <th scope="col">Created On</th>
-                <th scope='col'>Number of accounts Created</th>
+                <th scope='col'>Accounts Created</th>
                 <th scope="col">Control Access</th>
               </tr>
               </thead>

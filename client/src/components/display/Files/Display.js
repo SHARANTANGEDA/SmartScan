@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {  getFilesByFolder } from '../../../actions/homeActions'
 import FileRow from './FileRow'
 import { Link } from 'react-router-dom'
+import getLocalDate from '../../../utils/getLocalDate'
 
 
 class Display extends Component {
@@ -77,7 +78,7 @@ class Display extends Component {
                   fontFamily: 'Lobster',
                   color: 'black', fontSize: '48px'
                 }}> Welcome to L V Prasad Cloud</h1>
-                <h3>All files uploaded at {' '}{files.patient.lastUploadAt} {' '} of {' '}
+                <h3>All files uploaded at {' '}{getLocalDate(files.patient.lastUploadAt)} {' '} of patient{' '}
                   {files.patient.mrNo}</h3>
               </div>
             </div>

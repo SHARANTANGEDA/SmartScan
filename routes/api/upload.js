@@ -1,3 +1,4 @@
+const dateDiffInDays = require( '../../validations/dateDiffInDays')
 const Grid = require('gridfs-stream')
 const multer = require('multer')
 const GridFsStorage = require('multer-gridfs-storage')
@@ -237,16 +238,33 @@ router.get('/folders/:id', passport.authenticate('lvpei', { session: false }), (
   })
 })
 router.get('/patientsFolders', passport.authenticate('lvpei', { session: false }), (req, res) => {
-  let mrNos=[]
-  Patient.find().then(async patients => {
+  let mrNos=[],dummy=[],today=[], yesterday=[], lastweek=[], lastMonth=[], previous = []
+  Patient.find().sort({lastUpdateAt: -1}).then(async patients => {
+    const now = new Date()
     patients.map(patient => {
-      mrNos.push(new Promise((resolve, reject) => {
+      dummy.push(new Promise((resolve, reject) => {
+        console.log({MR: mrNos})
         if (!mrNos.includes(patient.mrNo)) {
-          resolve(patient.mrNo)
+          let diff = dateDiffInDays(now,patient.lastUploadAt)
+          console.log(diff)
+          if(diff === 0) {
+            today.push(patient.mrNo)
+          }else if(diff===1) {
+            yesterday.push(patient.mrNo)
+          }else if(diff>1 && diff<=7) {
+            lastweek.push(patient.mrNo)
+          } else if(diff>7 && diff<=30) {
+            lastMonth.push(patient.mrNo)
+          } else if(diff>30) {
+            previous.push(patient.mrNo)
+          }
+          mrNos.push(patient.mrNo)
         }
       }))
     })
-    res.json(await Promise.all(mrNos))
+    res.json({today: await Promise.all(today), yesterday: await Promise.all(yesterday),
+      lastweek: await Promise.all(lastweek), lastMonth: await Promise.all(lastMonth),
+      previous: await Promise.all(previous)})
   })
 })
 // // @route GET /files/:filename

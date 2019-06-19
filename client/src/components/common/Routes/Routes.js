@@ -45,7 +45,6 @@ const Routes = () => {
         <Route path="*" component={NotFound} />
       </Switch>
     </div>
-)
-}
+)}
 
 export default Routes

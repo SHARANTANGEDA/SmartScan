@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getAllPatients, getFiles, getHomeFolders, getSADetails } from '../../actions/homeActions'
+import { getAllPatients, getSADetails } from '../../actions/homeActions'
 import TextFieldGroup from '../common/TextFieldGroup'
 import Spinner from '../common/Spinner'
 import SADashboard from '../SuperAdmin/SADashboard'
@@ -9,7 +9,7 @@ import { continueToUpload, deleteResidual, getDAHome, getPatientDetails } from '
 import Modal from 'react-modal'
 import ShowTable from '../SuperAdmin/tableDisplay/ShowTable'
 import UploadFiles from '../upload/UploadFiles'
-import PatientRow from '../display/Patients/PatientRow'
+import LVPEIHomeFeed from './LVPEIHomeFeed'
 
 const customStyles = {
   content: {
@@ -119,8 +119,10 @@ class Dashboard extends Component {
             </div>
           )
         } else {
+
+
           allFoldersContent = (
-            <PatientRow folders={patients}/>
+            <LVPEIHomeFeed patients={patients}/>
           )
         }
       }

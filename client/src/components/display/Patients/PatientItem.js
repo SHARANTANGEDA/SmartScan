@@ -53,11 +53,12 @@ class PatientItem extends Component {
           <div className="mainflip">
             <div className="frontside">
 
-              <div className="card" style={{minWidth: '200px', borderStyle: 'solid'}}>
+              <div className="card d-flex justify-content-center" style={{minWidth: '200px', borderStyle: 'solid',
+              margin:'5px'}}>
                 <Link to={`displayFolder/${mrNo}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
-                <div className="card-body text-center ">
-                  <div className='d-flex justify-content-center'>
-                    <img className="img-fluid" src={require('../folder.png')} alt=''/>
+                <div className="card-body ">
+                  <div className='col-md-12  text-center d-flex justify-content-center'>
+                    <img className="img-fluid d-flex justify-content-center" src={require('../folder.png')} alt=''/>
                   </div>
                   <div className='row text-center d-flex justify-content-center'>
                     <h4 className="card-title" style={{fontSize: '18px'}}>{mrNo}</h4>

@@ -6,6 +6,7 @@ import '../allFolders.css'
 import { deleteFolder, downloadFolder } from '../../../actions/homeActions'
 import downloading from '../../common/downloading.gif'
 import Modal from 'react-modal'
+import getLocalDate from '../../../utils/getLocalDate'
 
 const customStyles = {
   content: {
@@ -102,7 +103,7 @@ class FolderItem extends Component {
           </tr>
           <tr>
             <td><h5>uploaded At</h5></td>
-            <td><h5>{folder.lastUploadAt}</h5></td>
+            <td><h5>{getLocalDate(folder.lastUploadAt)}</h5></td>
           </tr>
           <tr>
             <td><h5>uploaded by user</h5></td>
@@ -132,7 +133,7 @@ class FolderItem extends Component {
                 <div className="card-body text-center">
                   <p><img className="img-fluid" src={require('../folder.png')} alt=''/></p>
                   <div className='row text-center d-flex justify-content-center'>
-                    <h4 className="card-title" style={{fontSize: '18px'}}>{folder.lastUploadAt}</h4>
+                    <h4 className="card-title" style={{fontSize: '18px'}}>{getLocalDate(folder.lastUploadAt)}</h4>
                   </div>
                 </div>
                 </span>

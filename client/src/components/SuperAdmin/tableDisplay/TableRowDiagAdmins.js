@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import downloading from '../../common/downloading.gif'
 import { grantDiagAccess, removeDiagAccess } from '../../../actions/sAActions'
+import getLocalDate from '../../../utils/getLocalDate'
 
 class TableRowDiagAdmins extends Component {
   constructor () {
@@ -73,7 +74,7 @@ class TableRowDiagAdmins extends Component {
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.emailId}</span></td>
 
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.time}</span>
+          <span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(data.user.time)}</span>
         </td>
         <td>
           <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.emp}</span>

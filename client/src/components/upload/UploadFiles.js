@@ -67,6 +67,10 @@ class UploadFiles extends Component {
           You will be notified once upload is completed</p>
       </div>
     )
+    let downloadBut = (
+      <button className='btn btn-success ' style={{background: 'green'}}
+              onClick={this.uploadFile.bind(this)}>Upload</button>
+    )
     let info;
     if(this.state.error!==null) {
       info = (
@@ -98,8 +102,7 @@ class UploadFiles extends Component {
               <input type="file" onChange={this.fileChanged.bind(this)} required multiple name='files'
                      style={{border: '1.5px', borderStyle: 'solid',
                        borderRadius:'5px', margin: '5px',minWidth:'100%'}}/>
-              <button className='btn btn-success ' style={{background: 'green'}}
-                      onClick={this.uploadFile.bind(this)}>Upload</button>
+              {!this.state.spinner ? downloadBut : null}
             </div>
             {this.state.spinner ? spin : null}
           </div>

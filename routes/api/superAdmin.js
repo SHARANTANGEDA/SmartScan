@@ -7,6 +7,7 @@ const validateRegisterInput = require('../../validations/register')
 const validateDiagnosticsInput = require('../../validations/newDiagnostics')
 const User = require('../../mongoModels/User')
 const Diagnostics=require('../../mongoModels/Diagnostics')
+const Patient = require('../../mongoModels/Patient');
 
 // router.post('/registerSA',(req, res) => {
 //   // const { errors, isValid } = validateRegisterInput(req.body)
@@ -196,7 +197,7 @@ router.get('/inactiveDiags',passport.authenticate('super_admin', {session: false
   })
 router.get('/home', passport.authenticate('super_admin', { session: false }), (req, res) => {
   User.find().then(async users => {
-    let lvpei = [], diag_admin = [], dummy = [], diag = [], centre = []
+    let lvpei = [], diag_admin = [], dummy = [], diag = [], centre = [], len=0
     users.map(user => {
       dummy.push(new Promise((resolve, reject) => {
         if (user.role === 'lvpei') {
@@ -210,16 +211,21 @@ router.get('/home', passport.authenticate('super_admin', { session: false }), (r
     })
     diag_admin.map(user => {
       centre.push(new Promise((resolve, reject) => {
-        User.find({admin: user.emailId}).then(users => {
-          resolve({user:user,emp: users.length})
+        Patient.find().then(patients=> {
+          User.find({admin: user.emailId}).then(users => {
+            len=patients.length
+            resolve({user:user,emp: users.length})
+        })
         })
       }))
     })
+
     res.json({
       lvpei: await Promise.all(lvpei),
       diag_admin: await Promise.all(diag_admin),
       centre: await Promise.all(centre),
-      diagLen: diag.length
+      diagLen: diag.length,
+      patientsLen: len
     })
   })
 });

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import '../allFolders.css'
 import { deleteFile, downloadFile } from '../../../actions/homeActions'
 import Modal from 'react-modal'
+import getLocalDate from '../../../utils/getLocalDate'
 
 const customStyles = {
   content: {
@@ -67,7 +68,6 @@ class FileItem extends Component {
 
   render () {
     const { file, patient} = this.props
-    console.log({ FILE: file })
     let modalContent = (
       <div id="mainbar" className='row d-flex justify-content-center'>
         <div className="grid text-center col-md-10">
@@ -88,7 +88,7 @@ class FileItem extends Component {
           </tr>
           <tr>
             <td><h5>uploaded At</h5></td>
-            <td><h5>{patient.lastUploadAt}</h5></td>
+            <td><h5>{getLocalDate(patient.lastUploadAt)}</h5></td>
           </tr>
           <tr>
             <td><h5>uploaded by user</h5></td>
@@ -97,7 +97,8 @@ class FileItem extends Component {
           </tbody>
         </table>
         <div className="col-md-6 text-center" style={{ width: '100%' }}>
-          <button onClick={this.closeModal} className='btn btn-warning'>Close</button>
+          <button onClick={this.closeModal} className='btn btn-sm' style={{background:'red', color:'white'}}>Close
+          </button>
         </div>
       </div>
     )
@@ -157,7 +158,7 @@ FileItem.propTypes = {
   auth: PropTypes.object.isRequired,
   downloadFile: PropTypes.func.isRequired,
   deleteFile: PropTypes.func.isRequired,
-  patient: PropTypes.func.isRequired
+  patient: PropTypes.object.isRequired
 }
 const mapStateToProps = state => ({
   auth: state.auth
