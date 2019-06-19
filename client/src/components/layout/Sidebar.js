@@ -55,7 +55,7 @@ class Sidebar extends Component {
         </nav>
       )
     }else if(isAuthenticated && (user.role==='diag_admin')) {
-      showContent = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
+      showContent = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ minHeight: '100%' }}>
         <ul className="list-unstyled components" style={{ height: '100%' }}>
           <li>
             <Link to="/dashboard" style={{ textDecoration: 'none' }}>
