@@ -1,5 +1,5 @@
 import React from 'react';
-import '../404-star-wars-bb-8/js/404'
+// import '../404-star-wars-bb-8/js/404'
 import '../404-star-wars-bb-8/css/404.css'
 import { Link } from 'react-router-dom'
 
