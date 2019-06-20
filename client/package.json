@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "main": "./public/Main.js",
+  "main": "src/utils/Main.js",
   "homepage": "./src/App.js",
   "private": true,
   "dependencies": {
