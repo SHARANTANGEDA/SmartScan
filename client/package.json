@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "main": "src/utils/Main.js",
+  "main": "./public/Main.js",
   "homepage": "./src/App.js",
   "private": true,
   "dependencies": {
@@ -29,7 +29,8 @@
     "react-select": "^2.4.4",
     "react-swipeable-views": "^0.13.1",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "caniuse-lite": "1.0.30000974"
   },
   "scripts": {
     "start": "react-scripts start",
