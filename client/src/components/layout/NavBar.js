@@ -67,7 +67,7 @@ class Navbar extends Component {
       <Link className="navbar-brand" to="/dashboard" style={{ fontFamily: '\'Lobster\', cursive', fontSize: '26px' }}>
         <img style={{ maxWidth: '20%', maxHeight: '25%' }}
              src={require('../../img/logoIcon.png')} alt=""
-             title=""/>MRIStream
+             title=""/>LVStream
       </Link>
 
     )
@@ -75,7 +75,7 @@ class Navbar extends Component {
       <Link className="navbar-brand" to="/" style={{ fontFamily: '\'Lobster\', cursive', fontSize: '26px' }}>
         <img style={{ maxWidth: '20%', maxHeight: '25%' }}
              src={require('../../img/logoIcon.png')} alt=""
-             title=""/>MRIStream
+             title=""/>LVStream
       </Link>
     )
 

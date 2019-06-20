@@ -1,6 +1,6 @@
 {
-  "short_name": "MRIStream",
-  "name": "MRIStream-From lab to lvpei",
+  "short_name": "LVStream",
+  "name": "LVStream -A Cloud platform for LVPEI",
   "icons": [
     {
       "src": "favicon.ico",

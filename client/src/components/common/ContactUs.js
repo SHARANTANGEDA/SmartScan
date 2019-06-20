@@ -17,14 +17,7 @@ class ContactUs extends Component {
                 </div>
               </div>
               <div>
-                <div className="col-6 col-lg-3 p-4">
-                  <img className="img-fluid d-block mb-3  rounded-circle"
-                       src={require("../../img/sharan.jpeg")} alt="" width="100" />
-                </div>
-                <div className="col-md-6">
-                <h4><strong>Sai Sharan Tangeda</strong></h4>
-                    <p className="mb-3">saisarantangeda@gmail.com</p>
-                </div>
+                <h1>Coming up shortly please bear with us</h1>
               </div>
             </div>
           </div>

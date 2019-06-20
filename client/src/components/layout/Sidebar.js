@@ -114,7 +114,7 @@ class Sidebar extends Component {
       </nav>)
     }
     return (
-      <div style={{ minHeight: '100%' }}>
+      <div style={{ minHeight: '100%',zIndex:-1 }}>
         {showContent}
       </div>
     )
