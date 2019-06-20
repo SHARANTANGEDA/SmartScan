@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/css/404.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/img/404.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/js/404.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/NotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/NotFound.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,14 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/components/layout/NotFound.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
-              <folding>
-                <element signature="e#68#110#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="156">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -77,7 +77,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
@@ -218,12 +218,12 @@
         <option value="$PROJECT_DIR$/client/src/reducers/viewCentreReducer.js" />
         <option value="$PROJECT_DIR$/client/src/components/common/UploadSuccess.js" />
         <option value="$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js" />
-        <option value="$PROJECT_DIR$/client/src/components/layout/NotFound.js" />
         <option value="$PROJECT_DIR$/client/src/actions/sAActions.js" />
         <option value="$PROJECT_DIR$/client/src/actions/homeActions.js" />
         <option value="$PROJECT_DIR$/client/package-lock.json" />
         <option value="$PROJECT_DIR$/client/src/App.js" />
         <option value="$PROJECT_DIR$/client/package.json" />
+        <option value="$PROJECT_DIR$/client/src/components/layout/NotFound.js" />
       </list>
     </option>
   </component>
@@ -265,6 +265,34 @@
               <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
@@ -528,14 +556,7 @@
       <workItem from="1560844467886" duration="1946000" />
       <workItem from="1560857352876" duration="11966000" />
       <workItem from="1560909277624" duration="15253000" />
-      <workItem from="1561008423811" duration="9169000" />
-    </task>
-    <task id="LOCAL-00088" summary="#Fixed ta applications page">
-      <created>1554612526177</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1554612526177</updated>
+      <workItem from="1561008423811" duration="9522000" />
     </task>
     <task id="LOCAL-00089" summary="#Fixed assign faculty page">
       <created>1554653484966</created>
@@ -873,11 +894,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561041828642</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="#Optimized Imports">
+      <created>1561042620104</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1561042620104</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="989840000" />
+    <option name="totallyTimeSpent" value="990193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -890,12 +918,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="DB Browser" order="0" weight="0.3299356" />
       <window_info id="Structure" order="1" sideWeight="0.5059848" side_tool="true" weight="0.11480687" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" sideWeight="0.5071315" side_tool="true" weight="0.23400673" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18508583" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18508583" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info active="true" anchor="bottom" id="SVN Repositories" order="2" weight="0.3297062" />
@@ -907,11 +936,11 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.3297062" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.31338412" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4980523" weight="0.39825898" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4980523" visible="true" weight="0.39825898" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50361717" side_tool="true" weight="0.31751412" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3299435" />
       <window_info anchor="bottom" id="TypeScript" order="14" weight="0.3299435" />
-      <window_info active="true" anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.37105548" />
+      <window_info anchor="bottom" id="Run" order="15" sideWeight="0.49638286" weight="0.37105548" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1316,16 +1345,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/NotFound.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
-          <folding>
-            <element signature="e#68#110#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/actions/sAActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
@@ -1373,6 +1392,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/NotFound.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
         </state>
       </provider>
     </entry>
