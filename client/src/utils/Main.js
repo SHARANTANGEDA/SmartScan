@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
-server = require("../../server")
+server = require("../../../server")
 const createWindow = () => {
 
   // Create the browser window.

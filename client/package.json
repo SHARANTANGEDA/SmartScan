@@ -1,8 +1,6 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "main": "./public/Main.js",
-  "homepage": "./src/App.js",
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
@@ -36,10 +34,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "elec-client": "electron .",
-    "preelectron-pack": "npm run build",
-    "electron-pack": "build -c.extraMetadata.main=build/Main.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,8 +47,6 @@
   ],
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "electron": "^5.0.2",
-    "electron-builder": "^20.41.0",
     "typescript": "^3.5.1"
   }
 }

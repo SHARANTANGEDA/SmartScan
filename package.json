@@ -21,7 +21,6 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
-    "crypto": "^1.0.1",
     "elasticsearch": "^15.4.1",
     "express": "^4.16.4",
     "get-json": "^1.0.1",
@@ -41,7 +40,6 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "electron": "^5.0.2",
     "nodemon": "^1.18.10"
   },
   "engines": {
