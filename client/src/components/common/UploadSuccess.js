@@ -1,5 +1,4 @@
 import React from 'react'
-import Pikachu from './pikachu.gif'
 import Success from '../../img/cloudSuccess.png'
 
 export default () => {

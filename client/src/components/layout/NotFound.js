@@ -12,7 +12,7 @@ export default () => {
         background: '#869F9D'}}>
         <h3>ERROR</h3>
         <h1>404</h1>
-        <p id="quote">"Why Does Everyone Want To <a href="#">Go Back</a> To Jakku?!"</p>
+        <p id="quote">"Why Does Everyone Want To <Link to="/dashboard">Go Back</Link> To Jakku?!"</p>
       </div>
     {/*</div>*/}
 

@@ -7,10 +7,6 @@ import Spinner from '../common/Spinner'
 import { activeCentres } from '../../actions/sAActions'
 
 class ActiveCentres extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   componentDidMount () {
     this.props.activeCentres(this.props.match.params.id)
   }

@@ -2,7 +2,6 @@ import axios from 'axios'
 
 import {
   CLEAR_ERRORS, FOLDER_LOADING,
-  GET_DETAILS,
   GET_FILES,
   GET_FILES_SINGLE_FOLDER,
   ON_POST_FAIL,
