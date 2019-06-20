@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,11 +27,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="178">
               <caret line="7" column="56" lean-forward="true" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -88,11 +97,6 @@
               <caret column="19" selection-start-column="19" selection-end-column="19" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/public/Main.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -160,7 +164,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/components/display/Folders/DisplaySearchFolders.js" />
         <option value="$PROJECT_DIR$/client/src/components/display/Folders/SearchNotFound.js" />
         <option value="$PROJECT_DIR$/client/src/components/layout/NavBar.js" />
         <option value="$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js" />
@@ -211,6 +214,7 @@
         <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/config/keys_dev.js" />
         <option value="$PROJECT_DIR$/models/index.js" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -658,14 +662,7 @@
       <workItem from="1560844467886" duration="1946000" />
       <workItem from="1560857352876" duration="11966000" />
       <workItem from="1560909277624" duration="15253000" />
-      <workItem from="1561008423811" duration="5444000" />
-    </task>
-    <task id="LOCAL-00083" summary="#Completed reputation">
-      <created>1554576126821</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1554576126821</updated>
+      <workItem from="1561008423811" duration="5954000" />
     </task>
     <task id="LOCAL-00084" summary="#Fixed bug and updated model in get questions">
       <created>1554577163629</created>
@@ -1003,11 +1000,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561037302503</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="#Added ProcFile&#10;#Fixed a minor bug">
+      <created>1561038855344</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1561038855344</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="986115000" />
+    <option name="totallyTimeSpent" value="986625000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1026,7 +1030,7 @@
       <window_info id="Structure" order="1" sideWeight="0.5059848" side_tool="true" weight="0.11480687" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" sideWeight="0.5071315" side_tool="true" weight="0.23400673" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18530884" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18530884" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info active="true" anchor="bottom" id="SVN Repositories" order="2" weight="0.3297062" />
@@ -1038,11 +1042,11 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.3297062" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.31338412" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4980523" weight="0.35480225" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4980523" visible="true" weight="0.35480225" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50361717" side_tool="true" weight="0.31751412" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3299435" />
       <window_info anchor="bottom" id="TypeScript" order="14" weight="0.3299435" />
-      <window_info anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.27457628" />
+      <window_info anchor="bottom" id="Run" order="15" sideWeight="0.49638286" weight="0.27457628" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1109,7 +1113,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="#Optimized  All Imports&#10;#Removed un-used Props" />
     <MESSAGE value="#Optimized  All Imports&#10;#Removed un-used Props&#10;#Added pivotal tracker csv file" />
     <MESSAGE value="#Reduced Landing Image size&#10;#Changed top questions text to Recent Questions" />
     <MESSAGE value="#FIXED BUG IN GRAPH SCALING" />
@@ -1134,7 +1137,8 @@
     <MESSAGE value="#Added Sorting to LVPEI Page&#10;#Changed many UI pages&#10;#Optimized Routes" />
     <MESSAGE value="#Changed 404 Page" />
     <MESSAGE value="#Deployment Check-1&#10;#Added production environments&#10;#Secured Keys" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Deployment Check-1&#10;#Added production environments&#10;#Secured Keys" />
+    <MESSAGE value="#Added ProcFile&#10;#Fixed a minor bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="#Added ProcFile&#10;#Fixed a minor bug" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1146,13 +1150,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="127" column="29" lean-forward="true" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/node_modules/typescript/lib/lib.es5.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -1524,6 +1521,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="7" column="56" lean-forward="true" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
         </state>
       </provider>
     </entry>
