@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './404.css'
+// import './404.css'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -10,7 +10,7 @@ class NotFound extends Component {
 
 
     return (
-        <div style={{height: '100%', zIndex:5}}>
+        <div style={{height: '100%', width:'100%'}}>
           <img src={require('../../img/droid404.png')} alt=''/>
         </div>
 
