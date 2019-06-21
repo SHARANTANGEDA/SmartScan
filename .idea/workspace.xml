@@ -2,8 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/components/upload/UploadForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/img/logo2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MyAccount/CreateUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MyAccount/CreateUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/ActiveCentres.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/ActiveCentres.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/RemovedCentres.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/RemovedCentres.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/SADashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/SADashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagAdmins.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagAdmins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/TableRowUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/TableRowUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/display/Files/Display.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Files/Display.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/display/Folders/DisplayFolder.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Folders/DisplayFolder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/layout/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/upload/Success.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/upload/Success.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/upload/UploadFiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/upload/UploadFiles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mongoModels/Diagnostics.js" beforeDir="false" afterPath="$PROJECT_DIR$/mongoModels/Diagnostics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mongoModels/Patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/mongoModels/Patient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mongoModels/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/mongoModels/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/diagAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/diagAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/superAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/superAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/newDiagnostics.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/newDiagnostics.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,10 +51,46 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
+        <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="117" column="21" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
+            <state relative-caret-position="409">
+              <caret line="290" column="28" selection-start-line="290" selection-start-column="28" selection-end-line="290" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+                <element signature="n#!!block;n#openModal#0;n#Dashboard#0" />
+                <element signature="n#!!block;n#openNextModal#0;n#Dashboard#0" />
+                <element signature="n#!!block;n#afterOpenModal#0;n#Dashboard#0" />
+                <element signature="n#!!block;n#onDiscard#0;n#Dashboard#0" />
+                <element signature="n#!!block;n#closeFlushModal#0;n#Dashboard#0" />
+                <element signature="n#!!block;n#closeModal#0;n#Dashboard#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mongoModels/Diagnostics.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="21" column="14" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/SADashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="49" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/ShowTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="338">
+              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -28,89 +98,65 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/components/layout/Footer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="5" column="103" selection-start-line="5" selection-start-column="103" selection-end-line="5" selection-end-column="103" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/common/Routes/Routes.js">
+        <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/TableRowUsers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+            <state relative-caret-position="448">
+              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
               <folding>
-                <element signature="e#0#25#0" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js">
+        <entry file="file://$PROJECT_DIR$/routes/api/diagAdmin.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
-              <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+              <caret line="89" column="10" lean-forward="true" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/components/layout/NavBar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="88" column="81" selection-start-line="88" selection-start-column="81" selection-end-line="88" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/api/upload.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
               <folding>
-                <element signature="e#63#97#0" expanded="true" />
+                <element signature="e#5957#5990#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/404.css">
+        <entry file="file://$PROJECT_DIR$/client/src/components/upload/UploadFiles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52000">
-              <caret line="2000" column="29" selection-start-line="2000" selection-start-column="25" selection-end-line="2000" selection-end-column="29" />
+            <state relative-caret-position="-1069">
+              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/public/index.html">
+        <entry file="file://$PROJECT_DIR$/routes/api/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="19" column="101" selection-start-line="19" selection-start-column="101" selection-end-line="19" selection-end-column="101" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/public/manifest.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/layout/NavBar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1716">
-              <caret line="73" column="24" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/common/ContactUs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="437">
+              <caret line="39" column="99" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -127,15 +173,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>createdAt</find>
-      <find>lastUpdate</find>
-      <find>lastUploadAt</find>
-      <find>time</find>
-      <find>head</find>
-      <find>message</find>
-      <find>sand</find>
-      <find>main</find>
-      <find>env</find>
       <find>process</find>
       <find>ActiveCentres</find>
       <find>Brow</find>
@@ -157,6 +194,15 @@
       <find>the</find>
       <find>p</find>
       <find>body</find>
+      <find>auto</find>
+      <find>lobster</find>
+      <find>Select</find>
+      <find>onCatChange</find>
+      <find>e</find>
+      <find>patientData</find>
+      <find>Sele</find>
+      <find>diagCentre</find>
+      <find>diagId</find>
     </findStrings>
     <replaceStrings>
       <replace>black</replace>
@@ -176,57 +222,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/RemovedCentres.js" />
-        <option value="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/index.html" />
-        <option value="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/css/404bb8.css" />
-        <option value="$PROJECT_DIR$/client/src/utils/getLocalDate.js" />
-        <option value="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" />
-        <option value="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" />
-        <option value="$PROJECT_DIR$/client/src/components/display/Files/Display.js" />
-        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowLVPEI.js" />
-        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/SADashboard.js" />
-        <option value="$PROJECT_DIR$/routes/api/superAdmin.js" />
-        <option value="$PROJECT_DIR$/client/src/utils/getDateDiff.js" />
-        <option value="$PROJECT_DIR$/validations/dateDiffInDays.js" />
-        <option value="$PROJECT_DIR$/routes/api/upload.js" />
-        <option value="$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js" />
-        <option value="$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js" />
-        <option value="$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js" />
-        <option value="$PROJECT_DIR$/client/src/components/upload/UploadFiles.js" />
-        <option value="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/404.html" />
-        <option value="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/js/404.js" />
-        <option value="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/css/404.css" />
-        <option value="$PROJECT_DIR$/config/config.json" />
-        <option value="$PROJECT_DIR$/config/config.js" />
-        <option value="$PROJECT_DIR$/config/keys_dev.js" />
         <option value="$PROJECT_DIR$/models/index.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/client/src/actions/Main.js" />
-        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/ActiveCentres.js" />
-        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagActivity.js" />
-        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagAdmins.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/searchReducer.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/viewCentreReducer.js" />
         <option value="$PROJECT_DIR$/client/src/components/common/UploadSuccess.js" />
-        <option value="$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js" />
         <option value="$PROJECT_DIR$/client/src/actions/sAActions.js" />
-        <option value="$PROJECT_DIR$/client/src/actions/homeActions.js" />
         <option value="$PROJECT_DIR$/client/package-lock.json" />
         <option value="$PROJECT_DIR$/client/src/utils/Main.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/client/package.json" />
         <option value="$PROJECT_DIR$/client/public/manifest.json" />
-        <option value="$PROJECT_DIR$/client/src/components/layout/NavBar.js" />
         <option value="$PROJECT_DIR$/client/src/components/common/ContactUs.js" />
         <option value="$PROJECT_DIR$/client/public/index.html" />
         <option value="$PROJECT_DIR$/client/src/components/layout/NotFound.js" />
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/index.html" />
-        <option value="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" />
-        <option value="$PROJECT_DIR$/client/src/App.js" />
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/404.css" />
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js" />
         <option value="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" />
+        <option value="$PROJECT_DIR$/client/src/App.js" />
+        <option value="$PROJECT_DIR$/client/src/App.css" />
+        <option value="$PROJECT_DIR$/client/src/components/display/Folders/DisplayFolder.js" />
+        <option value="$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js" />
+        <option value="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" />
+        <option value="$PROJECT_DIR$/client/src/components/upload/Success.js" />
+        <option value="$PROJECT_DIR$/client/src/components/display/Files/Display.js" />
+        <option value="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" />
+        <option value="$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js" />
+        <option value="$PROJECT_DIR$/client/src/actions/homeActions.js" />
+        <option value="$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js" />
         <option value="$PROJECT_DIR$/client/src/components/layout/Footer.js" />
+        <option value="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" />
+        <option value="$PROJECT_DIR$/client/src/components/upload/UploadForm.js" />
+        <option value="$PROJECT_DIR$/mongoModels/User.js" />
+        <option value="$PROJECT_DIR$/mongoModels/Patient.js" />
+        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/SADashboard.js" />
+        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagAdmins.js" />
+        <option value="$PROJECT_DIR$/validations/newDiagnostics.js" />
+        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js" />
+        <option value="$PROJECT_DIR$/mongoModels/Diagnostics.js" />
+        <option value="$PROJECT_DIR$/routes/api/superAdmin.js" />
+        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagActivity.js" />
+        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/RemovedCentres.js" />
+        <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/ActiveCentres.js" />
+        <option value="$PROJECT_DIR$/client/src/components/MyAccount/CreateUsers.js" />
+        <option value="$PROJECT_DIR$/routes/api/diagAdmin.js" />
+        <option value="$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js" />
+        <option value="$PROJECT_DIR$/client/src/components/upload/UploadFiles.js" />
+        <option value="$PROJECT_DIR$/routes/api/upload.js" />
+        <option value="$PROJECT_DIR$/client/src/components/dashboard/TableRowUsers.js" />
+        <option value="$PROJECT_DIR$/client/src/components/layout/NavBar.js" />
       </list>
     </option>
   </component>
@@ -245,10 +291,10 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
-    <option name="y" value="-2" />
-    <option name="width" value="1920" />
-    <option name="height" value="1082" />
+    <option name="x" value="67" />
+    <option name="y" value="32" />
+    <option name="width" value="1853" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -273,6 +319,12 @@
               <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -281,6 +333,31 @@
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="Routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
@@ -295,7 +372,31 @@
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="MyAccount" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="upload" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="validation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
@@ -338,7 +439,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="11.10.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WebAppSE/ghotdenfinal" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -353,19 +454,19 @@
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/../SprintWise/Sprint-1 to Submit/Ghot-Den/client/src/validation" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/public" />
+      <recent name="$PROJECT_DIR$/client/src/img" />
+      <recent name="$PROJECT_DIR$/client/src/components/NotFoundStarwars" />
+      <recent name="$PROJECT_DIR$/client/src/utils" />
+      <recent name="$PROJECT_DIR$/client/src/actions" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/client/src/components" />
       <recent name="$PROJECT_DIR$/client/src/components/dashboard" />
       <recent name="$PROJECT_DIR$/client/src/components/common" />
       <recent name="$PROJECT_DIR$/client/src/reducers" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/src/components/NotFoundStarwars" />
-      <recent name="$PROJECT_DIR$/client/src/utils" />
-      <recent name="$PROJECT_DIR$/client/src/actions" />
-      <recent name="$PROJECT_DIR$/validations" />
-      <recent name="$PROJECT_DIR$/client/src/components/layout" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -562,14 +663,8 @@
       <workItem from="1561008423811" duration="15614000" />
       <workItem from="1561051000712" duration="576000" />
       <workItem from="1561099721494" duration="355000" />
-      <workItem from="1561101093763" duration="303000" />
-    </task>
-    <task id="LOCAL-00094" summary="#Fixed async backend bugs in faculty home&#10;#Fixed assign course bug in HOD&#10;#Upvote, downVote and reputation bug fixed&#10;#TA application page fixed&#10;#Unassigned faculty page Async backend bugs fixed&#10;#FINAL COMMIT FOR SPRINT-2(Commented search bar and tags in sidebar)">
-      <created>1554755451400</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1554755451400</updated>
+      <workItem from="1561101093763" duration="957000" />
+      <workItem from="1561113234339" duration="23471000" />
     </task>
     <task id="LOCAL-00095" summary="#Fixed Many bugs&#10;#FINAL PUSH FOR SPRINT-2">
       <created>1554789569959</created>
@@ -907,11 +1002,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561099812983</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="#ALPHA TEST RELEASE">
+      <created>1561101445182</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1561101445182</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="997519000" />
+    <option name="totallyTimeSpent" value="1021644000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -923,14 +1025,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
+    <frame x="67" y="32" width="1853" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="DB Browser" order="0" weight="0.3299356" />
       <window_info id="Structure" order="1" sideWeight="0.5059848" side_tool="true" weight="0.11480687" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" sideWeight="0.5071315" side_tool="true" weight="0.23400673" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18508583" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18475236" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info active="true" anchor="bottom" id="SVN Repositories" order="2" weight="0.3297062" />
@@ -942,11 +1044,11 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.3297062" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.31338412" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4967811" weight="0.33188248" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4967811" weight="0.33107343" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5032189" side_tool="true" weight="0.51033735" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3299435" />
       <window_info anchor="bottom" id="TypeScript" order="14" weight="0.3299435" />
-      <window_info active="true" anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.24483134" />
+      <window_info anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.21920905" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1080,237 +1182,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/components/display/Patients/PatientRow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api/upload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="264" selection-start-line="264" selection-end-line="264" />
-          <folding>
-            <element signature="e#1491#1506#0" />
-            <element signature="e#2366#2386#0" />
-            <element signature="e#4829#4862#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="136" column="25" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-            <element signature="n#!!block;n#openModal#0;n#Dashboard#0" />
-            <element signature="n#!!block;n#openNextModal#0;n#Dashboard#0" />
-            <element signature="n#!!block;n#afterOpenModal#0;n#Dashboard#0" />
-            <element signature="n#!!block;n#onDiscard#0;n#Dashboard#0" />
-            <element signature="n#!!block;n#closeFlushModal#0;n#Dashboard#0" />
-            <element signature="n#!!block;n#closeModal#0;n#Dashboard#0" />
-            <element signature="n#!!block;n#changeHandler#0;n#Dashboard#0" />
-            <element signature="n#!!block;n#onSubmit#0;n#Dashboard#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/img/folder.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="173" column="5" selection-start-line="173" selection-start-column="5" selection-end-line="173" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/upload/UploadFiles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/img/404.png" />
-    <entry file="file://$PROJECT_DIR$/client/node_modules/jquery/src/exports/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/structural.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="165" column="16" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/upload/Success.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="23" column="18" selection-start-line="23" selection-end-line="24" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/js/404.js" />
-    <entry file="file://$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/css/404.css" />
-    <entry file="file://$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/404.html" />
-    <entry file="file://$PROJECT_DIR$/models/testData.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="2" selection-end-line="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.sequelizerc">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/keys_prod.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/keys_dev.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="7" column="56" lean-forward="true" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/public/favicon.ico">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/ActiveCentres.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagActivity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagAdmins.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/reducers/searchReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/reducers/viewCentreReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/common/UploadSuccess.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/actions/sAActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/actions/homeActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#273#329#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1326" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/utils/Main.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1336,40 +1207,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/App.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1534">
-          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="117" column="21" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/common/Routes/Routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -1387,27 +1224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="19" column="101" selection-start-line="19" selection-start-column="101" selection-end-line="19" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/public/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/NavBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1716">
-          <caret line="73" column="24" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/common/ContactUs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
@@ -1422,10 +1238,357 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="114" column="5" selection-start-line="13" selection-start-column="4" selection-end-line="114" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="19" column="101" selection-start-line="19" selection-start-column="101" selection-end-line="19" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/homeActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="182" column="41" selection-start-line="182" selection-start-column="41" selection-end-line="182" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowLVPEI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-780">
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="82" column="17" lean-forward="true" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/layout/Footer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
-          <caret line="5" column="103" selection-start-line="5" selection-start-column="103" selection-end-line="5" selection-end-column="103" />
+          <caret line="5" column="90" lean-forward="true" selection-start-line="5" selection-start-column="90" selection-end-line="5" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/dAActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="35" column="27" lean-forward="true" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/types.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/reducers/homeReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" column="42" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/favicon2.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/favicon3.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/upload/UploadForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="215" column="14" lean-forward="true" selection-start-line="203" selection-start-column="8" selection-end-line="215" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+            <element signature="n#!!block;n#openModal#0;n#UploadForm#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Landing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="66" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/common/TextAreaGroupField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-52">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagAdmins.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="72" column="99" selection-start-line="72" selection-start-column="99" selection-end-line="72" selection-end-column="99" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validations/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validations/register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="17" selection-start-line="17" selection-end-line="19" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validations/newDiagnostics.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="82" column="57" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mongoModels/Patient.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="33" column="10" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/superAdmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-133">
+          <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
+          <folding>
+            <element signature="e#2463#4365#0" />
+            <element signature="e#4468#5055#0" />
+            <element signature="e#5157#5745#0" />
+            <element signature="e#5852#6016#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/common/Routes/Routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="44" column="45" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/ActiveCentres.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagActivity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1633">
+          <caret line="110" column="15" selection-start-line="110" selection-start-column="15" selection-end-line="110" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/RemovedCentres.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="40" column="79" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/MyAccount/CreateUsers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mongoModels/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/SADashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="49" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/upload/UploadFiles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1069">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="39" column="99" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
+          <folding>
+            <element signature="e#5957#5990#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/diagAdmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="89" column="10" lean-forward="true" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mongoModels/Diagnostics.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="290" column="28" selection-start-line="290" selection-start-column="28" selection-end-line="290" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+            <element signature="n#!!block;n#openModal#0;n#Dashboard#0" />
+            <element signature="n#!!block;n#openNextModal#0;n#Dashboard#0" />
+            <element signature="n#!!block;n#afterOpenModal#0;n#Dashboard#0" />
+            <element signature="n#!!block;n#onDiscard#0;n#Dashboard#0" />
+            <element signature="n#!!block;n#closeFlushModal#0;n#Dashboard#0" />
+            <element signature="n#!!block;n#closeModal#0;n#Dashboard#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/ShowTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/TableRowUsers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/NavBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="88" column="81" selection-start-line="88" selection-start-column="81" selection-end-line="88" selection-end-column="81" />
         </state>
       </provider>
     </entry>

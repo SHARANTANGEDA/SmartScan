@@ -12,6 +12,8 @@ const fs = require('fs')
 const db = require('../../config/keys').mongoURI
 const mongoose = require('mongoose')
 const Patient = require('../../mongoModels/Patient')
+const User = require('../../mongoModels/User')
+const Diagnostics = require('../../mongoModels/Diagnostics')
 // const zipStream = require('zip-stream')
 const sqldb = require('../../models')
 
@@ -30,12 +32,18 @@ const storage = new GridFsStorage({
     return new Promise((resolve, reject) => {
       Patient.findOneAndUpdate({ transit: true, uploadedBy: req.user.emailId },
         { $inc:{ files: 1 }}, { new: true }).then(patient => {
-        const filename =patient.mrNo.toString()+';'+patient._id.toString() + ';' + file.originalname
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'uploads'
-        }
-        resolve(fileInfo)
+          User.findOneAndUpdate({emailId: req.user.emailId},{$inc: {totalUploads: 1}},
+            { new: true }).then(user => {
+            const filename =patient.mrNo.toString()+';'+patient._id.toString() + ';' + file.originalname
+            const fileInfo = {
+              filename: filename,
+              bucketName: 'uploads'
+            }
+            resolve(fileInfo)
+          }).catch(err => {
+            console.log('You have not Added patient Name, please do it to complete upload')
+            reject(err)
+          })
       }).catch(err => {
         console.log('You have not Added patient Name, please do it to complete upload')
         reject(err)
@@ -67,12 +75,33 @@ const upload = multer({ storage })
 // @desc  Uploads file to DB
 router.post('/upload', passport.authenticate('all_diag', { session: false }),
   upload.array('file'), (req, res) => {
+  if(req.body.remarks===null) {
     Patient.findOneAndUpdate({ transit: true,uploadedBy: req.user.emailId },
-      { transit: false,lastUploadAt: Date.now()}).then(patient => {
-      return res.json({
-        success: true
-      })
+      { transit: false,lastUploadAt: Date.now(), scanType: req.body.category,}).then(patient => {
+        console.log('here')
+        console.log({'here':req.user.diagId})
+      Diagnostics.findOneAndUpdate({orgEmail:req.user.diagId}, {$inc:{totalUploads: patient.files}})
+        .then(diag => {
+          return res.json({
+            success: true
+          })
+        })
     })
+  }else {
+    Patient.findOneAndUpdate({ transit: true,uploadedBy: req.user.emailId },
+      { transit: false,lastUploadAt: Date.now(), scanType: req.body.category,
+      remarks: req.body.remarks}).then(patient => {
+      console.log('here')
+      console.log({'here':req.user.diagCentre})
+      Diagnostics.findOneAndUpdate({orgEmail:req.user.diagCentre}, {$inc:{totalUploads: patient.files}})
+        .then(diag => {
+          return res.json({
+            success: true
+          })
+        })
+    })
+  }
+
   })
 
 // @route GET /files
@@ -238,33 +267,36 @@ router.get('/folders/:id', passport.authenticate('lvpei', { session: false }), (
   })
 })
 router.get('/patientsFolders', passport.authenticate('lvpei', { session: false }), (req, res) => {
-  let mrNos=[],dummy=[],today=[], yesterday=[], lastweek=[], lastMonth=[], previous = []
-  Patient.find().sort({lastUpdateAt: -1}).then(async patients => {
+  let mrNos = [], dummy = [], today = [], yesterday = [], lastweek = [], lastMonth = [], previous = []
+  Patient.find().sort({ lastUpdateAt: -1 }).then(async patients => {
     const now = new Date()
     patients.map(patient => {
       dummy.push(new Promise((resolve, reject) => {
-        console.log({MR: mrNos})
+        console.log({ MR: mrNos })
         if (!mrNos.includes(patient.mrNo)) {
-          let diff = dateDiffInDays(now,patient.lastUploadAt)
+          let diff = dateDiffInDays(now, patient.lastUploadAt)
           console.log(diff)
-          if(diff === 0) {
+          if (diff === 0) {
             today.push(patient.mrNo)
-          }else if(diff===1) {
+          } else if (diff === 1) {
             yesterday.push(patient.mrNo)
-          }else if(diff>1 && diff<=7) {
+          } else if (diff > 1 && diff <= 7) {
             lastweek.push(patient.mrNo)
-          } else if(diff>7 && diff<=30) {
+          } else if (diff > 7 && diff <= 30) {
             lastMonth.push(patient.mrNo)
-          } else if(diff>30) {
+          } else if (diff > 30) {
             previous.push(patient.mrNo)
           }
           mrNos.push(patient.mrNo)
         }
       }))
     })
-    res.json({today: await Promise.all(today), yesterday: await Promise.all(yesterday),
+    res.json({
+      all: await Promise.all(mrNos), today: await Promise.all(today),
+      yesterday: await Promise.all(yesterday),
       lastweek: await Promise.all(lastweek), lastMonth: await Promise.all(lastMonth),
-      previous: await Promise.all(previous)})
+      previous: await Promise.all(previous)
+    })
   })
 })
 // // @route GET /files/:filename

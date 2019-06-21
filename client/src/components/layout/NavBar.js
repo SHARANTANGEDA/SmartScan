@@ -64,25 +64,46 @@ class Navbar extends Component {
     }
     const { category, errors } = this.state
     const authLinkO = (
-      <Link className="navbar-brand" to="/dashboard" style={{ fontFamily: '\'Lobster\', cursive', fontSize: '26px' }}>
-        <img style={{ maxWidth: '20%', maxHeight: '25%' }}
-             src={require('../../img/logoIcon.png')} alt=""
-             title=""/>LVStream
-      </Link>
+      <div className='d-flex justify-content-between align-content-end col-md-12'>
+        <div  className="row col-md-6 d-flex justify-content-start align-items-center"
+             style={{color:'white', verticalAlign: 'bottom'}}>
+          <Link to='/dashboard'> <img style={{ maxWidth: '130px', maxHeight: '130px' }}
+                            src={require('../../img/logo2.png')} alt=""/></Link>
+         <h1>L V Prasad Eye Institute</h1>
+
+        </div>
+        <div className="row d-flex justify-content-end align-items-center" style={{color:'white'}}>
+          <img style={{ maxWidth: '200px', maxHeight: '150px' }}
+               src={require('../../img/logo.png')} alt=""
+          />
+          <h1>LVStream</h1>
+        </div>
+      </div>
 
     )
     const guestLinkO = (
-      <Link className="navbar-brand" to="/" style={{ fontFamily: '\'Lobster\', cursive', fontSize: '26px' }}>
-        <img style={{ maxWidth: '20%', maxHeight: '25%' }}
-             src={require('../../img/logoIcon.png')} alt=""
-             title=""/>LVStream
-      </Link>
+      <div className='d-flex justify-content-between align-content-end col-md-12'>
+        <div className="row col-md-6 d-flex justify-content-start align-items-center"
+             style={{color:'white', verticalAlign: 'bottom'}}>
+          <Link to='/'> <img style={{ maxWidth: '130px', maxHeight: '130px' }}
+                                      src={require('../../img/logo2.png')} alt=""/></Link>
+          <h1>L V Prasad Eye Institute</h1>
+
+        </div>
+        <div className="row d-flex justify-content-end align-items-center" style={{color:'white'}}>
+          <img style={{ maxWidth: '200px', maxHeight: '150px' }}
+               src={require('../../img/logo.png')} alt=""
+          />
+          <h1>LVStream</h1>
+        </div>
+      </div>
     )
 
     const authLinksI = (
-        <div className="input-group md-form form-sm form-2 pl-0" style={{ width: '500px', maxWidth: '700px' }}>
+        <div className=" input-group md-form form-sm form-2 pl-0" style={{ width: '500px', maxWidth: '700px' }}>
           <div style={{ minWidth: '100px' }}>
-            <Select options={[{ value: 'mr.No', label: 'MR No' }]} className={classnames('isSearchable',
+            <Select options={[{ value: 'mr.No', label: 'MR No' },{value:'name', label: 'Name'}]}
+                    className={classnames('isSearchable',
               { 'is-invalid': errors.category })}
                     placeholder="Category"
                     name="category" value={category} onChange={this.onCatChange}>
@@ -106,15 +127,105 @@ class Navbar extends Component {
         </div>
 
     )
+    let authLinksIII=null
+    if (isAuthenticated && (user.role==='super_admin')) {
+      authLinksIII = (
+          <ul className="navbar-nav components" style={{ height: '100%' }}>
+            <li className='nav-item'>
+              <Link className='nav-link' to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
+                <i className="fas fa-home"/>
+                Home
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link className='nav-link' to="/createUser" style={{color: 'white', borderRadius: '5px' }}>
+                <i className="fa fa-cog" aria-hidden="true"/>
+                Create LVPEI user
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link className='nav-link' to="/addDiagnosticCentre" style={{color: 'white', borderRadius: '5px' }}>
+                <i className="fa fa-cog" aria-hidden="true"/>
+                Add a new Diagnostic centre
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link className='nav-link' to="/activeCentres" style={{color: 'white', borderRadius: '5px' }}>
+                <i className="fa fa-cog" aria-hidden="true"/>
+                Active Centres
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link className='nav-link' to="/removedCentres" style={{color: 'white', borderRadius: '5px' }}>
+                <i className="fa fa-cog" aria-hidden="true"/>
+                Inactive Centres
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link className='nav-link' to="/changePassword" style={{color: 'white', borderRadius: '5px' }}>
+                <i className="fa fa-wrench" aria-hidden="true"/>
+                Change Password
+              </Link>
+            </li>
+          </ul>
+      )
+    }else if(isAuthenticated && (user.role==='diag_admin')) {
+      authLinksIII = (
+        <ul className="navbar-nav components" style={{ height: '100%' }}>
+          <li className='nav-item'>
+            <Link className='nav-link'  to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
+              <i className="fas fa-home"/>
+              Home
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link className='nav-link'  to="/createUser" style={{color: 'white', borderRadius: '5px' }}>
+              <i className="fa fa-cog" aria-hidden="true"/>
+              Create new user
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link className='nav-link'  to="/uploadForm" style={{color: 'white', borderRadius: '5px' }}>
+              <i className="fas fa-upload"/>
+              Upload Files
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link className='nav-link'  to="/changePassword" style={{color: 'white', borderRadius: '5px' }}>
+              <i className="fa fa-wrench" aria-hidden="true"/>
+              Change Password
+            </Link>
+          </li>
+        </ul>
+      )
+    }else if(isAuthenticated && (user.role==='lvpei' || user.role==='diag')) {
+      authLinksIII = (
+        <ul className="navbar-nav components" style={{ height: '100%' }}>
+          <li className='nav-item' >
+            <Link className='nav-link' to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
+              <i className="fas fa-home"/>
+              Home
+            </Link>
+          </li>
+          <li className='nav-item'  >
+            <Link className='nav-link' to="/changePassword" style={{color: 'white', borderRadius: '5px'}}>
+              <i className="fa fa-wrench" aria-hidden="true"/>
+              Change Password
+            </Link>
+          </li>
+        </ul>
+      )
+    }
     const authLinksII = (
-      <ul className="navbar-nav ml-auto" style={{ minWidth: '300px' }}>
+      <ul className="navbar-nav  ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="" style={{ minWidth: '150px', color: 'white' }}>
+          <Link className="nav-link" to="" style={{color: 'white', borderRadius: '5px' }}>
             {user.emailId}
           </Link>
         </li>
         <li className="nav-item pull-right">
-          <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)} style={{ color: 'white' }}>
+          <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
+                style={{color: 'white', borderRadius: '5px' }}>
             <i className="fa fa-power-off" aria-hidden="true"/>
             {'  '}Logout</Link>
         </li>
@@ -122,9 +233,10 @@ class Navbar extends Component {
     )
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark">
-        <div className="container">
-          {isAuthenticated ? authLinkO : guestLinkO}
+      <nav className="navbar navbar-expand-sm  col-md-12" style={{background:'#008cff'}}>
+        <div className="row container d-flex justify-content-between col-md-12">
+          <div className='row col-md-12 d-flex justify-content-between col-md-12' >
+            {isAuthenticated ? authLinkO : guestLinkO}
           <button
             className="navbar-toggler"
             type="button"
@@ -133,9 +245,15 @@ class Navbar extends Component {
           >
             <span className="navbar-toggler-icon"/>
           </button>
-          <div className="collapse navbar-collapse" id="mobile-nav">
-            {(isAuthenticated && user.role==='lvpei') ? authLinksI : null}
+          <div className="row collapse navbar-collapse justify-content-between" id="mobile-nav">
+            <div>
+              {isAuthenticated ? authLinksIII: null}
+            </div><div>
+              {(isAuthenticated && user.role==='lvpei') ? authLinksI : null}
+            </div> <div>
             {isAuthenticated ? authLinksII : null}
+          </div>
+          </div>
           </div>
         </div>
       </nav>

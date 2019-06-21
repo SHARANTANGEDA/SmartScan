@@ -30,29 +30,30 @@ class ActiveCentres extends Component {
         show2=null
       }
       return (
-        <div className='activeCentres row'>
-          <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-12">
+          <div className="activeCentres row table-wrapper-scroll-y my-custom-scrollbar "
+               style={{minWidth:'100%'}}>
             <h3 className='text-center' style={{
               borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
-              , borderRadius: '2px', fontFamily: 'lobster'
+              , borderRadius: '2px'
             }}>Active Diagnostic Centres</h3>
-            <table className="table table-bordered table-striped mb-0">
-              <thead>
+            <table className="table table-bordered table-striped mb-0" style={{minWidth:'100%'}}>
+              <thead className='col-md-12' style={{minWidth:'100%'}}>
               <tr>
-                <th scope="col">Centre Name</th>
-                <th scope="col">User name</th>
-                <th scope="col">Organization Email</th>
-                <th scope="col">Created On On</th>
-                <th scope="col">Last Updated On</th>
-                <th scope='col'>Accounts Created</th>
-                <th scope="col">Decommission</th>
+                <th  >Centre Name</th>
+                <th>Short Code</th>
+                <th >User name</th>
+                <th >Organization Email</th>
+                <th>Created On On</th>
+                <th>Last Updated On</th>
+                <th>Accounts Created</th>
+                <th>Total Uploads</th>
+                <th>Decommission</th>
               </tr>
               </thead>
               {show}
             </table>
             {show2}
           </div>
-        </div>
       )
     }
   }

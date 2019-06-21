@@ -84,8 +84,10 @@ router.get('/home', passport.authenticate('diag_admin', { session: false }), (re
 
   Diagnostics.findOne({adminId: req.user.emailId}).then(diagnostics => {
     User.find({diagCentre: diagnostics.orgEmail, role:'diag'}).then(users => {
-      res.json({
-        details: diagnostics, users: users
+      User.findOne({emailId: req.user.emailId}).then(admin => {
+        res.json({
+          details: diagnostics, users: users, admin: admin
+        })
       })
     })
   }).catch(err => {

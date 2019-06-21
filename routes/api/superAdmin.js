@@ -85,7 +85,8 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
       const newCentre = new Diagnostics({
         orgEmail: req.body.orgEmail,
         centreName: req.body.centreName,
-        adminId: req.body.adminId
+        adminId: req.body.adminId,
+        short: req.body.short
       })
       // newCentre.save().then(diagnostics=> {
         User.findOne({ emailId: req.body.adminId }).then(user => {

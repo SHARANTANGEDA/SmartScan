@@ -15,6 +15,7 @@ class CreateLVPEIUsers extends Component {
       centreName:'',
       password: '',
       repassword: '',
+      short: '',
       errors: {}
     }
     this.onChange = this.onChange.bind(this)
@@ -44,7 +45,8 @@ class CreateLVPEIUsers extends Component {
       password: this.state.password,
       orgEmail: this.state.orgEmail,
       centreName: this.state.centreName,
-      repassword: this.state.repassword
+      repassword: this.state.repassword,
+      short: this.state.short
     }
     console.log(newDiagnostic)
      this.props.addDiagnostics(newDiagnostic);
@@ -57,7 +59,7 @@ class CreateLVPEIUsers extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <div className="col-sm-10" style={{ fontFamily: 'Lobster', color: 'black', fontSize: '48px' }}>
+              <div className="col-sm-12" style={{ color: 'black', fontSize: '48px' }}>
                 <h1>Add a new Diagnostic Centre</h1></div>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="Enter centre Admin user name" error={errors.adminId}
@@ -78,19 +80,10 @@ class CreateLVPEIUsers extends Component {
                 <TextFieldGroup placeholder="Enter organization Email" error={errors.orgEmail}
                                 type="text" onChange={this.onChange} value={this.state.orgEmail} name="orgEmail"
                 />
-                {/*<div className="form-group w-75" style={{marginTop: '10px'}}>*/}
-                {/*  <label className="s-label mb4 d-block w-100" htmlFor="wmd-input">*/}
-                {/*    <h4>Course</h4>*/}
-                {/*  </label>*/}
-                {/*<Select options={[{value: 'diag_admin',label: 'Diagnostic Centre Admin'}]} className={classnames("isSearchable",*/}
-                {/*  {'is-invalid': errors.role})}*/}
-                {/*        placeholder="Select the role of user"*/}
-                {/*        name="role" value={role} onChange={this.onRoleChange}>*/}
-                {/*</Select>*/}
-                {/*{errors.role && (*/}
-                {/*  <div className="invalid-feedback">{errors.role}</div>*/}
-                {/*)}*/}
-                {/*</div>*/}
+                <TextFieldGroup placeholder="Enter centre shortcut" error={errors.short}
+                                type="text" onChange={this.onChange} value={this.state.short} name="short"
+                                info='Please try to make it unique for better classification'
+                />
                 <div className="col-xs-12">
                   <input type="submit" className="btn btn-info btn-block mt-4 btn-primary w-30 my-1"/>
                 </div>

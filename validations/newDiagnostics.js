@@ -8,6 +8,7 @@ module.exports = (data) => {
   data.adminId = !isEmpty(data.adminId) ? data.adminId : '';
   data.password = !isEmpty(data.password) ? data.password : '';
   data.repassword = !isEmpty(data.repassword) ? data.repassword : '';
+  data.short = !isEmpty(data.short) ? data.short : ''
 
   if (Validator.isEmpty(data.adminId)) {
     errors.adminId = 'admin user name is required';
@@ -20,6 +21,14 @@ module.exports = (data) => {
   }
   if (!Validator.isEmail(data.orgEmail)) {
     errors.orgEmail = 'Email is invalid';
+  }
+
+  if(Validator.isEmpty(data.short)) {
+    errors.short = 'Please enter the shortcut'
+  }
+
+  if (!Validator.isLength(data.short, { min: 3, max: 5 })) {
+    errors.short = 'shortcut must be between 3 to 5 characters';
   }
 
   if (Validator.isEmpty(data.password)) {

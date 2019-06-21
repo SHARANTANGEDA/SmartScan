@@ -70,6 +70,8 @@ class TableRowDiagActivity extends Component {
     return (
       <tr className="">
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.centreName}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.short}</span></td>
+
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.adminId}</span></td>
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.orgEmail}</span></td>
         <td>
@@ -80,6 +82,9 @@ class TableRowDiagActivity extends Component {
         </td>
         <td>
           <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.members.length}</span>
+        </td>
+        <td>
+          <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.totalUploads}</span>
         </td>
         <td>
           {content}

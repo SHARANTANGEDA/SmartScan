@@ -19,6 +19,10 @@ const UserSchema = new Schema({
   diagCentre: {
     type: String
   },
+  totalUploads: {
+    type: Number,
+    default: 0
+  },
   diagCentreName: {
     type: String
   },

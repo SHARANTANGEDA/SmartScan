@@ -46,7 +46,7 @@ class ChangePassword extends Component {
       <div>
         <div className="col-sm-9">
           <div className="row col-md-8 m-auto">
-            <div className="col-sm-10" style={{ fontFamily: 'Lobster', color: 'black', fontSize: '48px' }}>
+            <div className="col-sm-10" style={{ color: 'black', fontSize: '48px' }}>
               <h1>Change Password</h1></div>
           </div>
 

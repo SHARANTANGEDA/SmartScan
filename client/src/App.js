@@ -38,10 +38,7 @@ class App extends Component {
         <Switch>
         <Route exact path="/" component={Landing}/>
         <Route exact path='/contactUs' component={ContactUs}/>
-        <div className="wrapper" >
-        <Route component={Sidebar}/>
-        <Route component={Routes}/>
-        </div>
+          <Route component={Routes}/>
         </Switch>
         <Footer/>
       </div>

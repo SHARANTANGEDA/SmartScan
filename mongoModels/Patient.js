@@ -30,6 +30,13 @@ const PatientSchema = new Schema({
   transit: {
     type: Boolean,
     default: true
+  },
+  scanType: {
+    type: String
+  },
+  remarks: {
+    type: String,
+    default: ''
   }
 });
 

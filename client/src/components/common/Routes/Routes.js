@@ -12,6 +12,7 @@ import NotFound from '../../NotFoundStarwars/NotFound'
 import SearchNotFound from '../../layout/SearchNotFound'
 import ActiveCentres from '../../SuperAdmin/ActiveCentres'
 import RemovedCentres from '../../SuperAdmin/RemovedCentres'
+import UploadForm from '../../upload/UploadForm'
 
 const Routes = () => {
   return (
@@ -41,6 +42,7 @@ const Routes = () => {
         <PrivateRoute exact path='/detailsNotFound' component={SearchNotFound}/>
         <PrivateRoute exact path='/activeCentres' component={ActiveCentres}/>
         <PrivateRoute exact path='/removedCentres' component={RemovedCentres} />
+        <PrivateRoute exact path='/uploadForm' component={UploadForm}/>
         {/*</Switch>*/}
         <Route path="*" component={NotFound} />
       </Switch>

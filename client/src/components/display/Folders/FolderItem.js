@@ -87,7 +87,6 @@ class FolderItem extends Component {
       <div id="mainbar" className='row d-flex justify-content-center'>
         <div className="grid text-center col-md-10">
           <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
-            fontFamily: 'Lobster',
             color: 'black'
           }}> Upload Details</h3>
         </div>

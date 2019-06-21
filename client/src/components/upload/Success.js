@@ -13,7 +13,6 @@ class Success extends Component {
               <div id="mainbar" className='row d-flex justify-content-center'>
                 <div className="grid text-center col-md-12">
                   <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                    fontFamily: 'Lobster',
                     color: 'black', fontSize: '48px'
                   }}> Welcome to L V Prasad MRI Docs Cloud</h1>
                 </div>

@@ -19,6 +19,14 @@ const DiagnosticSchema = new Schema({
       type: String
     }
   }],
+  totalUploads: {
+    type: Number,
+    default: 0
+  },
+  short: {
+    type: String,
+    required: true
+  },
   access: {
     type: Boolean,
     default: true

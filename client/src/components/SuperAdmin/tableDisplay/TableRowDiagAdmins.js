@@ -71,13 +71,6 @@ class TableRowDiagAdmins extends Component {
       <tr className="">
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.diagCentreName}</span></td>
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.emailId}</span></td>
-
-        <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(data.user.time)}</span>
-        </td>
-        <td>
-          <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.emp}</span>
-        </td>
         <td>
           {content}
         </td>

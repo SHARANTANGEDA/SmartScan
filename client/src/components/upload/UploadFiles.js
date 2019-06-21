@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import FileUpload from '../common/FileUpload'
+import classnames from 'classnames'
+import Select from 'react-select'
+import TextFieldGroup from '../common/TextFieldGroup'
+import TextAreaFieldGroup from '../common/TextAreaGroupField'
 
 class UploadFiles extends Component {
   constructor(props) {
@@ -9,12 +13,22 @@ class UploadFiles extends Component {
       files: [],
       file: '',
       spinner: false,
+      category: null,
+      remarks: '',
       error: null
     }
     // this.loadFiles = this.loadFiles.bind(this);
+    this.onSelectType = this.onSelectType.bind(this)
+    this.changeHandler = this.changeHandler.bind(this)
   }
-  componentDidMount() {
-    // this.loadFiles();
+  // componentDidMount() {
+  //   // this.loadFiles();
+  // }
+  changeHandler (e) {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  onSelectType (e) {
+    this.setState({category: e})
   }
   loadFiles() {
     axios.get('/api/upload/files')
@@ -42,8 +56,13 @@ class UploadFiles extends Component {
       this.setState({error: 'Please choose at least one file to upload'})
       return
     }
+    if(this.state.category===null) {
+      this.setState({error: 'Please select the type of upload'})
+      return
+    }
     this.setState({spinner: true})
-
+    data.append('category', this.state.category.value)
+    data.append('remarks', this.state.remarks)
     Array.from(this.state.files).forEach((file, i) => {
       data.append("file", file, file.name);
     });
@@ -59,7 +78,13 @@ class UploadFiles extends Component {
         }
       })
   }
+
+
   render() {
+    let scanTypeArray= [{ value: 'CT', label: 'CT' },{value:'MRI', label: 'MRI'},
+      {value:'CT ang', label: 'CT angiography'},
+      {value: 'MRI ang', label: 'MRI angiography'}, {value: 'PET', label: 'PET scan'},
+      {value: 'USG abd', label: 'USG abdomen'}, {value:'Blood', label: 'Blood tests'}]
     let spin = (
       <div>
         <FileUpload/>
@@ -90,7 +115,6 @@ class UploadFiles extends Component {
         <div className="App-content row d-flex justify-content-center" >
           <div className="grid text-center col-md-12">
             <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
-              fontFamily: 'Lobster',
               color: 'black'
             }}>Select the files to upload</h3>
           </div>
@@ -102,32 +126,18 @@ class UploadFiles extends Component {
               <input type="file" onChange={this.fileChanged.bind(this)} required multiple name='files'
                      style={{border: '1.5px', borderStyle: 'solid',
                        borderRadius:'5px', margin: '5px',minWidth:'100%'}}/>
-              {!this.state.spinner ? downloadBut : null}
             </div>
+            <TextAreaFieldGroup placeholder="Enter Remarks here(Optional)"
+                            type="text" onChange={this.changeHandler} value={this.state.remarks} name="remarks"
+            />
+            <Select options={scanTypeArray} className={classnames('isSearchable')}
+                    placeholder="Choose type"
+                    name="category" value={this.state.category} onChange={this.onSelectType}>
+            </Select>
+            {!this.state.spinner ? downloadBut : null}
             {this.state.spinner ? spin : null}
           </div>
-          {/*  <thead>*/}
-          {/*  <tr>*/}
-          {/*    <th>File</th>*/}
-          {/*    <th>Uploaded</th>*/}
-          {/*    <th>Size</th>*/}
-          {/*    <th/>*/}
-          {/*  </tr>*/}
-          {/*  </thead>*/}
-          {/*  <tbody>*/}
-          {/*  {files.map((file, index) => {*/}
-          {/*    let d = new Date(file.uploadDate)*/}
-          {/*    return (*/}
-          {/*      <tr key={index}>*/}
-          {/*        <td><a href={`http://localhost:3001/api/files/${file.filename}`}>{file.filename}</a></td>*/}
-          {/*        <td>{`${d.toLocaleDateString()} ${d.toLocaleTimeString()}`}</td>*/}
-          {/*        <td>{(Math.round(file.length/100) / 10)+'KB'}</td>*/}
-          {/*        <td><button onClick={this.deleteFile.bind(this)} id={file._id}>Remove</button></td>*/}
-          {/*      </tr>*/}
-          {/*    )*/}
-          {/*  })}*/}
-          {/*  </tbody>*/}
-          {/*</table>*/}
+
         </div>
       </div>
     );

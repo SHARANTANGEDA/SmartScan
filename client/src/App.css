@@ -80,6 +80,10 @@ Link:focus {
   transition: all 0.3s;
 }
 
+.nav-link:hover {
+  background: #030000;
+}
+
 .navbar {
   padding: 15px 10px;
   background: black;

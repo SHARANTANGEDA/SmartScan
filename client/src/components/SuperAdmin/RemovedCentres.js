@@ -32,21 +32,23 @@ class RemovedCentres extends Component {
         show2=null
       }
       return (
-        <div className='removedCentres row'>
+        <div className='removedCentres row col-md-12' style={{width:'100%'}}>
           <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-12">
             <h3 className='text-center' style={{
               borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
-              , borderRadius: '2px', fontFamily: 'lobster'
+              , borderRadius: '2px'
             }}>InActive Diagnostic Centres</h3>
-            <table className="table table-bordered table-striped mb-0">
+            <table className="table table-bordered table-striped mb-0 col-md-12">
               <thead>
               <tr>
                 <th scope="col">Centre Name</th>
+                <th scope="col">Short Code</th>
                 <th scope="col">User name</th>
                 <th scope="col">Organization Email</th>
                 <th scope="col">Created On On</th>
                 <th scope="col">Last Updated On</th>
                 <th scope='col'>Accounts Created</th>
+                <th scope='col'>Total Uploads</th>
                 <th scope="col">Re Commission</th>
               </tr>
               </thead>

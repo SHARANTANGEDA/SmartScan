@@ -17,29 +17,9 @@ class SADashboard extends Component {
     } else {
       return (
         <div className='row'>
-          <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
-            <h3 className='text-center' style={{
-              borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
-              , borderRadius: '2px', fontFamily: 'lobster'
-            }}>L V Prasad Users Access Control</h3>
-            <table className="table table-bordered table-striped mb-0">
-              <thead>
-              <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Created On</th>
-                <th scope="col">Manage</th>
-              </tr>
-              </thead>
-              <tbody>
-              <ShowTable data={lvpei} index={{ type: 'lvpei' }}/>
-              </tbody>
-            </table>
-          </div>
-          <div className='col-md-6'>
-            <div className='row d-flex justify-content-center'>
+          <div className='row col-md-12 d-flex justify-content-around' style={{margin: '5px'}}>
               <Card style={{
                 backgroundColor: '#00acc1', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
-                marginTop: '5px'
               }}>
                 <div color="warning" className='text-center'>
                   <p className='' style={{ color: 'white' }}>Number of LVPEI Accounts</p>
@@ -50,7 +30,6 @@ class SADashboard extends Component {
               </Card>
               <Card style={{
                 backgroundColor: '#f44336', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
-                marginLeft: '20px', marginTop: '5px'
               }}>
                 <div color="warning" className='text-center'>
                   <p className='' style={{ color: 'white' }}>Number of Diagnostic centers</p>
@@ -59,11 +38,8 @@ class SADashboard extends Component {
                   </h1>
                 </div>
               </Card>
-            </div>
-            <div className='row d-flex justify-content-center'>
               <Card style={{
                 backgroundColor: '#4caf50', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
-                marginTop: '20px'
               }}>
                 <div color="warning" className='text-center'>
                   <p className='' style={{ color: 'white' }}>Total Number of Center Accounts</p>
@@ -74,8 +50,6 @@ class SADashboard extends Component {
               </Card>
               <Card style={{
                 backgroundColor: '#ffa726', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
-                marginLeft: '20px',
-                marginTop: '20px'
               }}>
                 <div color="warning" className='text-center'>
                   <p className='' style={{ color: 'white' }}>Patient Details On Cloud</p>
@@ -85,27 +59,44 @@ class SADashboard extends Component {
                 </div>
               </Card>
             </div>
-          </div>
-          <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-12">
-            <h3 className='text-center' style={{
-              borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
-              , borderRadius: '2px', fontFamily: 'lobster'
-            }}>Diagnostic Centre Access Control</h3>
-            <table className="table table-bordered table-striped mb-0">
-              <thead>
-              <tr>
-                <th scope="col">Centre Name</th>
-                <th scope="col">User name</th>
+          <div className='row col-md-12'>
+            <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
+              <h4 className='text-center' style={{
+                borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
+                , borderRadius: '2px'
+              }}>L V Prasad Users Access Control</h4>
+              <table className="table table-bordered table-striped mb-0">
+                <thead>
+                <tr>
+                  <th scope="col">Username</th>
+                  <th scope="col">Created On</th>
+                  <th scope="col">Manage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ShowTable data={lvpei} index={{ type: 'lvpei' }}/>
+                </tbody>
+              </table>
+            </div>
 
-                <th scope="col">Created On</th>
-                <th scope='col'>Accounts Created</th>
-                <th scope="col">Control Access</th>
-              </tr>
-              </thead>
-              <tbody>
-              <ShowTable data={centre} index={{ type: 'centre' }}/>
-              </tbody>
-            </table>
+            <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
+              <h4 className='text-center' style={{
+                borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
+                , borderRadius: '2px'
+              }}>Diagnostic Centre Access Control</h4>
+              <table className="table table-bordered table-striped mb-0">
+                <thead>
+                <tr>
+                  <th scope="col">Centre Name</th>
+                  <th scope="col">User name</th>
+                  <th scope="col">Control Access</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ShowTable data={centre} index={{ type: 'centre' }}/>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )

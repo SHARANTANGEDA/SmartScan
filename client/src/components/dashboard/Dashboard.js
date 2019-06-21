@@ -10,6 +10,9 @@ import Modal from 'react-modal'
 import ShowTable from '../SuperAdmin/tableDisplay/ShowTable'
 import UploadFiles from '../upload/UploadFiles'
 import LVPEIHomeFeed from './LVPEIHomeFeed'
+import classnames from 'classnames'
+import Select from 'react-select'
+import Card from 'react-bootstrap/Card'
 
 const customStyles = {
   content: {
@@ -29,7 +32,9 @@ class Dashboard extends Component {
       patient: '',
       errors: {},
       modalIsOpen: false,
-      uploadModal: false
+      uploadModal: false,
+      category: { value: 'all', label: 'All' },
+      showPatient: null
     }
     this.changeHandler = this.changeHandler.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -39,6 +44,8 @@ class Dashboard extends Component {
     this.closeFlushModal = this.closeFlushModal.bind(this)
     this.openNextModal = this.openNextModal.bind(this)
     this.onDiscard = this.onDiscard.bind(this)
+    this.onSelectType = this.onSelectType.bind(this)
+    this.onConfirmSelect = this.onConfirmSelect.bind(this)
   }
 
   componentDidMount () {
@@ -103,11 +110,33 @@ class Dashboard extends Component {
       this.setState({ errors: { patient: 'Please enter the MR No' }, patient: '' })
     }
   }
+  onSelectType (e) {
+    this.setState({category: e})
+  }
+  onConfirmSelect (e) {
+    if(this.state.category.value==='all') {
+      this.setState({showPatient: this.props.folder.patients.all})
+    } else if(this.state.category.value==='today') {
+      this.setState({showPatient: this.props.folder.patients.today})
+      console.log({NEWSTATE:  this.props.folder.patients.today})
+    }else if(this.state.category.value==='yesterday') {
+      this.setState({showPatient: this.props.folder.patients.yesterday})
 
+    }else if(this.state.category.value==='lastweek') {
+      this.setState({showPatient: this.props.folder.patients.lastweek})
+
+    }else if(this.state.category.value==='lastMonth') {
+      this.setState({showPatient: this.props.folder.patients.lastMonth})
+
+    }else if(this.state.category.value==='earlier') {
+      this.setState({showPatient: this.props.folder.patients.previous})
+
+    }
+  }
   render () {
-    const { errors } = this.state
+    const { errors, category } = this.state
     if (this.props.auth.user.role === 'lvpei') {
-      const { patients, loading, notFound } = this.props.folder
+      const { loading, notFound } = this.props.folder
       let allFoldersContent
       if (loading) {
         allFoldersContent = <Spinner/>
@@ -119,11 +148,17 @@ class Dashboard extends Component {
             </div>
           )
         } else {
+          if(this.state.showPatient === null) {
+            allFoldersContent = (
+              <LVPEIHomeFeed patients={this.props.folder.patients.all}/>
+            )
+          }else {
+            console.log({'HELLO':this.state.showPatient})
+            allFoldersContent = (
+              <LVPEIHomeFeed patients={this.state.showPatient}/>
+            )
+          }
 
-
-          allFoldersContent = (
-            <LVPEIHomeFeed patients={patients}/>
-          )
         }
       }
       return (
@@ -131,14 +166,29 @@ class Dashboard extends Component {
           <div className="App-content row d-flex justify-content-center">
             <div className="grid text-center col-md-12">
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                fontFamily: 'Lobster',
                 color: 'black', fontSize: '48px'
               }}> Welcome to L V Prasad Cloud</h1>
-              <h3>All Patients</h3>
             </div>
+          </div>
+
+          <div className='row col-md-6 d-flex justify-content-start'>
+              <div className='col-md-6'>
+                <Select options={[{ value: 'all', label: 'All' },{value:'today', label: 'today'},
+                  {value:'yesterday', label: 'yesterday'},
+                  {value: 'lastweek', label: 'Last Week'}, {value: 'lastMonth', label: 'Last Month'},
+                  {value: 'earlier', label: 'earlier'}]} className={classnames('isSearchable',
+                  { 'is-invalid': errors.category })}
+                        placeholder="Category"
+                        name="category" value={category} onChange={this.onSelectType}>
+                </Select>
+              </div>
+              <button onClick={this.onConfirmSelect} className="input-group-text cyan lighten-2">
+                <i className="fas fa-search text-grey" aria-hidden="true"/>
+              </button>
+            </div>
+
             {allFoldersContent}
           </div>
-        </div>
       )
     } else if (this.props.auth.user.role === 'super_admin') {
       const { loading, home } = this.props.home
@@ -161,8 +211,7 @@ class Dashboard extends Component {
           <div className="col-md-6" style={{ width: '100%' }}>
             <h3 className='text-center' style={{
               borderStyle: 'solid', borderWidth: '2px', background: 'green',
-              color: 'white'
-              , borderRadius: '2px', fontFamily: 'lobster'
+              color: 'white', borderRadius: '2px'
             }}>Enter the Patient MR number to upload files</h3>
 
             <form noValidate onSubmit={this.onSubmit}>
@@ -186,37 +235,55 @@ class Dashboard extends Component {
                 <div className='row'>
                   <div className="grid text-center col-md-12">
                     <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                      fontFamily: 'Lobster',
                       color: 'black', fontSize: '48px'
                     }}>Welcome to L V Prasad Cloud</h1>
-
                   </div>
-                  <div className='row col-md-12'>
-                    <div className='col-md-6' style={{ borderStyle: 'solid', borderWidth: '2px' }}>
-                      <h3 className='text-center' style={{
-                        borderWidth: '2px'
-                        , borderRadius: '2px', fontFamily: 'lobster'
-                      }}>{home.details.centreName} {' '} Admin Dashboard</h3>
-                    </div>
-                    <div className='row col-md-6 d-flex justify-content-center' style={{
-                      borderStyle: 'solid', borderWidth: '2px'
-                      , borderRadius: '2px', fontFamily: 'lobster'
+                  <div className='row col-md-12 d-flex justify-content-around'>
+                    <Card style={{
+                      backgroundColor: '#ffa726', maxHeight: '150px', maxWidth: '200px', marginRight: '20px'
                     }}>
-                      <h3 className='text-center'>Number of Accounts being used:{' '}{home.users.length}</h3>
-                    </div>
+                      <div color="warning" className='text-center'>
+                        <p className='' style={{ color: 'white' }}>Number of User Accounts</p>
+                        <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
+                          {home.users.length}
+                        </h1>
+                      </div>
+                    </Card>
+                    <Card style={{
+                      backgroundColor: '#4caf50', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
+                    }}>
+                      <div color="warning" className='text-center'>
+                        <p className='' style={{ color: 'white' }}>Number of uploads by You</p>
+                        <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
+                          {home.admin.totalUploads}
+                        </h1>
+                      </div>
+                    </Card>
+                    <Card style={{
+                      backgroundColor: '#f44336', maxHeight: '150px', maxWidth: '200px', padding: '10px',
+                    }}>
+                      <div color="warning" className='text-center'>
+                        <p className='' style={{ color: 'white' }}>Total Number of Uploads</p>
+                        <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
+                          {home.details.totalUploads}
+                        </h1>
+                      </div>
+                    </Card>
                   </div>
+
                   <div className='row col-md-12'>
-                    <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
+                    <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-12">
                       <h3 className='text-center' style={{
                         borderStyle: 'solid', borderWidth: '2px', background: 'green',
                         color: 'white'
-                        , borderRadius: '2px', fontFamily: 'lobster'
+                        , borderRadius: '2px'
                       }}>Users in Your Organization</h3>
                       <table className="table table-bordered table-striped mb-0">
                         <thead>
                         <tr>
                           <th scope="col">Username</th>
                           <th scope="col">Created On</th>
+                          <th scope='col'>Total Uploads</th>
                           <th scope="col">Manage</th>
                         </tr>
                         </thead>
@@ -225,7 +292,6 @@ class Dashboard extends Component {
                         </tbody>
                       </table>
                     </div>
-                    {showForm}
                   </div>
                 </div>
               </div>
@@ -237,7 +303,6 @@ class Dashboard extends Component {
           <div className='row d-flex justify-content-center'>
             <div className=" grid text-center col-md-12">
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                fontFamily: 'Lobster',
                 color: 'black', fontSize: '48px'
               }}> Welcome L V Prasad MRI Cloud</h1>
             </div>
@@ -257,7 +322,6 @@ class Dashboard extends Component {
               <div id="mainbar" className='row d-flex justify-content-center'>
                 <div className="grid text-center col-md-10">
                   <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
-                    fontFamily: 'Lobster',
                     color: 'black'
                   }}> Patient Details</h3>
                 </div>
@@ -279,7 +343,6 @@ class Dashboard extends Component {
               <div id="mainbar" className='row d-flex justify-content-center'>
                 <div className="grid text-center col-md-10">
                   <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
-                    fontFamily: 'Lobster',
                     color: 'black'
                   }}> Confirm the Patient Details below to proceed</h3>
                 </div>
@@ -374,8 +437,6 @@ Dashboard.propTypes = {
   getAllPatients: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   folder: PropTypes.object.isRequired
-
-
 }
 const mapStateToProps = state => ({
   home: state.home,

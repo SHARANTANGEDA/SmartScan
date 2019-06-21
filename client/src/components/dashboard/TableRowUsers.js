@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
+import getLocalDate from '../../utils/getLocalDate'
 
 class TableRowUsers extends Component {
   // constructor () {
@@ -13,7 +14,9 @@ class TableRowUsers extends Component {
     return (
       <tr className="">
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.emailId}</span></td>
-        <td><Link to="" style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.time}</Link></td>
+        <td><Link to="" style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(data.time)}</Link></td>
+        <td><Link to="" style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.totalUploads}</Link></td>
+
         <td>
           <span style={{ fontSize: '13.3333330154419px', background: 'red',color: 'white',
             borderRadius:'5px'}}>

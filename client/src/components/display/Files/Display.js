@@ -56,7 +56,6 @@ class Display extends Component {
                   <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
               </div>
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                fontFamily: 'Lobster',
                 color: 'black', fontSize: '48px'
               }}> Welcome to L V Prasad Cloud</h1>
             </div>
@@ -75,7 +74,6 @@ class Display extends Component {
                     <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
                 </div>
                 <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                  fontFamily: 'Lobster',
                   color: 'black', fontSize: '48px'
                 }}> Welcome to L V Prasad Cloud</h1>
                 <h3>All files uploaded at {' '}{getLocalDate(files.patient.lastUploadAt)} {' '} of patient{' '}

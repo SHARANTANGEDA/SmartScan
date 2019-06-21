@@ -64,9 +64,9 @@ class CreateUsers extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <div className="col-sm-10" style={{ fontFamily: 'Lobster', color: 'black', fontSize: '48px' }}>
+              <div className="col-sm-12" style={{ color: 'black', fontSize: '48px' }}>
                 {heading}</div>
-              <form className='col-md-8 ' noValidate onSubmit={this.onSubmit}>
+              <form className='col-md-12 text-center' noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="User name" error={errors.emailId}
                                 info="Please enter unique username for creating account successfully"
                                 type="email" onChange={this.onChange} value={this.state.emailId} name="emailId"

@@ -10,9 +10,9 @@ class Sidebar extends Component {
   render () {
 
     const { isAuthenticated,user } = this.props.auth
-    let showContent=null
+    let authLinksIII=null
     if (isAuthenticated && (user.role==='super_admin')) {
-      showContent = (
+      authLinksIII = (
         <nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
           <ul className="list-unstyled components" style={{ height: '100%' }}>
             <li>
@@ -55,7 +55,7 @@ class Sidebar extends Component {
         </nav>
       )
     }else if(isAuthenticated && (user.role==='diag_admin')) {
-      showContent = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ minHeight: '100%' }}>
+      authLinksIII = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ minHeight: '100%' }}>
         <ul className="list-unstyled components" style={{ height: '100%' }}>
           <li>
             <Link to="/dashboard" style={{ textDecoration: 'none' }}>
@@ -78,7 +78,7 @@ class Sidebar extends Component {
         </ul>
       </nav>)
     } else if(isAuthenticated && (user.role==='diag')) {
-      showContent = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
+      authLinksIII = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
         <ul className="list-unstyled components" style={{ height: '100%' }}>
           <li>
             <Link to="/dashboard" style={{ textDecoration: 'none' }}>
@@ -95,7 +95,7 @@ class Sidebar extends Component {
         </ul>
       </nav>)
     } else if(isAuthenticated && (user.role==='lvpei')) {
-      showContent = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
+      authLinksIII = (<nav id="sidebar" className='sidebar-nav-fixed affix' style={{ height: '100%' }}>
         <ul className="list-unstyled components" style={{ height: '100%' }}>
           <li>
             <Link to="/dashboard" style={{ textDecoration: 'none' }}>
@@ -115,7 +115,7 @@ class Sidebar extends Component {
     }
     return (
       <div style={{ minHeight: '100%'}}>
-        {showContent}
+        {authLinksIII}
       </div>
     )
   }
