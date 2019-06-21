@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2938">
-              <caret line="116" column="47" selection-start-line="116" selection-start-column="47" selection-end-line="116" selection-end-column="47" />
+            <state relative-caret-position="438">
+              <caret line="117" column="21" lean-forward="true" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -41,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/components/common/Routes/Routes.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="130">
-              <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -49,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="312">
@@ -64,7 +64,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/404.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="52000">
               <caret line="2000" column="29" selection-start-line="2000" selection-start-column="25" selection-end-line="2000" selection-end-column="29" />
             </state>
           </provider>
@@ -224,9 +224,9 @@
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/index.html" />
         <option value="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" />
         <option value="$PROJECT_DIR$/client/src/App.js" />
-        <option value="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" />
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/404.css" />
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js" />
+        <option value="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" />
       </list>
     </option>
   </component>
@@ -560,14 +560,8 @@
       <workItem from="1560857352876" duration="11966000" />
       <workItem from="1560909277624" duration="15253000" />
       <workItem from="1561008423811" duration="15614000" />
-      <workItem from="1561051000712" duration="52000" />
-    </task>
-    <task id="LOCAL-00092" summary="#Fixed bug in TA Applications">
-      <created>1554656471214</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1554656471214</updated>
+      <workItem from="1561051000712" duration="576000" />
+      <workItem from="1561099721494" duration="36000" />
     </task>
     <task id="LOCAL-00093" summary="#Fixed bug in All Departments Page">
       <created>1554692412356</created>
@@ -905,11 +899,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561050790157</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="#Fixed minor UI bugs&#10;#Alpha Testing Deploying">
+      <created>1561051106670</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1561051106670</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="996337000" />
+    <option name="totallyTimeSpent" value="996897000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -928,7 +929,7 @@
       <window_info id="Structure" order="1" sideWeight="0.5059848" side_tool="true" weight="0.11480687" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" sideWeight="0.5071315" side_tool="true" weight="0.23400673" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18508583" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18508583" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info active="true" anchor="bottom" id="SVN Repositories" order="2" weight="0.3297062" />
@@ -940,11 +941,11 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.3297062" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.31338412" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4967811" weight="0.20674646" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4967811" weight="0.515778" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5032189" side_tool="true" weight="0.51033735" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3299435" />
       <window_info anchor="bottom" id="TypeScript" order="14" weight="0.3299435" />
-      <window_info active="true" anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.37105548" />
+      <window_info anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.24483134" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1041,7 +1042,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="#CHANGED UI OF ADMIN DASHBOARD&#10;#RE-SCALED GRAPH &#10;#FINAL PUSH FOR PROJECT SPRINT-3" />
     <MESSAGE value="#FINAL PUSH FOR PROJECT SPRINT-3&#10;#Added rohan,dheeraj, SE prof admin accounts" />
     <MESSAGE value="#Removed Apply TA page and added option in option in side bar" />
     <MESSAGE value="#Added Rich Text Formatting&#10;#Changed Tags complex input style to simple&#10; customizable Cool dropdown&#10;#Changed menu style for course also" />
@@ -1066,7 +1066,8 @@
     <MESSAGE value="#Optimized Imports" />
     <MESSAGE value="#Optimized Imports&#10;#Removed ElectronJS" />
     <MESSAGE value="#Added 404 page&#10;#Made changes in name etc...&#10;#Update is complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Added 404 page&#10;#Made changes in name etc...&#10;#Update is complete" />
+    <MESSAGE value="#Fixed minor UI bugs&#10;#Alpha Testing Deploying" />
+    <option name="LAST_COMMIT_MESSAGE" value="#Fixed minor UI bugs&#10;#Alpha Testing Deploying" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1348,16 +1349,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2938">
-          <caret line="116" column="47" selection-start-line="116" selection-start-column="47" selection-end-line="116" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -1368,10 +1359,17 @@
     <entry file="file://$PROJECT_DIR$/client/src/components/common/Routes/Routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
-          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/404.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52000">
+          <caret line="2000" column="29" selection-start-line="2000" selection-start-column="25" selection-end-line="2000" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1410,19 +1408,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/404.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="2000" column="29" selection-start-line="2000" selection-start-column="25" selection-end-line="2000" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
           <folding>
             <element signature="e#63#97#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="117" column="21" lean-forward="true" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
