@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/Footer.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="117" column="21" lean-forward="true" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
+            <state relative-caret-position="221">
+              <caret line="117" column="21" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -28,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/App.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/components/layout/Footer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="130">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <caret line="5" column="103" selection-start-line="5" selection-start-column="103" selection-end-line="5" selection-end-column="103" />
             </state>
           </provider>
         </entry>
@@ -52,7 +52,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
+            <state relative-caret-position="286">
               <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
               <folding>
                 <element signature="e#63#97#0" expanded="true" />
@@ -195,7 +195,6 @@
         <option value="$PROJECT_DIR$/client/src/components/upload/UploadFiles.js" />
         <option value="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/404.html" />
         <option value="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/js/404.js" />
-        <option value="$PROJECT_DIR$/client/src/components/layout/Footer.js" />
         <option value="$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/css/404.css" />
         <option value="$PROJECT_DIR$/config/config.json" />
         <option value="$PROJECT_DIR$/config/config.js" />
@@ -227,6 +226,7 @@
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/404.css" />
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js" />
         <option value="$PROJECT_DIR$/client/src/components/layout/Sidebar.js" />
+        <option value="$PROJECT_DIR$/client/src/components/layout/Footer.js" />
       </list>
     </option>
   </component>
@@ -256,6 +256,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -331,7 +332,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -561,14 +561,8 @@
       <workItem from="1560909277624" duration="15253000" />
       <workItem from="1561008423811" duration="15614000" />
       <workItem from="1561051000712" duration="576000" />
-      <workItem from="1561099721494" duration="36000" />
-    </task>
-    <task id="LOCAL-00093" summary="#Fixed bug in All Departments Page">
-      <created>1554692412356</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1554692412357</updated>
+      <workItem from="1561099721494" duration="355000" />
+      <workItem from="1561101093763" duration="303000" />
     </task>
     <task id="LOCAL-00094" summary="#Fixed async backend bugs in faculty home&#10;#Fixed assign course bug in HOD&#10;#Upvote, downVote and reputation bug fixed&#10;#TA application page fixed&#10;#Unassigned faculty page Async backend bugs fixed&#10;#FINAL COMMIT FOR SPRINT-2(Commented search bar and tags in sidebar)">
       <created>1554755451400</created>
@@ -906,11 +900,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561051106670</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="#ALPHA TEST RELEASE">
+      <created>1561099812982</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1561099812983</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="996897000" />
+    <option name="totallyTimeSpent" value="997519000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -929,7 +930,7 @@
       <window_info id="Structure" order="1" sideWeight="0.5059848" side_tool="true" weight="0.11480687" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" sideWeight="0.5071315" side_tool="true" weight="0.23400673" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18508583" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.18508583" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info active="true" anchor="bottom" id="SVN Repositories" order="2" weight="0.3297062" />
@@ -941,11 +942,11 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.3297062" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.31338412" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4967811" weight="0.515778" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4967811" weight="0.33188248" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5032189" side_tool="true" weight="0.51033735" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3299435" />
       <window_info anchor="bottom" id="TypeScript" order="14" weight="0.3299435" />
-      <window_info anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.24483134" />
+      <window_info active="true" anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.24483134" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1042,7 +1043,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="#FINAL PUSH FOR PROJECT SPRINT-3&#10;#Added rohan,dheeraj, SE prof admin accounts" />
     <MESSAGE value="#Removed Apply TA page and added option in option in side bar" />
     <MESSAGE value="#Added Rich Text Formatting&#10;#Changed Tags complex input style to simple&#10; customizable Cool dropdown&#10;#Changed menu style for course also" />
     <MESSAGE value="#Added rich text formatting&#10;#Added Rich text view&#10;#Changed font size in some components&#10;#Heroku Push Version" />
@@ -1067,7 +1067,8 @@
     <MESSAGE value="#Optimized Imports&#10;#Removed ElectronJS" />
     <MESSAGE value="#Added 404 page&#10;#Made changes in name etc...&#10;#Update is complete" />
     <MESSAGE value="#Fixed minor UI bugs&#10;#Alpha Testing Deploying" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Fixed minor UI bugs&#10;#Alpha Testing Deploying" />
+    <MESSAGE value="#ALPHA TEST RELEASE" />
+    <option name="LAST_COMMIT_MESSAGE" value="#ALPHA TEST RELEASE" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1176,13 +1177,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/js/404.js" />
     <entry file="file://$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/css/404.css" />
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Footer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/404-star-wars-bb-8/404.html" />
     <entry file="file://$PROJECT_DIR$/models/testData.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -1349,6 +1343,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="117" column="21" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -1362,6 +1366,16 @@
           <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+          <folding>
+            <element signature="e#63#97#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1408,23 +1422,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Footer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
-          <folding>
-            <element signature="e#63#97#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/Sidebar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="117" column="21" lean-forward="true" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="130">
+          <caret line="5" column="103" selection-start-line="5" selection-start-column="103" selection-end-line="5" selection-end-column="103" />
         </state>
       </provider>
     </entry>
