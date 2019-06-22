@@ -1,14 +1,21 @@
 import axios from 'axios'
 
 import {
-  CLEAR_ERRORS, FOLDER_LOADING,
+  CLEAR_ERRORS,
+  FOLDER_LOADING,
+  GET_ACTIVE,
   GET_FILES,
   GET_FILES_SINGLE_FOLDER,
-  ON_POST_FAIL,
+  GET_PATIENTS_HOME,
+  GET_SA_HOME,
+  GET_SEARCH_RESULTS,
+  HOME_LOADING,
   NO_FILES,
-  NO_FILES_IN_FOLDER, GET_SA_HOME, GET_PATIENTS_HOME, GET_SEARCH_RESULTS, SEARCH_LOADING, HOME_LOADING
+  NO_FILES_IN_FOLDER,
+  ON_POST_FAIL,
+  SEARCH_LOADING,
+  VIEW_LOADING
 } from './types'
-
 
 // export const getDetails = (userData) => dispatch => {
 //   homeLoading()
@@ -27,9 +34,8 @@ import {
 //   )
 // };
 
-
 export const getSADetails = () => dispatch => {
-  dispatch(homeLoading());
+  dispatch(homeLoading())
   axios.get('/api/superAdmin/home',)
     .then(res => {
       dispatch({
@@ -42,7 +48,7 @@ export const getSADetails = () => dispatch => {
       payload: null
     })
   )
-};
+}
 export const deleteFile = (id) => dispatch => {
   axios.get(`/api/upload/deleteFile/${id}`).then(res => {
     console.log(res)
@@ -90,14 +96,14 @@ export const deletePatient = (id) => dispatch => {
 //   );
 // }
 export const downloadFile = (id) => dispatch => {
-  axios.get(`/api/upload/downloadFile/${id}`,{responseType: 'blob'}).then(res => {
-    const url = window.URL.createObjectURL(new Blob([res.data],{type: "octet/stream"}));
-    const link = document.createElement('a');
+  axios.get(`/api/upload/downloadFile/${id}`, { responseType: 'blob' }).then(res => {
+    const url = window.URL.createObjectURL(new Blob([res.data], { type: 'octet/stream' }))
+    const link = document.createElement('a')
     console.log(url)
-    link.href = url;
-    link.setAttribute('download', id.substr(id.lastIndexOf(';')+1,id.length));
-    document.body.appendChild(link);
-    link.click();
+    link.href = url
+    link.setAttribute('download', id.substr(id.lastIndexOf(';') + 1, id.length))
+    document.body.appendChild(link)
+    link.click()
     // console.log('download in progress')
 
     // dispatch({
@@ -109,28 +115,28 @@ export const downloadFile = (id) => dispatch => {
       type: NO_FILES,
       payload: err.data
     })
-  );
+  )
 }
 
-export const downloadFolder  = (id) => dispatch => {
+export const downloadFolder = (id) => dispatch => {
   console.log('In download folder')
-  axios.get(`/api/upload/downloadFolder/${id}`,{responseType: 'blob'}).then(res => {
+  axios.get(`/api/upload/downloadFolder/${id}`, { responseType: 'blob' }).then(res => {
     console.log(res)
-    const url = window.URL.createObjectURL(new Blob([res.data]));
-    const link = document.createElement('a');
+    const url = window.URL.createObjectURL(new Blob([res.data]))
+    const link = document.createElement('a')
     console.log(url)
-    link.href = url;
-    link.setAttribute('download', id+'.zip');
-    document.body.appendChild(link);
-    link.click();
-    window.location.href='/dashboard';
+    link.href = url
+    link.setAttribute('download', id + '.zip')
+    document.body.appendChild(link)
+    link.click()
+    window.location.href = '/dashboard'
 
   }).catch(err =>
     dispatch({
       type: NO_FILES,
       payload: err.data
     })
-  );
+  )
 }
 export const getFiles = () => dispatch => {
   dispatch(setLoading())
@@ -140,12 +146,12 @@ export const getFiles = () => dispatch => {
       payload: res.data
     })
   }).catch(err =>
-      dispatch({
-        type: NO_FILES,
-        payload: err.data
-      })
-  );
-};
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  )
+}
 export const getHomeFolders = (id) => dispatch => {
   dispatch(setLoading())
   dispatch(homeLoading())
@@ -159,7 +165,7 @@ export const getHomeFolders = (id) => dispatch => {
       type: NO_FILES,
       payload: err.data
     })
-  );
+  )
 }
 
 export const getSearchResults = (data) => dispatch => {
@@ -175,7 +181,7 @@ export const getSearchResults = (data) => dispatch => {
       type: NO_FILES,
       payload: err.data
     })
-  );
+  )
 }
 export const getAllPatients = () => dispatch => {
   dispatch(setLoading())
@@ -190,7 +196,7 @@ export const getAllPatients = () => dispatch => {
       type: NO_FILES,
       payload: err.data
     })
-  );
+  )
 }
 export const getFilesByFolder = (id) => dispatch => {
   dispatch(setLoading())
@@ -205,29 +211,52 @@ export const getFilesByFolder = (id) => dispatch => {
       type: NO_FILES_IN_FOLDER,
       payload: err.data
     })
-  );
-};
+  )
+}
 
+export const displayDicom = (id) => dispatch => {
+  dispatch(viewLoading())
+
+  axios.post('/api/upload/displayDicom', id, {responseType: 'arraybuffer'}).then(res => {
+    console.log(res)
+    dispatch({
+      type: GET_ACTIVE,
+      payload: res
+    })
+  }).catch(err => {
+      dispatch({
+        type: ON_POST_FAIL,
+        payload: null
+      })
+    }
+  )
+}
 export const setLoading = () => {
   return {
     type: FOLDER_LOADING
-  };
-};
+  }
+}
+
+export const viewLoading = () => {
+  return {
+    type: VIEW_LOADING
+  }
+}
 export const homeLoading = () => {
   return {
     type: HOME_LOADING
-  };
-};
+  }
+}
 
 export const setSearchLoading = () => {
   return {
     type: SEARCH_LOADING
-  };
-};
+  }
+}
 
 // Clear errors
 export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS
-  };
-};
+  }
+}
