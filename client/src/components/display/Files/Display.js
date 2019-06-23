@@ -76,7 +76,7 @@ class Display extends Component {
   }
   render() {
     const {files, loading, notFound} = this.props.folder
-    let  content, sidebar=null;
+    let  content, sidebar=null,displayBar=null;
     let showButton;
     if(!this.state.show) {
       showButton=(<div style={{marginRight:'10px', marginTop:'20px'}}>
@@ -98,30 +98,43 @@ class Display extends Component {
       content=<Spinner/>
 
     } else {
-
       if(this.state.show) {
+        // displayBar = (
+        //
+        // )
         sidebar = (
-          <div className='col-md-12'
-               style={{ borderStyle:'solid', borderRadius:'5px',minWidth:'250px', right:'0',left:'60%'}}>
-            <div className='row d-flex justify-content-between'>
-              {sdDownload}
-
-              <button onClick={this.closeSidebar} style={{color:'red',background:'white', borderStyle:'none'}}>
-                <i className="fas fa-window-close"/>
-              </button>
-            </div>
-
-            <CheckboxGroup name="selected" checkboxDepth={3} value={this.state.selected} onChange={this.selectionChanges}>
-              {files.files.map(file => (
-                <ul key={file.filename} className="card card-body text-center">
-                  <li style={{overflow: 'hidden'
+          <div className='wrapper d-flex justify-content-end' style={{marginRight:'20%',right: '5%'}}>
+            <div className='col-md-6'
+                 style={{ borderStyle:'solid', borderRadius:'5px',minWidth:'250px', maxWidth:'350px', right:'0',left:'60%'}}>
+              <ul  className="card card-body text-center">
+              {this.state.selected.map(file => (
+                  <li key={file} style={{overflow: 'hidden'
                     ,OTextOverflow: 'ellipsis', textOverflow:'ellipsis', whiteSpace: 'nowrap' }}
-                  >{file.filename.substr(file.filename.lastIndexOf(';') + 1, file.filename.length)}
-                    <Checkbox value={file.filename}/></li>
-                </ul>
-
+                  >{file.substr(file.lastIndexOf(';') + 1, file.length)}
+                  </li>
               ))}
-            </CheckboxGroup>
+              </ul>
+            </div>
+            <div className='col-md-6'
+                 style={{ borderStyle:'solid', borderRadius:'5px', right:'0',left:'60%', minWidth:'250px',  maxWidth:'350px'}}>
+              <div className='row d-flex justify-content-between'>
+                {sdDownload}
+
+                <button onClick={this.closeSidebar} style={{color:'red',background:'white', borderStyle:'none'}}>
+                  <i className="fas fa-window-close"/>
+                </button>
+              </div>
+              <CheckboxGroup name="selected" checkboxDepth={3} value={this.state.selected} onChange={this.selectionChanges}>
+                {files.files.map(file => (
+                  <ul key={file.filename} className="card card-body text-center">
+                    <li style={{overflow: 'hidden'
+                      ,OTextOverflow: 'ellipsis', textOverflow:'ellipsis', whiteSpace: 'nowrap' }}
+                    >{file.filename.substr(file.filename.lastIndexOf(';') + 1, file.filename.length)}
+                      <Checkbox value={file.filename}/></li>
+                  </ul>
+                ))}
+              </CheckboxGroup>
+            </div>
           </div>
         )
       }
@@ -160,7 +173,7 @@ class Display extends Component {
                   {files.patient.mrNo}</h3>
 
               </div>
-              <FileRow files={files.files} patient={files.patient}/>
+              <FileRow files={files.files} patient={files.patient} check={true}/>
             </div>
         )
       }
@@ -170,7 +183,7 @@ class Display extends Component {
         <div>
           {content}
         </div>
-        <div className='d-flex justify-content-end'>
+        <div>
           {sidebar}
         </div>
       </div>

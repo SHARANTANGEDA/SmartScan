@@ -9,6 +9,7 @@ import DwvComponent from '../../DicomWebViewer/DwvComponent'
 import dwv from 'dwv'
 import '../../DicomWebViewer/DwvComponent.css'
 import axios from 'axios'
+import { Checkbox } from 'react-checkbox-group'
 
 const customStyles = {
   content: {
@@ -201,6 +202,7 @@ class FileItem extends Component {
       </div>
     )
     let name = file.filename.substr(file.filename.lastIndexOf(';') + 1, file.filename.length)
+
     return (
       //onTouchStart="this.classList.toggle('hover');
       <div className="">
@@ -218,7 +220,6 @@ class FileItem extends Component {
                                   style={{ background: 'white', color: 'grey', borderStyle: 'none' }}>
                         <i className="fas fa-info-circle fa-2x"/></button>
                         </div>
-
                         <div id={this.props.file.filename} >
                           <div className="layerContainer">
                             <div className="dropBox"/>

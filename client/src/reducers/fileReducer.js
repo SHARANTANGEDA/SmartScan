@@ -62,7 +62,7 @@ export default function(state = initialState, action) {
         ...state,
         notFound: true,
         loading: false,
-        files: []
+        files: null
       };
     default:
       return state;
