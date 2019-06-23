@@ -6,16 +6,11 @@ import FolderItem from './FolderItem'
 class FolderRow extends Component {
   render () {
     const {folders} = this.props;
-    let showUsers = ( folders.map(folder => (
+    return  folders.map(folder => (
       <FolderItem folder={folder} key={folder._id}/>
-    )));
-    return (
-      <div className="row" >
-        {showUsers}
-      </div>
-    )
+    ))
   }
-};
+}
 
 FolderRow.defaultProps = {
   showActions: true

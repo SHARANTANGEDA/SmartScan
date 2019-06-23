@@ -3,29 +3,29 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-import Button from '@material-ui/core/Button';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Menu from '@material-ui/core/Menu';
+// import Button from '@material-ui/core/Button';
+// import LinearProgress from '@material-ui/core/LinearProgress';
+// import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import Link from '@material-ui/core/Link';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-
-import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
+// import Link from '@material-ui/core/Link';
+// import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+// import IconButton from '@material-ui/core/IconButton';
+// import CloseIcon from '@material-ui/icons/Close';
+//
+// import Dialog from '@material-ui/core/Dialog';
+// import AppBar from '@material-ui/core/AppBar';
 import Slide from '@material-ui/core/Slide';
-import Toolbar from '@material-ui/core/Toolbar';
-
-import TagsTable from './TagsTable';
+// import Toolbar from '@material-ui/core/Toolbar';
+//
+// import TagsTable from './TagsTable';
 
 import './DwvComponent.css';
 import dwv from 'dwv';
-import { connect } from 'react-redux'
-import { logoutUser } from '../../actions/authActions'
-import { getSearchResults } from '../../actions/homeActions'
-import axios from 'axios';
+// import { connect } from 'react-redux'
+// import { logoutUser } from '../../actions/authActions'
+// import { getSearchResults } from '../../actions/homeActions'
+// import axios from 'axios';
 // gui overrides
 
 // decode query
@@ -85,7 +85,7 @@ class DwvComponent extends Component {
       toolMenuAnchorEl: null,
       image:null
     };
-
+    this.onReset = this.onReset.bind(this)
   }
 
   componentDidMount() {
@@ -98,33 +98,35 @@ class DwvComponent extends Component {
       "shapes": ["Ruler"],
       "isMobile": true
     });
-    // app.getImageData(this.props.file)
-    // app.setImage(this.props.file)
-    let dicomParser = new dwv.dicom.DicomParser();
-    dicomParser.parse(this.props.file.data);
-    let pixelBuffer = dicomParser.getRawDicomElements().x7FE00010.value;
-    let imageFactory = new dwv.image.ImageFactory();
-    let image = imageFactory.create(
-      dicomParser.getDicomElements(),
-      pixelBuffer );
-    let view = new dwv.image.View(image)
-    console.log({'Image Geo':image.getGeometry().getSize().getNumberOfColumns()})
-    console.log({ImageView: view.getImage()})
-    console.log({Image: image.getNumberOfFrames()})
+    // // app.getImageData(this.props.file)
+    // // app.setImage(this.props.file)
+    // let dicomParser = new dwv.dicom.DicomParser();
+    // dicomParser.parse(this.props.file.data);
+    // let pixelBuffer = dicomParser.getRawDicomElements().x7FE00010.value;
+    // let imageFactory = new dwv.image.ImageFactory();
+    // let image = imageFactory.create(
+    //   dicomParser.getDicomElements(),
+    //   pixelBuffer );
+    // let view = new dwv.image.View(image)
+    // console.log({'Image Geo':image.getGeometry().getSize().getNumberOfColumns()})
+    // console.log({ImageView: view.getImage()})
+    // console.log({Image: image.getNumberOfFrames()})
     // app.loadFiles(image)
-    app.loadImageObject([{name: "", filename: "",data:this.props.file.data}])
-    console.log({app: app.getImage()})
-    console.log({hello:  app.getImage()})
+    // console.log({app: app.getImage()})
+    // console.log({hello:  app.getImage()})
     // console.log(app.setImage(new Image(image)))
     // app.setImage(new Image(image))
     // this.setState({image:new Image(image)})
+    // console.log({file:dicomParser.readPixelItemDataElement()})
+    // progress
+    app.loadImageObject([{name: "", filename: "",data:this.props.file.data}])
+
     const ctx = this.refs.canvas.getContext('2d');
 
     app.getImage().onload = () => {
       ctx.drawImage(app.getImage(),0,0);
     }
-    // console.log({file:dicomParser.readPixelItemDataElement()})
-    // progress
+
     let self = this;
     app.addEventListener("load-progress", event => {
       console.log({progress:event.loaded})
@@ -156,33 +158,37 @@ class DwvComponent extends Component {
     }
   }
 
-  onReset = tool => {
-    if ( this.state.dwvApp ) {
-      this.state.dwvApp.onDisplayReset();
-    }
-  }
-
-  handleTagsDialogOpen = () => {
-    this.setState({ showDicomTags: true });
-  };
-
-  handleTagsDialogClose = () => {
-    this.setState({ showDicomTags: false });
-  };
-
-  handleMenuButtonClick = event => {
-    this.setState({ toolMenuAnchorEl: event.currentTarget });
-  };
-
-  handleMenuClose = event => {
-    this.setState({ toolMenuAnchorEl: null });
-  };
+  // onReset = tool => {
+  //   if ( this.state.dwvApp ) {
+  //     this.state.dwvApp.onDisplayReset();
+  //   }
+  // }
+  //
+  // handleTagsDialogOpen = () => {
+  //   this.setState({ showDicomTags: true });
+  // };
+  //
+  // handleTagsDialogClose = () => {
+  //   this.setState({ showDicomTags: false });
+  // };
+  //
+  // handleMenuButtonClick = event => {
+  //   this.setState({ toolMenuAnchorEl: event.currentTarget });
+  // };
+  //
+  // handleMenuClose = event => {
+  //   this.setState({ toolMenuAnchorEl: null });
+  // };
 
   handleMenuItemClick = tool => {
     this.setState({ toolMenuAnchorEl: null });
     this.onChangeTool(tool);
   };
-
+  onReset () {
+    if ( this.state.dwvApp ) {
+      this.state.dwvApp.onDisplayReset();
+    }
+  }
   render() {
     const { classes } = this.props;
     const { tools, loadProgress, dataLoaded, tags, toolMenuAnchorEl } = this.state;
@@ -193,60 +199,11 @@ class DwvComponent extends Component {
 
     return (
       <div id="dwv">
-        <LinearProgress variant="determinate" value={loadProgress} />
-        <div className="button-row">
-          <Button variant="contained" color="primary"
-            aria-owns={toolMenuAnchorEl ? 'simple-menu' : null}
-            aria-haspopup="true"
-            onClick={this.handleMenuButtonClick}
-            disabled={!dataLoaded}
-            className={classes.button}
-            size="medium"
-          >{ this.state.selectedTool }
-          <ArrowDropDownIcon className={classes.iconSmall}/></Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={toolMenuAnchorEl}
-            open={Boolean(toolMenuAnchorEl)}
-            onClose={this.handleMenuClose}
-          >
-            {toolsMenuItems}
-          </Menu>
-
-          <Button variant="contained" color="primary"
-            disabled={!dataLoaded}
-            onClick={this.onReset}
-          >Reset</Button>
-
-          <Button variant="contained" color="primary"
-            onClick={this.handleTagsDialogOpen}
-            disabled={!dataLoaded}
-            className={classes.button}
-            size="medium">Tags</Button>
-          <Dialog
-            open={this.state.showDicomTags}
-            onClose={this.handleTagsDialogClose}
-            TransitionComponent={TransitionUp}
-            classes={{ paper: classes.tagsDialog }}
-            >
-              <AppBar className={classes.appBar}>
-                <Toolbar>
-                  <IconButton color="inherit" onClick={this.handleTagsDialogClose} aria-label="Close">
-                    <CloseIcon />
-                  </IconButton>
-                  <Typography variant="h6" color="inherit" className={classes.flex}>
-                    DICOM Tags
-                  </Typography>
-                </Toolbar>
-              </AppBar>
-              <TagsTable data={tags} />
-          </Dialog>
-        </div>
-
+        <button onClick={this.onReset} className='btn btn-sm' style={{background: 'blue', color:'white'}}>Reset View</button>
         <div className="layerContainer">
           <div className="dropBox"><Typography>Drag and drop data here.</Typography></div>
           <canvas ref="canvas" className="imageLayer">Only for HTML5 compatible browsers...</canvas>
-          <img src={this.state.image} alt='not working'/>
+          <img src={this.state.image} alt=''/>
           <div className="drawDiv"></div>
         </div>
       </div>
@@ -261,3 +218,54 @@ DwvComponent.propTypes = {
 
 export default withStyles(styles)(DwvComponent);
 // export default connect(mapStateToProps,)(DwvComponent)
+
+//
+// {/*<LinearProgress variant="determinate" value={loadProgress} />*/}
+// {/*<div className="button-row">*/}
+// {/*  <Button variant="contained" color="primary"*/}
+// {/*    aria-owns={toolMenuAnchorEl ? 'simple-menu' : null}*/}
+// {/*    aria-haspopup="true"*/}
+// {/*    onClick={this.handleMenuButtonClick}*/}
+// {/*    disabled={!dataLoaded}*/}
+// {/*    className={classes.button}*/}
+// {/*    size="medium"*/}
+// {/*  >{ this.state.selectedTool }*/}
+// {/*  <ArrowDropDownIcon className={classes.iconSmall}/></Button>*/}
+// {/*  <Menu*/}
+// {/*    id="simple-menu"*/}
+// {/*    anchorEl={toolMenuAnchorEl}*/}
+// {/*    open={Boolean(toolMenuAnchorEl)}*/}
+// {/*    onClose={this.handleMenuClose}*/}
+// {/*  >*/}
+// {/*    {toolsMenuItems}*/}
+// {/*  </Menu>*/}
+//
+// {/*  <Button variant="contained" color="primary"*/}
+// {/*    disabled={!dataLoaded}*/}
+// {/*    onClick={this.onReset}*/}
+// {/*  >Reset</Button>*/}
+//
+// {/*  <Button variant="contained" color="primary"*/}
+// {/*    onClick={this.handleTagsDialogOpen}*/}
+// {/*    disabled={!dataLoaded}*/}
+// {/*    className={classes.button}*/}
+// {/*    size="medium">Tags</Button>*/}
+// {/*  <Dialog*/}
+// {/*    open={this.state.showDicomTags}*/}
+// {/*    onClose={this.handleTagsDialogClose}*/}
+// {/*    TransitionComponent={TransitionUp}*/}
+// {/*    classes={{ paper: classes.tagsDialog }}*/}
+// {/*    >*/}
+// {/*      <AppBar className={classes.appBar}>*/}
+// {/*        <Toolbar>*/}
+// {/*          <IconButton color="inherit" onClick={this.handleTagsDialogClose} aria-label="Close">*/}
+// {/*            <CloseIcon />*/}
+// {/*          </IconButton>*/}
+// {/*          <Typography variant="h6" color="inherit" className={classes.flex}>*/}
+// {/*            DICOM Tags*/}
+// {/*          </Typography>*/}
+// {/*        </Toolbar>*/}
+// {/*      </AppBar>*/}
+// {/*      <TagsTable data={tags} />*/}
+// {/*  </Dialog>*/}
+// {/*</div>*/}

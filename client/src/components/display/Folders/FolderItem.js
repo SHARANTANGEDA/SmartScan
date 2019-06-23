@@ -117,52 +117,75 @@ class FolderItem extends Component {
     )
     return (
       //onTouchStart="this.classList.toggle('hover');
-      <div className="">
-        <div className="image-flip" >
-          <div className="mainflip">
-            <div className="frontside">
+        <tr>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.centreShortCode}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.mrNo}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.firstName+' '+folder.lastName}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.age+'/'+folder.gender}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(folder.lastUploadAt)}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.scanType}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.remarks}</span></td>
 
-              <div className="card" style={{minWidth: '200px', borderStyle: 'solid'}}>
-                <div className='d-flex justify-content-end'>
-                  <button onClick={this.openModal}
-                          style={{background:'white', color:'grey', borderStyle:'none'}}>
-                    <i className="fas fa-info-circle fa-2x"/></button>
-                </div>
-                <Link to={`displayFiles/${folder._id}`} style={{ borderStyle: 'none', background: 'white'}} ><span>
-                <div className="card-body text-center">
-                  <p><img className="img-fluid" src={require('../folder.png')} alt=''/></p>
-                  <div className='row text-center d-flex justify-content-center'>
-                    <h4 className="card-title" style={{fontSize: '18px'}}>{getLocalDate(folder.lastUploadAt)}</h4>
-                  </div>
-                </div>
-                </span>
-                </Link>
-                <div className="card-footer d-flex justify-content-around">
-                  {icon}
-                  <button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}
-                          onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/>
-                  </button>
+          <td>
+            <Link to={`displayFiles/${folder._id}`}  className='btn btn-sm'
+                  style={{ borderStyle: 'none', background: 'blue', color:'white'}}>View</Link>
+          </td>
+          <td>{icon}
+          </td>
+          <td>
+            <button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}
+                      onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/></button>
+          </td>
+        </tr>
 
-                </div>
-                <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={this.closeModal}
-                  style={customStyles}
-                  contentLabel="Patient Data"
-                  shouldCloseOnOverlayClick={false}
-                  ariaHideApp={false}
-                >{modalContent}</Modal>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
     )
   }
 }
 
+//
+// {/*<div className="">*/}
+//
+// {/*<div className="image-flip" >*/}
+// {/*  <div className="mainflip">*/}
+// {/*    <div className="frontside">*/}
+//
+// {/*      <div className="card" style={{minWidth: '200px', borderStyle: 'solid'}}>*/}
+// {/*        <div className='d-flex justify-content-end'>*/}
+// {/*          <button onClick={this.openModal}*/}
+// {/*                  style={{background:'white', color:'grey', borderStyle:'none'}}>*/}
+// {/*            <i className="fas fa-info-circle fa-2x"/></button>*/}
+// {/*        </div>*/}
+// {/*        <Link to={`displayFiles/${folder._id}`} style={{ borderStyle: 'none', background: 'white'}} ><span>*/}
+// {/*        <div className="card-body text-center">*/}
+// {/*          <p><img className="img-fluid" src={require('../folder.png')} alt=''/></p>*/}
+// {/*          <div className='row text-center d-flex justify-content-center'>*/}
+// {/*            <h4 className="card-title" style={{fontSize: '18px'}}>{getLocalDate(folder.lastUploadAt)}</h4>*/}
+// {/*          </div>*/}
+// {/*        </div>*/}
+// {/*        </span>*/}
+// {/*        </Link>*/}
+// {/*        <div className="card-footer d-flex justify-content-around">*/}
+// {/*          {icon}*/}
+// {/*          <button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}*/}
+// {/*                  onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/>*/}
+// {/*          </button>*/}
+//
+// {/*        </div>*/}
+// {/*        <Modal*/}
+// {/*          isOpen={this.state.modalIsOpen}*/}
+// {/*          onAfterOpen={this.afterOpenModal}*/}
+// {/*          onRequestClose={this.closeModal}*/}
+// {/*          style={customStyles}*/}
+// {/*          contentLabel="Patient Data"*/}
+// {/*          shouldCloseOnOverlayClick={false}*/}
+// {/*          ariaHideApp={false}*/}
+// {/*        >{modalContent}</Modal>*/}
+// {/*      </div>*/}
+//
+// {/*    </div>*/}
+// {/*  </div>*/}
+// {/*</div>*/}
+// {/*</div>*/}
 FolderItem.propTypes = {
   folder: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired

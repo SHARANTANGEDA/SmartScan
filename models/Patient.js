@@ -6,8 +6,23 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       primaryKey: true
     },
-
-    centerCode: {
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    district: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    country: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -19,10 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    phone: {
-      type: DataTypes.STRING(20),
-      allowNull: false
-    },
+
     address: {
       type: DataTypes.STRING(400),
       allowNull: false

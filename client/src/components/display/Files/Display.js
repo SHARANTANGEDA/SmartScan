@@ -9,11 +9,17 @@ import getLocalDate from '../../../utils/getLocalDate'
 
 
 class Display extends Component {
-
+  constructor () {
+    super()
+    this.onBack = this.onBack.bind(this)
+  }
   componentDidMount () {
     if (this.props.auth.user.role === 'lvpei') {
       this.props.getFilesByFolder(this.props.match.params.id)
     }
+  }
+  onBack (e) {
+    // window.location.reload()
   }
   // loadFiles() {
   //   fetch('/api/files')
@@ -70,7 +76,7 @@ class Display extends Component {
             <div className="grid text-center col-md-12">
               <div className='row '>
                 <div style={{margin: '10px'}}>
-                  <Link to={`/displayFolder/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
+                  <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn' style={{background: 'white', color: 'green'}}>
                     <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
                 </div>
                 <h1 className="grid--cell fl1 fs-headline1 text-center" style={{

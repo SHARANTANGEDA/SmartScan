@@ -58,7 +58,9 @@ router.post('/addMembers', passport.authenticate('diag_admin',{session: false}),
           role: 'diag',
           admin: req.user.emailId,
           diagCentre: diagnostics.orgEmail,
-          diagCentreName:diagnostics.centreName
+          diagCentreName:diagnostics.centreName,
+          centreShortCode: diagnostics.short
+
         })
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -124,17 +126,25 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
 router.post('/continueToUpload',passport.authenticate('all_diag', {session: false}),(req, res) => {
   console.log(req.user.id)
   User.findById(req.user.id).then(user => {
-    const newUpload = new Patient({
-      mrNo: req.body.patient,
-      uploadedBy: user.emailId,
-      diagCentreName: user.diagCentreName,
-      diagCentre: user.diagCentre
-    })
-    newUpload.save().then(pat => {
-      console.log({"created user":pat._id})
-      res.json({mid:pat._id})
-    }).catch(err => {
-      console.log(err)
+    db.Patient.findByPk(req.body.patient).then(patient => {
+      console.log({sqlPat:patient})
+      const newUpload = new Patient({
+        mrNo: req.body.patient,
+        firstName: patient.firstName,
+        lastName: patient.lastName,
+        age: patient.age,
+        gender: patient.gender,
+        uploadedBy: user.emailId,
+        diagCentreName: user.diagCentreName,
+        diagCentre: user.diagCentre,
+        centreShortCode: user.centreShortCode
+      })
+      newUpload.save().then(pat => {
+        console.log({ "created user": pat._id })
+        res.json({ mid: pat._id })
+      }).catch(err => {
+        console.log(err)
+      })
     })
   })
 })
@@ -146,8 +156,9 @@ router.post('/onDiscard',passport.authenticate('all_diag',{session: false}),(req
   })
 })
 
-router.get('/deleteMember/:id',passport.authenticate('diag_admin', { session: false }), (req, res) => {
-  User.remove({_id:req.params.id}).then(user => {
+router.post('/deleteMember',passport.authenticate('diag_admin', { session: false }), (req, res) => {
+  User.deleteOne({_id:req.body.id}).then(user => {
+    console.log('In remove')
     Diagnostics.findOne({adminId:req.user.emailId}).then(diagnostics => {
       diagnostics.members=diagnostics.members.filter(element => {element.id !== req.params.id})
       diagnostics.save().then(diag => {

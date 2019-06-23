@@ -100,7 +100,8 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
                 password: req.body.password,
                 diagCentre: req.body.orgEmail, //to change
                 diagCentreName: req.body.centreName,
-                role: 'diag_admin'
+                role: 'diag_admin',
+                centreShortCode: req.body.short
               })
               bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {

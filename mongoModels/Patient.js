@@ -6,6 +6,18 @@ const PatientSchema = new Schema({
     type: String,
     required:true
   },
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
+  age: {
+    type: Number
+  },
+  gender: {
+    type: String
+  },
   uploadedBy: {
     type: String
   },
@@ -25,6 +37,9 @@ const PatientSchema = new Schema({
     type: String
   },
   diagCentreName: {
+    type: String
+  },
+  centreShortCode: {
     type: String
   },
   transit: {

@@ -19,6 +19,9 @@ const UserSchema = new Schema({
   diagCentre: {
     type: String
   },
+  centreShortCode: {
+    type: String
+  },
   totalUploads: {
     type: Number,
     default: 0

@@ -6,14 +6,14 @@ import PatientItem from './PatientItem'
 class PatientRow extends Component {
   render () {
     const {folders} = this.props;
-    let showUsers = ( folders.map(folder => (
-      <PatientItem mrNo={folder} key={folder}/>
-    )));
-    return (
-      <div className="row" >
-        {showUsers}
-      </div>
-    )
+    return  folders.map(folder => (
+      <PatientItem patient={folder} key={folder.mrNo}/>
+    ));
+    // return (
+    //   <div className="row" >
+    //     {showUsers}
+    //   </div>
+    // )
   }
 };
 

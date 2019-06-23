@@ -59,8 +59,21 @@ export const continueToUpload=(data) => dispatch => {
   )
 }
 export const createNewMembers=(data) => dispatch => {
-  clearErrors()
+  dispatch(clearErrors())
   axios.post('/api/diagAdmin/addMembers', data)
+    .then(res => {
+      window.location.href='/dashboard'
+    }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+
+    })
+  )
+}
+export const deleteDiagUser=(data) => dispatch => {
+  dispatch(clearErrors())
+  axios.post('/api/diagAdmin/deleteMember', data)
     .then(res => {
       window.location.href='/dashboard'
     }).catch(err =>

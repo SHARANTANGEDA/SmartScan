@@ -2,10 +2,11 @@
 module.exports = {
 
   "development": {
-    "username": "lvpei",
-    "password":"69791928",
-    "database":  "lvpei",
-    "host": "127.0.0.1",
+    "username": "QnFKTHhBuG",
+    "password":"ZLEQ7nDoNp",
+    "database":  "QnFKTHhBuG",
+    "host": "remotemysql.com",
+    "post": "3306",
     "dialect": "mysql",
     "operatorsAliases": false
   },

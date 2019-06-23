@@ -267,32 +267,34 @@ router.get('/folders/:id', passport.authenticate('lvpei', { session: false }), (
   })
 })
 router.get('/patientsFolders', passport.authenticate('lvpei', { session: false }), (req, res) => {
-  let mrNos = [], dummy = [], today = [], yesterday = [], lastweek = [], lastMonth = [], previous = []
+  let mrNos = [], dummy = [], today = [], yesterday = [], lastweek = [], lastMonth = [], previous = [], all=[]
   Patient.find().sort({ lastUpdateAt: -1 }).then(async patients => {
     const now = new Date()
     patients.map(patient => {
       dummy.push(new Promise((resolve, reject) => {
         console.log({ MR: mrNos })
         if (!mrNos.includes(patient.mrNo)) {
+
           let diff = dateDiffInDays(now, patient.lastUploadAt)
           console.log(diff)
           if (diff === 0) {
-            today.push(patient.mrNo)
+            today.push(patient)
           } else if (diff === 1) {
-            yesterday.push(patient.mrNo)
+            yesterday.push(patient)
           } else if (diff > 1 && diff <= 7) {
-            lastweek.push(patient.mrNo)
+            lastweek.push(patient)
           } else if (diff > 7 && diff <= 30) {
-            lastMonth.push(patient.mrNo)
+            lastMonth.push(patient)
           } else if (diff > 30) {
-            previous.push(patient.mrNo)
+            previous.push(patient)
           }
+          all.push(patient)
           mrNos.push(patient.mrNo)
         }
       }))
     })
     res.json({
-      all: await Promise.all(mrNos), today: await Promise.all(today),
+      all: await Promise.all(all), today: await Promise.all(today),
       yesterday: await Promise.all(yesterday),
       lastweek: await Promise.all(lastweek), lastMonth: await Promise.all(lastMonth),
       previous: await Promise.all(previous)
@@ -387,9 +389,9 @@ router.get('/deleteFolder/:id', passport.authenticate('lvpei',{session: false}),
 router.get('/deletePatient/:id', passport.authenticate('lvpei',{session: false}), (req, res) => {
   Patient.find({mrNo:req.params.id}).then(patients => {
     patients.map(patient => {
-      let errcnt=0;
+      let errcnt=0, dummy=[];
 
-      gfs.files.find().toArray((err, files) => {
+      gfs.files.find().toArray(async (err, files) => {
         // Check if files
         if (!files || files.length === 0) {
           return res.status(404).json({
@@ -397,27 +399,34 @@ router.get('/deletePatient/:id', passport.authenticate('lvpei',{session: false})
           })
         } else {
           files.forEach(file => {
-            let nm = patient._id.toString()
-            let start = file.filename.indexOf(';')
-            if (file.filename.substr(start+1, nm.length) === nm) {
-              gfs.remove({ filename: file.filename, root: 'uploads' }, (err, gridStore) => {
-                if (err) {
-                  errcnt=errcnt+1;
-                  return res.status(404).json({ err: err })
-                }
-              })
-            }
+            dummy.push(new Promise((resolve, reject) => {
+              let nm = patient._id.toString()
+              let start = file.filename.indexOf(';')
+              if (file.filename.substr(start + 1, nm.length) === nm) {
+                gfs.remove({ filename: file.filename, root: 'uploads' }, (err, gridStore) => {
+                  if (err) {
+                    errcnt = errcnt + 1;
+                    return res.status(404).json({ err: err })
+                  }
+                })
+              }
+            }))
           })
-          if(errcnt===0) {
-            Patient.remove({_id:patient._id}).then(patient => {
+          console.log('delete done')
+            console.log('in res')
+            if (errcnt === 0) {
+              dummy.push(new Promise((resolve, reject) => {
+                Patient.remove({ _id: patient._id }).then(patient => {
+                  res.redirect('/')
+                }).catch(err => {
+                  console.log({ error: err })
+                })
+              }))
+              await Promise.all(dummy)
+            } else {
+              alert('Error in deletion, please try again!!!')
               res.redirect('/')
-            }).catch(err => {
-              console.log({error: err})
-            })
-          } else {
-            alert('Error in deletion, please try again!!!')
-            res.redirect('/')
-          }
+            }
         }
       })
     })

@@ -344,7 +344,7 @@ class Dashboard extends Component {
                 <div className="grid text-center col-md-10">
                   <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
                     color: 'black'
-                  }}> Confirm the Patient Details below to proceed</h3>
+                  }}> Confirm Details before upload</h3>
                 </div>
                 <div className='col-md-2'>
                   <button onClick={this.closeModal} style={{ borderStyle: 'none', background: 'white', color: 'red' }}
@@ -353,23 +353,34 @@ class Dashboard extends Component {
                 </div>
 
                 <div className="col-md-6" style={{ width: '100%' }}>
-                  <table className="table table-bordered table-striped mb-0">
+                  <table className="table ">
                     <tbody>
                     <tr>
-                      <td><h5>First Name</h5></td>
+                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>First Name:</h6></td>
                       <td><h5>{patientData.patient.firstName}</h5></td>
                     </tr>
                     <tr>
-                      <td><h5>Last Name</h5></td>
+                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>Last Name:</h6></td>
                       <td><h5>{patientData.patient.lastName}</h5></td>
                     </tr>
                     <tr>
-                      <td><h5>LVPEI Centre Code</h5></td>
-                      <td><h5>{patientData.patient.centerCode}</h5></td>
+                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>Age/Gender:</h6></td>
+                      <td><h5>{patientData.patient.age+'/'+patientData.patient.gender}</h5></td>
                     </tr>
                     <tr>
-                      <td><h5>Mobile Number</h5></td>
-                      <td><h5>{patientData.patient.phone}</h5></td>
+                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>Location:</h6></td>
+                      <td><h5>{patientData.patient.address}</h5></td>
+                    </tr>
+                    <tr>
+                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>District:</h6></td>
+                      <td><h5>{patientData.patient.district}</h5></td>
+                    </tr>
+                    <tr>
+                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>State:</h6></td>
+                      <td><h5>{patientData.patient.state}</h5></td>
+                    </tr><tr>
+                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>Country:</h6></td>
+                      <td><h5>{patientData.patient.country}</h5></td>
                     </tr>
                     </tbody>
                   </table>
