@@ -57,7 +57,7 @@ class PatientItem extends Component {
           <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(patient.lastUploadAt)}</span></td>
           <td>
             <Link to={`displayFolder/${patient.mrNo}`}  className='btn btn-sm'
-                  style={{ borderStyle: 'none', background: 'blue', color:'white'}}>View</Link></td>
+                  style={{ borderStyle: 'none', background: 'green', color:'white'}}>View</Link></td>
           <td><button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}
               onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/></button></td>
         </tr>

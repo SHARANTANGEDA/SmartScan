@@ -166,7 +166,7 @@ class Dashboard extends Component {
           <div className="App-content row d-flex justify-content-center">
             <div className="grid text-center col-md-12">
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                color: 'black', fontSize: '48px'
+                color: 'black'
               }}> Welcome to L V Prasad Cloud</h1>
             </div>
           </div>
@@ -235,7 +235,7 @@ class Dashboard extends Component {
                 <div className='row'>
                   <div className="grid text-center col-md-12">
                     <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                      color: 'black', fontSize: '48px'
+                      color: 'black'
                     }}>Welcome to L V Prasad Cloud</h1>
                   </div>
                   <div className='row col-md-12 d-flex justify-content-around'>
@@ -303,7 +303,7 @@ class Dashboard extends Component {
           <div className='row d-flex justify-content-center'>
             <div className=" grid text-center col-md-12">
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                color: 'black', fontSize: '48px'
+                color: 'black'
               }}> Welcome L V Prasad MRI Cloud</h1>
             </div>
             <div className='d-flex justify-content-center col-md-12'>

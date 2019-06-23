@@ -235,8 +235,7 @@ class FileItem extends Component {
                             ,OTextOverflow: 'ellipsis', textOverflow:'ellipsis', whiteSpace: 'nowrap', width:'100%' }}
                           >{name}</h4>
                         </div>
-                      </div>
-                      <div className="card-footer row d-flex justify-content-between align-content-center">
+                        <div className=" row d-flex justify-content-between">
                         <button className='btn-sm btn'
                                 style={{ background: 'green', color: 'white', marginRight: '10px' }}
                                 onClick={this.onOpen.bind(this)}><i className="fa fa-download"
@@ -249,6 +248,8 @@ class FileItem extends Component {
                           <i className="fa fa-trash" aria-hidden="true"/></button>
 
                       </div>
+                      </div>
+
                     </div>
                   </span>
             </div>

@@ -26,12 +26,19 @@ class Navbar extends Component {
       category: this.state.category.value,
       search: this.state.search,
     }
-    console.log(newSearch)
-    this.props.getSearchResults(newSearch)
+    console.log({search:newSearch})
+    if(this.state.category.value==='mr.No') {
+      this.props.getSearchResults(newSearch)
+    }else if(this.state.category.value==='name') {
+      console.log({name:`/nameSearchResults/${this.state.search}`})
+      window.location.href=`/nameSearchResults/${this.state.search}`
+    }
   }
 
   onChange (e) {
     this.setState({ [e.target.name]: e.target.value })
+    console.log({ [e.target.name]: e.target.value })
+
   }
 
   componentWillReceiveProps (nextProps, nextContext) {
@@ -56,10 +63,13 @@ class Navbar extends Component {
     if(loading || results ===null) {
 
     }else {
+      console.log({results:results})
       if(!results.success) {
         window.location.href='/detailsNotFound'
       } else {
-        window.location.href=`/displayFolder/${results.mrNo}`
+        if(results.mrNo!==null) {
+          window.location.href=`/displayFolder/${results.mrNo}`
+        }
       }
     }
     const { category, errors } = this.state
@@ -67,16 +77,16 @@ class Navbar extends Component {
       <div className='d-flex justify-content-between align-content-end col-md-12'>
         <div  className="row col-md-6 d-flex justify-content-start align-items-center"
              style={{color:'white', verticalAlign: 'bottom'}}>
-          <Link to='/dashboard'> <img style={{ maxWidth: '130px', maxHeight: '130px' }}
+          <Link to='/dashboard'> <img style={{ maxWidth: '100px', maxHeight: '100px' }}
                             src={require('../../img/logo2.png')} alt=""/></Link>
-         <h1>L V Prasad Eye Institute</h1>
+         <h2>L V Prasad Eye Institute</h2>
 
         </div>
         <div className="row d-flex justify-content-end align-items-center" style={{color:'white'}}>
           <img style={{ maxWidth: '200px', maxHeight: '150px' }}
                src={require('../../img/logo.png')} alt=""
           />
-          <h1>LVStream</h1>
+          <h2>LVStream</h2>
         </div>
       </div>
 
@@ -87,14 +97,14 @@ class Navbar extends Component {
              style={{color:'white', verticalAlign: 'bottom'}}>
           <Link to='/'> <img style={{ maxWidth: '130px', maxHeight: '130px' }}
                                       src={require('../../img/logo2.png')} alt=""/></Link>
-          <h1>L V Prasad Eye Institute</h1>
+          <h3>L V Prasad Eye Institute</h3>
 
         </div>
         <div className="row d-flex justify-content-end align-items-center" style={{color:'white'}}>
           <img style={{ maxWidth: '200px', maxHeight: '150px' }}
                src={require('../../img/logo.png')} alt=""
           />
-          <h1>LVStream</h1>
+          <h3>LVStream</h3>
         </div>
       </div>
     )

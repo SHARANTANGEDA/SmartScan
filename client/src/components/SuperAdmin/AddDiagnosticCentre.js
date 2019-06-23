@@ -59,7 +59,7 @@ class CreateLVPEIUsers extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <div className="col-sm-12" style={{ color: 'black', fontSize: '48px' }}>
+              <div className="col-sm-12" style={{ color: 'black'}}>
                 <h1>Add a new Diagnostic Centre</h1></div>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="Enter centre Admin user name" error={errors.adminId}

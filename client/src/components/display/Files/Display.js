@@ -106,6 +106,7 @@ class Display extends Component {
           <div className='wrapper d-flex justify-content-end' style={{marginRight:'20%',right: '5%'}}>
             <div className='col-md-6'
                  style={{ borderStyle:'solid', borderRadius:'5px',minWidth:'250px', maxWidth:'350px', right:'0',left:'60%'}}>
+              <h5>Selected Files</h5>
               <ul  className="card card-body text-center">
               {this.state.selected.map(file => (
                   <li key={file} style={{overflow: 'hidden'
@@ -125,14 +126,15 @@ class Display extends Component {
                 </button>
               </div>
               <CheckboxGroup name="selected" checkboxDepth={3} value={this.state.selected} onChange={this.selectionChanges}>
+                <ul className="card card-body text-center">
                 {files.files.map(file => (
-                  <ul key={file.filename} className="card card-body text-center">
-                    <li style={{overflow: 'hidden'
+                    <li  key={file.filename} style={{overflow: 'hidden'
                       ,OTextOverflow: 'ellipsis', textOverflow:'ellipsis', whiteSpace: 'nowrap' }}
                     >{file.filename.substr(file.filename.lastIndexOf(';') + 1, file.filename.length)}
                       <Checkbox value={file.filename}/></li>
-                  </ul>
                 ))}
+                </ul>
+
               </CheckboxGroup>
             </div>
           </div>
@@ -147,7 +149,7 @@ class Display extends Component {
                   <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
               </div>
               <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                color: 'black', fontSize: '48px'
+                color: 'black'
               }}> Welcome to L V Prasad Cloud</h1>
             </div>
           </div>
@@ -165,12 +167,12 @@ class Display extends Component {
                       <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
                   </div>
                   <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                    color: 'black', fontSize: '48px'
+                    color: 'black'
                   }}> Welcome to L V Prasad Cloud</h1>
                   {showButton}
                 </div>
-                <h3>All files uploaded at {' '}{getLocalDate(files.patient.lastUploadAt)} {' '} of patient{' '}
-                  {files.patient.mrNo}</h3>
+                <h5>All files uploaded at {' '}{getLocalDate(files.patient.lastUploadAt)} {' '} of patient{' '}
+                  {files.patient.mrNo}</h5>
 
               </div>
               <FileRow files={files.files} patient={files.patient} check={true}/>

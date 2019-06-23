@@ -8,11 +8,12 @@ import Display from '../../display/Files/Display'
 import CreateUsers from '../../MyAccount/CreateUsers'
 import AddDiagnosticCentre from '../../SuperAdmin/AddDiagnosticCentre'
 import Success from '../../upload/Success'
-import NotFound from '../../NotFoundStarwars/NotFound'
+import NotFound from '../../layout/NotFound'
 import SearchNotFound from '../../layout/SearchNotFound'
 import ActiveCentres from '../../SuperAdmin/ActiveCentres'
 import RemovedCentres from '../../SuperAdmin/RemovedCentres'
 import UploadForm from '../../upload/UploadForm'
+import NameSearchResults from '../../dashboard/NameSearchResults'
 
 const Routes = () => {
   return (
@@ -43,6 +44,9 @@ const Routes = () => {
         <PrivateRoute exact path='/activeCentres' component={ActiveCentres}/>
         <PrivateRoute exact path='/removedCentres' component={RemovedCentres} />
         <PrivateRoute exact path='/uploadForm' component={UploadForm}/>
+        <PrivateRoute exact path='/nameSearchResults/:id' component={NameSearchResults}/>
+
+
         {/*</Switch>*/}
         <Route path="*" component={NotFound} />
       </Switch>

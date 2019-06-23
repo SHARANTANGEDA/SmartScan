@@ -5,9 +5,9 @@ import {
   FOLDER_LOADING,
   GET_ACTIVE,
   GET_FILES,
-  GET_FILES_SINGLE_FOLDER,
+  GET_FILES_SINGLE_FOLDER, GET_NAME_RESULTS,
   GET_PATIENTS_HOME,
-  GET_SA_HOME,
+  GET_SA_HOME, GET_SEARCH_ERRORS,
   GET_SEARCH_RESULTS,
   HOME_LOADING,
   NO_FILES,
@@ -181,6 +181,23 @@ export const getSearchResults = (data) => dispatch => {
       type: NO_FILES,
       payload: err.data
     })
+  )
+}
+export const getNameResults = (data) => dispatch => {
+  dispatch(setSearchLoading())
+  dispatch(homeLoading())
+  axios.get(`/api/users/searchName/${data}`).then(res => {
+    console.log({result: res})
+    dispatch({
+      type: GET_NAME_RESULTS,
+      payload: res.data
+    })
+  }).catch(err =>
+    console.log({sErr: err})
+    // dispatch({
+    //   type: GET_SEARCH_ERRORS,
+    //   payload: err.data
+    // })
   )
 }
 export const getAllPatients = () => dispatch => {

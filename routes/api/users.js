@@ -131,7 +131,44 @@ router.post('/search',passport.authenticate('lvpei',{session: false}),(req, res)
     }).catch(err => {
       res.json({success: false})
     })
+  }else if(req.body.category === 'name') {
+    res.json({success: true})
+    // Patient.find().then(async patients => {
+    //   let searchResult = []
+    //   searchResult.push(new Promise((resolve, reject) => {
+    //     patients.map(patient => {
+    //       let name = patient.firstName + ' ' + patient.lastName;
+    //       if (name.includes(req.body.search)) {
+    //         resolve(patient)
+    //       }
+    //     })
+    //   }))
+    //   res.json({name:await Promise.all(searchResult),success: true})
+    // })
   }
+})
+
+router.get('/searchName/:id',passport.authenticate('lvpei',{session: false}),(req, res) => {
+  console.log({id:req.params.id})
+    Patient.find().then(async patients => {
+      let searchResult = [], dummy=[]
+        patients.map(patient => {
+          dummy.push(new Promise((resolve, reject) => {
+
+            let name = patient.firstName + ' ' + patient.lastName;
+          console.log({name: name, check:name.toLowerCase().includes(req.params.id)})
+          if (name.toLowerCase().includes(req.params.id)) {
+            console.log({resolve:patient})
+            searchResult.push(patient)
+          }
+          }))
+        })
+      // console.log({called:await Promise.all(searchResult),length: searchResult.length})
+      // await Promise.all(dummy)
+        res.json({name:await Promise.all(searchResult),success: true})
+    }).catch(err => {
+      res.json({success: false})
+    })
 })
 
 //

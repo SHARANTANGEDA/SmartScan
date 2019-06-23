@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-// import './404.css'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import N404 from '../../img/404.gif'
 
 class NotFound extends Component {
 
@@ -10,9 +11,29 @@ class NotFound extends Component {
 
 
     return (
-        <div style={{height: '100%', width:'100%'}}>
-          <img src={require('../../img/droid404.png')} alt=''/>
+      <div className="detailsNotFound">
+        <div className="App-content row d-flex justify-content-center" >
+          <div className="grid text-center col-md-12">
+            <div className='row '>
+              <div style={{margin: '10px'}}>
+                <Link to='/dashboard' className='btn' style={{background: 'white', color: 'green'}}>
+                  <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
+              </div>
+              <h2 className="grid--cell fl1 fs-headline1 text-center" style={{
+                color: 'black'
+              }}> Welcome to L V Prasad Cloud</h2>
+            </div>
+            <div className='row'>
+              <img
+                src={N404}
+                style={{ width: '500px', margin: 'auto', display: 'block' }}
+                alt="Loading..."
+              />
+            </div>
+            <Link to='/dashboard' className='btn btn-primary'>Return to Dashboard</Link>
+          </div>
         </div>
+      </div>
 
     )
   }
