@@ -179,20 +179,36 @@ class FileItem extends Component {
           <tbody>
           <tr>
             <td><h6 style={{color: 'grey',opacity:'0.9'}}>Uploaded By:</h6></td>
-            <td><h5>{patient.diagCentreName}</h5></td>
+            <td><h6>{patient.diagCentreName}</h6></td>
+          </tr>
+          <tr>
+            <td><h6 style={{color: 'grey',opacity:'0.9'}}>name:</h6></td>
+            <td><h6>{patient.firstName+' '+patient.lastName}</h6></td>
+          </tr>
+          <tr>
+            <td><h6 style={{color: 'grey',opacity:'0.9'}}>age/gender</h6></td>
+            <td><h6>{patient.age+'/'+patient.gender}</h6></td>
+          </tr>
+          <tr>
+            <td><h6 style={{color: 'grey',opacity:'0.9'}}>Scan Type:</h6></td>
+            <td><h6>{patient.scanType}</h6></td>
           </tr>
           <tr>
             <td><h6 style={{color: 'grey',opacity:'0.9'}}>Organization email Address:</h6></td>
-            <td><h5>{patient.diagCentre}</h5></td>
+            <td><h6>{patient.diagCentre}</h6></td>
           </tr>
           <tr>
             <td><h6 style={{color: 'grey',opacity:'0.9'}}>uploaded At:</h6></td>
-            <td><h5>{getLocalDate(patient.lastUploadAt)}</h5></td>
+            <td><h6>{getLocalDate(patient.lastUploadAt)}</h6></td>
           </tr>
           <tr>
             <td><h6 style={{color: 'grey',opacity:'0.9'}}>uploaded by user:</h6></td>
-            <td><h5>{patient.uploadedBy}</h5></td>
+            <td><h6>{patient.uploadedBy}</h6></td>
           </tr>
+          <tr>
+            <td><h6 style={{color: 'grey',opacity:'0.9'}}>Remarks</h6></td>
+            <td><h6>{patient.remarks}</h6></td>
+          </tr> 
           </tbody>
         </table>
         <div className="col-md-6 text-center" style={{ width: '100%' }}>
