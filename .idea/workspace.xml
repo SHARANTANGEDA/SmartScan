@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/dashboard/NameSearchResults.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/homeActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/homeActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MyAccount/CreateUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MyAccount/CreateUsers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NotFoundStarwars/404.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/NotFound.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NotFoundStarwars/back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Files/Display.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Files/Display.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Folders/DisplayFolder.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Folders/DisplayFolder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layout/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/upload/Success.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/upload/Success.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/searchReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/searchReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,30 +17,18 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/layout/NavBar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="67" column="46" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="1092">
               <caret line="48" column="62" selection-start-line="48" selection-start-column="62" selection-end-line="48" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/display/Files/Display.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
+            <state relative-caret-position="3302">
               <caret line="136" selection-start-line="136" selection-end-line="136" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -72,8 +40,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/NameSearchResults.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+            <state relative-caret-position="716">
+              <caret line="50" column="18" lean-forward="true" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/display/Folders/FolderRow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -85,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="104">
-              <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-end-line="5" />
+              <caret line="4" column="24" selection-start-line="4" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -93,7 +82,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/layout/NotFound.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
+            <state relative-caret-position="598">
               <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
@@ -105,7 +94,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
+            <state relative-caret-position="1378">
               <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
@@ -115,37 +104,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api/users.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="159" column="32" selection-start-line="159" selection-start-column="32" selection-end-line="159" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2345">
-              <caret line="304" column="17" selection-start-line="304" selection-start-column="17" selection-end-line="304" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-                <element signature="n#!!block;n#openModal#0;n#Dashboard#0" />
-                <element signature="n#!!block;n#openNextModal#0;n#Dashboard#0" />
-                <element signature="n#!!block;n#afterOpenModal#0;n#Dashboard#0" />
-                <element signature="n#!!block;n#onDiscard#0;n#Dashboard#0" />
-                <element signature="n#!!block;n#closeFlushModal#0;n#Dashboard#0" />
-                <element signature="n#!!block;n#closeModal#0;n#Dashboard#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/display/Files/FileItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1001">
-              <caret line="249" column="28" selection-start-line="249" selection-start-column="28" selection-end-line="249" selection-end-column="28" />
+            <state relative-caret-position="300">
+              <caret line="201" column="4" selection-start-line="201" selection-start-column="4" selection-end-line="201" selection-end-column="4" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
                 <element signature="n#!!block;n#onOpen#0;n#FileItem#0" />
@@ -154,6 +116,15 @@
                 <element signature="n#!!block;n#closeModal#0;n#FileItem#0" />
                 <element signature="n#!!block;n#openModal#0;n#FileItem#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mongoModels/Patient.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1248">
+              <caret line="48" column="10" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -234,7 +205,6 @@
         <option value="$PROJECT_DIR$/client/src/components/DicomWebViewer/dicom-viewer/index.js" />
         <option value="$PROJECT_DIR$/client/src/components/DicomWebViewer/dicom-viewer/dicom-viewer.js" />
         <option value="$PROJECT_DIR$/client/src/components/DicomWebViewer/dicom-viewer/dicom-loader.js" />
-        <option value="$PROJECT_DIR$/client/src/components/DicomWebViewer/DwvComponent.js" />
         <option value="$PROJECT_DIR$/mongoModels/Patient.js" />
         <option value="$PROJECT_DIR$/client/src/components/display/Patients/PatientRow.js" />
         <option value="$PROJECT_DIR$/mongoModels/User.js" />
@@ -247,7 +217,6 @@
         <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/models/Patient.js" />
         <option value="$PROJECT_DIR$/client/src/components/display/Folders/FolderRow.js" />
-        <option value="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" />
         <option value="$PROJECT_DIR$/client/src/components/display/Files/DisplayBox.js" />
         <option value="$PROJECT_DIR$/routes/api/upload.js" />
         <option value="$PROJECT_DIR$/client/src/components/display/Files/FileRow.js" />
@@ -266,12 +235,14 @@
         <option value="$PROJECT_DIR$/client/src/components/display/Folders/DisplayFolder.js" />
         <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js" />
         <option value="$PROJECT_DIR$/client/src/components/upload/Success.js" />
-        <option value="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" />
         <option value="$PROJECT_DIR$/client/src/components/dashboard/NameSearchResults.js" />
         <option value="$PROJECT_DIR$/client/src/components/NotFoundStarwars/NotFound.js" />
         <option value="$PROJECT_DIR$/client/src/components/layout/NotFound.js" />
         <option value="$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js" />
         <option value="$PROJECT_DIR$/client/src/components/display/Files/Display.js" />
+        <option value="$PROJECT_DIR$/client/src/components/DicomWebViewer/DwvComponent.js" />
+        <option value="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" />
+        <option value="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" />
       </list>
     </option>
   </component>
@@ -301,7 +272,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -473,6 +443,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -708,21 +679,8 @@
       <workItem from="1561137707309" duration="11000" />
       <workItem from="1561175440641" duration="36877000" />
       <workItem from="1561253327861" duration="25052000" />
-      <workItem from="1561292245518" duration="16814000" />
-    </task>
-    <task id="LOCAL-00100" summary="#FINAL PUSH FOR SPRINT-2&#10;#Fixes home bug">
-      <created>1554797866365</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1554797866365</updated>
-    </task>
-    <task id="LOCAL-00101" summary="#FINAL PUSH FOR SPRINT-2&#10;#Fixes home bug">
-      <created>1555147693304</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1555147693306</updated>
+      <workItem from="1561292245518" duration="18246000" />
+      <workItem from="1561312074923" duration="293000" />
     </task>
     <task id="LOCAL-00102" summary="#Added Backend for google OAuth&#10;#Added Google signIn button&#10;#Fixed minor bugs in UI">
       <created>1555214619408</created>
@@ -1053,11 +1011,25 @@
       <option name="project" value="LOCAL" />
       <updated>1561299838981</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="#Added Search by name&#10;#Decreased Some font sizes">
+      <created>1561310510048</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1561310510048</updated>
+    </task>
+    <task id="LOCAL-00150" summary="#decreased Some Font sizes&#10;#changed some displays&#10;#Fixed some minor render bugs">
+      <created>1561310851417</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1561310851417</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1100789000" />
+    <option name="totallyTimeSpent" value="1102514000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1076,7 +1048,7 @@
       <window_info id="Structure" order="1" sideWeight="0.5059848" side_tool="true" weight="0.11480687" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" sideWeight="0.5071315" side_tool="true" weight="0.23400673" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.17807457" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49401525" visible="true" weight="0.17807457" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info active="true" anchor="bottom" id="SVN Repositories" order="2" weight="0.3297062" />
@@ -1088,11 +1060,11 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.3297062" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.31338412" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4967811" weight="0.2383025" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4967811" weight="0.23728813" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5032189" side_tool="true" weight="0.51033735" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3299435" />
       <window_info anchor="bottom" id="TypeScript" order="14" weight="0.3299435" />
-      <window_info anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.2542373" />
+      <window_info active="true" anchor="bottom" id="Run" order="15" sideWeight="0.49638286" visible="true" weight="0.2542373" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1189,8 +1161,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="#Added Download Folder as zip file functionality&#10;#Added Change Password&#10;#Added Delete functionality for both folder and file&#10;#Added MRI account creatable functionality" />
-    <MESSAGE value="#Fixed Some Bugs&#10;#Changed file name for display&#10;#Optimized some UI components&#10;#optimized storage to some extent" />
     <MESSAGE value="#Fixed Some Bugs&#10;#Changed download click reaction" />
     <MESSAGE value="#Optimized some pages' UI" />
     <MESSAGE value="#Added Super Admin Page&#10;#Added MySQL Connection&#10;#MySQL database Setup&#10;#Patient relation Created in MySQL&#10;#TestData Generated" />
@@ -1214,7 +1184,9 @@
     <MESSAGE value="#Add thumbnail Viewer&#10;#Changed UI of LVPEI&#10;#Updated Incoming Patient Database&#10;#Fixed minor bugs" />
     <MESSAGE value="#Added selected files download option&#10;#Fixed some minor bugs" />
     <MESSAGE value="#Completed selected files download UI&#10;#Fixed some rendering bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Completed selected files download UI&#10;#Fixed some rendering bugs" />
+    <MESSAGE value="#Added Search by name&#10;#Decreased Some font sizes" />
+    <MESSAGE value="#decreased Some Font sizes&#10;#changed some displays&#10;#Fixed some minor render bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="#decreased Some Font sizes&#10;#changed some displays&#10;#Fixed some minor render bugs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1262,23 +1234,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="832">
           <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/DicomWebViewer/DwvComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="201" column="103" selection-start-line="201" selection-start-column="103" selection-end-line="201" selection-end-column="103" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#187#236#0" />
-            <element signature="e#392#437#0" />
-            <element signature="e#766#817#0" />
-            <element signature="e#862#890#0" expanded="true" />
-            <element signature="e#906#946#0" />
-            <element signature="e#2737#2776#0" />
-            <element signature="e#4847#4869#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1387,13 +1342,6 @@
     <entry file="file://$PROJECT_DIR$/client/src/components/display/Files/DisplayBox.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mongoModels/Patient.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="51" column="9" selection-start-line="51" selection-start-column="2" selection-end-line="51" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/upload.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4966">
@@ -1422,23 +1370,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="106" lean-forward="true" selection-end-line="106" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/display/Folders/FolderRow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="140" column="5" lean-forward="true" selection-start-line="140" selection-start-column="5" selection-end-line="140" selection-end-column="5" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
@@ -1522,17 +1453,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/img/404.gif">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/NavBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="67" column="46" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/DicomWebViewer/DwvComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4992">
+          <caret line="196" column="36" selection-start-line="196" selection-start-column="36" selection-end-line="196" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#871#899#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="1092">
           <caret line="48" column="62" selection-start-line="48" selection-start-column="62" selection-end-line="48" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/display/Files/Display.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3302">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="24" selection-start-line="4" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/layout/NotFound.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1378">
+          <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mongoModels/Patient.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1248">
+          <caret line="48" column="10" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/display/Files/FileItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1001">
-          <caret line="249" column="28" selection-start-line="249" selection-start-column="28" selection-end-line="249" selection-end-column="28" />
+        <state relative-caret-position="300">
+          <caret line="201" column="4" selection-start-line="201" selection-start-column="4" selection-end-line="201" selection-end-column="4" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
             <element signature="n#!!block;n#onOpen#0;n#FileItem#0" />
@@ -1544,62 +1543,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/NavBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="67" column="46" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/img/404.gif">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/SearchNotFound.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/NameSearchResults.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+        <state relative-caret-position="716">
+          <caret line="50" column="18" lean-forward="true" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layout/NotFound.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/display/Folders/FolderRow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="156">
+          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
+        <state relative-caret-position="111">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/display/Files/Display.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

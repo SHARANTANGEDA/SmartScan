@@ -32,6 +32,7 @@ class FolderItem extends Component {
     this.openModal = this.openModal.bind(this)
     this.afterOpenModal = this.afterOpenModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.loadFolders = this.loadFolders.bind(this)
   }
 
   onOpen(e) {
@@ -66,6 +67,9 @@ class FolderItem extends Component {
 
   afterOpenModal () {
 
+  }
+  loadFolders () {
+    window.location.href=`/displayFolder/displayFiles/${this.props.folder._id}`
   }
 
   render () {
@@ -127,8 +131,8 @@ class FolderItem extends Component {
           <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.remarks}</span></td>
 
           <td>
-            <Link to={`displayFiles/${folder._id}`}  className='btn btn-sm'
-                  style={{ borderStyle: 'none', background: 'blue', color:'white'}}>View</Link>
+            <button onClick={this.loadFolders} className='btn btn-sm'
+                  style={{ borderStyle: 'none', background: 'blue', color:'white'}}>View</button>
           </td>
           <td>{icon}
           </td>
