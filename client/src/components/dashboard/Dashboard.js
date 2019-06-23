@@ -136,9 +136,9 @@ class Dashboard extends Component {
   render () {
     const { errors, category } = this.state
     if (this.props.auth.user.role === 'lvpei') {
-      const { loading, notFound } = this.props.folder
+      const { loading, notFound, patients } = this.props.folder
       let allFoldersContent
-      if (loading) {
+      if (loading || patients===null) {
         allFoldersContent = <Spinner/>
       } else {
         if (notFound) {

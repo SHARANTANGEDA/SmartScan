@@ -2,16 +2,27 @@ import React, { Component } from 'react';
 import Spinner from '../../common/Spinner'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {  getFilesByFolder } from '../../../actions/homeActions'
+import { downloadSelectedFiles, getFilesByFolder } from '../../../actions/homeActions'
 import FileRow from './FileRow'
 import { Link } from 'react-router-dom'
 import getLocalDate from '../../../utils/getLocalDate'
+import FileItem from './FileItem'
+import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
 
 
 class Display extends Component {
   constructor () {
     super()
+    this.state = {
+      show: false,
+      selected: [],
+      patientId: null,
+      downloading: false
+    }
     this.onBack = this.onBack.bind(this)
+    this.openSidebar = this.openSidebar.bind(this)
+    this.onSelectedDownload = this.onSelectedDownload.bind(this)
+    this.closeSidebar = this.closeSidebar.bind(this)
   }
   componentDidMount () {
     if (this.props.auth.user.role === 'lvpei') {
@@ -20,6 +31,15 @@ class Display extends Component {
   }
   onBack (e) {
     // window.location.reload()
+  }
+  openSidebar (e) {
+    this.setState({show:true, patientId:this.props.folder.files.patient._id})
+  }
+  onSelectedDownload (e) {
+    console.log(this.state.selected)
+    this.props.downloadSelectedFiles({selected:this.state.selected, id:this.state.patientId})
+    this.setState({downloading: true})
+
   }
   // loadFiles() {
   //   fetch('/api/files')
@@ -46,13 +66,65 @@ class Display extends Component {
   //       else alert('Delete Failed');
   //     })
   // }
-
+  selectionChanges = (newValues) => {
+    this.setState({
+      selected: newValues
+    });
+  }
+  closeSidebar (e) {
+    this.setState({show:false})
+  }
   render() {
     const {files, loading, notFound} = this.props.folder
-    let  content;
+    let  content, sidebar=null;
+    let showButton;
+    if(!this.state.show) {
+      showButton=(<div style={{marginRight:'10px', marginTop:'20px'}}>
+        <button className='btn btn-sm' style={{background:'green', color:'white'}}
+                onClick={this.openSidebar}>Select Folders for download</button>
+      </div>)
+    }else {
+      showButton=null
+    }
+    let sdDownload=null
+    if(!this.state.downloading) {
+      sdDownload=(<button className='btn btn-sm' onClick={this.onSelectedDownload}
+                          style={{background:'green', color:'white'}}>
+        Download</button>)
+    } else {
+      sdDownload=(<p>Download has started....</p>)
+    }
     if (loading || files===null) {
       content=<Spinner/>
+
     } else {
+
+      if(this.state.show) {
+        sidebar = (
+          <div className='col-md-12'
+               style={{ borderStyle:'solid', borderRadius:'5px',minWidth:'250px', right:'0',left:'60%'}}>
+            <div className='row d-flex justify-content-between'>
+              {sdDownload}
+
+              <button onClick={this.closeSidebar} style={{color:'red',background:'white', borderStyle:'none'}}>
+                <i className="fas fa-window-close"/>
+              </button>
+            </div>
+
+            <CheckboxGroup name="selected" checkboxDepth={3} value={this.state.selected} onChange={this.selectionChanges}>
+              {files.files.map(file => (
+                <ul key={file.filename} className="card card-body text-center">
+                  <li style={{overflow: 'hidden'
+                    ,OTextOverflow: 'ellipsis', textOverflow:'ellipsis', whiteSpace: 'nowrap' }}
+                  >{file.filename.substr(file.filename.lastIndexOf(';') + 1, file.filename.length)}
+                    <Checkbox value={file.filename}/></li>
+                </ul>
+
+              ))}
+            </CheckboxGroup>
+          </div>
+        )
+      }
       if(notFound) {
         content=(<div className="App-content row d-flex justify-content-center" >
           <div className="grid text-center col-md-12">
@@ -72,28 +144,35 @@ class Display extends Component {
         </div>)
       }else {
         content=(
-          <div className="App-content row d-flex justify-content-center" >
-            <div className="grid text-center col-md-12">
-              <div className='row '>
-                <div style={{margin: '10px'}}>
-                  <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn' style={{background: 'white', color: 'green'}}>
-                    <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
+            <div className="App-content row d-flex justify-content-center" >
+              <div className="grid text-center col-md-12">
+                <div className='row d-flex justify-content-between'>
+                  <div style={{margin: '10px'}}>
+                    <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn' style={{background: 'white', color: 'green'}}>
+                      <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
+                  </div>
+                  <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
+                    color: 'black', fontSize: '48px'
+                  }}> Welcome to L V Prasad Cloud</h1>
+                  {showButton}
                 </div>
-                <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                  color: 'black', fontSize: '48px'
-                }}> Welcome to L V Prasad Cloud</h1>
                 <h3>All files uploaded at {' '}{getLocalDate(files.patient.lastUploadAt)} {' '} of patient{' '}
                   {files.patient.mrNo}</h3>
+
               </div>
+              <FileRow files={files.files} patient={files.patient}/>
             </div>
-            <FileRow files={files.files} patient={files.patient}/>
-          </div>
         )
       }
     }
     return (
-      <div className="displayFiles">
-        {content}
+      <div className="displayFiles wrapper d-flex justify-content-between col-md-12">
+        <div>
+          {content}
+        </div>
+        <div className='d-flex justify-content-end'>
+          {sidebar}
+        </div>
       </div>
     );
   }
@@ -102,6 +181,7 @@ class Display extends Component {
 Display.propTypes = {
   home: PropTypes.object.isRequired,
   getFilesByFolder: PropTypes.func.isRequired,
+  downloadSelectedFiles: PropTypes.func.isRequired
 }
 const mapStateToProps = state => ({
   home: state.home,
@@ -133,4 +213,4 @@ const mapStateToProps = state => ({
 // {/*    </tr>*/}
 // {/*  )*/}
 // {/*})}*/}
-export default connect(mapStateToProps, { getFilesByFolder })(Display);
+export default connect(mapStateToProps, { getFilesByFolder, downloadSelectedFiles })(Display);

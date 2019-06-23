@@ -216,7 +216,48 @@ router.get('/downloadFile/:id', passport.authenticate('lvpei',{session: false}),
 //   })
 // })
 
+router.post('/downloadSelected',passport.authenticate('lvpei',{session: false}), (req, res) => {
+  console.log(req.body.selected)
+  Patient.findById(req.body.id).then(patient => {
+    gfs.files.find().toArray(async (err, files) => {
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          err: 'No files exist'
+        })
+      }
+      let archive = archiver('zip')
+      let dummy = []
+      // archive.on('error', function (err) {
+      //   throw err
+      // })
+      archive.pipe(res)
+      files.forEach(file => {
+        dummy.push(new Promise((resolve, reject) => {
+          let nm = patient._id.toString()
+          let start = file.filename.indexOf(';')
+          let last = file.filename.lastIndexOf(';')
+          if (file.filename.substr(start+1, nm.length) === nm && req.body.selected.includes(file.filename)) {
+            let readstream = gfs.createReadStream({
+              filename: file.filename,
+              root: 'uploads'
+            })
+            res.set('Content-Type', file.contentType)
+            res.set('Content-Disposition', 'attachment; filename="' + file.contentType + '"')
+            archive.append(readstream, { name: file.filename.substring(last+1, file.filename.length) })
+            resolve(readstream)
+          }
+        }).catch(err => {
+          console.log({ err: 'New error has occurred' })
+        }))
+      })
 
+      await Promise.all([archive.finalize()]).then(res => {
+      }).catch(err => {
+        console.log('error: '+err)
+      })
+    })
+  })
+})
 // @route Download multiple files
 // @desc  Download Complete Folder(ZIP)
 router.get('/downloadFolder/:id', passport.authenticate('lvpei',{session: false}), (req, res) => {

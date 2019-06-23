@@ -198,9 +198,27 @@ export const getAllPatients = () => dispatch => {
     })
   )
 }
+export const downloadSelectedFiles = (id) => dispatch => {
+  console.log('In download folder')
+  axios.post(`/api/upload/downloadSelected`,(id), { responseType: 'blob' }).then(res => {
+    console.log(res)
+    const url = window.URL.createObjectURL(new Blob([res.data]))
+    const link = document.createElement('a')
+    console.log(url)
+    link.href = url
+    link.setAttribute('download',
+      id.selected[0].substring(id.selected[0].indexOf(';')+1, id.selected[0].lastIndexOf(';')) + '.zip')
+    document.body.appendChild(link)
+    link.click()
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES,
+      payload: err.data
+    })
+  )
+}
 export const getFilesByFolder = (id) => dispatch => {
   dispatch(setLoading())
-  dispatch(homeLoading())
   axios.get(`/api/upload/files/${id}`).then(res => {
     dispatch({
       type: GET_FILES_SINGLE_FOLDER,
