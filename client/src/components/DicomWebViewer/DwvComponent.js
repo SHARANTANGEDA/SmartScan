@@ -129,14 +129,14 @@ class DwvComponent extends Component {
 
     let self = this;
     app.addEventListener("load-progress", event => {
-      console.log({progress:event.loaded})
+      // console.log({progress:event.loaded})
       self.setState({loadProgress: event.loaded});
     });
     app.addEventListener("load-end", event => {
       // set data loaded flag
       self.setState({dataLoaded: true});
       // set dicom tags
-      console.log({event:event})
+      // console.log({event:event})
       self.setState({tags: app.getTags()});
       // set the selected tool
       if (app.isMonoSliceData() && app.getImage().getNumberOfFrames() === 1) {
@@ -146,13 +146,13 @@ class DwvComponent extends Component {
       }
     });
     // store
-    console.log({dwvApp: app.getImage()})
+    // console.log({dwvApp: app.getImage()})
     this.setState({dwvApp: app});
   }
 
   onChangeTool = tool => {
     if ( this.state.dwvApp ) {
-      console.log({ChangeTool:tool})
+      // console.log({ChangeTool:tool})
       this.setState({selectedTool: tool});
       this.state.dwvApp.onChangeTool({currentTarget: { value: tool } });
     }

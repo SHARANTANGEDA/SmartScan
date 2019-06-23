@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  console.log({'File Reducer':action.payload});
+  // console.log({'File Reducer':action.payload});
   switch (action.type) {
     case FOLDER_LOADING:
       console.log("IN File Reducer loading")

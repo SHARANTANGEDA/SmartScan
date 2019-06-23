@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  console.log({'HomeReducer':action.payload});
+  // console.log({'HomeReducer':action.payload});
   switch (action.type) {
     case HOME_LOADING:
       return {

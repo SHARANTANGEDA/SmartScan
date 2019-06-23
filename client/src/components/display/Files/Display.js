@@ -36,7 +36,7 @@ class Display extends Component {
     this.setState({show:true, patientId:this.props.folder.files.patient._id})
   }
   onSelectedDownload (e) {
-    console.log(this.state.selected)
+    // console.log(this.state.selected)
     this.props.downloadSelectedFiles({selected:this.state.selected, id:this.state.patientId})
     this.setState({downloading: true})
 
