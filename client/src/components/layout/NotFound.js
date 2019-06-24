@@ -19,9 +19,9 @@ class NotFound extends Component {
                 <Link to='/dashboard' className='btn' style={{background: 'white', color: 'green'}}>
                   <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
               </div>
-              <h2 className="grid--cell fl1 fs-headline1 text-center" style={{
-                color: 'black'
-              }}> Welcome to L V Prasad Cloud</h2>
+              {/*<h2 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
+              {/*  color: 'black'*/}
+              {/*}}> Welcome to L V Prasad Cloud</h2>*/}
             </div>
             <div className='row'>
               <img

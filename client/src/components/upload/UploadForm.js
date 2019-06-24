@@ -159,12 +159,23 @@ class UploadForm extends Component {
                     <td><h5>{patientData.patient.lastName}</h5></td>
                   </tr>
                   <tr>
-                    <td><h5>LVPEI Centre Code</h5></td>
-                    <td><h5>{patientData.patient.centerCode}</h5></td>
+                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>Age/Gender:</h6></td>
+                    <td><h5>{patientData.patient.age+'/'+patientData.patient.gender}</h5></td>
                   </tr>
                   <tr>
-                    <td><h5>Mobile Number</h5></td>
-                    <td><h5>{patientData.patient.phone}</h5></td>
+                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>Location:</h6></td>
+                    <td><h5>{patientData.patient.address}</h5></td>
+                  </tr>
+                  <tr>
+                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>District:</h6></td>
+                    <td><h5>{patientData.patient.district}</h5></td>
+                  </tr>
+                  <tr>
+                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>State:</h6></td>
+                    <td><h5>{patientData.patient.state}</h5></td>
+                  </tr><tr>
+                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>Country:</h6></td>
+                    <td><h5>{patientData.patient.country}</h5></td>
                   </tr>
                   </tbody>
                 </table>

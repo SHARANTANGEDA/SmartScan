@@ -275,7 +275,7 @@ class FileItem extends Component {
               onRequestClose={this.closeModal}
               style={customStyles}
               contentLabel="Patient Data"
-              shouldCloseOnOverlayClick={false}
+              shouldCloseOnOverlayClick={true}
               ariaHideApp={false}
             >{modalContent}</Modal>
           </div>
@@ -286,7 +286,7 @@ class FileItem extends Component {
           onRequestClose={this.closeModal}
           style={customStylesII}
           contentLabel="Dicom File"
-          shouldCloseOnOverlayClick={false}
+          shouldCloseOnOverlayClick={true}
           ariaHideApp={false}
         >{displayFile}</Modal>
       </div>

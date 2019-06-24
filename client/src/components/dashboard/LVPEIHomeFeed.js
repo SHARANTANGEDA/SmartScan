@@ -72,13 +72,13 @@ class LVPEIHomeFeed extends Component {
           <table className="table table-bordered table-striped mb-0">
             <thead>
             <tr>
-              <th scope="col">Centre</th>
-              <th scope="col">MR No</th>
-              <th scope="col">Patient Name</th>
-              <th scope="col">Age/Gender</th>
-              <th scope="col">Date of last upload</th>
-              <th scope="col">View</th>
-              <th scope="col">Delete</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Centre</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>MR No</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Patient Name</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Age/Gender</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Date of last upload</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>View</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Delete</th>
             </tr>
             </thead>
             <tbody>

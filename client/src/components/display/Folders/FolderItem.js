@@ -122,13 +122,13 @@ class FolderItem extends Component {
     return (
       //onTouchStart="this.classList.toggle('hover');
         <tr>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.centreShortCode}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.mrNo}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.firstName+' '+folder.lastName}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.age+'/'+folder.gender}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(folder.lastUploadAt)}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.scanType}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{folder.remarks}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.centreShortCode}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.mrNo}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.firstName+' '+folder.lastName}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px'  }}>{folder.age+'/'+folder.gender}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{getLocalDate(folder.lastUploadAt)}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.scanType}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.remarks}</span></td>
 
           <td>
             <button onClick={this.loadFolders} className='btn btn-sm'

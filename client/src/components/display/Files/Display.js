@@ -81,7 +81,7 @@ class Display extends Component {
     if(!this.state.show) {
       showButton=(<div style={{marginRight:'10px', marginTop:'20px'}}>
         <button className='btn btn-sm' style={{background:'green', color:'white'}}
-                onClick={this.openSidebar}>Select Folders for download</button>
+                onClick={this.openSidebar}>Select files for download</button>
       </div>)
     }else {
       showButton=null
@@ -148,9 +148,9 @@ class Display extends Component {
                 <Link to={`/displayFolder/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
                   <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
               </div>
-              <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                color: 'black'
-              }}> Welcome to L V Prasad Cloud</h1>
+              {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
+              {/*  color: 'black'*/}
+              {/*}}> Welcome to L V Prasad Cloud</h1>*/}
             </div>
           </div>
           <div>
@@ -166,9 +166,9 @@ class Display extends Component {
                     <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn' style={{background: 'white', color: 'green'}}>
                       <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
                   </div>
-                  <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                    color: 'black'
-                  }}> Welcome to L V Prasad Cloud</h1>
+                  {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
+                  {/*  color: 'black'*/}
+                  {/*}}> Welcome to L V Prasad Cloud</h1>*/}
                   {showButton}
                 </div>
                 <h5>All files uploaded at {' '}{getLocalDate(files.patient.lastUploadAt)} {' '} of patient{' '}

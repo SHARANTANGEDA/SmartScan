@@ -12,9 +12,9 @@ class Success extends Component {
             <div className="inner-content">
               <div id="mainbar" className='row d-flex justify-content-center'>
                 <div className="grid text-center col-md-12">
-                  <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                    color: 'black'
-                  }}> Welcome to L V Prasad MRI Docs Cloud</h1>
+                  {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
+                  {/*  color: 'black'*/}
+                  {/*}}> Welcome to L V Prasad MRI Docs Cloud</h1>*/}
                 </div>
                 <div className="col-md-6 text-center" style={{width: '100%'}}>
                   <UploadSuccess/>

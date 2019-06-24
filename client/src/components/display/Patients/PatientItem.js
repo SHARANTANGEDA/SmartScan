@@ -50,11 +50,11 @@ class PatientItem extends Component {
     return (
       //onTouchStart="this.classList.toggle('hover');
         <tr>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{patient.centreShortCode}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{patient.mrNo}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{patient.firstName+' '+patient.lastName}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{patient.age+'/'+patient.gender}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(patient.lastUploadAt)}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.centreShortCode}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.mrNo}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.firstName+' '+patient.lastName}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.age+'/'+patient.gender}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{getLocalDate(patient.lastUploadAt)}</span></td>
           <td>
             <Link to={`displayFolder/${patient.mrNo}`}  className='btn btn-sm'
                   style={{ borderStyle: 'none', background: 'green', color:'white'}}>View</Link></td>

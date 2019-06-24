@@ -33,38 +33,42 @@ class DisplayFolder extends Component {
         allFoldersContent = (
           <FolderRow folders={folders.contents}/>
         )
-        heading = (<h3>All Uploads of{' '} {folders.mrNo}</h3>)
+        heading = (<h3 className='text-center'>{folders.contents[0].firstName+' '+folders.contents[0].lastName}</h3>)
       }
     }
     return (
       <div className="displayFolder">
         <div className="App-content row d-flex justify-content-center" >
           <div className="grid text-center col-md-12">
-            <div className='row '>
+
+            <div className='d-flex justify-content-start'>
               <div style={{margin: '10px'}}>
                 <Link to='/dashboard' className='btn' style={{background: 'white', color: 'green'}}>
                   <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
               </div>
-              <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                color: 'black'
-              }}> Welcome to L V Prasad Cloud</h1>
+
+              {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
+              {/*  color: 'black'*/}
+              {/*}}> Welcome to L V Prasad Cloud</h1>*/}
 
             </div>
-            {heading}
+            <div className='row d-flex justify-content-center'>
+              {heading}
+            </div>
           </div>
           <table className="table table-bordered table-striped mb-0">
             <thead>
             <tr>
-              <th scope="col">Centre</th>
-              <th scope="col">MR No</th>
-              <th scope="col">Patient Name</th>
-              <th scope="col">Age/Gender</th>
-              <th scope="col">Date of upload</th>
-              <th scope="col">type</th>
-              <th scope="col">Remarks</th>
-              <th scope="col">View</th>
-              <th scope="col">Download</th>
-              <th scope="col">Delete</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Centre</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>MR No</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Patient Name</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Age/Gender</th>
+              <th scope="col" style={{ fontSize: '10pt'}} >Date of upload</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>type</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Remarks</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>View</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Download</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Delete</th>
             </tr>
             </thead>
             <tbody>
