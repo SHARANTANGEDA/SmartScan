@@ -171,8 +171,13 @@ class Display extends Component {
                   {/*}}> Welcome to L V Prasad Cloud</h1>*/}
                   {showButton}
                 </div>
-                <h5>All files uploaded at {' '}{getLocalDate(files.patient.lastUploadAt)} {' '} of patient{' '}
-                  {files.patient.mrNo}</h5>
+                <div className='row d-flex justify-content-around'>
+                  <h5>Patient Name: {files.patient.firstName+' '+ files.patient.lastName}</h5>
+                  <h5>Uploaded at: {getLocalDate(files.patient.lastUploadAt)}</h5>
+                  <h5>MR No: {files.patient.mrNo}</h5>
+
+                </div>
+
 
               </div>
               <FileRow files={files.files} patient={files.patient} check={true}/>
