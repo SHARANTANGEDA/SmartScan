@@ -3,7 +3,7 @@ import axios from 'axios'
 import {
   CLEAR_ERRORS,
   FOLDER_LOADING,
-  GET_ACTIVE,
+  GET_ACTIVE, GET_DIAG_USER_HOME,
   GET_FILES,
   GET_FILES_SINGLE_FOLDER, GET_NAME_RESULTS,
   GET_PATIENTS_HOME,
@@ -152,6 +152,19 @@ export const getHomeFolders = (id) => dispatch => {
       type: NO_FILES,
       payload: err.data
     })
+  )
+}
+
+export const getDiagUserHome=() => dispatch => {
+  dispatch(homeLoading())
+  axios.get('/api/diagUser/home',)
+    .then(res => {
+      dispatch({
+        type: GET_DIAG_USER_HOME,
+        payload: res.data
+      })
+    }).catch(err =>
+   console.log(err)
   )
 }
 

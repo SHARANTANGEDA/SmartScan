@@ -270,7 +270,6 @@ class Navbar extends Component {
         <ul className="navbar-nav components" style={{ height: '100%' }}>
           <li className='nav-item' >
             <Link className='nav-link' to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
-              <i className="fas fa-home"/>
               Home
             </Link>
           </li>

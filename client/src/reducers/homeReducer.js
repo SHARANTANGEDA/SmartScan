@@ -1,5 +1,5 @@
 import {
-  GET_SA_HOME, GET_DA_HOME, HOME_LOADING, GET_PATIENT_DETAILS, GET_INVALID_MR, GET_MR
+  GET_SA_HOME, GET_DA_HOME, HOME_LOADING, GET_PATIENT_DETAILS, GET_INVALID_MR, GET_MR, GET_DIAG_USER_HOME
 } from '../actions/types'
 
 const initialState = {
@@ -7,6 +7,8 @@ const initialState = {
   loading: true,
   loading2: true,
   loading3: true,
+  loading4:true,
+  diagUserHome:null,
   patientData: null,
   invalid: false
 };
@@ -20,8 +22,10 @@ export default function(state = initialState, action) {
         loading: true,
         loading2:true,
         loading3: true,
+        loading4: true,
         home: null,
         patientData: null,
+        diagUserHome: null,
         invalid: false
       }
     case GET_MR:
@@ -54,6 +58,12 @@ export default function(state = initialState, action) {
         ...state,
         home: action.payload,
         loading: false
+      }
+    case GET_DIAG_USER_HOME:
+      return {
+        ...state,
+        diagUserHome: action.payload,
+        loading4: false
       }
 
     default:

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getAllPatients, getSADetails } from '../../actions/homeActions'
+import { getAllPatients, getDiagUserHome, getSADetails } from '../../actions/homeActions'
 import TextFieldGroup from '../common/TextFieldGroup'
 import Spinner from '../common/Spinner'
 import SADashboard from '../SuperAdmin/SADashboard'
@@ -56,6 +56,8 @@ class Dashboard extends Component {
       this.props.getSADetails(this.props.match.params.id)
     } else if (this.props.auth.user.role === 'diag_admin') {
       this.props.getDAHome(this.props.match.params.id)
+    } else if(this.props.auth.user.role === 'diag') {
+      this.props.getDiagUserHome(this.props.match.params.id)
     }
   }
 
@@ -211,11 +213,11 @@ class Dashboard extends Component {
       const { loading, home } = this.props.home
       let showContent, showModal,
         showForm = (
-          <div className="col-md-6" style={{ width: '100%' }}>
-            <h3 className='text-center' style={{
+          <div className="col-md-8" style={{ width: '100%' }}>
+            <h4 className='text-center' style={{
               borderStyle: 'solid', borderWidth: '2px', background: 'green',
               color: 'white', borderRadius: '2px'
-            }}>Enter the Patient MR number to upload files</h3>
+            }}>Enter Patient MR No to upload files</h4>
 
             <form noValidate onSubmit={this.onSubmit}>
               <TextFieldGroup placeholder="Enter Patient MR.No" error={errors.patient}
@@ -319,17 +321,63 @@ class Dashboard extends Component {
           }
         }
       } else if (this.props.auth.user.role === 'diag') {
-        showContent = (
-          <div className='row d-flex justify-content-center'>
-            <div className=" grid text-center col-md-12">
-              <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                color: 'black'
-              }}> Welcome L V Prasad MRI Cloud</h1>
+        const {loading4, diagUserHome} = this.props.home
+        if(loading4 || diagUserHome===null) {
+          showContent= (
+            <Spinner/>
+          )
+        }else {
+          showContent = (
+            <div className='row d-flex justify-content-center'>
+              <div className=" grid text-center col-md-12">
+                <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
+                  color: 'black'
+                }}> Welcome to L V Prasad MRI Cloud</h1>
+              </div>
+              <div className='row col-md-12 d-flex justify-content-center'>
+                <div className='row col-md-6 d-flex justify-content-around' style={{}}>
+                  <div className='row'>
+                    <Card style={{margin:'10px',
+                      backgroundColor: '#4caf50', marginRight: '20px', padding:'5px', minWidth:'250px'
+                    }}>
+                      <div className='row d-flex justify-content-between'>
+                        <div className=' col-md-8'>
+                          <p style={{ color: 'white' }}>My Uploads</p>
+                          <img style={{width:'auto'}} src={require('../../img/SAIcons/patient.png')} alt=''/>
+                        </div>
+                        <div className='d-flex justify-content-end col-md-4'>
+                          <h1 style={{ color: 'white', fontWeight: 'bold' }}>
+                            {diagUserHome.myUploads}
+                          </h1>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                  <div className='row'>
+                    <Card style={{margin:'10px',
+                      backgroundColor: '#f44336', marginRight: '20px', padding:'5px', minWidth:'250px'
+                    }}>
+                      <div className='row d-flex justify-content-between'>
+                        <div className=' col-md-8'>
+                          <p style={{ color: 'white' }}>Centre Uploads</p>
+                          <img style={{width:'auto'}} src={require('../../img/SAIcons/patient.png')} alt=''/>
+                        </div>
+                        <div className='d-flex justify-content-end col-md-4'>
+                          <h1 style={{ color: 'white', fontWeight: 'bold' }}>
+                            {diagUserHome.totalUploads}
+                          </h1>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                </div>
+                <div className='row d-flex justify-content-center col-md-6'>
+                  {showForm}
+                </div>
+              </div>
             </div>
-            <div className='d-flex justify-content-center col-md-12'>
-              {showForm}
-            </div>
-          </div>)
+          )
+        }
       }
 
       if (!this.state.uploadModal) {
@@ -371,39 +419,44 @@ class Dashboard extends Component {
                   ><i className="fa fa-times fa-2x" aria-hidden="true"/>
                   </button>
                 </div>
-
-                <div className="col-md-6" style={{ width: '100%' }}>
-                  <table className="table ">
-                    <tbody>
-                    <tr>
+                <div className="col-md-12" style={{ width: '100%' }}>
+                  <div className='row'>
+                    <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>First Name:</h6></td>
-                      <td><h5>{patientData.patient.firstName}</h5></td>
-                    </tr>
-                    <tr>
+                      <td><h6>{patientData.patient.firstName}</h6></td>
+                    </div>
+                    <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>Last Name:</h6></td>
-                      <td><h5>{patientData.patient.lastName}</h5></td>
-                    </tr>
-                    <tr>
+                      <td><h6>{patientData.patient.lastName}</h6></td>
+                    </div>
+                  </div>
+                  <div className='row' >
+                    <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>Age/Gender:</h6></td>
-                      <td><h5>{patientData.patient.age+'/'+patientData.patient.gender}</h5></td>
-                    </tr>
-                    <tr>
-                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>Location:</h6></td>
-                      <td><h5>{patientData.patient.address}</h5></td>
-                    </tr>
-                    <tr>
+                      <td><h6>{patientData.patient.age+'/'+patientData.patient.gender}</h6></td>
+                    </div>
+                    <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
+                      <td><h6 style={{color: 'grey',opacity:'0.9'}}>CentreCode:</h6></td>
+                      <td><h6>{patientData.patient.address}</h6></td>
+                    </div>
+                  </div>
+                  <div className='row' >
+                    <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>District:</h6></td>
-                      <td><h5>{patientData.patient.district}</h5></td>
-                    </tr>
-                    <tr>
+                      <td><h6>{patientData.patient.district}</h6></td>
+                    </div>
+                    <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>State:</h6></td>
-                      <td><h5>{patientData.patient.state}</h5></td>
-                    </tr><tr>
+                      <td><h6>{patientData.patient.state}</h6></td>
+                    </div>
+                  </div>
+                  <div className='row' >
+                    <div className='col-md-10 d-flex justify-content-between' style={{borderStyle:'groove', margin:'10px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>Country:</h6></td>
-                      <td><h5>{patientData.patient.country}</h5></td>
-                    </tr>
-                    </tbody>
-                  </table>
+                      <td><h6>{patientData.patient.country}</h6></td>
+                    </div>
+                  </div>
+
                   <div className='row d-flex justify-content-around'>
                     <button onClick={this.openNextModal} className='btn btn-sm'
                             style={{ background: 'green', color: 'white' }}>Continue to upload
@@ -414,6 +467,7 @@ class Dashboard extends Component {
                   </div>
 
                 </div>
+
               </div>
             )
           }
@@ -466,6 +520,7 @@ Dashboard.propTypes = {
   deleteResidual: PropTypes.func.isRequired,
   continueToUpload: PropTypes.func.isRequired,
   getAllPatients: PropTypes.func.isRequired,
+  getDiagUserHome: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   folder: PropTypes.object.isRequired
 }
@@ -476,5 +531,5 @@ const mapStateToProps = state => ({
 })
 export default connect(mapStateToProps, { getSADetails, getDAHome,
   getPatientDetails, continueToUpload,
-  deleteResidual, getAllPatients
+  deleteResidual, getAllPatients, getDiagUserHome
 })(Dashboard)

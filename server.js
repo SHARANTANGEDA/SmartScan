@@ -7,6 +7,7 @@ const users = require('./routes/api/users');
 const uploads = require('./routes/api/upload');
 const superAdmin = require('./routes/api/superAdmin')
 const diagAdmin  =require('./routes/api/diagAdmin')
+const diagUser = require('./routes/api/diagUser')
 // const MongoClient = require('mongodb').MongoClient;
 
 const path = require('path');
@@ -34,6 +35,7 @@ app.use('/api/users',users);
 app.use('/api/upload',uploads)
 app.use('/api/superAdmin',superAdmin)
 app.use('/api/diagAdmin',diagAdmin)
+app.use('/api/diagUser',diagUser)
 
 //Server static assets if in production
 if(process.env.NODE_ENV === 'production') {
