@@ -139,46 +139,52 @@ class UploadForm extends Component {
               <div className="grid text-center col-md-10">
                 <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
                   color: 'black'
-                }}> Confirm the Patient Details below to proceed</h3>
+                }}> Confirm Details</h3>
               </div>
               <div className='col-md-2'>
-                <button onClick={this.closeModal} style={{ borderStyle: 'none', background: 'white', color: 'red' }}
+                <button onClick={this.closeFlushModal} style={{ borderStyle: 'none', background: 'white', color: 'red' }}
                 ><i className="fa fa-times fa-2x" aria-hidden="true"/>
                 </button>
               </div>
 
-              <div className="col-md-6" style={{ width: '100%' }}>
-                <table className="table table-bordered table-striped mb-0">
-                  <tbody>
-                  <tr>
-                    <td><h5>First Name</h5></td>
-                    <td><h5>{patientData.patient.firstName}</h5></td>
-                  </tr>
-                  <tr>
-                    <td><h5>Last Name</h5></td>
-                    <td><h5>{patientData.patient.lastName}</h5></td>
-                  </tr>
-                  <tr>
+              <div className="col-md-12" style={{ width: '100%' }}>
+                <div className='row'>
+                  <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
+                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>First Name:</h6></td>
+                    <td><h6>{patientData.patient.firstName}</h6></td>
+                  </div>
+                  <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
+                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>Last Name:</h6></td>
+                    <td><h6>{patientData.patient.lastName}</h6></td>
+                  </div>
+                </div>
+                <div className='row' >
+                  <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>Age/Gender:</h6></td>
-                    <td><h5>{patientData.patient.age+'/'+patientData.patient.gender}</h5></td>
-                  </tr>
-                  <tr>
-                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>Location:</h6></td>
-                    <td><h5>{patientData.patient.address}</h5></td>
-                  </tr>
-                  <tr>
+                    <td><h6>{patientData.patient.age+'/'+patientData.patient.gender}</h6></td>
+                  </div>
+                  <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
+                    <td><h6 style={{color: 'grey',opacity:'0.9'}}>CentreCode:</h6></td>
+                    <td><h6>{patientData.patient.address}</h6></td>
+                  </div>
+                </div>
+                <div className='row' >
+                  <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>District:</h6></td>
-                    <td><h5>{patientData.patient.district}</h5></td>
-                  </tr>
-                  <tr>
+                    <td><h6>{patientData.patient.district}</h6></td>
+                  </div>
+                  <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>State:</h6></td>
-                    <td><h5>{patientData.patient.state}</h5></td>
-                  </tr><tr>
+                    <td><h6>{patientData.patient.state}</h6></td>
+                  </div>
+                </div>
+                <div className='row' >
+                  <div className='col-md-10 d-flex justify-content-between' style={{borderStyle:'groove', margin:'10px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>Country:</h6></td>
-                    <td><h5>{patientData.patient.country}</h5></td>
-                  </tr>
-                  </tbody>
-                </table>
+                    <td><h6>{patientData.patient.country}</h6></td>
+                  </div>
+                </div>
+
                 <div className='row d-flex justify-content-around'>
                   <button onClick={this.openNextModal} className='btn btn-sm'
                           style={{ background: 'green', color: 'white' }}>Continue to upload
@@ -211,8 +217,8 @@ class UploadForm extends Component {
       }
     }
     return (
-      <div className="container uploadForm d-flex justify-content-center" >
-        <div className="col-md-6" style={{ width: '100%' }}>
+      <div className="container-fluid uploadForm d-flex justify-content-center" >
+        <div className="col-md-4" style={{ width: '100%' }}>
           <h3 className='text-center' style={{
             borderStyle: 'solid', borderWidth: '2px', background: 'green',
             color: 'white', borderRadius: '2px'

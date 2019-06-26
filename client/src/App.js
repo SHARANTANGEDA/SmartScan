@@ -33,14 +33,14 @@ class App extends Component {
     return (
       <Provider store={store}>
       <Router>
-      <div className="App">
+      <div className="App w-100">
         <NavBar/>
         <Switch>
         <Route exact path="/" component={Landing}/>
         <Route exact path='/contactUs' component={ContactUs}/>
           <Route component={Routes}/>
         </Switch>
-        <Footer/>
+        {/*<Footer/>*/}
       </div>
       </Router>
       </Provider>

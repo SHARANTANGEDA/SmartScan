@@ -8,7 +8,8 @@ import Spinner from '../common/Spinner'
 
 class SADashboard extends Component {
   render () {
-    let { lvpei, diag_admin, centre, diagLen , patientsLen} = this.props.home
+    let { lvpei, diag_admin, centre, diagLen , patientsLen, CTS, MRIS,
+      CTA,MRIA,PETS, USGA, BT} = this.props.home
     if (this.props.home.lvpei === null || this.props.home.centre === null ||
       this.props.home.diag_admin === null || this.props.home.diagLen === null) {
       return (
@@ -16,88 +17,182 @@ class SADashboard extends Component {
       )
     } else {
       return (
-        <div className='row d-flex justify-content-between' style={{width:'100% '}}>
-          <div className='row col-md-12 d-flex justify-content-between' style={{margin: '5px'}}>
+        <div className=' ' style={{minWidth:'100%', minHeight:'100%'}}>
+          <div className='row d-flex justify-content-between' style={{margin: '5px'}}>
               <Card style={{
-                backgroundColor: '#00acc1', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
+                backgroundColor: '#f44336', marginRight: '20px', padding:'5px', minWidth:'250px'//, maxHeight:
+                // '100px',
+                // maxWidth:
+                // '250px'
               }}>
-                <div color="warning" className='text-center'>
-                  <p className='' style={{ color: 'white' }}>Number of LVPEI Accounts</p>
-                  <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
-                    {lvpei.length}
-                  </h1>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                      <p style={{ color: 'white' }}>LVPEI Users</p>
+                    <img style={{width:'auto'}} src={require('../../img/SAIcons/doctor.png')} alt=''/>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{ color: 'white', fontWeight: 'bold' }}>
+                      {lvpei.length}
+                    </h1>
+                  </div>
                 </div>
               </Card>
-              <Card style={{
-                backgroundColor: '#f44336', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
-              }}>
-                <div color="warning" className='text-center'>
-                  <p className='' style={{ color: 'white' }}>Number of Diagnostic centers</p>
-                  <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
+            <Card style={{
+              backgroundColor: '#00acc1', marginRight: '20px', padding:'5px', minWidth:'250px' }}>
+              <div className='row d-flex justify-content-between'>
+                <div className=' col-md-8'>
+                  <p style={{ color: 'white' }}>Centres</p>
+                  <img style={{width:'auto'}} src={require('../../img/SAIcons/medical-history.png')} alt=''/>
+                </div>
+                <div className='d-flex justify-content-end col-md-4'>
+                  <h1 style={{ color: 'white', fontWeight: 'bold' }}>
                     {diag_admin.length}
                   </h1>
                 </div>
-              </Card>
-              <Card style={{
-                backgroundColor: '#4caf50', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
-              }}>
-                <div color="warning" className='text-center'>
-                  <p className='' style={{ color: 'white' }}>Total Number of Center Accounts</p>
-                  <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
-                    {diagLen}
-                  </h1>
                 </div>
               </Card>
               <Card style={{
-                backgroundColor: '#ffa726', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
+                backgroundColor: '#4caf50', marginRight: '20px', padding:'5px', minWidth:'250px'
               }}>
-                <div color="warning" className='text-center'>
-                  <p className='' style={{ color: 'white' }}>Patient Details On Cloud</p>
-                  <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
-                    {patientsLen}
-                  </h1>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p style={{ color: 'white' }}>Center Users</p>
+                    <img style={{width:'auto'}} src={require('../../img/SAIcons/centerUser.png')} alt=''/>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{ color: 'white', fontWeight: 'bold' }}>
+                      {diagLen}
+                    </h1>
+                  </div>
+                </div>
+              </Card>
+              <Card style={{
+                backgroundColor: '#ffa726', marginRight: '20px', padding:'5px', minWidth:'250px'
+              }}>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p style={{ color: 'white' }}>Patient Uploads</p>
+                    <img style={{width:'auto'}} src={require('../../img/SAIcons/patient.png')} alt=''/>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{ color: 'white', fontWeight: 'bold' }}>
+                      {patientsLen}
+                    </h1>
+                  </div>
                 </div>
               </Card>
             </div>
-          <div className='row col-md-12 d-flex justify-content-between'>
-            <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
-              <h4 className='text-center' style={{
-                borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
-                , borderRadius: '2px'
-              }}>L V Prasad Users Access Control</h4>
-              <table className="table table-bordered table-striped mb-0">
-                <thead>
-                <tr>
-                  <th scope="col">Username</th>
-                  <th scope="col">Created On</th>
-                  <th scope="col">Manage</th>
-                </tr>
-                </thead>
-                <tbody>
-                <ShowTable data={lvpei} index={{ type: 'lvpei' }}/>
-                </tbody>
-              </table>
+          <div style={{
+            backgroundColor: '#d4d4d4', marginRight: '20px', padding:'5px', minWidth:'250px' }}
+                className='row  d-flex justify-content-between'>
+            <div className='col-6 col-md-3'>
+              <Card className='row' style={{ color: 'black',
+                 marginRight: '20px', padding:'5px', minWidth:'250px', height:'100px'
+              }}>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p >CT Scan</p>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{fontWeight: 'bold' }}>
+                      {CTS.length}
+                    </h1>
+                  </div>
+                </div>
+              </Card>
+              <Card className='row' style={{
+                color: 'black', marginRight: '20px', padding:'5px', minWidth:'250px', height:'100px'}}>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p >MRI Scan</p>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{fontWeight: 'bold' }}>
+                      {MRIS.length}
+                    </h1>
+                  </div>
+                </div>
+              </Card>
+            </div>
+            <div className='col-6 col-md-3'>
+              <Card className='row' style={{
+                color: 'black', marginRight: '20px', padding:'5px', minWidth:'250px', height:'100px'
+              }}>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p >CT Angiography</p>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{fontWeight: 'bold' }}>
+                      {CTA.length}
+                    </h1>
+                  </div>
+                </div>
+              </Card>
+              <Card className='row' style={{color: 'black', marginRight: '20px', padding:'5px', minWidth:'250px'
+                , height:'100px'}}>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p >MRI Angiography</p>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{fontWeight: 'bold' }}>
+                      {MRIA.length}
+                    </h1>
+                  </div>
+                </div>
+              </Card>
+            </div>
+            <div className='col-6 col-md-3'>
+              <Card className='row' style={{color: 'black', marginRight: '20px', padding:'5px', minWidth:'250px'
+                , height:'100px'}}>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p >PET Scan</p>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{fontWeight: 'bold' }}>
+                      {PETS.length}
+                    </h1>
+                  </div>
+                </div>
+              </Card>
+              <Card className='row' style={{color: 'black', marginRight: '20px', padding:'5px', minWidth:'250px'
+                , height:'100px'}}>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p >USG Adbomen</p>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{ fontWeight: 'bold' }}>
+                      {USGA.length}
+                    </h1>
+                  </div>
+                </div>
+              </Card>
+            </div>
+            <div className='col-6 col-md-3'>
+              <Card className='row' style={{color: 'black', marginRight: '20px', padding:'5px', minWidth:'250px'
+                , height:'100px'}}>
+                <div className='row d-flex justify-content-between'>
+                  <div className=' col-md-8'>
+                    <p >Blood Tests</p>
+                  </div>
+                  <div className='d-flex justify-content-end col-md-4'>
+                    <h1 style={{fontWeight: 'bold' }}>
+                      {BT.length}
+                    </h1>
+                  </div>
+                </div>
+              </Card>
             </div>
 
-            <div className="table-wrapper-scroll-y my-custom-scrollbar col-md-6">
-              <h4 className='text-center' style={{
-                borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
-                , borderRadius: '2px'
-              }}>Diagnostic Centre Access Control</h4>
-              <table className="table table-bordered table-striped mb-0">
-                <thead>
-                <tr>
-                  <th scope="col">Centre Name</th>
-                  <th scope="col">User name</th>
-                  <th scope="col">Control Access</th>
-                </tr>
-                </thead>
-                <tbody>
-                <ShowTable data={centre} index={{ type: 'centre' }}/>
-                </tbody>
-              </table>
-            </div>
           </div>
+          <footer className="text-white mt-5 p-4 text-center" style={{ height:'60px',left:0,
+            bottom:0,background:'#008cff',position: 'absolute',
+            right:0}}>
+            Copyright &copy; {new Date().getFullYear()} L V Prasad Eye Institute
+          </footer>
         </div>
       )
     }

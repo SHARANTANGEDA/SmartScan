@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import {
   CLEAR_ERRORS, GET_ACTIVE,
-  GET_ERRORS, GET_INACTIVE, HOME_LOADING, ON_POST_FAIL, VIEW_LOADING
+  GET_ERRORS, GET_INACTIVE, GET_LVPEI_USERS, HOME_LOADING, ON_POST_FAIL, VIEW_LOADING
 } from './types'
 
 
@@ -18,6 +18,28 @@ export const addDiagnostics = (userData) => dispatch => {
     })
   )
 };
+
+export const ControlLvpeiUsers = () => dispatch => {
+  dispatch(setLoading())
+  axios.get('/api/superAdmin/lvpeiUsers').then(res => {
+    dispatch({
+      type:GET_LVPEI_USERS,
+      payload: res.data
+    })
+  }).catch(err => {
+    console.log(err)})
+}
+
+export const InactiveLVPEIUsers = () => dispatch => {
+  dispatch(setLoading())
+  axios.get('/api/superAdmin/deAssignedUsers').then(res => {
+    dispatch({
+      type:GET_LVPEI_USERS,
+      payload: res.data
+    })
+  }).catch(err => {
+    console.log(err)})
+}
 
 export const removeDiagAccess = (userData) => dispatch => {
   dispatch(clearErrors())
@@ -44,6 +66,33 @@ export const grantDiagAccess = (userData) => dispatch => {
     })
   )
 };
+
+export const removeUserAccess = (userData) => dispatch => {
+  dispatch(clearErrors())
+  axios.post('/api/superAdmin/removeLVPEIAccess', userData)
+    .then(res => {
+      window.location.href='/dashboard'
+    }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  )
+};
+
+export const grantUserAccess = (userData) => dispatch => {
+  dispatch(clearErrors())
+  axios.post('/api/superAdmin/grantLVPEIAccess', userData)
+    .then(res => {
+      window.location.href='/dashboard'
+    }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  )
+};
+
 
 export const deleteLVPEIUser = (userData) => dispatch => {
   dispatch(clearErrors())

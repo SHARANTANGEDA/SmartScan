@@ -160,26 +160,18 @@ class Display extends Component {
       }else {
         content=(
             <div className="App-content row d-flex justify-content-center" >
-              <div className="grid text-center col-md-12">
-                <div className='row d-flex justify-content-between'>
-                  <div style={{margin: '10px'}}>
-                    <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn' style={{background: 'white', color: 'green'}}>
-                      <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
-                  </div>
-                  {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
-                  {/*  color: 'black'*/}
-                  {/*}}> Welcome to L V Prasad Cloud</h1>*/}
-                  {showButton}
-                </div>
-                <div className='row d-flex justify-content-around'>
+              <nav className='navbar navbar-expand-lg justify-content-between col-md-12'
+                   style={{background:'white', width:'100%'}}>
+                <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
+                      style={{background: 'white', color: 'green'}}>
+                  <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
                   <h5>Patient Name: {files.patient.firstName+' '+ files.patient.lastName}</h5>
                   <h5>Uploaded at: {getLocalDate(files.patient.lastUploadAt)}</h5>
                   <h5>MR No: {files.patient.mrNo}</h5>
+                {showButton}
 
-                </div>
+              </nav>
 
-
-              </div>
               <FileRow files={files.files} patient={files.patient} check={true}/>
             </div>
         )

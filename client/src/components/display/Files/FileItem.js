@@ -9,7 +9,6 @@ import DwvComponent from '../../DicomWebViewer/DwvComponent'
 import dwv from 'dwv'
 import '../../DicomWebViewer/DwvComponent.css'
 import axios from 'axios'
-import { Checkbox } from 'react-checkbox-group'
 
 const customStyles = {
   content: {
@@ -65,7 +64,7 @@ class FileItem extends Component {
       FileModalIsOpen: false,
       uploadModal: false,
       file: null,
-      tools: [ 'WindowLevel'],
+      tools: ['WindowLevel'],
       selectedTool: 'Select Tool',
       loadProgress: 0,
       dataLoaded: false,
@@ -82,48 +81,49 @@ class FileItem extends Component {
     this.onClick = this.onClick.bind(this)
     this.canvasRef = React.createRef()
   }
+
   componentDidMount () {
     // this.props.displayDicom({ filename: this.props.file.filename })
     if (!this.state.loaded) {
       axios.post('/api/upload/displayDicom', { filename: this.props.file.filename },
         { responseType: 'arraybuffer' }).then(res => {
         if (res !== null) {
-            try {
-              console.log({ 'In build': this.props.view })
-              let app = new dwv.App()
-              app.init({
-                'containerDivId': this.props.file.filename.toString(),
-                'tools': this.state.tools,
-                'shapes': ['Ruler'],
-                'isMobile': true
-              })
-              const canvas = this.canvasRef.current
-              if (canvas!==null) {
-                app.loadImageObject([{ name: '', filename: '', data: res.data }])
-                const ctx = canvas.getContext('2d')
-                app.getImage().onload = () => {
-                  ctx.drawImage(app.getImage(), 0, 0)
-                }
-                let self = this
-                app.addEventListener('load-progress', event => {
-                  console.log({ progress: event.loaded })
-                  self.setState({ loadProgress: event.loaded })
-                })
-                app.addEventListener('load-end', event => {
-                  self.setState({ dataLoaded: true })
-                  self.setState({ tags: app.getTags() })
-                  if (app.isMonoSliceData() && app.getImage().getNumberOfFrames() === 1) {
-                    self.setState({ selectedTool: 'ZoomAndPan' })
-                  } else {
-                    self.setState({ selectedTool: 'Scroll' })
-                  }
-                })
-                this.setState({ dwvApp: app, loaded: true })
+          try {
+            console.log({ 'In build': this.props.view })
+            let app = new dwv.App()
+            app.init({
+              'containerDivId': this.props.file.filename.toString(),
+              'tools': this.state.tools,
+              'shapes': ['Ruler'],
+              'isMobile': true
+            })
+            const canvas = this.canvasRef.current
+            if (canvas !== null) {
+              app.loadImageObject([{ name: '', filename: '', data: res.data }])
+              const ctx = canvas.getContext('2d')
+              app.getImage().onload = () => {
+                ctx.drawImage(app.getImage(), 0, 0)
               }
-
-            }catch(e) {
-              console.log(e)
+              let self = this
+              app.addEventListener('load-progress', event => {
+                console.log({ progress: event.loaded })
+                self.setState({ loadProgress: event.loaded })
+              })
+              app.addEventListener('load-end', event => {
+                self.setState({ dataLoaded: true })
+                self.setState({ tags: app.getTags() })
+                if (app.isMonoSliceData() && app.getImage().getNumberOfFrames() === 1) {
+                  self.setState({ selectedTool: 'ZoomAndPan' })
+                } else {
+                  self.setState({ selectedTool: 'Scroll' })
+                }
+              })
+              this.setState({ dwvApp: app, loaded: true })
             }
+
+          } catch (e) {
+            console.log(e)
+          }
         }
       }).catch(err => {
           console.log({ err: err })
@@ -160,7 +160,7 @@ class FileItem extends Component {
   render () {
     const { file, patient } = this.props
     const { active, loading } = this.props.view
-    const {loadProgress} = this.state
+    const { loadProgress } = this.state
     let displayFile = null
     if (loading || active === null) {
       displayFile = null
@@ -178,37 +178,37 @@ class FileItem extends Component {
         <table className="table">
           <tbody>
           <tr>
-            <td><h6 style={{color: 'grey',opacity:'0.9'}}>Uploaded By:</h6></td>
+            <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Uploaded By:</h6></td>
             <td><h6>{patient.diagCentreName}</h6></td>
           </tr>
           <tr>
-            <td><h6 style={{color: 'grey',opacity:'0.9'}}>name:</h6></td>
-            <td><h6>{patient.firstName+' '+patient.lastName}</h6></td>
+            <td><h6 style={{ color: 'grey', opacity: '0.9' }}>name:</h6></td>
+            <td><h6>{patient.firstName + ' ' + patient.lastName}</h6></td>
           </tr>
           <tr>
-            <td><h6 style={{color: 'grey',opacity:'0.9'}}>age/gender</h6></td>
-            <td><h6>{patient.age+'/'+patient.gender}</h6></td>
+            <td><h6 style={{ color: 'grey', opacity: '0.9' }}>age/gender</h6></td>
+            <td><h6>{patient.age + '/' + patient.gender}</h6></td>
           </tr>
           <tr>
-            <td><h6 style={{color: 'grey',opacity:'0.9'}}>Scan Type:</h6></td>
+            <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Scan Type:</h6></td>
             <td><h6>{patient.scanType}</h6></td>
           </tr>
           <tr>
-            <td><h6 style={{color: 'grey',opacity:'0.9'}}>Organization email Address:</h6></td>
+            <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Organization email Address:</h6></td>
             <td><h6>{patient.diagCentre}</h6></td>
           </tr>
           <tr>
-            <td><h6 style={{color: 'grey',opacity:'0.9'}}>uploaded At:</h6></td>
+            <td><h6 style={{ color: 'grey', opacity: '0.9' }}>uploaded At:</h6></td>
             <td><h6>{getLocalDate(patient.lastUploadAt)}</h6></td>
           </tr>
           <tr>
-            <td><h6 style={{color: 'grey',opacity:'0.9'}}>uploaded by user:</h6></td>
+            <td><h6 style={{ color: 'grey', opacity: '0.9' }}>uploaded by user:</h6></td>
             <td><h6>{patient.uploadedBy}</h6></td>
           </tr>
           <tr>
-            <td><h6 style={{color: 'grey',opacity:'0.9'}}>Remarks</h6></td>
+            <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Remarks</h6></td>
             <td><h6>{patient.remarks}</h6></td>
-          </tr> 
+          </tr>
           </tbody>
         </table>
         <div className="col-md-6 text-center" style={{ width: '100%' }}>
@@ -227,45 +227,43 @@ class FileItem extends Component {
             <div className="frontside">
               {/*<Link to={`/api/upload/downloadFile/${file.filename}`}>*/}
               <span>
-                    <div className="card" style={{ minWidth: '200', borderStyle: 'solid', maxWidth:'200px',
-                      }}>
-
+                    <div className="card" style={{
+                      minWidth: '200', borderStyle: 'solid', maxWidth: '200px',
+                    }}>
                       <div className="card-body text-center">
-                        <div className='d-flex justify-content-end'>
-                          <button onClick={this.openModal}
-                                  style={{ background: 'white', color: 'grey', borderStyle: 'none' }}>
-                        <i className="fas fa-info-circle fa-2x"/></button>
-                        </div>
-                        <div id={this.props.file.filename} >
+                        <button className='btn-sm btn' onClick={this.onClick.bind(this)}>
+                        <div id={this.props.file.filename} style={{width:'100%'}}>
                           <div className="layerContainer">
                             <div className="dropBox"/>
-                            <canvas  ref={this.canvasRef} className="imageLayer"
-                                    >
+                            <canvas ref={this.canvasRef} className="imageLayer"
+                            >
                               Only for HTML5 compatible browsers...</canvas>
                             <img src={this.state.image} alt=''/>
                             <div className="drawDiv"/>
                           </div>
                         </div>
                         <div className='row d-flex justify-content-center'>
-                          <h4 className="card-title" style={{ fontSize: '18px',overflow: 'hidden'
-                            ,OTextOverflow: 'ellipsis', textOverflow:'ellipsis', whiteSpace: 'nowrap', width:'100%' }}
+                          <h4 className="card-title" style={{
+                            fontSize: '18px', overflow: 'hidden'
+                            , OTextOverflow: 'ellipsis', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%'
+                          }}
                           >{name}</h4>
                         </div>
+                        </button>
+
                         <div className=" row d-flex justify-content-between">
                         <button className='btn-sm btn'
                                 style={{ background: 'green', color: 'white', marginRight: '10px' }}
                                 onClick={this.onOpen.bind(this)}><i className="fa fa-download"
                                                                     aria-hidden="true"/></button>
-                        <button className='btn-sm btn' onClick={this.onClick.bind(this)}
-                                style={{ background: 'blue', color: 'white', marginLeft: '10px' }}
-                        ><i className="fas fa-eye"/></button>
+                       <button onClick={this.openModal}
+                               style={{ background: 'white', color: 'grey', borderStyle: 'none' }}>
+                        <i className="fas fa-info-circle fa-2x"/></button>
                         <button className='btn-sm btn' onClick={this.onDelete.bind(this)}
                                 style={{ background: 'red', color: 'white', marginLeft: '10px' }}>
                           <i className="fa fa-trash" aria-hidden="true"/></button>
-
                       </div>
                       </div>
-
                     </div>
                   </span>
             </div>

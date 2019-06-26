@@ -82,9 +82,9 @@ class UploadFiles extends Component {
 
   render() {
     let scanTypeArray= [{ value: 'CT', label: 'CT' },{value:'MRI', label: 'MRI'},
-      {value:'CT ang', label: 'CT angiography'},
-      {value: 'MRI ang', label: 'MRI angiography'}, {value: 'PET', label: 'PET scan'},
-      {value: 'USG abd', label: 'USG abdomen'}, {value:'Blood', label: 'Blood tests'}]
+      {value:'CT ang', label: 'CT Angiography'},
+      {value: 'MRI ang', label: 'MRI Angiography'}, {value: 'PET', label: 'PET Scan'},
+      {value: 'USG abd', label: 'USG Abdomen'}, {value:'Blood', label: 'Blood Tests'}]
     let spin = (
       <div>
         <FileUpload/>
@@ -111,29 +111,30 @@ class UploadFiles extends Component {
       )
     }
     return (
-      <div className="uploadMultipleFiles">
+      <div className="uploadMultipleFiles" style={{maxWidth: '330px', margin:'5px'}}>
         <div className="App-content row d-flex justify-content-center" >
           <div className="grid text-center col-md-12">
             <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
               color: 'black'
             }}>Select the files to upload</h3>
+            {info}
           </div>
-          <div className="col-md-6 text-center" style={{width: '100%'}}>
+          <div className="col-md-12 text-center" style={{width: '100%', margin:'5px'}}>
             {/*<p style={{ color: 'white', background: 'green' }} className='btn w-100'>*/}
             {/*  Enter the Details below to upload the images</p>*/}
-            {info}
-            <div className='row d-flex justify-content-center'>
-              <input type="file" onChange={this.fileChanged.bind(this)} required multiple name='files'
-                     style={{border: '1.5px', borderStyle: 'solid',
-                       borderRadius:'5px', margin: '5px',minWidth:'100%'}}/>
-            </div>
-            <TextAreaFieldGroup placeholder="Enter Remarks here(Optional)"
-                            type="text" onChange={this.changeHandler} value={this.state.remarks} name="remarks"
-            />
             <Select options={scanTypeArray} className={classnames('isSearchable')}
-                    placeholder="Choose type"
+                    placeholder="Choose type" style={{minWidth:'250px'}}
                     name="category" value={this.state.category} onChange={this.onSelectType}>
             </Select>
+              <div className='row col-md-12 d-flex justify-content-center'>
+                <input type="file" onChange={this.fileChanged.bind(this)} required multiple name='files'
+                       style={{border: '1.5px', borderStyle: 'solid',
+                         borderRadius:'5px', margin: '5px',minWidth:'100%'}}/>
+              </div>
+            <TextAreaFieldGroup placeholder="Enter Remarks here(Optional)" style={{ margin:'5px'}}
+                            type="text" onChange={this.changeHandler} value={this.state.remarks} name="remarks"
+            />
+
             {!this.state.spinner ? downloadBut : null}
             {this.state.spinner ? spin : null}
           </div>

@@ -36,18 +36,21 @@ class ActiveCentres extends Component {
               borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
               , borderRadius: '2px'
             }}>Active Diagnostic Centres</h3>
-            <table className="table table-bordered table-striped mb-0" style={{minWidth:'100%'}}>
+            <table className="table table-bordered table-striped mb-0 col-md-12" style={{minWidth:'100%'}}>
               <thead className='col-md-12' style={{minWidth:'100%'}}>
               <tr>
-                <th  >Centre Name</th>
-                <th>Short Code</th>
-                <th >User name</th>
-                <th >Organization Email</th>
-                <th>Created On On</th>
-                <th>Last Updated On</th>
-                <th>Accounts Created</th>
-                <th>Total Uploads</th>
-                <th>Decommission</th>
+                <th style={{fontSize:'10pt'}}>Centre Name</th>
+                <th style={{fontSize:'10pt'}}>Short Code</th>
+                <th style={{fontSize:'10pt'}}>User name</th>
+                <th style={{fontSize:'10pt'}}>Full Name</th>
+                <th style={{fontSize:'10pt'}}>Organization Email</th>
+                <th style={{fontSize:'10pt'}}>Creation Date</th>
+                <th style={{fontSize:'10pt'}}>Creation Time</th>
+                <th style={{fontSize:'10pt'}}>Last Used Date</th>
+                <th style={{fontSize:'10pt'}}>Last Used Time</th>
+                <th style={{fontSize:'10pt'}}>Centre Users</th>
+                <th style={{fontSize:'10pt'}}>No of Uploads</th>
+                <th style={{fontSize:'10pt'}}>Re-Commission</th>
               </tr>
               </thead>
               {show}

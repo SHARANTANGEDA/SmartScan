@@ -32,7 +32,8 @@ class TableRowDiagActivity extends Component {
       if(!this.state.removeClick) {
         content = (
           <span style={{ fontSize: '13.3333330154419px', background: 'red',color: 'white', borderRadius: '5px'}}>
-          <button onClick={this.onRemoveAccess} className=" btn btn-sm" style={{background: 'red',color: 'white', borderRadius: '5px'}}>Remove Access
+          <button onClick={this.onRemoveAccess} className=" btn btn-sm"
+                  style={{background: 'red',color: 'white', borderRadius: '5px'}}>Remove Access
           </button>
         </span>
         )
@@ -51,8 +52,10 @@ class TableRowDiagActivity extends Component {
     }else {
       if(!this.state.grantClick) {
         content = (
-          <span style={{ fontSize: '13.3333330154419px', background: 'green',color: 'white', borderRadius: '5px'}}>
-          <button onClick={this.onGrantAccess} className=" btn btn-success" style={{background: 'green', borderRadius: '5px'}}>Grant Access</button>
+          <span style={{ fontSize: '13.3333330154419px', background: 'green',color: 'white', borderRadius: '5px'
+            ,whiteSpace: 'nowrap'}}>
+          <button onClick={this.onGrantAccess} className=" btn btn-success"
+                  style={{background: 'green', borderRadius: '5px'}}>Grant Access</button>
         </span>
         )
       }else {
@@ -73,12 +76,27 @@ class TableRowDiagActivity extends Component {
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.short}</span></td>
 
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.adminId}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt',whiteSpace: 'nowrap' }}>
+          {data.firstName+ ' '+data.lastName}</span></td>
+
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.orgEmail}</span></td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(data.createdAt)}</span>
+          <span style={{ fontFamily: 'Arial', fontSize: '12pt',whiteSpace: 'nowrap' }}>
+            {getLocalDate(data.createdAt).substring(0,getLocalDate(data.createdAt).indexOf(','))}</span>
         </td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(data.lastUpdate)}</span>
+          <span style={{ fontFamily: 'Arial', fontSize: '12pt,whiteSpace: \'nowrap\'' }}>
+            {getLocalDate(data.createdAt).substring(getLocalDate(data.createdAt).indexOf(',')+1,
+              getLocalDate(data.createdAt).length)}</span>
+        </td>
+        <td>
+          <span style={{ fontFamily: 'Arial', fontSize: '12pt',whiteSpace: 'nowrap' }}>
+            {getLocalDate(data.lastUpdate).substring(0,getLocalDate(data.lastUpdate).indexOf(','))}</span>
+        </td>
+        <td>
+          <span style={{ fontFamily: 'Arial', fontSize: '12pt',whiteSpace: 'nowrap' }}>
+            {getLocalDate(data.lastUpdate).substring(getLocalDate(data.lastUpdate).indexOf(',')+1,
+              getLocalDate(data.lastUpdate).length)}</span>
         </td>
         <td>
           <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.members.length}</span>

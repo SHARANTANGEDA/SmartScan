@@ -473,8 +473,12 @@ router.get('/deletePatient/:id', passport.authenticate('lvpei',{session: false})
     })
 
   })
-
 })
+
+
+
+
+
 
 
 module.exports = router

@@ -54,7 +54,14 @@ class PatientItem extends Component {
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.mrNo}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.firstName+' '+patient.lastName}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.age+'/'+patient.gender}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{getLocalDate(patient.lastUploadAt)}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>
+            {getLocalDate(patient.lastUploadAt).toString().substring(0,getLocalDate(patient.lastUploadAt).indexOf(','))}
+          </span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>
+            {getLocalDate(patient.lastUploadAt).toString().substring(getLocalDate(patient.lastUploadAt).indexOf(',')+1,
+              getLocalDate(patient.lastUploadAt).length)}
+          </span></td>
+
           <td>
             <Link to={`displayFolder/${patient.mrNo}`}  className='btn btn-sm'
                   style={{ borderStyle: 'none', background: 'green', color:'white'}}>View</Link></td>

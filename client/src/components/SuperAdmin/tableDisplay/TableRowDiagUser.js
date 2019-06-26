@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 import { deleteLVPEIUser, grantUserAccess, removeUserAccess } from '../../../actions/sAActions'
 import getLocalDate from '../../../utils/getLocalDate'
 import downloading from '../../common/downloading.gif'
+import { grantDiagUserAccess, removeDiagUserAccess } from '../../../actions/dAActions'
 
-class TableRowLVPEI extends Component {
+class TableRowDiagUser extends Component {
   constructor () {
     super()
     this.state= {
@@ -15,24 +16,20 @@ class TableRowLVPEI extends Component {
     }
     this.onRemoveAccess = this.onRemoveAccess.bind(this)
     this.onGrantAccess = this.onGrantAccess.bind(this)
-    this.onDelete = this.onDelete.bind(this)
 
   }
 
   onRemoveAccess(e) {
     console.log(this.props.data.emailId)
-    this.props.removeUserAccess({emailId: this.props.data.emailId})
+    this.props.removeDiagUserAccess({emailId: this.props.data.emailId})
     this.setState({removeClick: true})
   }
 
   onGrantAccess(e) {
-    this.props.grantUserAccess({emailId: this.props.data.emailId})
+    this.props.grantDiagUserAccess({emailId: this.props.data.emailId})
     this.setState({grantClick: true})
   }
 
-  onDelete(e) {
-    this.props.deleteLVPEIUser({emailId: this.props.data.emailId})
-  }
   render () {
     const { data } = this.props
     let content
@@ -121,19 +118,18 @@ class TableRowLVPEI extends Component {
   }
 }
 
-TableRowLVPEI.defaultProps = {
+TableRowDiagUser.defaultProps = {
   showActions: true
 }
 
-TableRowLVPEI.propTypes = {
+TableRowDiagUser.propTypes = {
   data: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  deleteLVPEIUser: PropTypes.func.isRequired,
-  removeUserAccess: PropTypes.func.isRequired,
-  grantUserAccess: PropTypes.func.isRequired
+  removeDiagUserAccess: PropTypes.func.isRequired,
+  grantDiagUserAccess: PropTypes.func.isRequired
 }
 const mapStateToProps = state => ({
   auth: state.auth,
   faculty: state.faculty
 })
-export default connect(mapStateToProps, {deleteLVPEIUser, removeUserAccess, grantUserAccess})(TableRowLVPEI)
+export default connect(mapStateToProps, { removeDiagUserAccess, grantDiagUserAccess})(TableRowDiagUser)

@@ -15,6 +15,8 @@ class CreateLVPEIUsers extends Component {
       centreName:'',
       password: '',
       repassword: '',
+      firstName: '',
+      lastName: '',
       short: '',
       errors: {}
     }
@@ -45,6 +47,8 @@ class CreateLVPEIUsers extends Component {
       password: this.state.password,
       orgEmail: this.state.orgEmail,
       centreName: this.state.centreName,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       repassword: this.state.repassword,
       short: this.state.short
     }
@@ -66,6 +70,19 @@ class CreateLVPEIUsers extends Component {
                                 info="Please use unique username"
                                 type="text" onChange={this.onChange} value={this.state.adminId} name="adminId"
                 />
+                <div className='row'>
+                  <div className='col-md-6'>
+                    <TextFieldGroup placeholder="Enter admin First Name" error={errors.firstName}
+                                    type="text" onChange={this.onChange} value={this.state.firstName} name="firstName"
+                    />
+                  </div>
+                  <div className='col-md-6'>
+                    <TextFieldGroup placeholder="Enter admin Last Name" error={errors.lastName}
+                                    type="text" onChange={this.onChange} value={this.state.lastName} name="lastName"
+                    />
+                  </div>
+                </div>
+
                 <TextFieldGroup placeholder="Password" error={errors.password}
                                 type="password" onChange={this.onChange} value={this.state.password}
                                 name="password"

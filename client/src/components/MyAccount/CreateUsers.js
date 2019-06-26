@@ -14,6 +14,8 @@ class CreateUsers extends Component {
       emailId: '',
       password: '',
       repassword: '',
+      firstName: '',
+      lastName: '',
       errors: {}
     }
     this.onChange = this.onChange.bind(this)
@@ -39,6 +41,8 @@ class CreateUsers extends Component {
   onSubmit (e) {
     e.preventDefault()
     const newUser = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       emailId: this.state.emailId,
       password: this.state.password,
       repassword: this.state.repassword
@@ -71,6 +75,18 @@ class CreateUsers extends Component {
                                 info="Please enter unique username for creating account successfully"
                                 type="email" onChange={this.onChange} value={this.state.emailId} name="emailId"
                 />
+                <div className='row'>
+                  <div className='col-md-6'>
+                    <TextFieldGroup placeholder="Enter First Name" error={errors.firstName}
+                                    type="text" onChange={this.onChange} value={this.state.firstName} name="firstName"
+                    />
+                  </div>
+                  <div className='col-md-6'>
+                    <TextFieldGroup placeholder="Enter Last Name" error={errors.lastName}
+                                    type="text" onChange={this.onChange} value={this.state.lastName} name="lastName"
+                    />
+                  </div>
+                </div>
                 <TextFieldGroup placeholder="Password" error={errors.password}
                                 type="password" onChange={this.onChange} value={this.state.password}
                                 name="password"

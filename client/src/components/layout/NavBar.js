@@ -7,6 +7,7 @@ import Select from 'react-select'
 import classnames from 'classnames'
 import { getSearchResults } from '../../actions/homeActions'
 
+
 class Navbar extends Component {
   constructor (props) {
     super(props)
@@ -108,7 +109,21 @@ class Navbar extends Component {
         </div>
       </div>
     )
-
+    const authLinksII = (
+      <ul className="navbar-nav  ml-auto">
+        <li className="nav-item">
+          <Link className="nav-link" to="" style={{color: 'white', borderRadius: '5px' }}>
+            {user.emailId}
+          </Link>
+        </li>
+        <li className="nav-item pull-right">
+          <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
+                style={{color: 'white', borderRadius: '5px' }}>
+            <i className="fa fa-power-off" aria-hidden="true"/>
+            {'  '}Logout</Link>
+        </li>
+      </ul>
+    )
     const authLinksI = (
         <div className=" input-group md-form form-sm form-2 pl-0" style={{ width: '500px', maxWidth: '700px' }}>
           <div style={{ minWidth: '100px' }}>
@@ -143,39 +158,59 @@ class Navbar extends Component {
           <ul className="navbar-nav components" style={{ height: '100%' }}>
             <li className='nav-item'>
               <Link className='nav-link' to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
-                <i className="fas fa-home"/>
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to="/createUser" style={{color: 'white', borderRadius: '5px' }}>
-                <i className="fa fa-cog" aria-hidden="true"/>
-                Create LVPEI user
+            <li className="nav-item dropdown" style={{color: 'white', borderRadius: '5px'
+              ,minWidth:'150px' }}>
+              <Link className="nav-link nav-item d-flex justify-content-around" to="" data-toggle="dropdown"
+                    style={{color: 'white', borderRadius: '5px' }}>
+                Centres<i className="fas fa-caret-down"/>
               </Link>
+              <ul className="dropdown-menu " >
+                <li><Link className='nav-link' to="/addDiagnosticCentre" style={{color: 'white'}}>
+                 Create</Link></li>
+                <li><Link className='nav-link' to="/activeCentres" style={{color: 'white'}}>
+                  Current</Link></li>
+                <li><Link className='nav-link' to="/removedCentres" style={{color: 'white'}}>
+                 De Assigned</Link></li>
+              </ul>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to="/addDiagnosticCentre" style={{color: 'white', borderRadius: '5px' }}>
-                <i className="fa fa-cog" aria-hidden="true"/>
-                Add a new Diagnostic centre
-              </Link>
+            <li className="nav-item dropdown" style={{color: 'white', borderRadius: '5px'
+              ,minWidth:'150px' }}>
+                <Link className="nav-link nav-item d-flex justify-content-around" to="" data-toggle="dropdown"
+                      style={{color: 'white', borderRadius: '5px' }}>
+                  Users<i className="fas fa-caret-down"/>
+                </Link>
+              <ul className="dropdown-menu " >
+                <li><Link className='nav-link' to="/createUser" style={{color: 'white'}}>
+                  Create</Link></li>
+                <li><Link className='nav-link' to="/activeLVP" style={{color: 'white'}}>
+                  Current</Link></li>
+                <li><Link className='nav-link' to="/deAssignedLVP" style={{color: 'white'}}>
+                  De Assigned</Link></li>
+
+              </ul>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to="/activeCentres" style={{color: 'white', borderRadius: '5px' }}>
-                <i className="fa fa-cog" aria-hidden="true"/>
-                Active Centres
+            <li className="nav-item dropdown " style={{color: 'white',background:'#008cff' , borderRadius: '5px'
+              ,minWidth:'150px' }}>
+              <Link className="nav-link nav-item d-flex justify-content-around" to=""  data-toggle="dropdown"
+                    style={{color: 'white',background:'#008cff', borderRadius: '5px' }}>
+                {user.emailId}<i className="fas fa-caret-down"/>
               </Link>
+              <ul className="dropdown-menu " aria-labelledby="navbarDropdown">
+                <li className='nav-item'>
+                  <Link className='nav-link' to="/changePassword" style={{color: 'white',background:'#008cff'}}>
+                    Change Password
+                  </Link>
+                </li>
+              </ul>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to="/removedCentres" style={{color: 'white', borderRadius: '5px' }}>
-                <i className="fa fa-cog" aria-hidden="true"/>
-                Inactive Centres
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to="/changePassword" style={{color: 'white', borderRadius: '5px' }}>
-                <i className="fa fa-wrench" aria-hidden="true"/>
-                Change Password
-              </Link>
+            <li className="nav-item pull-right">
+              <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
+                    style={{color: 'white', borderRadius: '5px' }}>
+                <i className="fa fa-power-off" aria-hidden="true"/>
+                {'  '}Logout</Link>
             </li>
           </ul>
       )
@@ -184,27 +219,49 @@ class Navbar extends Component {
         <ul className="navbar-nav components" style={{ height: '100%' }}>
           <li className='nav-item'>
             <Link className='nav-link'  to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
-              <i className="fas fa-home"/>
               Home
             </Link>
           </li>
-          <li className='nav-item'>
-            <Link className='nav-link'  to="/createUser" style={{color: 'white', borderRadius: '5px' }}>
-              <i className="fa fa-cog" aria-hidden="true"/>
-              Create new user
+          <li className="nav-item dropdown" style={{color: 'white', borderRadius: '5px'
+            ,minWidth:'150px' }}>
+            <Link className="nav-link nav-item d-flex justify-content-around" to="" data-toggle="dropdown"
+                  style={{color: 'white', borderRadius: '5px' }}>
+              Users<i className="fas fa-caret-down"/>
             </Link>
+            <ul className="dropdown-menu " >
+              <li><Link className='nav-link'  to="/createUser" style={{color: 'white', borderRadius: '5px' }}>
+                Create</Link></li>
+              <li><Link className='nav-link' to="/activeUser" style={{color: 'white'}}>
+                Current</Link></li>
+              <li><Link className='nav-link' to="/deAssignedUser" style={{color: 'white'}}>
+                De Assigned</Link></li>
+
+            </ul>
           </li>
+
           <li className='nav-item'>
             <Link className='nav-link'  to="/uploadForm" style={{color: 'white', borderRadius: '5px' }}>
-              <i className="fas fa-upload"/>
               Upload Files
             </Link>
           </li>
-          <li className='nav-item'>
-            <Link className='nav-link'  to="/changePassword" style={{color: 'white', borderRadius: '5px' }}>
-              <i className="fa fa-wrench" aria-hidden="true"/>
-              Change Password
+          <li className="nav-item dropdown " style={{color: 'white',background:'#008cff' , borderRadius: '5px'
+            ,minWidth:'150px' }}>
+            <Link className="nav-link nav-item d-flex justify-content-around" to=""  data-toggle="dropdown"
+                  style={{color: 'white', borderRadius: '5px' }}>
+              {user.emailId}<i className="fas fa-caret-down"/>
             </Link>
+            <ul className="dropdown-menu " >
+              <li><Link className='nav-link' to="/editProfile" style={{color: 'white'}}>
+              My Account</Link></li>
+              <li><Link className='nav-link' to="/changePassword" style={{color: 'white'}}>
+                Change Password</Link></li>
+            </ul>
+          </li>
+          <li className="nav-item pull-right">
+            <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
+                  style={{color: 'white', borderRadius: '5px' }}>
+              <i className="fa fa-power-off" aria-hidden="true"/>
+              {'  '}Logout</Link>
           </li>
         </ul>
       )
@@ -217,30 +274,29 @@ class Navbar extends Component {
               Home
             </Link>
           </li>
-          <li className='nav-item'  >
-            <Link className='nav-link' to="/changePassword" style={{color: 'white', borderRadius: '5px'}}>
-              <i className="fa fa-wrench" aria-hidden="true"/>
-              Change Password
+          <li className="nav-item dropdown " style={{color: 'white',background:'#008cff' , borderRadius: '5px'
+            ,minWidth:'150px' }}>
+            <Link className="nav-link nav-item d-flex justify-content-around" to=""  data-toggle="dropdown"
+                  style={{color: 'white', borderRadius: '5px' }}>
+              {user.emailId}<i className="fas fa-caret-down"/>
             </Link>
+            <ul className="dropdown-menu " >
+              <li><Link className='nav-link' to="/editProfile" style={{color: 'white'}}>
+                My Account</Link></li>
+              <li><Link className='nav-link' to="/changePassword" style={{color: 'white'}}>
+                Change Password</Link></li>
+            </ul>
+          </li>
+          <li className="nav-item pull-right">
+            <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
+                  style={{color: 'white', borderRadius: '5px' }}>
+              <i className="fa fa-power-off" aria-hidden="true"/>
+              {'  '}Logout</Link>
           </li>
         </ul>
       )
     }
-    const authLinksII = (
-      <ul className="navbar-nav  ml-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="" style={{color: 'white', borderRadius: '5px' }}>
-            {user.emailId}
-          </Link>
-        </li>
-        <li className="nav-item pull-right">
-          <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
-                style={{color: 'white', borderRadius: '5px' }}>
-            <i className="fa fa-power-off" aria-hidden="true"/>
-            {'  '}Logout</Link>
-        </li>
-      </ul>
-    )
+
 
     return (
       <nav className="navbar navbar-expand-sm  col-md-12" style={{background:'#008cff'}}>
@@ -257,11 +313,12 @@ class Navbar extends Component {
           </button>
           <div className="row collapse navbar-collapse justify-content-between" id="mobile-nav">
             <div>
-              {isAuthenticated ? authLinksIII: null}
             </div><div>
-              {(isAuthenticated && user.role==='lvpei') ? authLinksI : null}
+              {/*{(isAuthenticated && user.role==='lvpei') ? authLinksI : null}*/}
             </div> <div>
-            {isAuthenticated ? authLinksII : null}
+            {isAuthenticated ? authLinksIII: null}
+
+            {/*{isAuthenticated ? authLinksII : null}*/}
           </div>
           </div>
           </div>

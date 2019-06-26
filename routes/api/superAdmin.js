@@ -22,6 +22,8 @@ const Patient = require('../../mongoModels/Patient');
 //       const newUser = new User({
 //         emailId: req.body.emailId,
 //         password: req.body.password,
+//         firstName: req.body.firstName,
+//         lastName: req.body.lastName,
 //         role: 'super_admin'
 //       })
 //       bcrypt.genSalt(10, (err, salt) => {
@@ -52,13 +54,15 @@ router.post('/register', passport.authenticate('super_admin',{session: false}),(
       const newUser = new User({
         emailId: req.body.emailId,
         password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         role: 'lvpei'
       })
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err
           newUser.password = hash
-          newUser.save().then(res => {
+          newUser.save().then(user => {
             res.json({success: true})
           }).catch(err => {
             console.log(err)
@@ -86,6 +90,8 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
         orgEmail: req.body.orgEmail,
         centreName: req.body.centreName,
         adminId: req.body.adminId,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         short: req.body.short
       })
       // newCentre.save().then(diagnostics=> {
@@ -100,6 +106,8 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
                 password: req.body.password,
                 diagCentre: req.body.orgEmail, //to change
                 diagCentreName: req.body.centreName,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
                 role: 'diag_admin',
                 centreShortCode: req.body.short
               })
@@ -123,7 +131,6 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
         })
     }
   })
-
 })
 
 router.post('/removeAccess',passport.authenticate('super_admin', {session: false}),
@@ -166,14 +173,14 @@ router.post('/grantAccess',passport.authenticate('super_admin', {session: false}
   })
 
 
-router.post('/deleteLVPEIUser',passport.authenticate('super_admin', {session: false}),
-  (req, res) => {
-  User.deleteOne({emailId: req.body.emailId, role:'lvpei'}).then(data => {
-    res.json({success: true})
-  }).catch(err => {
-    res.json({success: false})
-  })
-})
+// router.post('/deleteLVPEIUser',passport.authenticate('super_admin', {session: false}),
+//   (req, res) => {
+//   User.deleteOne({emailId: req.body.emailId, role:'lvpei'}).then(data => {
+//     res.json({success: true})
+//   }).catch(err => {
+//     res.json({success: false})
+//   })
+// })
 
 router.get('/activeCentres',passport.authenticate('super_admin', {session: false}),
   (req, res) => {
@@ -199,7 +206,8 @@ router.get('/inactiveDiags',passport.authenticate('super_admin', {session: false
   })
 router.get('/home', passport.authenticate('super_admin', { session: false }), (req, res) => {
   User.find().then(async users => {
-    let lvpei = [], diag_admin = [], dummy = [], diag = [], centre = [], len=0
+    let lvpei = [], diag_admin = [], dummy = [], diag = [], centre = [], len=0, CTS =[]
+    let CTA=[],MRIS=[],MRIA=[], USGA=[],BT=[],PETS=[]
     users.map(user => {
       dummy.push(new Promise((resolve, reject) => {
         if (user.role === 'lvpei') {
@@ -221,16 +229,74 @@ router.get('/home', passport.authenticate('super_admin', { session: false }), (r
         })
       }))
     })
+      Patient.find().then(patients => {
+        dummy.push(new Promise((resolve, reject) => {
+          patients.map(patient => {
+            if(patient.scanType==='CT') {
+              CTS.push(patient)
+            }else if(patient.scanType==='MRI') {
+              MRIS.push(patient)
+            }else if(patient.scanType==="CT ang") {
+              CTA.push(patient)
+            }else if(patient.scanType==='MRI ang') {
+              MRIA.push(patient)
+            }else if(patient.scanType==='PET') {
+              PETS.push(patient)
+            }else if(patient.scanType==='USG abd'){
+              USGA.push(patient)
+            }else if(patient.scanType==='Blood'){
+              BT.push(patient)
+            }
+          })
+        }))
+      })
+
+
+
 
     res.json({
       lvpei: await Promise.all(lvpei),
       diag_admin: await Promise.all(diag_admin),
       centre: await Promise.all(centre),
+      CTS: await Promise.all(CTS),
+      MRIS: await Promise.all(MRIS),CTA: await Promise.all(CTA),MRIA: await Promise.all(MRIA),PETS: await Promise.all(PETS),
+      USGA: await Promise.all(USGA),BT: await Promise.all(BT),
       diagLen: diag.length,
       patientsLen: len
     })
   })
 });
 
+router.get('/lvpeiUsers', passport.authenticate('super_admin', { session: false }), (req, res) => {
+  User.find({role: 'lvpei',access: true}).then(users => {
+    console.log(users)
+    res.json(users)
+  })
+});
+
+router.get('/deAssignedUsers', passport.authenticate('super_admin', { session: false }), (req, res) => {
+  User.find({role: 'lvpei',access: false}).then(users => {
+    console.log(users)
+    res.json(users)
+  })
+});
+
+router.post('/removeLVPEIAccess',passport.authenticate('super_admin', {session: false}),
+  (req, res) => {
+    User.findOneAndUpdate({emailId: req.body.emailId},{access: false}).then(user => {
+      res.json({success: true})
+    }).catch(err => {
+      console.log({error: err})
+    })
+  })
+
+router.post('/grantLVPEIAccess',passport.authenticate('super_admin', {session: false}),
+  (req, res) => {
+    User.findOneAndUpdate({emailId: req.body.emailId},{access: true}).then(user => {
+      res.json({success: true})
+    }).catch(err => {
+      console.log({error: err})
+    })
+  })
 
 module.exports = router

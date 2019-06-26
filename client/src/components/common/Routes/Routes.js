@@ -14,11 +14,16 @@ import ActiveCentres from '../../SuperAdmin/ActiveCentres'
 import RemovedCentres from '../../SuperAdmin/RemovedCentres'
 import UploadForm from '../../upload/UploadForm'
 import NameSearchResults from '../../dashboard/NameSearchResults'
+import ManageLVPEIUsers from '../../SuperAdmin/ManageLVPEIUsers'
+import ReAssignLVPUsers from '../../SuperAdmin/ReAssignLVPUsers'
+import EditProfile from '../../MyAccount/EditProfile'
+import ManageDiagUsers from '../../diagAdmin/ManageDiagUsers'
+import ReAssignDiagUsers from '../../diagAdmin/ReAssignDiagUsers'
 
 const Routes = () => {
   return (
 
-    <div className="container">
+    <div className="container-fluid w-100" style={{width:'100%'}}>
       <Switch>
         {/*<Switch>*/}
         <PrivateRoute exact path='/dashboard' component={Dashboard}/>
@@ -45,7 +50,11 @@ const Routes = () => {
         <PrivateRoute exact path='/removedCentres' component={RemovedCentres} />
         <PrivateRoute exact path='/uploadForm' component={UploadForm}/>
         <PrivateRoute exact path='/nameSearchResults/:id' component={NameSearchResults}/>
-
+        <PrivateRoute exact path='/activeLVP' component={ManageLVPEIUsers}/>
+        <PrivateRoute exact path='/deAssignedLVP' component={ReAssignLVPUsers}/>
+        <PrivateRoute exact path='/editProfile' component={EditProfile}/>
+        <PrivateRoute exact path='/activeUser' component={ManageDiagUsers}/>
+        <PrivateRoute exact path='/deAssignedUser' component={ReAssignDiagUsers}/>
 
         {/*</Switch>*/}
         <Route path="*" component={NotFound} />

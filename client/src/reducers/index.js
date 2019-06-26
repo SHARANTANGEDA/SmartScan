@@ -5,6 +5,7 @@ import homeReducer from './homeReducer'
 import fileReducer from './fileReducer'
 import searchReducer from './searchReducer'
 import viewCentreReducer from './viewCentreReducer'
+import accountReducer from './accountReducer'
 
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   home: homeReducer,
   folder: fileReducer,
   search: searchReducer,
-  view: viewCentreReducer
+  view: viewCentreReducer,
+  account: accountReducer
 })

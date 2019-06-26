@@ -8,6 +8,7 @@ const passport = require('passport')
 const validatePassword = require('../../validations/ChangePassword')
 const validateLoginInput = require('../../validations/login')
 const validateSearchInput = require('../../validations/search')
+const validateChangeInput = require('../../validations/editProfile')
 const User = require('../../mongoModels/User');
 const Patient = require('../../mongoModels/Patient');
 
@@ -43,7 +44,12 @@ router.post('/login', (req, res) => {
             return res.status(401).json(errors)
           }
         } else if(user.role === 'lvpei') {
-          payload = { id: user.id,role: user.role, emailId: user.emailId}
+          if(user.access) {
+            payload = { id: user.id,role: user.role, emailId: user.emailId}
+          }else {
+            errors.emailId='You are not Authorized to access this site!!'
+            return res.status(401).json(errors)
+          }
         }
         //TODO change secret key and signIn options
         jwt.sign(payload, keys.secretOrKey, { expiresIn: '12h' },
@@ -183,6 +189,29 @@ router.get('/searchName/:id',passport.authenticate('lvpei',{session: false}),(re
 //           })
 //         })
 //     })
+router.get('/myAccount', passport.authenticate('non_super', { session: false }),
+  (req, res) => {
+    User.findOne({ emailId: req.user.emailId })
+      .then(user => {
+        res.json({firstName: user.firstName, emailId: user.emailId, lastName: user.lastName})
+      }).catch(err => {
+      return res.status(404).json({ err })
+    })
+  })
 
-
+router.post('/myAccount/change', passport.authenticate('non_super', { session: false }),
+  (req, res) => {
+  User.findOne({emailId: req.user.emailId}).then(user => {
+    const { errors, isValid } = validateChangeInput(req.body, user)
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    user.firstName = req.body.firstName
+    user.lastName = req.body.lastName
+    user.save().then(user => {
+      res.json({success: true})
+    })
+  })
+  }
+);
 module.exports = router

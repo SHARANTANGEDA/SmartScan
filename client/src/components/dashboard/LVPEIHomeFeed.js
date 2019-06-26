@@ -77,6 +77,7 @@ class LVPEIHomeFeed extends Component {
               <th scope="col" style={{ fontSize: '10pt'}}>Patient Name</th>
               <th scope="col" style={{ fontSize: '10pt'}}>Age/Gender</th>
               <th scope="col" style={{ fontSize: '10pt'}}>Date of last upload</th>
+              <th scope="col" style={{ fontSize: '10pt'}}>Time of last upload</th>
               <th scope="col" style={{ fontSize: '10pt'}}>View</th>
               <th scope="col" style={{ fontSize: '10pt'}}>Delete</th>
             </tr>

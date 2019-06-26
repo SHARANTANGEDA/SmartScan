@@ -58,6 +58,8 @@ router.post('/addMembers', passport.authenticate('diag_admin',{session: false}),
           role: 'diag',
           admin: req.user.emailId,
           diagCentre: diagnostics.orgEmail,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
           diagCentreName:diagnostics.centreName,
           centreShortCode: diagnostics.short
 
@@ -69,6 +71,7 @@ router.post('/addMembers', passport.authenticate('diag_admin',{session: false}),
             newUser.save().then(user => {
               diagnostics.members.unshift({id:user.emailId})
               diagnostics.save().then(diag => {
+                console.log(diag)
                 res.json({success: true})
               })
             }).catch(err => {
@@ -86,10 +89,14 @@ router.get('/home', passport.authenticate('diag_admin', { session: false }), (re
 
   Diagnostics.findOne({adminId: req.user.emailId}).then(diagnostics => {
     User.find({diagCentre: diagnostics.orgEmail, role:'diag'}).then(users => {
-      User.findOne({emailId: req.user.emailId}).then(admin => {
-        res.json({
-          details: diagnostics, users: users, admin: admin
+      // User.findOne({emailId: req.user.emailId}).then(admin => {, admin: admin
+      Patient.find({diagCentre:diagnostics.orgEmail}).then(patients => {
+        Patient.find({uploadedBy: req.user.emailId}).then(pat => {
+          res.json({
+            details: diagnostics, users: users, totalUploads: patients.length, myUploads: pat.length
+          })
         })
+
       })
     })
   }).catch(err => {
@@ -156,19 +163,47 @@ router.post('/onDiscard',passport.authenticate('all_diag',{session: false}),(req
   })
 })
 
-router.post('/deleteMember',passport.authenticate('diag_admin', { session: false }), (req, res) => {
-  User.deleteOne({_id:req.body.id}).then(user => {
-    console.log('In remove')
-    Diagnostics.findOne({adminId:req.user.emailId}).then(diagnostics => {
-      diagnostics.members=diagnostics.members.filter(element => {element.id !== req.params.id})
-      diagnostics.save().then(diag => {
-        res.json({success: true})
-      })
+// router.post('/deleteMember',passport.authenticate('diag_admin', { session: false }), (req, res) => {
+//   User.deleteOne({_id:req.body.id}).then(user => {
+//     console.log('In remove')
+//     Diagnostics.findOne({adminId:req.user.emailId}).then(diagnostics => {
+//       diagnostics.members=diagnostics.members.filter(element => {element.id !== req.params.id})
+//       diagnostics.save().then(diag => {
+//         res.json({success: true})
+//       })
+//     })
+//   }).catch(err => {
+//     console.log({error: err})
+//   })
+router.post('/removeUserAccess',passport.authenticate('diag_admin', {session: false}),
+  (req, res) => {
+    User.findOneAndUpdate({emailId: req.body.emailId},{access: false}).then(user => {
+      res.json({success: true})
+    }).catch(err => {
+      console.log({error: err})
     })
-  }).catch(err => {
-    console.log({error: err})
   })
-})
+
+router.post('/grantUserAccess',passport.authenticate('diag_admin', {session: false}),
+  (req, res) => {
+    User.findOneAndUpdate({emailId: req.body.emailId},{access: true}).then(user => {
+      res.json({success: true})
+    }).catch(err => {
+      console.log({error: err})
+    })
+  })
+
+router.get('/currentDiagUsers', passport.authenticate('diag_admin', { session: false }), (req, res) => {
+  User.find({role: 'diag',access: true, admin: req.user.emailId}).then(users => {
+    res.json(users)
+  })
+});
+
+router.get('/deAssignedDiagUsers', passport.authenticate('diag_admin', { session: false }), (req, res) => {
+  User.find({role: 'lvpei',access: false, admin: req.user.emailId}).then(users => {
+    res.json(users)
+  })
+});
 
 
 module.exports = router

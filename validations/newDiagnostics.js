@@ -6,6 +6,8 @@ module.exports = (data) => {
   data.orgEmail = !isEmpty(data.orgEmail) ? data.orgEmail : '';
   data.centreName = !isEmpty(data.centreName) ? data.centreName : '';
   data.adminId = !isEmpty(data.adminId) ? data.adminId : '';
+  data.firstName = !isEmpty(data.firstName) ? data.firstName : '';
+  data.lastName = !isEmpty(data.lastName) ? data.lastName : '';
   data.password = !isEmpty(data.password) ? data.password : '';
   data.repassword = !isEmpty(data.repassword) ? data.repassword : '';
   data.short = !isEmpty(data.short) ? data.short : ''
@@ -16,9 +18,18 @@ module.exports = (data) => {
   if (Validator.isEmpty(data.centreName)) {
     errors.centreName = 'Centre name is required';
   }
+  if(Validator.isEmpty(data.firstName)) {
+    errors.firstName = 'Enter first Name'
+  }
+
+  if (Validator.isEmpty(data.lastName)) {
+    errors.lastName = 'Enter Last Name'
+  }
+
   if (Validator.isEmpty(data.orgEmail)) {
     errors.orgEmail = 'organization email is required to send information';
   }
+
   if (!Validator.isEmail(data.orgEmail)) {
     errors.orgEmail = 'Email is invalid';
   }

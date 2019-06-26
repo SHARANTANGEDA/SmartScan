@@ -16,16 +16,16 @@
     border-color: #007b5e;
 }
 
-section {
-    padding: 60px 0;
-}
+/*section {*/
+/*    padding: 60px 0;*/
+/*}*/
 
-section .section-title {
-    text-align: center;
-    color: #007b5e;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-}
+/*section .section-title {*/
+/*    text-align: center;*/
+/*    color: #007b5e;*/
+/*    margin-bottom: 50px;*/
+/*    text-transform: uppercase;*/
+/*}*/
 
 #team .card {
     border: none;

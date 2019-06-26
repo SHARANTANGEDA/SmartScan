@@ -97,6 +97,21 @@ module.exports = passport => {
         .catch(err=>console.log(err));
     })
   );
+  passport.use('non_super',
+    new JWTStrategy(opts, (jwt_payload, done) => {
+      User.findById(jwt_payload.id)
+        .then(user => {
+          if(user) {
+            if(user.role==='diag' || user.role === 'diag_admin' || user.role === 'lvpei') {
+              return done(null,user);
+            } else {
+              return done(null,false);
+            }          }
+          return done(null,false);
+        })
+        .catch(err=>console.log(err));
+    })
+  );
   passport.serializeUser(function(user, cb) {
     cb(null, user);
   });

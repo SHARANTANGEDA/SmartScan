@@ -1,7 +1,7 @@
 import {
   GET_INACTIVE,
   GET_ACTIVE,
-  VIEW_LOADING
+  VIEW_LOADING, GET_LVPEI_USERS
 } from '../actions/types'
 
 const initialState = {
@@ -9,6 +9,8 @@ const initialState = {
   loading: true,
   loading2: true,
   inActive: null,
+  loading3: true,
+  lvpUsers: null
 };
 
 export default function(state = initialState, action) {
@@ -21,6 +23,8 @@ export default function(state = initialState, action) {
         loading2:true,
         active: null,
         inActive: null,
+        loading3: true,
+        lvpUsers: null
       }
 
     case GET_ACTIVE:
@@ -35,7 +39,12 @@ export default function(state = initialState, action) {
         inActive: action.payload,
         loading2: false
       }
-
+    case GET_LVPEI_USERS:
+      return {
+        ...state,
+        lvpUsers: action.payload,
+        loading3: false
+      }
     default:
       return state;
 

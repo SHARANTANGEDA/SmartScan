@@ -13,6 +13,7 @@ import LVPEIHomeFeed from './LVPEIHomeFeed'
 import classnames from 'classnames'
 import Select from 'react-select'
 import Card from 'react-bootstrap/Card'
+import SearchBar from './SearchBar'
 
 const customStyles = {
   content: {
@@ -163,15 +164,8 @@ class Dashboard extends Component {
       }
       return (
         <div className="display">
-          <div className="App-content row d-flex justify-content-center">
-            <div className="grid text-center col-md-12">
-              <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
-                color: 'black'
-              }}> Welcome to L V Prasad Cloud</h1>
-            </div>
-          </div>
-
-          <div className='row col-md-6 d-flex justify-content-start'>
+          <nav className='navbar navbar-expand-sm  col-md-12' style={{background:'white', width:'100%'}}>
+            <div className='row col-md-6 d-flex justify-content-start'>
               <div className='col-md-6'>
                 <Select options={[{ value: 'all', label: 'All' },{value:'today', label: 'today'},
                   {value:'yesterday', label: 'yesterday'},
@@ -186,6 +180,15 @@ class Dashboard extends Component {
                 <i className="fas fa-search text-grey" aria-hidden="true"/>
               </button>
             </div>
+            <SearchBar/>
+          </nav>
+          <div className="App-content row d-flex justify-content-center">
+
+              {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
+              {/*  color: 'black'*/}
+              {/*}}> Welcome to L V Prasad Cloud</h1>*/}
+          </div>
+
 
             {allFoldersContent}
           </div>
@@ -199,7 +202,7 @@ class Dashboard extends Component {
         showContent = <SADashboard home={home}/>
       }
       return (
-        <div className='dashboard'>
+        <div className='dashboard' style={{width: '100%', minHeight:'100%'}}>
           {showContent}
 
         </div>
@@ -236,37 +239,52 @@ class Dashboard extends Component {
                   <div className="grid text-center col-md-12">
                     <h1 className="grid--cell fl1 fs-headline1 text-center" style={{
                       color: 'black'
-                    }}>Welcome to L V Prasad Cloud</h1>
+                    }}>L V Prasad Cloud</h1>
                   </div>
                   <div className='row col-md-12 d-flex justify-content-around'>
                     <Card style={{
-                      backgroundColor: '#ffa726', maxHeight: '150px', maxWidth: '200px', marginRight: '20px'
+                      backgroundColor: '#ffa726', marginRight: '20px', padding:'5px', minWidth:'250px'
                     }}>
-                      <div color="warning" className='text-center'>
-                        <p className='' style={{ color: 'white' }}>Number of User Accounts</p>
-                        <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
-                          {home.users.length}
-                        </h1>
+                      <div className='row d-flex justify-content-between'>
+                        <div className=' col-md-8'>
+                          <p style={{ color: 'white' }}>Users</p>
+                          <img style={{width:'auto'}} src={require('../../img/SAIcons/centerUser.png')} alt=''/>
+                        </div>
+                        <div className='d-flex justify-content-end col-md-4'>
+                          <h1 style={{ color: 'white', fontWeight: 'bold' }}>
+                            {home.users.length}
+                          </h1>
+                        </div>
                       </div>
                     </Card>
                     <Card style={{
-                      backgroundColor: '#4caf50', maxHeight: '150px', maxWidth: '200px', marginRight: '20px',
+                      backgroundColor: '#4caf50', marginRight: '20px', padding:'5px', minWidth:'250px'
                     }}>
-                      <div color="warning" className='text-center'>
-                        <p className='' style={{ color: 'white' }}>Number of uploads by You</p>
-                        <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
-                          {home.admin.totalUploads}
-                        </h1>
+                      <div className='row d-flex justify-content-between'>
+                        <div className=' col-md-8'>
+                          <p style={{ color: 'white' }}>My Uploads</p>
+                          <img style={{width:'auto'}} src={require('../../img/SAIcons/patient.png')} alt=''/>
+                        </div>
+                        <div className='d-flex justify-content-end col-md-4'>
+                          <h1 style={{ color: 'white', fontWeight: 'bold' }}>
+                            {home.myUploads}
+                          </h1>
+                        </div>
                       </div>
                     </Card>
                     <Card style={{
-                      backgroundColor: '#f44336', maxHeight: '150px', maxWidth: '200px', padding: '10px',
+                      backgroundColor: '#f44336', marginRight: '20px', padding:'5px', minWidth:'250px'
                     }}>
-                      <div color="warning" className='text-center'>
-                        <p className='' style={{ color: 'white' }}>Total Number of Uploads</p>
-                        <h1 className='' style={{ color: 'white', fontWeight: 'bold' }}>
-                          {home.details.totalUploads}
-                        </h1>
+                      <div className='row d-flex justify-content-between'>
+                        <div className=' col-md-8'>
+                          <p style={{ color: 'white' }}>Centre Uploads</p>
+                          <img style={{width:'auto'}} src={require('../../img/SAIcons/patient.png')} alt=''/>
+                        </div>
+                        <div className='d-flex justify-content-end col-md-4'>
+                          <h1 style={{ color: 'white', fontWeight: 'bold' }}>
+                            {home.totalUploads}
+                          </h1>
+                        </div>
                       </div>
                     </Card>
                   </div>
@@ -281,14 +299,16 @@ class Dashboard extends Component {
                       <table className="table table-bordered table-striped mb-0">
                         <thead>
                         <tr>
-                          <th scope="col">Username</th>
-                          <th scope="col">Created On</th>
-                          <th scope='col'>Total Uploads</th>
-                          <th scope="col">Manage</th>
+                          <th scope="col" style={{fontSize:'10pt'}}>Username</th>
+                          <th scope="col" style={{fontSize:'10pt'}} >Full Name</th>
+                          <th scope="col" style={{fontSize:'10pt'}}>Created On</th>
+                          <th scope='col' style={{fontSize:'10pt'}}>Total Uploads</th>
+                          <th scope="col" style={{fontSize:'10pt'}} >Edit</th>
+                          <th scope="col" style={{fontSize:'10pt'}} >Manage</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <ShowTable data={home.users} index={{ type: 'diag_admin_user' }}/>
+                        <ShowTable data={home.users} index={{ type: 'manageDiagUser' }}/>
                         </tbody>
                       </table>
                     </div>

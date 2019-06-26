@@ -69,8 +69,10 @@ class TableRowDiagAdmins extends Component {
     }
     return (
       <tr className="">
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.diagCentreName}</span></td>
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.user.emailId}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12px' }}>{data.user.diagCentreName}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12px' }}>{data.user.emailId}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12px' }}>{data.user.firstName+' '+data.user.lastName}</span></td>
+
         <td>
           {content}
         </td>

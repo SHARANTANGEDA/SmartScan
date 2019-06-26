@@ -39,23 +39,11 @@ class DisplayFolder extends Component {
     return (
       <div className="displayFolder">
         <div className="App-content row d-flex justify-content-center" >
-          <div className="grid text-center col-md-12">
-
-            <div className='d-flex justify-content-start'>
-              <div style={{margin: '10px'}}>
-                <Link to='/dashboard' className='btn' style={{background: 'white', color: 'green'}}>
-                  <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
-              </div>
-
-              {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
-              {/*  color: 'black'*/}
-              {/*}}> Welcome to L V Prasad Cloud</h1>*/}
-
-            </div>
-            <div className='row d-flex justify-content-center'>
-              {heading}
-            </div>
-          </div>
+          <nav className='navbar navbar-expand-sm justify-content-between col-md-12' style={{background:'white', width:'100%'}}>
+            {heading}
+            <Link to='/dashboard' className='btn' style={{background: 'white', color: 'green'}}>
+              <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
+          </nav>
           <table className="table table-bordered table-striped mb-0">
             <thead>
             <tr>

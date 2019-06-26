@@ -20,6 +20,7 @@ class TableRowUsers extends Component {
     return (
       <tr className="">
         <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.emailId}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.firstName+' '+data.lastName}</span></td>
         <td><p style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{getLocalDate(data.time)}</p></td>
         <td><p  style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.totalUploads}</p></td>
 
