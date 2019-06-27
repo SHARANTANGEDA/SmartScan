@@ -7,7 +7,6 @@ import FileRow from './FileRow'
 import { Link } from 'react-router-dom'
 import getLocalDate from '../../../utils/getLocalDate'
 import FileItem from './FileItem'
-import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
 import Modal from 'react-modal'
 
 const customStyles = {

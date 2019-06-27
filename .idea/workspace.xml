@@ -2,44 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/DicomWebViewer/DWVwithInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/MyAccount/ResetPassword.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/display/Files/DisplaySelected.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/display/Files/OtherFile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/display/Patients/Paginate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/utils/getAge.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/validations/resetPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/homeActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/homeActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/profileActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/profileActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/DicomWebViewer/DwvComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/DicomWebViewer/DwvComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MyAccount/ChangePassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MyAccount/CreateUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MyAccount/CreateUsers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/AddDiagnosticCentre.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/RemovedCentres.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/RemovedCentres.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowLVPEI.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowLVPEI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/common/Routes/Routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Files/Display.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Files/Display.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Files/FileRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Files/FileRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Folders/DisplayFolder.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Folders/DisplayFolder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Folders/FolderItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Folders/FolderRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Folders/FolderRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Patients/PatientItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/display/Patients/PatientRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/display/Patients/PatientRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layout/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/upload/UploadFiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/upload/UploadFiles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongoModels/Diagnostics.js" beforeDir="false" afterPath="$PROJECT_DIR$/mongoModels/Diagnostics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongoModels/Patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/mongoModels/Patient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongoModels/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/mongoModels/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/diagAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/diagAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/superAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/superAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/upload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/newDiagnostics.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/newDiagnostics.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -135,14 +98,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/display/Files/FileItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
+            <state relative-caret-position="57">
               <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="338">
+              <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -154,18 +126,6 @@
               <caret line="201" column="50" selection-start-line="201" selection-start-column="20" selection-end-line="201" selection-end-column="50" />
               <folding>
                 <element signature="e#6738#6740#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/dashboard/LVPEIHomeFeed.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="109" column="30" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -183,7 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>folders.</find>
       <find>All files uploaded at</find>
       <find>dropdown</find>
       <find>hover</find>
@@ -213,6 +172,7 @@
       <find>patientFolde</find>
       <find>patientsFolders</find>
       <find>getLocalDate</find>
+      <find>react-js-pagination</find>
     </findStrings>
     <replaceStrings>
       <replace>black</replace>
@@ -234,7 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/routes/api/users.js" />
         <option value="$PROJECT_DIR$/client/src/components/MyAccount/EditProfile.js" />
         <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/TableRowDiagUser.js" />
         <option value="$PROJECT_DIR$/client/src/components/SuperAdmin/tableDisplay/ShowTable.js" />
@@ -285,6 +244,7 @@
         <option value="$PROJECT_DIR$/client/src/components/display/Files/Display.js" />
         <option value="$PROJECT_DIR$/client/src/components/DicomWebViewer/DwvComponent.js" />
         <option value="$PROJECT_DIR$/client/src/components/display/Files/FileItem.js" />
+        <option value="$PROJECT_DIR$/client/package.json" />
       </list>
     </option>
   </component>
@@ -689,14 +649,7 @@
       <workItem from="1561459742464" duration="739000" />
       <workItem from="1561511256448" duration="48417000" />
       <workItem from="1561598682307" duration="9374000" />
-      <workItem from="1561613179440" duration="30004000" />
-    </task>
-    <task id="LOCAL-00109" summary="#FIXED BUG IN GRAPH SCALING">
-      <created>1555643686744</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1555643686744</updated>
+      <workItem from="1561613179440" duration="30601000" />
     </task>
     <task id="LOCAL-00110" summary="#FIXED BUG IN GRAPH SCALING">
       <created>1555654898747</created>
@@ -1034,11 +987,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561550882398</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="# Changed Many UI components&#10;# Added pagination&#10;# Fixed hover display bug&#10;# Added few filters">
+      <created>1561659048915</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1561659048916</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1212206000" />
+    <option name="totallyTimeSpent" value="1212803000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1071,8 +1031,8 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.31338412" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3299435" />
       <window_info anchor="bottom" id="TypeScript" order="12" weight="0.3299435" />
-      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.4967811" weight="0.23728813" />
-      <window_info anchor="bottom" id="Run" order="14" sideWeight="0.49624464" visible="true" weight="0.24971752" />
+      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.4967811" visible="true" weight="0.41920903" />
+      <window_info anchor="bottom" id="Run" order="14" sideWeight="0.49624464" weight="0.24971752" />
       <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.5037554" side_tool="true" weight="0.9586507" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
@@ -1170,7 +1130,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="#Added Remove access and grant access&#10;#Added Other Views&#10;#optmizied many renders&#10;#Fixed few render bugs&#10;#Optmizied code for efficient performance" />
     <MESSAGE value="#Added Sorting to LVPEI Page&#10;#Changed many UI pages&#10;#Optimized Routes" />
     <MESSAGE value="#Changed 404 Page" />
     <MESSAGE value="#Deployment Check-1&#10;#Added production environments&#10;#Secured Keys" />
@@ -1195,7 +1154,8 @@
     <MESSAGE value="#Made few changes in display&#10;#ALPHA TEST MK-II Release commit" />
     <MESSAGE value="#Added Many Functionality and Changed UI of many pages in Super Admin&#10;#Added Many Functionality and Changed UI of many pages in Diag Admin" />
     <MESSAGE value="#Added some extra functionality to Diag User&#10;#Fixed some minor render bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Added some extra functionality to Diag User&#10;#Fixed some minor render bugs" />
+    <MESSAGE value="# Changed Many UI components&#10;# Added pagination&#10;# Fixed hover display bug&#10;# Added few filters" />
+    <option name="LAST_COMMIT_MESSAGE" value="# Changed Many UI components&#10;# Added pagination&#10;# Fixed hover display bug&#10;# Added few filters" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1207,13 +1167,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/components/common/ContactUs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/upload/UploadForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
@@ -1636,11 +1589,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/display/Files/FileItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
+        <state relative-caret-position="57">
           <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="24" />
         </state>
       </provider>
     </entry>
