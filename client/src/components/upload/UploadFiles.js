@@ -82,9 +82,9 @@ class UploadFiles extends Component {
 
   render() {
     let scanTypeArray= [{ value: 'CT', label: 'CT' },{value:'MRI', label: 'MRI'},
-      {value:'CT ang', label: 'CT Angiography'},
-      {value: 'MRI ang', label: 'MRI Angiography'}, {value: 'PET', label: 'PET Scan'},
-      {value: 'USG abd', label: 'USG Abdomen'}, {value:'Blood', label: 'Blood Tests'}]
+      {value:'CT Angiography', label: 'CT Angiography'},
+      {value: 'MRI Angiography', label: 'MRI Angiography'}, {value: 'PET Scan', label: 'PET Scan'},
+      {value: 'USG Abdomen', label: 'USG Abdomen'}, {value:'Blood Tests', label: 'Blood Tests'}]
     let spin = (
       <div>
         <FileUpload/>

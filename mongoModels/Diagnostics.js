@@ -38,6 +38,9 @@ const DiagnosticSchema = new Schema({
   lastUpdate: {
     type: Date,
     default: Date.now
+  },
+  centreCode: {
+    type: String
   }
 });
 

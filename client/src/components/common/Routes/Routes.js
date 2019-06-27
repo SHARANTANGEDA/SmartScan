@@ -19,6 +19,7 @@ import ReAssignLVPUsers from '../../SuperAdmin/ReAssignLVPUsers'
 import EditProfile from '../../MyAccount/EditProfile'
 import ManageDiagUsers from '../../diagAdmin/ManageDiagUsers'
 import ReAssignDiagUsers from '../../diagAdmin/ReAssignDiagUsers'
+import DisplaySelected from '../../display/Files/DisplaySelected'
 
 const Routes = () => {
   return (
@@ -55,6 +56,7 @@ const Routes = () => {
         <PrivateRoute exact path='/editProfile' component={EditProfile}/>
         <PrivateRoute exact path='/activeUser' component={ManageDiagUsers}/>
         <PrivateRoute exact path='/deAssignedUser' component={ReAssignDiagUsers}/>
+        <PrivateRoute exact path='/displayFolder/displaySelectedFiles/:id' component={DisplaySelected}/>
 
         {/*</Switch>*/}
         <Route path="*" component={NotFound} />

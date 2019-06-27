@@ -51,6 +51,7 @@ class PatientItem extends Component {
       //onTouchStart="this.classList.toggle('hover');
         <tr>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.centreShortCode}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.centreCode}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.mrNo}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.firstName+' '+patient.lastName}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{patient.age+'/'+patient.gender}</span></td>

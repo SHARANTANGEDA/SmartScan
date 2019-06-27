@@ -18,7 +18,20 @@ export const changePassword = (data) => dispatch => {
       })
     );
 };
-
+export const resetPassword = (data) => dispatch => {
+  clearErrors();
+  axios
+    .post('/api/superAdmin/resetPassword', data)
+    .then(res => {
+      window.location.reload()
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 // Clear profile
 // export const clearCurrentProfile = () => {
 //   return {

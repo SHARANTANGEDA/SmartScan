@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import Spinner from '../../common/Spinner'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { downloadSelectedFiles, getFilesByFolder } from '../../../actions/homeActions'
+import { downloadSelectedFiles, getFilesByFolder, getSelectedFilesByFolder } from '../../../actions/homeActions'
 import FileRow from './FileRow'
 import { Link } from 'react-router-dom'
 import getLocalDate from '../../../utils/getLocalDate'
 import FileItem from './FileItem'
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
 import Modal from 'react-modal'
-import ReactCursorPosition from 'react-cursor-position';
 
 const customStyles = {
   content: {
@@ -22,7 +21,7 @@ const customStyles = {
   }
 }
 
-class Display extends Component {
+class DisplaySelected extends Component {
   constructor () {
     super()
     this.state = {
@@ -30,8 +29,7 @@ class Display extends Component {
       show: false,
       selected: [],
       patientId: null,
-      downloading: false,
-
+      downloading: false
     }
     this.onSelectedDownload = this.onSelectedDownload.bind(this)
     this.openModal = this.openModal.bind(this)
@@ -42,14 +40,13 @@ class Display extends Component {
   }
   componentDidMount () {
     if (this.props.auth.user.role === 'lvpei') {
-      this.props.getFilesByFolder(this.props.match.params.id)
+      this.props.getSelectedFilesByFolder(this.props.match.params.id)
     }
   }
 
   openModal () {
     this.setState({ modalIsOpen: true })
   }
-
   afterOpenModal () {}
 
   closeModal () {
@@ -58,7 +55,7 @@ class Display extends Component {
 
   onSelectedDownload (e) {
     // console.log(this.state.selected)
-    this.props.downloadSelectedFiles({id:this.props.folder.files.patient._id})
+    this.props.downloadSelectedFiles(this.props.folder.files.patient._id)
     this.setState({downloading: true})
   }
   onBack (e) {
@@ -223,67 +220,58 @@ class Display extends Component {
         </div>)
       }else {
         content=(
-            <div className="w-100"
-                 style={{minWidth: '100%', border:'none', margin:'0px',padding:'0px'
-              , left:0, right:0}} >
-              <div className="App-content row d-flex justify-content-center">
+          <div className="w-100"
+               style={{minWidth: '100%', border:'none', margin:'0px',padding:'0px'
+                 , left:0, right:0}} >
+            <div className="App-content row d-flex justify-content-center">
               <nav className='container-fluid navbar col-md-12 w-100  d-flex justify-content-between '
-                   style={{ minWidth:'100%', background:'#ffa726', left:0, right:0,border:'none', margin:'0px',height:'50px',
+                   style={{ minWidth:'100%', background:'#ffa726', left:0, right:0,border:'none', margin:'0px',
                      padding:'0px'}}>
-                <div className='row col-md-10  d-flex justify-content-center'>
-                  <div className='d-flex justify-content-center'>
-                    <button onClick={this.openModal} className='btn btn-primary'
-                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
-                      <i className="fas fa-info-circle"/>Upload Information</button>
-                    <button className='btn btn-primary'
-                      style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
-                      View Selected Files</button>
-                    <button className='btn btn-primary' onClick={this.onSelectedDownload}
-                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
-                      Download Selected Files</button>
-                    <button className='btn btn-primary'
-                      style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>
-                      View All Files</button>
-                    <button className='btn btn-primary'
-                            style={{ background: '#0BC107', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>
-                      Tumor Volume</button>
-                  </div>
-                </div>
-                <div className='col-md-2 d-flex justify-content-end'>
+                <div className='row col-md-12  d-flex justify-content-between '>
                   <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
                         style={{background: '#ffa726', color: 'green'}}>
-                    <i className="fa fa-chevron-circle-left fa-2x" aria-hidden="true"/></Link>
+                    <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
+                  <div>
+                    <button onClick={this.openModal} className='btn btn-primary'
+                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' }}>
+                      <i className="fas fa-info-circle"/>Upload Information</button>
+                    <button className='btn btn-primary'
+                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' }}>
+                      View Selected Files</button>
+                    <button className='btn btn-primary' onClick={this.onSelectedDownload}
+                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' }}>
+                      Download Selected Files</button>
+                    <button className='btn btn-primary'
+                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' }}>
+                      View All Files</button>
+                  </div>
+                </div>
+
+                <div className='row  col-md-12 d-flex justify-content-between'>
+                  <h6 style={{color: 'white'}}>Patient Name: {files.patient.firstName+' '+ files.patient.lastName}</h6>
+                  <h5  style={{color: 'white'}}>Uploaded on:
+                    {getLocalDate(files.patient.lastUploadAt).
+                    substring(0, getLocalDate(files.patient.lastUploadAt).indexOf(','))}</h5>
+                  <h5  style={{color: 'white'}}>Uploaded at:
+                    {getLocalDate(files.patient.lastUploadAt).
+                    substring(getLocalDate(files.patient.lastUploadAt).indexOf(',')+1
+                      ,getLocalDate(files.patient.lastUploadAt).length)}</h5>
+
+                  <h5  style={{color: 'white'}}>MR No: {files.patient.mrNo}</h5>
                 </div>
               </nav>
-                <nav className='container-fluid navbar col-md-12 w-100  d-flex justify-content-between '
-                     style={{ minWidth:'100%', background:'#c1c1c1', left:0, right:0,border:'none', margin:'0px',height:'50px',
-                       padding:'0px'}}>
-                  <div className='row  col-md-12 d-flex justify-content-between'>
-                    <h6 >Patient Name: {files.patient.firstName+' '+ files.patient.lastName}</h6>
-                    <h6  >MR No: {files.patient.mrNo}</h6>
-                    <h6>Scan Type:{files.patient.scanType}</h6>
-                    <h6 >Uploaded on:
-                      {getLocalDate(files.patient.lastUploadAt).
-                      substring(0, getLocalDate(files.patient.lastUploadAt).indexOf(','))}</h6>
-                    <h6 >Uploaded at:
-                      {getLocalDate(files.patient.lastUploadAt).
-                      substring(getLocalDate(files.patient.lastUploadAt).indexOf(',')+1
-                        ,getLocalDate(files.patient.lastUploadAt).length)}</h6>
-                  </div>
-                </nav>
             </div>
 
 
-              <FileRow files={files.files} patient={files.patient} check={true}/>
-            </div>
+            <FileRow files={files.files} patient={files.patient} check={true}/>
+          </div>
         )
       }
     }
     return (
-
-      <div className="displayFiles container-fluid w-100 col-lg-12"
+      <div className="displaySelectedFiles container-fluid w-100 col-lg-12"
            style={{width: '100%', border:'none', margin:'0px',padding:'0px'}}>
-          {content}
+        {content}
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -298,9 +286,9 @@ class Display extends Component {
   }
 }
 
-Display.propTypes = {
+DisplaySelected.propTypes = {
   home: PropTypes.object.isRequired,
-  getFilesByFolder: PropTypes.func.isRequired,
+  getSelectedFilesByFolder: PropTypes.func.isRequired,
   downloadSelectedFiles: PropTypes.func.isRequired
 }
 const mapStateToProps = state => ({
@@ -333,4 +321,4 @@ const mapStateToProps = state => ({
 // {/*    </tr>*/}
 // {/*  )*/}
 // {/*})}*/}
-export default connect(mapStateToProps, { getFilesByFolder, downloadSelectedFiles })(Display);
+export default connect(mapStateToProps, { getSelectedFilesByFolder, downloadSelectedFiles })(DisplaySelected);

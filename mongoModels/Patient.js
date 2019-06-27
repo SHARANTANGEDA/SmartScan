@@ -52,6 +52,9 @@ const PatientSchema = new Schema({
   remarks: {
     type: String,
     default: ''
+  },
+  centreCode: {
+    type: String
   }
 });
 

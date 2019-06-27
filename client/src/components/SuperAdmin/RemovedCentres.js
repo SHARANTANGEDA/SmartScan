@@ -33,7 +33,7 @@ class RemovedCentres extends Component {
       }
       return (
         <div className='removedCentres row table-wrapper-scroll-y my-custom-scrollbar'
-             style={{width:'100%'}}>
+             style={{minWidth:'100%'}}>
             <h3 className='text-center' style={{
               borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
               , borderRadius: '2px'

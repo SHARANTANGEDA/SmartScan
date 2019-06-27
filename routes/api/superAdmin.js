@@ -5,6 +5,7 @@ const passport = require('passport')
 
 const validateRegisterInput = require('../../validations/register')
 const validateDiagnosticsInput = require('../../validations/newDiagnostics')
+const validateResetPassword = require('../../validations/resetPassword')
 const User = require('../../mongoModels/User')
 const Diagnostics=require('../../mongoModels/Diagnostics')
 const Patient = require('../../mongoModels/Patient');
@@ -56,7 +57,7 @@ router.post('/register', passport.authenticate('super_admin',{session: false}),(
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        role: 'lvpei'
+        role: 'lvpei',
       })
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -92,7 +93,8 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
         adminId: req.body.adminId,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        short: req.body.short
+        short: req.body.short,
+        centreCode: req.body.centreCode
       })
       // newCentre.save().then(diagnostics=> {
         User.findOne({ emailId: req.body.adminId }).then(user => {
@@ -109,7 +111,8 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 role: 'diag_admin',
-                centreShortCode: req.body.short
+                centreShortCode: req.body.short,
+                centreCode: req.body.centreCode
               })
               bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -236,15 +239,15 @@ router.get('/home', passport.authenticate('super_admin', { session: false }), (r
               CTS.push(patient)
             }else if(patient.scanType==='MRI') {
               MRIS.push(patient)
-            }else if(patient.scanType==="CT ang") {
+            }else if(patient.scanType==="'CT Angiography") {
               CTA.push(patient)
-            }else if(patient.scanType==='MRI ang') {
+            }else if(patient.scanType==='MRI Angiography') {
               MRIA.push(patient)
-            }else if(patient.scanType==='PET') {
+            }else if(patient.scanType==='PET Scan') {
               PETS.push(patient)
-            }else if(patient.scanType==='USG abd'){
+            }else if(patient.scanType==='USG Abdomen'){
               USGA.push(patient)
-            }else if(patient.scanType==='Blood'){
+            }else if(patient.scanType==='Blood Tests'){
               BT.push(patient)
             }
           })
@@ -297,6 +300,28 @@ router.post('/grantLVPEIAccess',passport.authenticate('super_admin', {session: f
     }).catch(err => {
       console.log({error: err})
     })
+  })
+
+router.post('/resetPassword',passport.authenticate('super_admin', {session: false}),
+  (req, res) => {
+    const { errors, isValid } = validateResetPassword(req.body)
+    if (!isValid) {
+      return res.status(400).json(errors)
+    }
+    User.findOne({emailId:req.body.emailId}).then(user => {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(req.body.newPassword, salt, (err, hash) => {
+        if (err) throw err
+        user.password = hash
+        user.save().then(user => {
+          res.json({ success: true })
+        }).catch(err => {
+          console.log(err)
+          res.json({ error: 'creating the user' })
+        })
+      })
+    })
+  })
   })
 
 module.exports = router

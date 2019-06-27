@@ -22,6 +22,7 @@ import Slide from '@material-ui/core/Slide';
 
 import './DwvComponent.css';
 import dwv from 'dwv';
+import Spinner from '../common/Spinner'
 // import { connect } from 'react-redux'
 // import { logoutUser } from '../../actions/authActions'
 // import { getSearchResults } from '../../actions/homeActions'
@@ -198,10 +199,10 @@ class DwvComponent extends Component {
     );
 
     return (
-      <div id="dwv">
+      <div id="dwv" style={{background:'#ffa726'}}>
         <button onClick={this.onReset} className='btn btn-sm' style={{background: 'blue', color:'white'}}>Reset View</button>
-        <div className="layerContainer">
-          <div className="dropBox"><Typography>Drag and drop data here.</Typography></div>
+        <div className="layerContainer" style={{background:'#ffa726'}}>
+          <div className="dropBox"><Spinner/></div>
           <canvas ref="canvas" className="imageLayer">Only for HTML5 compatible browsers...</canvas>
           <img src={this.state.image} alt=''/>
           <div className="drawDiv"></div>

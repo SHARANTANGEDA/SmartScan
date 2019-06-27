@@ -10,7 +10,9 @@ import dwv from 'dwv'
 import '../../DicomWebViewer/DwvComponent.css'
 import axios from 'axios'
 // import ReactHover from 'react-hover'
-import { Document, Page} from 'react-pdf'
+import DWVwithInfo from '../../DicomWebViewer/DWVwithInfo'
+import Spinner from '../../common/Spinner'
+import Popup from "reactjs-popup";
 
 
 
@@ -26,19 +28,13 @@ const customStyles = {
   }
 }
 const customStylesII = {
-  overlay: { position: 'static' },
   content: {
-    border: '0',
-    borderRadius: '4px',
-    minHeight: '470px',
-    left: '85%',
-    right: 'auto',
     top: '50%',
-    position: 'fixed',
-    transform: 'translate(-50%,-50%)',
-    minWidth: '400px',
-    maxWidth: '500px',
-    background:'#ffa726'
+    left: '50%',
+    right: '-25%',
+    bottom: '-25%',
+    marginRight: '0',
+    transform: 'translate(-50%, -50%)'
   }
 }
 dwv.utils.decodeQuery = dwv.utils.base.decodeQuery
@@ -87,56 +83,53 @@ class FileItem extends Component {
   componentDidMount () {
     // this.props.displayDicom({ filename: this.props.file.filename })
     this.setState({pin:this.props.file.metadata.pinned})
-    if(this.props.file.contentType==='application/octet-stream') {
-      if (!this.state.loaded) {
-        axios.post('/api/upload/displayDicom', { filename: this.props.file.filename },
-          { responseType: 'arraybuffer' }).then(res => {
-          if (res !== null) {
-            console.log({res:res})
-            try {
-              let app = new dwv.App()
-              app.init({
-                'containerDivId': this.props.file.filename.toString(),
-                'tools': this.state.tools,
-                'shapes': ['Ruler'],
-                'isMobile': true
-              })
-              const canvas = this.canvasRef.current
-              if (canvas !== null) {
-                app.loadImageObject([{ name: '', filename: '', data: res.data }])
-                const ctx = canvas.getContext('2d')
-                app.getImage().onload = () => {
-                  ctx.drawImage(app.getImage(), 0, 0)
-                }
-                let self = this
-                app.addEventListener('load-progress', event => {
-                  console.log({ progress: event.loaded })
-                  self.setState({ loadProgress: event.loaded })
-                })
-                app.addEventListener('load-end', event => {
-                  self.setState({ dataLoaded: true })
-                  self.setState({ tags: app.getTags() })
-                  if (app.isMonoSliceData() && app.getImage().getNumberOfFrames() === 1) {
-                    self.setState({ selectedTool: 'ZoomAndPan' })
-                  } else {
-                    self.setState({ selectedTool: 'Scroll' })
-                  }
-                })
-                this.setState({ dwvApp: app, loaded: true })
+    if (!this.state.loaded) {
+      axios.post('/api/upload/displayDicom', { filename: this.props.file.filename },
+        { responseType: 'arraybuffer' }).then(res => {
+        if (res !== null) {
+          console.log({res:res})
+          try {
+            let app = new dwv.App()
+            app.init({
+              'containerDivId': this.props.file.filename.toString(),
+              'tools': this.state.tools,
+              'shapes': ['Ruler'],
+              'isMobile': true
+            })
+            const canvas = this.canvasRef.current
+            if (canvas !== null) {
+              app.loadImageObject([{ name: '', filename: '', data: res.data }])
+              const ctx = canvas.getContext('2d')
+              app.getImage().onload = () => {
+                ctx.drawImage(app.getImage(), 0, 0)
               }
-
-            } catch (e) {
-              console.log(e)
+              let self = this
+              app.addEventListener('load-progress', event => {
+                console.log({ progress: event.loaded })
+                self.setState({ loadProgress: event.loaded })
+              })
+              app.addEventListener('load-end', event => {
+                self.setState({ dataLoaded: true })
+                self.setState({ tags: app.getTags() })
+                if (app.isMonoSliceData() && app.getImage().getNumberOfFrames() === 1) {
+                  self.setState({ selectedTool: 'ZoomAndPan' })
+                } else {
+                  self.setState({ selectedTool: 'Scroll' })
+                }
+              })
+              this.setState({ dwvApp: app, loaded: true })
             }
-          }
-        }).catch(err => {
-            console.log({ err: err })
-          }
-        )
-      }
-    }else if(this.props.file.contentType==='application/pdf') {
 
+          } catch (e) {
+            console.log(e)
+          }
+        }
+      }).catch(err => {
+          console.log({ err: err })
+        }
+      )
     }
+
   }
 
   onOpen (e) {
@@ -200,45 +193,12 @@ class FileItem extends Component {
     const { file, patient } = this.props
     const { active, loading } = this.props.view
     const { loadProgress } = this.state
-    let displayFile = null,icon=null, canvas=null
-    if(this.props.file.contentType==='application/octet-stream') {
-      canvas = (
-        <div id={this.props.file.filename} style={{width:'100%'}}>
-          <div className="layerContainer">
-            <div className="dropBox"/>
-            <canvas ref={this.canvasRef} className="imageLayer"
-            >
-              Only for HTML5 compatible browsers...</canvas>
-            <img src={this.state.image} alt=''/>
-            <div className="drawDiv"/>
-          </div>
-        </div>
-      )
-    }else  {
-      canvas = (
-        <img src={require('../../../img/file.png')} alt=''/>
-      )
-    }
+    let displayFile = null,icon=null
     if (loading || active === null) {
       displayFile = null
     } else {
-      console.log({active:active})
-      if(this.props.file.contentType==='application/octet-stream') {
-        displayFile = (<DwvComponent file={active}/>)
-      } else if (this.props.file.contentType==='application/pdf')  {
-        console.log({success:true})
-        displayFile=(
-          <div>
-            <h1>problem loading</h1>
-            <Document
-              file={active}
-            >
-              <Page />
-            </Document>
-          </div>
+      displayFile = (<DwvComponent file={active}/>)
 
-        )
-      }
     }
     if(this.state.pin) {
       icon=( <button className='btn-sm btn' onClick={this.unPinFile}
@@ -266,9 +226,17 @@ class FileItem extends Component {
                       minWidth: '200', borderStyle: 'solid', maxWidth: '200px',
                     }}>
                         <div className="card-body text-center">
-                          <button className='btn-sm btn' onClick={this.onClick.bind(this)}
-                                  onMouseOver={this.onClick.bind(this)} onMouseLeave={this.closeModal.bind(this)}>
-                            {canvas}
+                          <button className='btn-sm btn' onClick={this.onClick.bind(this)}>
+                            <div id={this.props.file.filename} style={{width:'100%'}}>
+                              <div className="layerContainer">
+                                <div className="dropBox"/>
+                                <canvas ref={this.canvasRef} className="imageLayer"
+                                >
+                                  Only for HTML5 compatible browsers...</canvas>
+                                <img src={this.state.image} alt=''/>
+                                <div className="drawDiv"/>
+                              </div>
+                            </div>
                             <div className='row d-flex justify-content-center' >
                               <h4 className="card-title" style={{
                                 fontSize: '18px', overflow: 'hidden'
@@ -279,13 +247,13 @@ class FileItem extends Component {
                           </button>
                           <div className="row d-flex justify-content-between">
                             {icon}
-                        <button className='btn-sm btn'
-                                style={{ background: 'green', color: 'white', marginRight: '10px', maxHeight:'30px' }}
-                                onClick={this.onOpen.bind(this)}><i className="fa fa-download"
-                                                                    aria-hidden="true"/></button>
+                            <button className='btn-sm btn'
+                                    style={{ background: 'green', color: 'white', marginRight: '10px' }}
+                                    onClick={this.onOpen.bind(this)}><i className="fa fa-download"
+                                                                        aria-hidden="true"/></button>
 
                         <button className='btn-sm btn' onClick={this.onDelete.bind(this)}
-                                style={{ background: 'red', color: 'white', marginLeft: '10px', maxHeight:'30px' }}>
+                                style={{ background: 'red', color: 'white', marginLeft: '10px' }}>
                           <i className="fa fa-trash" aria-hidden="true"/></button>
                       </div>
                         </div>
@@ -305,7 +273,6 @@ class FileItem extends Component {
           contentLabel="Dicom File"
           shouldCloseOnOverlayClick={true}
           ariaHideApp={false}
-          shouldFocusAfterRender={false}
         >{displayFile}</Modal>
       </div>
     )

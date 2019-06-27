@@ -35,6 +35,9 @@ const UserSchema = new Schema({
   diagCentreName: {
     type: String
   },
+  centreCode: {
+    type: String
+  },
   access: {
     type: Boolean,
     default: true

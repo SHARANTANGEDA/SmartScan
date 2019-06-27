@@ -61,7 +61,8 @@ router.post('/addMembers', passport.authenticate('diag_admin',{session: false}),
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           diagCentreName:diagnostics.centreName,
-          centreShortCode: diagnostics.short
+          centreShortCode: diagnostics.short,
+          centreCode: diagnostics.centreCode
 
         })
         bcrypt.genSalt(10, (err, salt) => {
@@ -144,7 +145,8 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
         uploadedBy: user.emailId,
         diagCentreName: user.diagCentreName,
         diagCentre: user.diagCentre,
-        centreShortCode: user.centreShortCode
+        centreShortCode: user.centreShortCode,
+        centreCode: user.centreCode
       })
       newUpload.save().then(pat => {
         console.log({ "created user": pat._id })

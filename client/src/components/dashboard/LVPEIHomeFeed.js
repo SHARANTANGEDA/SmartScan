@@ -3,6 +3,8 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { Collapse } from 'react-collapse'
 import PatientRow from '../display/Patients/PatientRow'
+import Spinner from '../common/Spinner'
+import PatientItem from '../display/Patients/PatientItem'
 
 class LVPEIHomeFeed extends Component {
   constructor () {
@@ -57,34 +59,39 @@ class LVPEIHomeFeed extends Component {
   render () {
     const { patients } = this.props
     let content;
-    if(patients.length===0) {
-      content=(
-        <h5> Nothing is uploaded/modified in this time</h5>
-      )
-    }else {
-      content=(
-      <PatientRow folders={patients}/>
-    )}
+    if(patients===null) {
+      content=(<Spinner/>)
+    } else {
+      if(patients.length===0) {
+        content=(
+          <h5> Nothing is uploaded/modified in this time</h5>
+        )
+      }else {
+        console.log(this.props.campusCode)
+          content=(
+            <PatientRow folders={patients} code={this.props.campusCode}/>
+          )
 
+      }
+    }
     return (
       <div style={{width: '100%'}}>
         <div style={{width: '100%'}}>
-          <table className="table table-bordered table-striped mb-0">
+          <table className="table table-bordered mb-0" >
             <thead>
             <tr>
-              <th scope="col" style={{ fontSize: '10pt'}}>Centre</th>
-              <th scope="col" style={{ fontSize: '10pt'}}>MR No</th>
-              <th scope="col" style={{ fontSize: '10pt'}}>Patient Name</th>
-              <th scope="col" style={{ fontSize: '10pt'}}>Age/Gender</th>
-              <th scope="col" style={{ fontSize: '10pt'}}>Date of last upload</th>
-              <th scope="col" style={{ fontSize: '10pt'}}>Time of last upload</th>
-              <th scope="col" style={{ fontSize: '10pt'}}>View</th>
-              <th scope="col" style={{ fontSize: '10pt'}}>Delete</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Diag Centre</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>LVPEI Centre</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>MR No</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Patient Name</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Age/Gender</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Date of last upload</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Time of last upload</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>View</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Delete</th>
             </tr>
             </thead>
-            <tbody>
             {content}
-            </tbody>
           </table>
         </div>
       </div>
@@ -99,7 +106,8 @@ LVPEIHomeFeed.defaultProps = {
 
 LVPEIHomeFeed.propTypes = {
   auth: PropTypes.object.isRequired,
-  patients: PropTypes.array.isRequired
+  patients: PropTypes.array.isRequired,
+  campusCode: PropTypes.string.isRequired
 }
 const mapStateToProps = state => ({
   auth: state.auth

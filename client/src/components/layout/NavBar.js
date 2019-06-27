@@ -80,14 +80,14 @@ class Navbar extends Component {
              style={{color:'white', verticalAlign: 'bottom'}}>
           <Link to='/dashboard'> <img style={{ maxWidth: '100px', maxHeight: '100px' }}
                             src={require('../../img/logo2.png')} alt=""/></Link>
-         <h2>L V Prasad Eye Institute</h2>
+         <h2>{' '}L V Prasad Eye Institute</h2>
 
         </div>
         <div className="row d-flex justify-content-end align-items-center" style={{color:'white'}}>
           <img style={{ maxWidth: '200px', maxHeight: '150px' }}
                src={require('../../img/logo.png')} alt=""
           />
-          <h2>LVStream</h2>
+          <h3>SmartScan</h3>
         </div>
       </div>
 
@@ -98,14 +98,14 @@ class Navbar extends Component {
              style={{color:'white', verticalAlign: 'bottom'}}>
           <Link to='/'> <img style={{ maxWidth: '130px', maxHeight: '130px' }}
                                       src={require('../../img/logo2.png')} alt=""/></Link>
-          <h3>L V Prasad Eye Institute</h3>
+          <h3>  {' '}L V Prasad Eye Institute</h3>
 
         </div>
         <div className="row d-flex justify-content-end align-items-center" style={{color:'white'}}>
           <img style={{ maxWidth: '200px', maxHeight: '150px' }}
                src={require('../../img/logo.png')} alt=""
           />
-          <h3>LVStream</h3>
+          <h3>SmartScan</h3>
         </div>
       </div>
     )
@@ -155,8 +155,8 @@ class Navbar extends Component {
     let authLinksIII=null
     if (isAuthenticated && (user.role==='super_admin')) {
       authLinksIII = (
-          <ul className="navbar-nav components" style={{ height: '100%' }}>
-            <li className='nav-item'>
+          <ul className="navbar-nav components d-flex justify-content-between" style={{ height: '100%' }}>
+            <li className='nav-item'  style={{borderRadius: '5px' }}>
               <Link className='nav-link' to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
                 Home
               </Link>
@@ -192,21 +192,21 @@ class Navbar extends Component {
 
               </ul>
             </li>
-            <li className="nav-item dropdown " style={{color: 'white',background:'#008cff' , borderRadius: '5px'
-              ,minWidth:'150px' }}>
+            <li className="nav-item dropdown" style={{color: 'white', borderRadius: '5px'
+              ,minWidth:'200px' }}>
               <Link className="nav-link nav-item d-flex justify-content-around" to=""  data-toggle="dropdown"
-                    style={{color: 'white',background:'#008cff', borderRadius: '5px' }}>
+                    style={{color: 'white', borderRadius: '5px' }}>
                 {user.emailId}<i className="fas fa-caret-down"/>
               </Link>
               <ul className="dropdown-menu " aria-labelledby="navbarDropdown">
-                <li className='nav-item'>
-                  <Link className='nav-link' to="/changePassword" style={{color: 'white',background:'#008cff'}}>
+                <li className='nav-item' style={{minWidth:'200px'}}>
+                  <Link className='nav-link' to="/changePassword" style={{color: 'white'}}>
                     Change Password
                   </Link>
                 </li>
               </ul>
             </li>
-            <li className="nav-item pull-right">
+            <li className="nav-item pull-right" style={{borderRadius: '5px' }}>
               <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
                     style={{color: 'white', borderRadius: '5px' }}>
                 <i className="fa fa-power-off" aria-hidden="true"/>
@@ -265,9 +265,44 @@ class Navbar extends Component {
           </li>
         </ul>
       )
-    }else if(isAuthenticated && (user.role==='lvpei' || user.role==='diag')) {
+    }else if(isAuthenticated && (user.role==='lvpei' )) {
       authLinksIII = (
-        <ul className="navbar-nav components" style={{ height: '100%' }}>
+        <ul className="navbar-nav components d-flex justify-content-around" style={{ height: '100%' }}>
+          <li className='nav-item' >
+            <Link className='nav-link' to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
+                  style={{color: 'white', borderRadius: '5px' }}>
+              Tumor Volume</Link>
+          </li>
+          <li className="nav-item dropdown " style={{color: 'white',background:'#008cff' , borderRadius: '5px'
+            ,minWidth:'150px' }}>
+            <Link className="nav-link nav-item d-flex justify-content-around" to=""  data-toggle="dropdown"
+                  style={{color: 'white', borderRadius: '5px' }}>
+              {user.emailId}<i className="fas fa-caret-down"/>
+            </Link>
+            <ul className="dropdown-menu " >
+              <li><Link className='nav-link' to="/editProfile" style={{color: 'white'}}>
+                My Account</Link></li>
+              <li><Link className='nav-link' to="/changePassword" style={{color: 'white'}}>
+                Change Password</Link></li>
+            </ul>
+          </li>
+          <li className="nav-item pull-right">
+            <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
+                  style={{color: 'white', borderRadius: '5px' }}>
+              <i className="fa fa-power-off" aria-hidden="true"/>
+              {'  '}Logout</Link>
+          </li>
+
+        </ul>
+      )
+    }else if(user.role==='diag') {
+      authLinksIII = (
+        <ul className="navbar-nav components d-flex justify-content-around" style={{ height: '100%' }}>
           <li className='nav-item' >
             <Link className='nav-link' to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
               Home
@@ -292,13 +327,14 @@ class Navbar extends Component {
               <i className="fa fa-power-off" aria-hidden="true"/>
               {'  '}Logout</Link>
           </li>
+
         </ul>
       )
     }
 
 
     return (
-      <nav className="navbar navbar-expand-sm  col-md-12" style={{background:'#008cff'}}>
+      <nav className="navbar navbar-expand-sm  col-md-12 " style={{background:'#008cff'}}>
         <div className="row container d-flex justify-content-between col-md-12">
           <div className='row col-md-12 d-flex justify-content-between col-md-12' >
             {isAuthenticated ? authLinkO : guestLinkO}

@@ -47,7 +47,7 @@ class ChangePassword extends Component {
         <div className="col-sm-9">
           <div className="row col-md-8 m-auto">
             <div className="col-sm-10" style={{ color: 'black'}}>
-              <h1>Change Password</h1></div>
+              <h2>Change Password</h2></div>
           </div>
 
             <div className="col-md-8 m-auto">
@@ -92,6 +92,7 @@ class ChangePassword extends Component {
               </form>
             </div>
         </div>
+
       </div>
     )
     // }
@@ -101,6 +102,11 @@ class ChangePassword extends Component {
         <div className="row" style={{ maxWidth: '100%' }}>
         </div>
         {profileContent}
+        <footer className="text-white mt-5 p-4 text-center" style={{ height:'60px',left:0,
+          bottom:0,background:'#008cff',position: 'absolute',
+          right:0}}>
+          Copyright &copy; {new Date().getFullYear()} L V Prasad Eye Institute
+        </footer>
       </div>
     )
   }

@@ -3,6 +3,8 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import TextFieldGroup from '../common/TextFieldGroup'
 import { addDiagnostics } from '../../actions/sAActions'
+import Select from 'react-select'
+import classnames from 'classnames'
 // import classnames from 'classnames'
 // import Select from 'react-select'
 
@@ -18,10 +20,12 @@ class CreateLVPEIUsers extends Component {
       firstName: '',
       lastName: '',
       short: '',
+      category: null,
       errors: {}
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.onSelectType = this.onSelectType.bind(this)
     // this.onRoleChange = this.onRoleChange.bind(this)
   }
 
@@ -50,21 +54,27 @@ class CreateLVPEIUsers extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       repassword: this.state.repassword,
-      short: this.state.short
+      short: this.state.short,
+      centreCode: this.state.category.value
     }
     console.log(newDiagnostic)
      this.props.addDiagnostics(newDiagnostic);
   }
+  onSelectType (e) {
+    this.setState({category: e})
+  }
 
   render () {
+    let scanTypeArray=[{ value: 'KAR', label: 'KAR' },{ value: 'KVC', label: 'KVC' },{ value: 'GMRV', label: 'GMRV' },
+      { value: 'MTC', label: 'MTC' }]
     const { errors } = this.state
     return (
       <div className="addDiagnosticCentre">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-md-8 m-auto">
+            <div className="col-md-6 m-auto">
               <div className="col-sm-12" style={{ color: 'black'}}>
-                <h1>Add a new Diagnostic Centre</h1></div>
+                <h2>Add a new Diagnostic Centre</h2></div>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="Enter centre Admin user name" error={errors.adminId}
                                 info="Please use unique username"
@@ -101,6 +111,10 @@ class CreateLVPEIUsers extends Component {
                                 type="text" onChange={this.onChange} value={this.state.short} name="short"
                                 info='Please try to make it unique for better classification'
                 />
+                <Select options={scanTypeArray} className={classnames('isSearchable')}
+                        placeholder="Choose the centre to allocate" style={{minWidth:'250px'}}
+                        name="category" value={this.state.category} onChange={this.onSelectType}>
+                </Select>
                 <div className="col-xs-12">
                   <input type="submit" className="btn btn-info btn-block mt-4 btn-primary w-30 my-1"/>
                 </div>
@@ -108,6 +122,11 @@ class CreateLVPEIUsers extends Component {
             </div>
           </div>
         </div>
+        <footer className="d-flex justify-content-center text-white mt-5 p-4 text-center" style={{ height:'50px',left:0,
+          bottom:0,background:'#008cff',width:'100%',
+          right:0}}>
+          Copyright &copy; {new Date().getFullYear()} L V Prasad Eye Institute
+        </footer>
       </div>
     )
   }

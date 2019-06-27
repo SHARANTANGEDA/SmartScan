@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import '../allFolders.css'
-import { deleteFolder, downloadFolder } from '../../../actions/homeActions'
+import { deleteFolder, downloadFolder, downloadSelectedFiles } from '../../../actions/homeActions'
 import downloading from '../../common/downloading.gif'
 import Modal from 'react-modal'
 import getLocalDate from '../../../utils/getLocalDate'
@@ -24,6 +24,7 @@ class FolderItem extends Component {
     super();
     this.state = {
       file: false,
+      file2: false,
       modalIsOpen: false,
       uploadModal: false
     };
@@ -33,10 +34,17 @@ class FolderItem extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.loadFolders = this.loadFolders.bind(this)
+    this.onDownloadSelected = this.onDownloadSelected.bind(this)
+    this.loadSelected =this.loadSelected.bind(this)
   }
 
   onOpen(e) {
     this.setState({file: true})
+  }
+  onDownloadSelected (e) {
+    console.log('into')
+    this.props.downloadSelectedFiles(this.props.folder._id)
+    this.setState({file2: true})
   }
   onDownload(e) {
     e.preventDefault()
@@ -71,10 +79,14 @@ class FolderItem extends Component {
   loadFolders () {
     window.location.href=`/displayFolder/displayFiles/${this.props.folder._id}`
   }
+  loadSelected () {
+    window.location.href=`/displayFolder/displaySelectedFiles/${this.props.folder._id}`
+
+  }
 
   render () {
     const {folder} = this.props;
-    let icon;
+    let icon,icon2;
     if(!this.state.file) {
       icon= (<button className='btn-sm btn' style={{background: 'green', color: 'white',marginRight: '10px'}}
                      onClick={this.onDownload.bind(this)}><i className="fa fa-download" aria-hidden="true"/>
@@ -87,56 +99,51 @@ class FolderItem extends Component {
       />
       </button>)
     }
-    let modalContent = (
-      <div id="mainbar" className='row d-flex justify-content-center'>
-        <div className="grid text-center col-md-10">
-          <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
-            color: 'black'
-          }}> Upload Details</h3>
-        </div>
-        <table className="table table-bordered table-striped mb-0">
-          <tbody>
-          <tr>
-            <td><h5>Uploaded By</h5></td>
-            <td><h5>{folder.diagCentreName}</h5></td>
-          </tr>
-          <tr>
-            <td><h5>Organization email Address</h5></td>
-            <td><h5>{folder.diagCentre}</h5></td>
-          </tr>
-          <tr>
-            <td><h5>uploaded At</h5></td>
-            <td><h5>{getLocalDate(folder.lastUploadAt)}</h5></td>
-          </tr>
-          <tr>
-            <td><h5>uploaded by user</h5></td>
-            <td><h5>{folder.uploadedBy}</h5></td>
-          </tr>
-          </tbody>
-        </table>
-        <div className="col-md-6 text-center" style={{ width: '100%' }}>
-          <button onClick={this.closeModal} className='btn btn-warning'>Close</button>
-        </div>
-      </div>
-    )
+    if(!this.state.file2) {
+      icon2= (<button className='btn-sm btn' style={{background: 'green', color: 'white',marginRight: '10px'}}
+                     onClick={this.onDownloadSelected.bind(this)}><i className="fa fa-download" aria-hidden="true"/>
+      </button>)
+    }else {
+      icon2 = (<button className='btn-sm btn' style={{background: 'white',marginRight: '10px'}}><img
+        src={downloading}
+        style={{ width: '25px', margin: 'auto', display: 'block' }}
+        alt="downloading..."
+      />
+      </button>)
+    }
     return (
       //onTouchStart="this.classList.toggle('hover');
         <tr>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.centreShortCode}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.centreCode}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.mrNo}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.firstName+' '+folder.lastName}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px'  }}>{folder.age+'/'+folder.gender}</span></td>
-          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{getLocalDate(folder.lastUploadAt)}</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>
+                        {getLocalDate(folder.lastUploadAt).toString().substring(0,getLocalDate(folder.lastUploadAt).indexOf(','))}
+</span></td>
+          <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>
+            {getLocalDate(folder.lastUploadAt).toString().substring(getLocalDate(folder.lastUploadAt).indexOf(',')+1,
+              getLocalDate(folder.lastUploadAt).length)}</span></td>
+
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.scanType}</span></td>
           <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{folder.remarks}</span></td>
 
-          <td>
-            <button onClick={this.loadFolders} className='btn btn-sm'
-                  style={{ borderStyle: 'none', background: 'blue', color:'white'}}>View</button>
+          <td >
+            <div className='d-flex justify-content-between'>
+              <button onClick={this.loadFolders} className='btn btn-sm'
+                      style={{ borderStyle: 'none', background: 'blue', color:'white'}}>View All</button>
+              {icon}
+            </div>
           </td>
-          <td>{icon}
-          </td>
           <td>
+            <div className='d-flex justify-content-between'>
+              <button onClick={this.loadSelected} className='btn btn-sm'
+                      style={{ borderStyle: 'none', background: 'blue', color:'white'}}>View selected</button>
+              {icon2}
+            </div>
+          </td>
+          <td >
             <button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}
                       onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/></button>
           </td>
@@ -192,9 +199,10 @@ class FolderItem extends Component {
 // {/*</div>*/}
 FolderItem.propTypes = {
   folder: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  downloadSelectedFiles: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(mapStateToProps, {downloadFolder, deleteFolder})(FolderItem);
+export default connect(mapStateToProps, {downloadFolder, deleteFolder, downloadSelectedFiles})(FolderItem);

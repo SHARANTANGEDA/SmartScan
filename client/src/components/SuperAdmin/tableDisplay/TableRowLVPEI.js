@@ -5,17 +5,33 @@ import { connect } from 'react-redux'
 import { deleteLVPEIUser, grantUserAccess, removeUserAccess } from '../../../actions/sAActions'
 import getLocalDate from '../../../utils/getLocalDate'
 import downloading from '../../common/downloading.gif'
+import Modal from 'react-modal'
+import ResetPassword from '../../MyAccount/ResetPassword'
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '0',
+    transform: 'translate(-50%, -50%)'
+  }
+}
 
 class TableRowLVPEI extends Component {
   constructor () {
     super()
     this.state= {
       removeClick: false,
-      grantClick: false
+      grantClick: false,
+      modalIsOpen: false
     }
     this.onRemoveAccess = this.onRemoveAccess.bind(this)
     this.onGrantAccess = this.onGrantAccess.bind(this)
-    this.onDelete = this.onDelete.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.afterOpenModal = this.afterOpenModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
 
   }
 
@@ -30,9 +46,18 @@ class TableRowLVPEI extends Component {
     this.setState({grantClick: true})
   }
 
-  onDelete(e) {
-    this.props.deleteLVPEIUser({emailId: this.props.data.emailId})
+  resetPassword (e) {
+
   }
+  openModal () {
+    this.setState({ modalIsOpen: true })
+  }
+  afterOpenModal () {}
+
+  closeModal () {
+    this.setState({ modalIsOpen: false })
+  }
+
   render () {
     const { data } = this.props
     let content
@@ -110,12 +135,28 @@ class TableRowLVPEI extends Component {
         </td>
         <td>
           <span style={{ fontSize: '13.3333330154419px', background: 'green',color: 'white', borderRadius: '5px'}}>
-          <button onClick={this.onGrantAccess} className=" btn btn-success" style={{background: 'blue', borderRadius: '5px'}}>Edit</button>
+          <button onClick={this.openModal} className=" btn btn-success" style={{background: 'blue', borderRadius: '5px'}}>
+            Reset Password</button>
         </span>
         </td>
         <td>
           {content}
         </td>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Patient Data"
+          shouldCloseOnOverlayClick={true}
+          ariaHideApp={false}
+        >
+          <div className="col-md-12 d-flex justify-content-end" style={{ width: '100%' }}>
+            <button onClick={this.closeModal} className='btn btn-sm' style={{ background: 'red', color: 'white' }}>Close
+            </button>
+          </div>
+          <ResetPassword emailId={data.emailId}/>
+        </Modal>
       </tr>
     )
   }

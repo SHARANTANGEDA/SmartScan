@@ -37,6 +37,12 @@ const storage = new GridFsStorage({
             const filename =patient.mrNo.toString()+';'+patient._id.toString() + ';' + file.originalname
             const fileInfo = {
               filename: filename,
+              metadata: {
+                pinned: false,
+                patientId:patient._id.toString(),
+                mrNo: patient.mrNo,
+                centreCode: patient.centreCode
+              },
               bucketName: 'uploads'
             }
             resolve(fileInfo)
@@ -139,26 +145,57 @@ router.post('/upload', passport.authenticate('all_diag', { session: false }),
 // @desc  Display all files in a Folder
 router.get('/files/:id',  passport.authenticate('lvpei',{session: false}),(req, res) => {
   Patient.findById(req.params.id).then(patient => {
-    gfs.files.find().toArray((err, files) => {
-      // Check if files
+    gfs.files.find({'metadata.patientId':req.params.id}).toArray((err, files) => {
       if (!files || files.length === 0) {
         return res.status(404).json({
           err: 'No files exist'
         })
       } else {
-        let temp = []
-        files.forEach(file => {
-          let nm = patient._id.toString()
-          let start = file.filename.indexOf(';')
-          if (file.filename.substr(start+1, nm.length) === nm) {
-            temp.push(file)
-          }
-        })
-        return res.json({ patient: patient, files: temp })
+        console.log(files)
+        return res.json({ patient: patient, files: files })
       }
     })
+  }).catch(err => {
+    console.log(err)
   })
 })
+// @route GET /files
+// @desc  Display all files in a Folder
+router.get('/selectedFiles/:id',  passport.authenticate('lvpei',{session: false}),(req, res) => {
+  Patient.findById(req.params.id).then(patient => {
+    gfs.files.find({'metadata.patientId':req.params.id,'metadata.pinned': true}).toArray((err, files) => {
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          err: 'No files exist'
+        })
+      } else {
+        console.log(files)
+        return res.json({ patient: patient, files: files })
+      }
+    })
+  }).catch(err => {
+    console.log(err)
+  })
+})
+
+router.post('/pinFile',passport.authenticate('lvpei',{session: false}), (req, res) => {
+  gfs.files.update({filename: req.body.filename},{$set:{'metadata.pinned': true}}).then(file => {
+    console.log(file)
+    res.json({success: true})
+  }).catch(err => {
+    console.log(err)
+  })
+})
+
+router.post('/unPinFile',passport.authenticate('lvpei',{session: false}), (req, res) => {
+  gfs.files.update({filename: req.body.filename},{$set:{'metadata.pinned': false}}).then(file => {
+    console.log(file)
+    res.json({success: true})
+  }).catch(err => {
+    console.log(err)
+  })
+})
+
 
 // @route Download /files
 // @desc  Download Single File
@@ -216,15 +253,15 @@ router.get('/downloadFile/:id', passport.authenticate('lvpei',{session: false}),
 //   })
 // })
 
-router.post('/downloadSelected',passport.authenticate('lvpei',{session: false}), (req, res) => {
-  console.log(req.body.selected)
-  Patient.findById(req.body.id).then(patient => {
-    gfs.files.find().toArray(async (err, files) => {
+router.get('/downloadSelected/:id',passport.authenticate('lvpei',{session: false}), (req, res) => {
+  // Patient.findById(req.body.id).then(patient => {
+    gfs.files.find({'metadata.patientId':req.params.id,'metadata.pinned': true}).toArray(async (err, files) => {
       if (!files || files.length === 0) {
         return res.status(404).json({
           err: 'No files exist'
         })
       }
+      console.log('here')
       let archive = archiver('zip')
       let dummy = []
       // archive.on('error', function (err) {
@@ -233,19 +270,20 @@ router.post('/downloadSelected',passport.authenticate('lvpei',{session: false}),
       archive.pipe(res)
       files.forEach(file => {
         dummy.push(new Promise((resolve, reject) => {
-          let nm = patient._id.toString()
-          let start = file.filename.indexOf(';')
-          let last = file.filename.lastIndexOf(';')
-          if (file.filename.substr(start+1, nm.length) === nm && req.body.selected.includes(file.filename)) {
+          // let nm = patient._id.toString()
+          // let start = file.filename.indexOf(';')
+          // let last = file.filename.lastIndexOf(';')
+          // if (file.filename.substr(start+1, nm.length) === nm && req.body.selected.includes(file.filename)) {
             let readstream = gfs.createReadStream({
               filename: file.filename,
               root: 'uploads'
             })
             res.set('Content-Type', file.contentType)
             res.set('Content-Disposition', 'attachment; filename="' + file.contentType + '"')
-            archive.append(readstream, { name: file.filename.substring(last+1, file.filename.length) })
+            archive.append(readstream, { name: file.filename.substring(
+              file.filename.lastIndexOf(';')+1, file.filename.length) })
             resolve(readstream)
-          }
+          // }
         }).catch(err => {
           console.log({ err: 'New error has occurred' })
         }))
@@ -256,7 +294,7 @@ router.post('/downloadSelected',passport.authenticate('lvpei',{session: false}),
         console.log('error: '+err)
       })
     })
-  })
+  // })
 })
 // @route Download multiple files
 // @desc  Download Complete Folder(ZIP)
@@ -308,13 +346,24 @@ router.get('/folders/:id', passport.authenticate('lvpei', { session: false }), (
   })
 })
 router.get('/patientsFolders', passport.authenticate('lvpei', { session: false }), (req, res) => {
-  let mrNos = [], dummy = [], today = [], yesterday = [], lastweek = [], lastMonth = [], previous = [], all=[]
+  let mrNos = [], dummy = [], today = [], yesterday = [], lastweek = [], lastMonth = [], previous = [], all=[],
+    KAR=[], KVC=[],GMRV=[],MTC=[]
   Patient.find().sort({ lastUpdateAt: -1 }).then(async patients => {
     const now = new Date()
     patients.map(patient => {
       dummy.push(new Promise((resolve, reject) => {
         console.log({ MR: mrNos })
         if (!mrNos.includes(patient.mrNo)) {
+
+          // if(patient.centreCode==='KAR') {
+          //   KAR.push(patient)
+          // }else if(patient.centreCode==='KVC') {
+          //   KVC.push(patient)
+          // }else if(patient.centreCode==='GMRV') {
+          //   GMRV.push(patient)
+          // }else if(patient.centreCode==='MTC') {
+          //   MTC.push(patient)
+          // }
 
           let diff = dateDiffInDays(now, patient.lastUploadAt)
           console.log(diff)
@@ -367,7 +416,9 @@ router.post('/displayDicom',passport.authenticate('lvpei',{session: false}), (re
       })
     }
     const readstream = gfs.createReadStream(file.filename)
-    readstream.pipe(res)
+    if(file.contentType==='application/octet-stream') {
+      readstream.pipe(res)
+    }
   })
 })
 

@@ -11,7 +11,7 @@ class FileRow extends Component {
     )));
     return (
       // style={{height: "20%", width: "100%",minWidth: "100%"}}   d-flex flex-grow-1
-      <div className="row" >
+      <div className="row d-flex justify-content-center col-md-9" >
         {showUsers}
       </div>
     )
@@ -26,6 +26,7 @@ FileRow.propTypes = {
   patient: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   check: PropTypes.bool.isRequired
+
 };
 const mapStateToProps = state => ({
   auth: state.auth

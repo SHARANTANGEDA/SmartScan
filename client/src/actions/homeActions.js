@@ -215,18 +215,21 @@ export const getAllPatients = () => dispatch => {
     })
   )
 }
+
+
 export const downloadSelectedFiles = (id) => dispatch => {
   console.log('In download folder')
-  axios.post(`/api/upload/downloadSelected`,(id), { responseType: 'blob' }).then(res => {
+  axios.get(`/api/upload/downloadSelected/${id}`, { responseType: 'blob' }).then(res => {
     console.log(res)
     const url = window.URL.createObjectURL(new Blob([res.data]))
     const link = document.createElement('a')
     console.log(url)
     link.href = url
     link.setAttribute('download',
-      id.selected[0].substring(id.selected[0].indexOf(';')+1, id.selected[0].lastIndexOf(';')) + '.zip')
+      id + '.zip')
     document.body.appendChild(link)
     link.click()
+    window.location.reload()
   }).catch(err =>
     dispatch({
       type: NO_FILES,
@@ -237,6 +240,20 @@ export const downloadSelectedFiles = (id) => dispatch => {
 export const getFilesByFolder = (id) => dispatch => {
   dispatch(setLoading())
   axios.get(`/api/upload/files/${id}`).then(res => {
+    dispatch({
+      type: GET_FILES_SINGLE_FOLDER,
+      payload: res.data
+    })
+  }).catch(err =>
+    dispatch({
+      type: NO_FILES_IN_FOLDER,
+      payload: err.data
+    })
+  )
+}
+export const getSelectedFilesByFolder = (id) => dispatch => {
+  dispatch(setLoading())
+  axios.get(`/api/upload/selectedFiles/${id}`).then(res => {
     dispatch({
       type: GET_FILES_SINGLE_FOLDER,
       payload: res.data
@@ -266,6 +283,22 @@ export const displayDicom = (id) => dispatch => {
     }
   )
 }
+
+export const pinFile = (id) => dispatch => {
+  axios.post(`/api/upload/pinFile`,id).then(res => {
+    console.log(res.data)
+  }).catch(err =>
+    {console.log(err)}
+  )
+}
+export const unPinFile = (id) => dispatch => {
+  axios.post(`/api/upload/unPinFile`,id).then(res => {
+    console.log(res.data)
+  }).catch(err =>
+    {console.log(err)}
+  )
+}
+
 export const setLoading = () => {
   return {
     type: FOLDER_LOADING

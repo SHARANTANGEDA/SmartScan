@@ -52,7 +52,8 @@ div {
 }
 
 .form-control::placeholder {
-  color: #bbb !important;
+  color: #4b4b4b !important;
+  opacity: 0.9;
 }
 
 .input-group.md-form.form-sm.form-2 input {
@@ -64,6 +65,19 @@ div {
 .input-group.md-form.form-sm.form-2 input.lime-border  {
   border: 1px solid #cddc39;
 }
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: pink;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;
+}
+
 
 /*
 SIDEBAR.CSS

@@ -60,7 +60,7 @@ class CreateUsers extends Component {
     const { errors } = this.state
     let heading
     if(this.props.auth.user.role==='super_admin') {
-      heading=(<h1>Create a new LVPEI user account</h1>)
+      heading=(<h2>Create a new LVPEI user account</h2>)
     } else if(this.props.auth.user.role==='diag_admin') {
       heading=(<h2>Create new user for Your Diagnostics</h2>)
     }    return (
@@ -102,6 +102,11 @@ class CreateUsers extends Component {
             </div>
           </div>
         </div>
+        <footer className="text-white mt-5 p-4 text-center" style={{ height:'60px',left:0,
+          bottom:0,background:'#008cff',position: 'absolute',
+          right:0}}>
+          Copyright &copy; {new Date().getFullYear()} L V Prasad Eye Institute
+        </footer>
       </div>
     )
   }

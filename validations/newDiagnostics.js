@@ -11,6 +11,7 @@ module.exports = (data) => {
   data.password = !isEmpty(data.password) ? data.password : '';
   data.repassword = !isEmpty(data.repassword) ? data.repassword : '';
   data.short = !isEmpty(data.short) ? data.short : ''
+  data.centreCode = !isEmpty(data.centreCode) ? data.centreCode : ''
 
   if (Validator.isEmpty(data.adminId)) {
     errors.adminId = 'admin user name is required';
@@ -36,6 +37,10 @@ module.exports = (data) => {
 
   if(Validator.isEmpty(data.short)) {
     errors.short = 'Please enter the shortcut'
+  }
+  if(Validator.isEmpty(data.centreCode)) {
+    errors.category = 'Please select centre code'
+
   }
 
   if (!Validator.isLength(data.short, { min: 3, max: 5 })) {

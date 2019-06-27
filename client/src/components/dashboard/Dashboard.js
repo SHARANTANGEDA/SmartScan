@@ -34,7 +34,8 @@ class Dashboard extends Component {
       errors: {},
       modalIsOpen: false,
       uploadModal: false,
-      category: { value: 'all', label: 'All' },
+      category: { value: 'all', label: 'Choose Time' },
+      campusCode: { value: 'all', label: 'Choose Campus' },
       showPatient: null
     }
     this.changeHandler = this.changeHandler.bind(this)
@@ -47,6 +48,7 @@ class Dashboard extends Component {
     this.onDiscard = this.onDiscard.bind(this)
     this.onSelectType = this.onSelectType.bind(this)
     this.onConfirmSelect = this.onConfirmSelect.bind(this)
+    this.codeSelect = this.codeSelect.bind(this)
   }
 
   componentDidMount () {
@@ -116,6 +118,9 @@ class Dashboard extends Component {
   onSelectType (e) {
     this.setState({category: e})
   }
+  codeSelect(e) {
+    this.setState({campusCode: e})
+  }
   onConfirmSelect (e) {
     if(this.state.category.value==='all') {
       this.setState({showPatient: this.props.folder.patients.all})
@@ -137,7 +142,7 @@ class Dashboard extends Component {
     }
   }
   render () {
-    const { errors, category } = this.state
+    const { errors, category,campusCode } = this.state
     if (this.props.auth.user.role === 'lvpei') {
       const { loading, notFound, patients } = this.props.folder
       let allFoldersContent
@@ -153,37 +158,50 @@ class Dashboard extends Component {
         } else {
           if(this.state.showPatient === null) {
             allFoldersContent = (
-              <LVPEIHomeFeed patients={this.props.folder.patients.all}/>
+              <LVPEIHomeFeed patients={this.props.folder.patients.all} campusCode={this.state.campusCode.value}/>
             )
           }else {
             console.log({'HELLO':this.state.showPatient})
             allFoldersContent = (
-              <LVPEIHomeFeed patients={this.state.showPatient}/>
+              <LVPEIHomeFeed patients={this.state.showPatient} campusCode={this.state.campusCode.value}/>
             )
           }
 
         }
       }
       return (
-        <div className="display">
-          <nav className='navbar navbar-expand-sm  col-md-12' style={{background:'white', width:'100%'}}>
-            <div className='row col-md-6 d-flex justify-content-start'>
-              <div className='col-md-6'>
-                <Select options={[{ value: 'all', label: 'All' },{value:'today', label: 'today'},
-                  {value:'yesterday', label: 'yesterday'},
-                  {value: 'lastweek', label: 'Last Week'}, {value: 'lastMonth', label: 'Last Month'},
-                  {value: 'earlier', label: 'earlier'}]} className={classnames('isSearchable',
-                  { 'is-invalid': errors.category })}
-                        placeholder="Category"
-                        name="category" value={category} onChange={this.onSelectType}>
-                </Select>
+        <div className="display ">
+          <div className='App-content row d-flex justify-content-center'>
+            <nav className='navbar navbar-expand-sm  col-md-12' style={{background:'#ffa726', width:'100%'}}>
+              <div className='row col-md-8 d-flex justify-content-start'>
+                <div className='col-md-4'>
+                  <Select options={[{ value: 'all', label: 'All' },{value:'today', label: 'today'},
+                    {value:'yesterday', label: 'yesterday'},
+                    {value: 'lastweek', label: 'Last Week'}, {value: 'lastMonth', label: 'Last Month'},
+                    {value: 'earlier', label: 'earlier'}]} className={classnames('isSearchable',
+                    { 'is-invalid': errors.category })}
+                          placeholder="Category"
+                          name="category" value={category} onChange={this.onSelectType}>
+                  </Select>
+                </div>
+                <button onClick={this.onConfirmSelect} className="input-group-text cyan lighten-2">
+                  <i className="fas fa-search text-grey" aria-hidden="true"/>
+                </button>
+                <div className='col-md-4'>
+                  <Select
+                    options={[{ value: 'all', label: 'All' },{ value: 'KAR', label: 'KAR' },
+                      { value: 'KVC', label: 'KVC' }, { value: 'GMRV', label: 'GMRV' }, { value: 'MTC', label: 'MTC' }]}
+                    className={classnames('isSearchable', { 'is-invalid': errors.campusCode })}
+                    placeholder="Campus Code"
+                    name="campusCode" value={campusCode} onChange={this.codeSelect}>
+                  </Select>
+                </div>
+
               </div>
-              <button onClick={this.onConfirmSelect} className="input-group-text cyan lighten-2">
-                <i className="fas fa-search text-grey" aria-hidden="true"/>
-              </button>
-            </div>
-            <SearchBar/>
-          </nav>
+              <SearchBar/>
+            </nav>
+          </div>
+
           <div className="App-content row d-flex justify-content-center">
 
               {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
