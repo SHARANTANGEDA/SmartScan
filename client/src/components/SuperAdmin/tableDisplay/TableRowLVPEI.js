@@ -120,16 +120,16 @@ class TableRowLVPEI extends Component {
     // }
     return (
       <tr className="">
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12px' }}>{data.emailId}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.emailId}</span></td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12px' }}>{data.firstName + ' ' + data.lastName}</span>
+          <span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.firstName + ' ' + data.lastName}</span>
         </td>
         <td>
-          <span  style={{ fontFamily: 'Arial', fontSize: '12px' }}>
+          <span  style={{ fontFamily: 'Arial', fontSize: '14px' }}>
             {getLocalDate(data.time).substring(0,getLocalDate(data.time).indexOf(','))}</span>
         </td>
         <td>
-          <span  style={{ fontFamily: 'Arial', fontSize: '12px' }}>
+          <span  style={{ fontFamily: 'Arial', fontSize: '14px' }}>
             {getLocalDate(data.time).substring(getLocalDate(data.time).indexOf(',')+1,getLocalDate(data.time).length)}
           </span>
         </td>
@@ -151,12 +151,11 @@ class TableRowLVPEI extends Component {
           shouldCloseOnOverlayClick={true}
           ariaHideApp={false}
         >
-          <div className="col-md-12 d-flex justify-content-end" style={{ width: '100%' }}>
-            <button onClick={this.closeModal} className='btn btn-sm' style={{ background: 'red', color: 'white' }}>Close
-            </button>
+            <ResetPassword emailId={data.emailId}/>
+          <div className='row d-flex justify-content-center'>
+          <button onClick={this.closeModal} className='btn btn-sm' style={{ background: 'red', color: 'white' }}>Cancel</button>
           </div>
-          <ResetPassword emailId={data.emailId}/>
-        </Modal>
+                 </Modal>
       </tr>
     )
   }

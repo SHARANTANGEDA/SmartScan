@@ -32,10 +32,10 @@ class ActiveCentres extends Component {
       return (
           <div className="activeCentres row table-wrapper-scroll-y my-custom-scrollbar "
                style={{minWidth:'100%'}}>
-            <h3 className='text-center' style={{
+            <h4  className='text-center' style={{
               borderStyle: 'solid', borderWidth: '2px', background: 'green', color: 'white'
               , borderRadius: '2px'
-            }}>Active Diagnostic Centres</h3>
+            }}>Active Diagnostic Centres</h4>
             <table className="table table-bordered table-striped mb-0 col-md-12" style={{minWidth:'100%'}}>
               <thead className='col-md-12' style={{minWidth:'100%'}}>
               <tr>

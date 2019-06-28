@@ -30,13 +30,17 @@ const customStylesII = {
   content: {
     border: '0',
     borderRadius: '4px',
-    minHeight: '470px',
+    minHeight: '370px',
+    height: '370px',
     left: '85%',
+    margin: '0px',
+    padding: '2px',
+    paddingLeft: '0px',
     right: 'auto',
     top: '50%',
     position: 'fixed',
     transform: 'translate(-50%,-50%)',
-    minWidth: '400px',
+    minWidth: '420px',
     maxWidth: '500px',
     background:'#ffa726'
   }

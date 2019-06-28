@@ -72,37 +72,37 @@ class TableRowDiagActivity extends Component {
     }
     return (
       <tr className="">
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.centreName}</span></td>
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.short}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.centreName}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.short}</span></td>
 
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.adminId}</span></td>
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt',whiteSpace: 'nowrap' }}>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.adminId}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '14px',whiteSpace: 'nowrap' }}>
           {data.firstName+ ' '+data.lastName}</span></td>
 
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.orgEmail}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.orgEmail}</span></td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt',whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: 'Arial', fontSize: '14px',whiteSpace: 'nowrap' }}>
             {getLocalDate(data.createdAt).substring(0,getLocalDate(data.createdAt).indexOf(','))}</span>
         </td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt,whiteSpace: \'nowrap\'' }}>
+          <span style={{ fontFamily: 'Arial', fontSize: '14px',whiteSpace: 'nowrap' }}>
             {getLocalDate(data.createdAt).substring(getLocalDate(data.createdAt).indexOf(',')+1,
               getLocalDate(data.createdAt).length)}</span>
         </td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt',whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: 'Arial', fontSize: '14px',whiteSpace: 'nowrap' }}>
             {getLocalDate(data.lastUpdate).substring(0,getLocalDate(data.lastUpdate).indexOf(','))}</span>
         </td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12pt',whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: 'Arial', fontSize: '14px',whiteSpace: 'nowrap' }}>
             {getLocalDate(data.lastUpdate).substring(getLocalDate(data.lastUpdate).indexOf(',')+1,
               getLocalDate(data.lastUpdate).length)}</span>
         </td>
         <td>
-          <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.members.length}</span>
+          <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.members.length}</span>
         </td>
         <td>
-          <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '12pt' }}>{data.totalUploads}</span>
+          <span className='text-center' style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.totalUploads}</span>
         </td>
         <td>
           {content}

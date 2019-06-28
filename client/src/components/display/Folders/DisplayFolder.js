@@ -71,15 +71,15 @@ class DisplayFolder extends Component {
         <div className="App-content row d-flex justify-content-center" >
           <nav className='navbar navbar-expand-sm justify-content-between col-md-12' style={{ background:'#ffa726', width:'100%', height:'40px'}}>
             {heading}
-            <div className='col-md-3'>
-              <Select
-                options={[{ value: 'all', label: 'All' },{ value: 'KAR', label: 'KAR' },
-                  { value: 'KVC', label: 'KVC' }, { value: 'GMRV', label: 'GMRV' }, { value: 'MTC', label: 'MTC' }]}
-                className={classnames('isSearchable')}
-                placeholder="Campus Code"
-                name="campusCode" value={this.state.campusCode} onChange={this.codeSelect}>
-              </Select>
-            </div>
+            {/*<div className='col-md-3'>*/}
+            {/*  <Select*/}
+            {/*    options={[{ value: 'all', label: 'All' },{ value: 'KAR', label: 'KAR' },*/}
+            {/*      { value: 'KVC', label: 'KVC' }, { value: 'GMRV', label: 'GMRV' }, { value: 'MTC', label: 'MTC' }]}*/}
+            {/*    className={classnames('isSearchable')}*/}
+            {/*    placeholder="Campus Code"*/}
+            {/*    name="campusCode" value={this.state.campusCode} onChange={this.codeSelect}>*/}
+            {/*  </Select>*/}
+            {/*</div>*/}
 
             <Link to='/dashboard' className='btn' style={{background:'#ffa726', color: 'green'}}>
               BACK</Link>

@@ -11,7 +11,7 @@ class FileRow extends Component {
     )));
     return (
       // style={{height: "20%", width: "100%",minWidth: "100%"}}   d-flex flex-grow-1
-      <div className="row d-flex justify-content-center col-md-9" >
+      <div className="row d-flex justify-content-start col-md-9" >
         {showUsers}
       </div>
     )

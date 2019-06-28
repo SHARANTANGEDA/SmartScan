@@ -36,6 +36,8 @@ class Display extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.onBack = this.onBack.bind(this)
+    this.loadSelected =this.loadSelected.bind(this)
+    this.loadFolders = this.loadFolders.bind(this)
 
   }
   componentDidMount () {
@@ -52,6 +54,13 @@ class Display extends Component {
 
   closeModal () {
     this.setState({ modalIsOpen: false })
+  }
+  loadSelected () {
+    window.location.href=`/displayFolder/displaySelectedFiles/${this.props.folder._id}`
+
+  }
+  loadFolders () {
+    window.location.href=`/displayFolder/displayFiles/${this.props.folder._id}`
   }
 
   onSelectedDownload (e) {
@@ -233,13 +242,13 @@ class Display extends Component {
                     <button onClick={this.openModal} className='btn btn-primary'
                             style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
                       <i className="fas fa-info-circle"/>Upload Information</button>
-                    <button className='btn btn-primary'
+                    <button className='btn btn-primary' onClick={this.loadSelected}
                       style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
                       View Selected Files</button>
                     <button className='btn btn-primary' onClick={this.onSelectedDownload}
                             style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
                       Download Selected Files</button>
-                    <button className='btn btn-primary'
+                    <button className='btn btn-primary' onClick={this.loadFolders}
                       style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>
                       View All Files</button>
                     <button className='btn btn-primary'
