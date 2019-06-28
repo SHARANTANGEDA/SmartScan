@@ -77,10 +77,10 @@ class FolderItem extends Component {
 
   }
   loadFolders () {
-    window.location.href=`/displayFolder/displayFiles/${this.props.folder._id}`
+    window.location.href=`/displayFiles/${this.props.folder._id}`
   }
   loadSelected () {
-    window.location.href=`/displayFolder/displaySelectedFiles/${this.props.folder._id}`
+    window.location.href=`/displaySelectedFiles/${this.props.folder._id}`
 
   }
 

@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
@@ -111,11 +112,14 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
     return res.status(400).json(errors)
   }
   console.log('here')
-  db.Patient.findByPk(req.body.patient).then(patient => {
+  console.log(req.body.patient, req.body.centre)
+  db.Patient.findOne({where:{mrNo:req.body.patient, centreCode:req.body.centre}}).then(patient => {
     if(patient===null) {
       console.log("here")
+      console.log({null:patient})
       return res.json({patient: patient,invalid: true})
     }
+    console.log({all:patient})
     res.json({patient: patient,invalid: false})
     //
     // const newUpload = new Patient({
@@ -134,13 +138,21 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
 router.post('/continueToUpload',passport.authenticate('all_diag', {session: false}),(req, res) => {
   console.log(req.user.id)
   User.findById(req.user.id).then(user => {
-    db.Patient.findByPk(req.body.patient).then(patient => {
-      console.log({sqlPat:patient})
+    db.Patient.findOne({where:{mrNo:req.body.patient, centreCode:req.body.centre}}).then(patient => {
+      console.log({sqlPat:patient, dob: patient.dob})
+      let today = new Date();
+      let birthDate = new Date(patient.dob);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      let m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      console.log(birthDate, age)
       const newUpload = new Patient({
         mrNo: req.body.patient,
         firstName: patient.firstName,
         lastName: patient.lastName,
-        age: patient.age,
+        age: age,
         gender: patient.gender,
         uploadedBy: user.emailId,
         diagCentreName: user.diagCentreName,

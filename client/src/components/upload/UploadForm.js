@@ -10,6 +10,7 @@ import { continueToUpload, deleteResidual, getPatientDetails } from '../../actio
 import Spinner from '../common/Spinner'
 import UploadFiles from './UploadFiles'
 import Modal from 'react-modal'
+import getAge from '../../utils/getAge'
 
 
 const customStyles = {
@@ -59,7 +60,8 @@ class UploadForm extends Component {
   openNextModal () {
     this.setState({ uploadModal: true })
     const userData = {
-      patient: this.state.patient
+      patient: this.state.patient,
+      centre: this.props.auth.user.campusCode
     }
     this.props.continueToUpload(userData)
   }
@@ -89,7 +91,8 @@ class UploadForm extends Component {
     e.preventDefault()
     this.setState({ modalIsOpen: true })
     const userData = {
-      patient: this.state.patient
+      patient: this.state.patient,
+      centre: this.props.auth.user.campusCode
     }
     console.log({ user: userData })
     if (this.state.patient.length !== 0) {
@@ -161,27 +164,27 @@ class UploadForm extends Component {
                 <div className='row' >
                   <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>Age/Gender:</h6></td>
-                    <td><h6>{patientData.patient.age+'/'+patientData.patient.gender}</h6></td>
+                    <td><h6>{getAge(patientData.patient.dob)+'/'+patientData.patient.gender}</h6></td>
                   </div>
                   <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>CentreCode:</h6></td>
-                    <td><h6>{patientData.patient.address}</h6></td>
+                    <td><h6>{patientData.patient.centreCode}</h6></td>
                   </div>
                 </div>
                 <div className='row' >
                   <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>District:</h6></td>
-                    <td><h6>{patientData.patient.district}</h6></td>
+                    <td><h6>{patientData.patient.districtName}</h6></td>
                   </div>
                   <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>State:</h6></td>
-                    <td><h6>{patientData.patient.state}</h6></td>
+                    <td><h6>{patientData.patient.stateName}</h6></td>
                   </div>
                 </div>
                 <div className='row' >
                   <div className='col-md-10 d-flex justify-content-between' style={{borderStyle:'groove', margin:'10px'}}>
                     <td><h6 style={{color: 'grey',opacity:'0.9'}}>Country:</h6></td>
-                    <td><h6>{patientData.patient.country}</h6></td>
+                    <td><h6>{patientData.patient.countryName}</h6></td>
                   </div>
                 </div>
 

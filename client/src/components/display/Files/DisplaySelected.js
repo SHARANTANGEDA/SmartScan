@@ -58,7 +58,8 @@ class DisplaySelected extends Component {
     this.setState({downloading: true})
   }
   onBack (e) {
-    window.location.href=`/displayFolder/${this.props.folder.files.patient.mrNo}`
+    window.location.href=
+      `/displayFolder/${this.props.folder.files.patient.centreCode}/${this.props.folder.files.patient.mrNo}`
   }
   // loadFiles() {
   //   fetch('/api/files')
@@ -205,7 +206,7 @@ class DisplaySelected extends Component {
           <div className="grid text-center col-md-12">
             <div className='row '>
               <div style={{margin: '10px'}}>
-                <Link to={`/displayFolder/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
+                <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
                   <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
               </div>
               {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
@@ -227,7 +228,7 @@ class DisplaySelected extends Component {
                    style={{ minWidth:'100%', background:'#ffa726', left:0, right:0,border:'none', margin:'0px',
                      padding:'0px'}}>
                 <div className='row col-md-12  d-flex justify-content-between '>
-                  <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
+                  <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
                         style={{background: '#ffa726', color: 'green'}}>
                     <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
                   <div>

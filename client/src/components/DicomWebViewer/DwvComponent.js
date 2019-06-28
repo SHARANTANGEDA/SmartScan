@@ -199,13 +199,13 @@ class DwvComponent extends Component {
     );
 
     return (
-      <div id="dwv" style={{background:'#ffa726', margin:'0px'}}>
+      <div id="dwv" style={{margin:'0px', padding:'0px'}}>
         {/*<button onClick={this.onReset} className='btn btn-sm' style={{background: 'blue', color:'white'}}>Reset View</button>*/}
-        <div className="layerContainer" style={{background:'#ffa726', width: '100%', margin:'0px', padding:'0px'}}>
+        <div className="layerContainer" style={{margin:'0px', padding:'0px', borderStyle:'solid'}}>
           <div className="dropBox"><Spinner/></div>
-          <canvas ref="canvas" className="imageLayer" style={{height:'100%', padding:'0px', margin:'0px'}}>Only for HTML5 compatible browsers...</canvas>
-          <img src={this.state.image} alt=''/>
-          <div className="drawDiv"></div>
+          <canvas ref="canvas" className="imageLayer" style={{height:'100%', padding:'0px', margin:'0px', borderStyle:'solid'}}>Only for HTML5 compatible browsers...</canvas>
+          {/*<img src={this.state.image} alt=''/>*/}
+          <div className="drawDiv" style={{height:'100%', padding:'0px', margin:'0px', borderStyle:'solid'}}></div>
         </div>
       </div>
     );

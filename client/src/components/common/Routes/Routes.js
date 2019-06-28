@@ -33,10 +33,10 @@ const Routes = () => {
         <PrivateRoute exact path='/changePassword' component={ChangePassword}/>
         {/*  </Switch>*/}
         {/*<Switch>*/}
-        <PrivateRoute exact path='/displayFolder/:id' component={DisplayFolder}/>
+        <PrivateRoute exact path='/displayFolder/:centre/:id' component={DisplayFolder}/>
         {/*</Switch>*/}
         {/*<Switch>*/}
-        <PrivateRoute exact path='/displayFolder/displayFiles/:id' component={Display}/>
+        <PrivateRoute exact path='/displayFiles/:id' component={Display}/>
         {/*</Switch>*/}
         {/*<Switch>*/}
         <PrivateRoute exact path='/createUser' component={CreateUsers}/>
@@ -56,7 +56,7 @@ const Routes = () => {
         <PrivateRoute exact path='/editProfile' component={EditProfile}/>
         <PrivateRoute exact path='/activeUser' component={ManageDiagUsers}/>
         <PrivateRoute exact path='/deAssignedUser' component={ReAssignDiagUsers}/>
-        <PrivateRoute exact path='/displayFolder/displaySelectedFiles/:id' component={DisplaySelected}/>
+        <PrivateRoute exact path='/displaySelectedFiles/:id' component={DisplaySelected}/>
 
         {/*</Switch>*/}
         <Route path="*" component={NotFound} />

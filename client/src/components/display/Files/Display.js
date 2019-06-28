@@ -56,11 +56,11 @@ class Display extends Component {
     this.setState({ modalIsOpen: false })
   }
   loadSelected () {
-    window.location.href=`/displayFolder/displaySelectedFiles/${this.props.folder._id}`
+    window.location.href=`/displaySelectedFiles/${this.props.folder._id}`
 
   }
   loadFolders () {
-    window.location.href=`/displayFolder/displayFiles/${this.props.folder._id}`
+    window.location.href=`/displayFiles/${this.props.folder._id}`
   }
 
   onSelectedDownload (e) {
@@ -69,7 +69,8 @@ class Display extends Component {
     this.setState({downloading: true})
   }
   onBack (e) {
-    window.location.href=`/displayFolder/${this.props.folder.files.patient.mrNo}`
+    window.location.href=
+      `/displayFolder/${this.props.folder.files.patient.centreCode}/${this.props.folder.files.patient.mrNo}`
   }
   // loadFiles() {
   //   fetch('/api/files')
@@ -216,7 +217,7 @@ class Display extends Component {
           <div className="grid text-center col-md-12">
             <div className='row '>
               <div style={{margin: '10px'}}>
-                <Link to={`/displayFolder/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
+                <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
                   <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
               </div>
               {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
@@ -257,7 +258,7 @@ class Display extends Component {
                   </div>
                 </div>
                 <div className='col-md-2 d-flex justify-content-end'>
-                  <Link to={`/displayFolder/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
+                  <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
                         style={{background: '#ffa726', color: 'green'}}>
                     <i className="fa fa-chevron-circle-left fa-2x" aria-hidden="true"/></Link>
                 </div>

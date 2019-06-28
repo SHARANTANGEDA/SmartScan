@@ -64,7 +64,7 @@ class SearchBar extends Component {
         window.location.href='/detailsNotFound'
       } else {
         if(results.mrNo!==null) {
-          window.location.href=`/displayFolder/${results.mrNo}`
+          window.location.href=`/displayFolder/${'search'}/${results.mrNo}`
         }
       }
     }

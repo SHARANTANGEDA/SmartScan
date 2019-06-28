@@ -6,6 +6,9 @@ const PatientSchema = new Schema({
     type: String,
     required:true
   },
+  centreCode: {
+    type: String
+  },
   firstName: {
     type: String,
   },
@@ -53,9 +56,7 @@ const PatientSchema = new Schema({
     type: String,
     default: ''
   },
-  centreCode: {
-    type: String
-  }
+
 });
 
 module.exports = Patient = mongoose.model('patient',PatientSchema);

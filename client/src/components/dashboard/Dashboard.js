@@ -14,6 +14,7 @@ import classnames from 'classnames'
 import Select from 'react-select'
 import Card from 'react-bootstrap/Card'
 import SearchBar from './SearchBar'
+import getAge from '../../utils/getAge'
 
 const customStyles = {
   content: {
@@ -70,7 +71,8 @@ class Dashboard extends Component {
   openNextModal () {
     this.setState({ uploadModal: true })
     const userData = {
-      patient: this.state.patient
+      patient: this.state.patient,
+      centre: this.props.auth.user.campusCode
     }
     this.props.continueToUpload(userData)
   }
@@ -103,16 +105,17 @@ class Dashboard extends Component {
     e.preventDefault()
     this.setState({ modalIsOpen: true })
     const userData = {
-      patient: this.state.patient
+      patient: this.state.patient,
+      centre: this.props.auth.user.campusCode
     }
     console.log({ user: userData })
     if (this.state.patient.length !== 0) {
       console.log({ len: 'not zero' })
       // this.props.getDetails(userData);
       this.props.getPatientDetails(userData)
-      this.setState({ patient: userData.patient })
+      this.setState({ patient: userData.patient})
     } else {
-      this.setState({ errors: { patient: 'Please enter the MR No' }, patient: '' })
+      this.setState({ errors: { patient: 'Please enter the MR No' }, patient: ''})
     }
   }
   onSelectType (e) {
@@ -126,7 +129,6 @@ class Dashboard extends Component {
       this.setState({showPatient: this.props.folder.patients.all})
     } else if(this.state.category.value==='today') {
       this.setState({showPatient: this.props.folder.patients.today})
-      console.log({NEWSTATE:  this.props.folder.patients.today})
     }else if(this.state.category.value==='yesterday') {
       this.setState({showPatient: this.props.folder.patients.yesterday})
 
@@ -189,8 +191,8 @@ class Dashboard extends Component {
                 </button>
                 <div className='col-md-4'>
                   <Select
-                    options={[{ value: 'all', label: 'All' },{ value: 'KAR', label: 'KAR' },
-                      { value: 'KVC', label: 'KVC' }, { value: 'GMRV', label: 'GMRV' }, { value: 'MTC', label: 'MTC' }]}
+                    options={[{ value: 'all', label: 'All' },{ value: 'karmn', label: 'KAR' },
+                      { value: 'kvcmn', label: 'KVC' }, { value: 'gmrmn', label: 'GMRV' }, { value: 'blvmn', label: 'MTC' }]}
                     className={classnames('isSearchable', { 'is-invalid': errors.campusCode })}
                     placeholder="Campus Code"
                     name="campusCode" value={campusCode} onChange={this.codeSelect}>
@@ -451,27 +453,27 @@ class Dashboard extends Component {
                   <div className='row' >
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>Age/Gender:</h6></td>
-                      <td><h6>{patientData.patient.age+'/'+patientData.patient.gender}</h6></td>
+                      <td><h6>{getAge(patientData.patient.dob)+'/'+patientData.patient.gender}</h6></td>
                     </div>
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>CentreCode:</h6></td>
-                      <td><h6>{patientData.patient.address}</h6></td>
+                      <td><h6>{patientData.patient.centreCode}</h6></td>
                     </div>
                   </div>
                   <div className='row' >
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>District:</h6></td>
-                      <td><h6>{patientData.patient.district}</h6></td>
+                      <td><h6>{patientData.patient.districtName}</h6></td>
                     </div>
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>State:</h6></td>
-                      <td><h6>{patientData.patient.state}</h6></td>
+                      <td><h6>{patientData.patient.stateName}</h6></td>
                     </div>
                   </div>
                   <div className='row' >
                     <div className='col-md-10 d-flex justify-content-between' style={{borderStyle:'groove', margin:'10px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>Country:</h6></td>
-                      <td><h6>{patientData.patient.country}</h6></td>
+                      <td><h6>{patientData.patient.countryName}</h6></td>
                     </div>
                   </div>
 

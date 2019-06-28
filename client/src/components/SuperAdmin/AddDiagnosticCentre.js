@@ -65,8 +65,8 @@ class CreateLVPEIUsers extends Component {
   }
 
   render () {
-    let scanTypeArray=[{ value: 'KAR', label: 'KAR' },{ value: 'KVC', label: 'KVC' },{ value: 'GMRV', label: 'GMRV' },
-      { value: 'MTC', label: 'MTC' }]
+    let scanTypeArray=[{ value: 'karmn', label: 'KAR' },{ value: 'kvcmn', label: 'KVC' },{ value: 'gmrmn', label: 'GMRV' },
+      { value: 'blvmn', label: 'MTC' }]
     const { errors } = this.state
     return (
       <div className="addDiagnosticCentre">

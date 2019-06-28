@@ -139,10 +139,11 @@ export const downloadFolder = (id) => dispatch => {
   )
 }
 
-export const getHomeFolders = (id) => dispatch => {
+export const getHomeFolders = (centre,id) => dispatch => {
   dispatch(setLoading())
   dispatch(homeLoading())
-  axios.get(`/api/upload/folders/${id}`).then(res => {
+  console.log(centre,id)
+  axios.get(`/api/upload/folders/${centre}/${id}`).then(res => {
     dispatch({
       type: GET_FILES,
       payload: res.data

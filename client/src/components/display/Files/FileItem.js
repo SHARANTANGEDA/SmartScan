@@ -30,8 +30,8 @@ const customStylesII = {
   content: {
     border: '0',
     borderRadius: '4px',
-    minHeight: '370px',
-    height: '370px',
+    minHeight: '360px',
+    height: '360px',
     left: '85%',
     margin: '0px',
     padding: '2px',
@@ -40,9 +40,8 @@ const customStylesII = {
     top: '50%',
     position: 'fixed',
     transform: 'translate(-50%,-50%)',
-    minWidth: '420px',
-    maxWidth: '500px',
-    background:'#ffa726'
+    minWidth: '330px',
+    maxWidth: '370px',
   }
 }
 dwv.utils.decodeQuery = dwv.utils.base.decodeQuery

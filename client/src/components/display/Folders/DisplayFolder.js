@@ -20,7 +20,7 @@ class DisplayFolder extends Component {
 
   componentDidMount () {
     if (this.props.auth.user.role === 'lvpei') {
-      this.props.getHomeFolders(this.props.match.params.id)
+      this.props.getHomeFolders(this.props.match.params.centre,this.props.match.params.id)
     }
   }
   codeSelect(e) {

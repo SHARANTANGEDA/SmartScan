@@ -6,7 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       primaryKey: true
     },
-    age: {
+    centreCode: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    dob: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -14,15 +18,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    district: {
+    districtName: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    state: {
+    stateName: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    country: {
+    countryName: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -35,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
 
-    address: {
+    location: {
       type: DataTypes.STRING(400),
       allowNull: false
     }

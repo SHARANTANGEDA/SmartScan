@@ -64,7 +64,7 @@ class PatientItem extends Component {
           </span></td>
 
           <td>
-            <Link to={`displayFolder/${patient.mrNo}`}  className='btn btn-sm'
+            <Link to={`displayFolder/${patient.centreCode}/${patient.mrNo}`}  className='btn btn-sm'
                   style={{ borderStyle: 'none', background: 'green', color:'white'}}>View</Link></td>
           <td><button className='btn-sm btn' style={{background: 'red', color: 'white',marginLeft: '10px'}}
               onClick={this.onDelete.bind(this)}><i className="fa fa-trash" aria-hidden="true"/></button></td>

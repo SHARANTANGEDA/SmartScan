@@ -38,7 +38,8 @@ router.post('/login', (req, res) => {
           payload = { id: user.id,role: user.role, emailId: user.emailId}
         }else if(user.role === 'diag_admin' || user.role==='diag') {
           if(user.access) {
-            payload = { id: user.id,role: user.role, emailId: user.emailId, diagId: user.diagCentre}
+            payload = { id: user.id,role: user.role, emailId: user.emailId, diagId: user.diagCentre,
+              campusCode:user.centreCode}
           }else {
             errors.emailId='You are not Authorized to access this site!!'
             return res.status(401).json(errors)

@@ -15,7 +15,7 @@ const Patient = require('../../mongoModels/Patient')
 const User = require('../../mongoModels/User')
 const Diagnostics = require('../../mongoModels/Diagnostics')
 // const zipStream = require('zip-stream')
-const sqldb = require('../../models')
+// const sqldb = require('../../models')
 
 let gfs
 
@@ -84,8 +84,6 @@ router.post('/upload', passport.authenticate('all_diag', { session: false }),
   if(req.body.remarks===null) {
     Patient.findOneAndUpdate({ transit: true,uploadedBy: req.user.emailId },
       { transit: false,lastUploadAt: Date.now(), scanType: req.body.category,}).then(patient => {
-        console.log('here')
-        console.log({'here':req.user.diagId})
       Diagnostics.findOneAndUpdate({orgEmail:req.user.diagId}, {$inc:{totalUploads: patient.files}})
         .then(diag => {
           return res.json({
@@ -160,7 +158,7 @@ router.get('/files/:id',  passport.authenticate('lvpei',{session: false}),(req, 
   })
 })
 // @route GET /files
-// @desc  Display all files in a Folder
+// @desc  Display selected files in a Folder
 router.get('/selectedFiles/:id',  passport.authenticate('lvpei',{session: false}),(req, res) => {
   Patient.findById(req.params.id).then(patient => {
     gfs.files.find({'metadata.patientId':req.params.id,'metadata.pinned': true}).toArray((err, files) => {
@@ -340,20 +338,27 @@ router.get('/downloadFolder/:id', passport.authenticate('lvpei',{session: false}
   })
 })
 
-router.get('/folders/:id', passport.authenticate('lvpei', { session: false }), (req, res) => {
-  Patient.find({mrNo: req.params.id}).then( patients => {
-    res.json({mrNo: req.params.id, contents:patients})
-  })
+router.get('/folders/:centre/:id', passport.authenticate('lvpei', { session: false }), (req, res) => {
+  console.log({c:req.params.centre,id: req.params.id})
+  if(req.params.centre==='search') {
+    Patient.find({mrNo: req.params.id}).then( patients => {
+      res.json({mrNo: req.params.id, contents:patients})
+    })
+  }else {
+    Patient.find({mrNo: req.params.id, centreCode: req.params.centre}).then( patients => {
+      res.json({mrNo: req.params.id, contents:patients})
+    })
+  }
+
 })
 router.get('/patientsFolders', passport.authenticate('lvpei', { session: false }), (req, res) => {
-  let mrNos = [], dummy = [], today = [], yesterday = [], lastweek = [], lastMonth = [], previous = [], all=[],
-    KAR=[], KVC=[],GMRV=[],MTC=[]
+  let mrNos = [], dummy = [], today = [], yesterday = [], lastweek = [], lastMonth = [], previous = [], all=[]
   Patient.find().sort({ lastUpdateAt: -1 }).then(async patients => {
     const now = new Date()
     patients.map(patient => {
       dummy.push(new Promise((resolve, reject) => {
         console.log({ MR: mrNos })
-        if (!mrNos.includes(patient.mrNo)) {
+        if (!mrNos.includes({mrNo:patient.mrNo, centreCode: patient.centreCode})) {
 
           // if(patient.centreCode==='KAR') {
           //   KAR.push(patient)
@@ -379,7 +384,7 @@ router.get('/patientsFolders', passport.authenticate('lvpei', { session: false }
             previous.push(patient)
           }
           all.push(patient)
-          mrNos.push(patient.mrNo)
+          mrNos.push({mrNo:patient.mrNo, centreCode: patient.centreCode})
         }
       }))
     })
