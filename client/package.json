@@ -37,7 +37,8 @@
     "react-swipeable-views": "^0.13.1",
     "reactjs-popup": "^1.4.1",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "request": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
