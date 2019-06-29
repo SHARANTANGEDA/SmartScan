@@ -1,19 +1,19 @@
 # SmartScan
-##Project Description
+## Project Description
 #### This web Application completely built on MERN stack.
   - It is built as cloud platform for **LVPEI** so that Diagnostic centres can send the scan slides(mostly **dicom 
   files**) of the patient in order to standardize the data.
   - This website contains in-built dicom viewer, to view images.
   - Multiple images/files can be uploaded/ downloaded at same time
   - This application has 4 user roles to manage the activity.
-##Getting Started
+## Getting Started
 These instructions will help you in getting the application running as local host and deploying in production on a 
 privately hosted linux server.
 
-##Prerequisites
+## Prerequisites
 This application requires `node >=10.x` and `npm >=6.9.x` installed on your machine.
 
-##Instructions for running the application in development environment
+## Instructions for running the application in development environment
 - MRIStream
   - config
     - keys_dev.js(create this file)
@@ -33,7 +33,7 @@ After these files are added run the following commands from project folder
 - `npm install client-install` _It installs the client node_modules_
 - `npm run dev` _It runs server and client on 5000 and 3000 port respectively_
 
-##Instructions for running the app in production server
+## Instructions for running the app in production server
 
 - `npm install` _It installs all the server node_modules_
 - `npm install client-install` _It installs the client node_modules_
