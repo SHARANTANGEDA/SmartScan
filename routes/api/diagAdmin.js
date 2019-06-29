@@ -14,36 +14,36 @@ const db = require('../../models')
 const request = require('request')
 const API_KEY = require('../../config/keys').mongoURI;
 
-router.post('/registerSA',(req, res) => {
-  // const { errors, isValid } = validateRegisterInput(req.body)
-  // if (!isValid) {
-  //   return res.status(400).json(errors)
-  // }
-  User.findOne({ emailId: req.body.emailId }).then(user => {
-
-    if (user) {
-      return res.status(400).json('errors')
-    } else {
-      const newUser = new User({
-        emailId: req.body.emailId,
-        password: req.body.password,
-        role: 'super_admin'
-      })
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err
-          newUser.password = hash
-          newUser.save().then(user => {
-            res.json({success: true,user})
-          }).catch(err => {
-            console.log(err)
-            res.json({error: 'creating the user'})
-          })
-        })
-      })
-    }
-  })
-})
+// router.post('/registerSA',(req, res) => {
+//   // const { errors, isValid } = validateRegisterInput(req.body)
+//   // if (!isValid) {
+//   //   return res.status(400).json(errors)
+//   // }
+//   User.findOne({ emailId: req.body.emailId }).then(user => {
+//
+//     if (user) {
+//       return res.status(400).json('errors')
+//     } else {
+//       const newUser = new User({
+//         emailId: req.body.emailId,
+//         password: req.body.password,
+//         role: 'super_admin'
+//       })
+//       bcrypt.genSalt(10, (err, salt) => {
+//         bcrypt.hash(newUser.password, salt, (err, hash) => {
+//           if (err) throw err
+//           newUser.password = hash
+//           newUser.save().then(user => {
+//             res.json({success: true,user})
+//           }).catch(err => {
+//             console.log(err)
+//             res.json({error: 'creating the user'})
+//           })
+//         })
+//       })
+//     }
+//   })
+// })
 router.post('/addMembers', passport.authenticate('diag_admin',{session: false}),(req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body)
   if (!isValid) {
@@ -147,39 +147,39 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
   console.log(req.user.id)
   User.findById(req.user.id).then(user => {
     // db.Patient.findOne({where:{mrNo:req.body.patient, centreCode:req.body.centre}}).then(patient => {
-      request.get({api:API_KEY, qs: req.body},(err, res, body) => {
-        if(body.status==='FAIL') {
+    request.get({ api: API_KEY, qs: req.body }, (err, res, body) => {
+      if (body.status === 'FAIL') {
+        console.log(err)
+      } else {
+        console.log({ sqlPat: body.patient_details, dob: body.patient_details.dob })
+        let today = new Date();
+        let birthDate = new Date(body.patient_details.dob);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        console.log(birthDate, age)
+        const newUpload = new Patient({
+          mrNo: req.body.patient,
+          firstName: body.patient_details.first_name,
+          lastName: body.patient_details.last_name,
+          age: age,
+          gender: body.patient_details.gender,
+          uploadedBy: user.emailId,
+          diagCentreName: user.diagCentreName,
+          diagCentre: user.diagCentre,
+          centreShortCode: user.centreShortCode,
+          centreCode: user.centreCode
+        })
+        newUpload.save().then(pat => {
+          console.log({ "created user": pat._id })
+          res.json({ mid: pat._id })
+        }).catch(err => {
           console.log(err)
-        }
-        else {
-          console.log({ sqlPat: body.patient_details, dob: body.patient_details.dob })
-          let today = new Date();
-          let birthDate = new Date(body.patient_details.dob);
-          let age = today.getFullYear() - birthDate.getFullYear();
-          let m = today.getMonth() - birthDate.getMonth();
-          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-          }
-          console.log(birthDate, age)
-          const newUpload = new Patient({
-            mrNo: req.body.patient,
-            firstName: body.patient_details.first_name,
-            lastName: body.patient_details.last_name,
-            age: age,
-            gender: body.patient_details.gender,
-            uploadedBy: user.emailId,
-            diagCentreName: user.diagCentreName,
-            diagCentre: user.diagCentre,
-            centreShortCode: user.centreShortCode,
-            centreCode: user.centreCode
-          })
-          newUpload.save().then(pat => {
-            console.log({ "created user": pat._id })
-            res.json({ mid: pat._id })
-          }).catch(err => {
-            console.log(err)
-          })
-        }
+        })
+      }
+    })
   })
 })
 router.post('/onDiscard',passport.authenticate('all_diag',{session: false}),(req, res) => {
