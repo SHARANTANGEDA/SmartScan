@@ -443,11 +443,11 @@ class Dashboard extends Component {
                   <div className='row'>
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>First Name:</h6></td>
-                      <td><h6>{patientData.patient.first_name}</h6></td>
+                      <td><h6>{patientData.patient.firstName}</h6></td>
                     </div>
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>Last Name:</h6></td>
-                      <td><h6>{patientData.patient.last_name}</h6></td>
+                      <td><h6>{patientData.patient.lastName}</h6></td>
                     </div>
                   </div>
                   <div className='row' >
@@ -457,23 +457,23 @@ class Dashboard extends Component {
                     </div>
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>CentreCode:</h6></td>
-                      <td><h6>{patientData.patient.centre_code}</h6></td>
+                      <td><h6>{patientData.patient.centreCode}</h6></td>
                     </div>
                   </div>
                   <div className='row' >
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>District:</h6></td>
-                      <td><h6>{patientData.patient.district_name}</h6></td>
+                      <td><h6>{patientData.patient.districtName}</h6></td>
                     </div>
                     <div className='col-md-5 d-flex justify-content-between' style={{borderStyle:'groove', margin:'5px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>State:</h6></td>
-                      <td><h6>{patientData.patient.state_name}</h6></td>
+                      <td><h6>{patientData.patient.stateName}</h6></td>
                     </div>
                   </div>
                   <div className='row' >
                     <div className='col-md-10 d-flex justify-content-between' style={{borderStyle:'groove', margin:'10px'}}>
                       <td><h6 style={{color: 'grey',opacity:'0.9'}}>Country:</h6></td>
-                      <td><h6>{patientData.patient.country_name}</h6></td>
+                      <td><h6>{patientData.patient.countryName}</h6></td>
                     </div>
                   </div>
 
