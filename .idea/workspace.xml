@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/MRIStream.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SmartScan.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/diagAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/diagAdmin.js" afterDir="false" />
-    </list>
+    <list default="true" id="92c3f002-70e8-4ff8-9b74-7304e267b2f4" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -71,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="286">
+              <first_editor relative-caret-position="-817">
                 <caret line="11" selection-start-line="11" selection-end-line="11" />
               </first_editor>
               <second_editor />
@@ -244,29 +237,29 @@
         <subPane>
           <expand>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -274,7 +267,7 @@
               <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -283,7 +276,7 @@
               <item name="Routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -291,7 +284,7 @@
               <item name="dashboard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -299,7 +292,7 @@
               <item name="DicomWebViewer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -307,7 +300,7 @@
               <item name="display" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -316,7 +309,7 @@
               <item name="Files" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -325,7 +318,7 @@
               <item name="Folders" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -334,7 +327,7 @@
               <item name="Patients" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -342,7 +335,7 @@
               <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -350,7 +343,7 @@
               <item name="MyAccount" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -358,7 +351,7 @@
               <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -367,7 +360,7 @@
               <item name="tableDisplay" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -375,17 +368,17 @@
               <item name="upload" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MRIStream" type="b2602c69:ProjectViewProjectNode" />
               <item name="MRIStream" type="462c0819:PsiDirectoryNode" />
               <item name="mongoModels" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -641,14 +634,7 @@
       <workItem from="1561724274307" duration="4374000" />
       <workItem from="1561731265901" duration="4000" />
       <workItem from="1561738889861" duration="6093000" />
-      <workItem from="1561783044592" duration="18784000" />
-    </task>
-    <task id="LOCAL-00116" summary="#Completed Upload Engine&#10;#Created Login &#10;#Created Roles&#10;#Changed UI&#10;#Optimized some unnecessary Files and code">
-      <created>1559530289359</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1559530289359</updated>
+      <workItem from="1561783044592" duration="18996000" />
     </task>
     <task id="LOCAL-00117" summary="#Fixed a bug in upload&#10;#Created folder Icon">
       <created>1559619149398</created>
@@ -986,11 +972,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561815803794</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="Updated ReadMe and project name">
+      <created>1561822345239</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1561822345239</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1248591000" />
+    <option name="totallyTimeSpent" value="1248803000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1008,7 +1001,7 @@
       <window_info id="Structure" order="1" sideWeight="0.5059848" side_tool="true" weight="0.11480687" />
       <window_info id="Favorites" order="2" sideWeight="0.5045181" side_tool="true" weight="0.16471897" />
       <window_info id="npm" order="3" sideWeight="0.5071315" side_tool="true" weight="0.23400673" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49548194" visible="true" weight="0.15804118" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49548194" visible="true" weight="0.15804118" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info active="true" anchor="bottom" id="SVN Repositories" order="2" weight="0.3297062" />
@@ -1022,9 +1015,9 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3118644" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3299435" />
       <window_info anchor="bottom" id="TypeScript" order="12" weight="0.3299435" />
-      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.4967811" visible="true" weight="0.042986427" />
+      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.49582636" visible="true" weight="0.5192308" />
       <window_info anchor="bottom" id="Run" order="14" sideWeight="0.49624464" weight="0.33898306" />
-      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.5037554" side_tool="true" weight="0.9586507" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="15" sideWeight="0.50417364" side_tool="true" visible="true" weight="0.5192308" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1121,7 +1114,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../SmartScan" />
     </ignored-roots>
-    <MESSAGE value="#Optimized Imports" />
     <MESSAGE value="#Optimized Imports&#10;#Removed ElectronJS" />
     <MESSAGE value="#Added 404 page&#10;#Made changes in name etc...&#10;#Update is complete" />
     <MESSAGE value="#Fixed minor UI bugs&#10;#Alpha Testing Deploying" />
@@ -1146,7 +1138,8 @@
     <MESSAGE value="#Added LVPEI API" />
     <MESSAGE value="#Added LVPEI API&#10;#Changed Production env" />
     <MESSAGE value="Revert &quot;#Added LVPEI API&quot;&#10;&#10;This reverts commit 9ad08db1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;#Added LVPEI API&quot;&#10;&#10;This reverts commit 9ad08db1" />
+    <MESSAGE value="Updated ReadMe and project name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated ReadMe and project name" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1513,7 +1506,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="286">
+          <first_editor relative-caret-position="-817">
             <caret line="11" selection-start-line="11" selection-end-line="11" />
           </first_editor>
           <second_editor />
