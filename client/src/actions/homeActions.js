@@ -202,8 +202,8 @@ export const getNameResults = (data) => dispatch => {
   )
 }
 export const getAllPatients = () => dispatch => {
-  dispatch(setLoading())
   dispatch(homeLoading())
+  dispatch(setLoading())
   axios.get('/api/upload/patientsFolders').then(res => {
     dispatch({
       type: GET_PATIENTS_HOME,

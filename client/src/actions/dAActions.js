@@ -9,7 +9,7 @@ import {
 
 
 export const getDAHome = () => dispatch => {
-setLoading()
+dispatch(setLoading())
   axios.get('/api/diagAdmin/home').then(res => {
     dispatch({
       type: GET_DA_HOME,
@@ -30,6 +30,7 @@ export  const deleteResidual=(id) => dispatch => {
   )
 }
 export const getPatientDetails=(data) => dispatch => {
+  dispatch(setLoading())
   axios.post('/api/diagAdmin/patientDetails', data)
     .then(res => {
       dispatch({

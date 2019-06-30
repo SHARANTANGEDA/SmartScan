@@ -156,7 +156,7 @@ class Dashboard extends Component {
     if (this.props.auth.user.role === 'lvpei') {
       const { loading, notFound, patients } = this.props.folder
       let allFoldersContent
-      if (loading || patients===null) {
+      if (loading || patients===null || patients===[]) {
         allFoldersContent = <Spinner/>
       } else {
         if (notFound) {
@@ -166,17 +166,17 @@ class Dashboard extends Component {
             </div>
           )
         } else {
-          if(this.state.showPatient === null) {
-            allFoldersContent = (
-              <LVPEIHomeFeed patients={this.props.folder.patients.all} campusCode={this.state.campusCode.value}/>
-            )
-          }else {
-            console.log({'HELLO':this.state.showPatient})
-            allFoldersContent = (
-              <LVPEIHomeFeed patients={this.state.showPatient} campusCode={this.state.campusCode.value}/>
-            )
+          console.log({p:patients})
+            if(this.state.showPatient === null) {
+              allFoldersContent = (
+                <LVPEIHomeFeed patients={this.props.folder.patients.all} campusCode={this.state.campusCode.value}/>
+              )
+            }else {
+              console.log({'HELLO':this.state.showPatient})
+              allFoldersContent = (
+                <LVPEIHomeFeed patients={this.state.showPatient} campusCode={this.state.campusCode.value}/>
+              )
           }
-
         }
       }
       return (

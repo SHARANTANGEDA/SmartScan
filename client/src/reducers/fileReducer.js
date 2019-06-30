@@ -7,11 +7,11 @@ import {
 } from '../actions/types'
 
 const initialState = {
-  folders: [],
+  folders: null,
   notFound:true,
   loading: true,
   files: null,
-  patients: []
+  patients: null
 };
 
 export default function(state = initialState, action) {

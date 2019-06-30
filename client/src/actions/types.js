@@ -2,7 +2,6 @@ export const GET_ERRORS = 'GET_ERRORS';
 export const SET_CURRENT_USER ='SET_CURRENT_USER';
 export const CLEAR_ERRORS='CLEAR_ERRORS';
 export const ON_POST_FAIL ='ON_POST_FAIL';
-export const GET_DETAILS='GET_DETAILS';
 export const GET_FILES='GET_FILES';
 export const FOLDER_LOADING = 'FOLDER_LOADING';
 export const NO_FILES = 'NO_FILES';
