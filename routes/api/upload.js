@@ -15,7 +15,6 @@ const Patient = require('../../mongoModels/Patient')
 const User = require('../../mongoModels/User')
 const Diagnostics = require('../../mongoModels/Diagnostics')
 // const zipStream = require('zip-stream')
-// const sqldb = require('../../models')
 
 let gfs
 

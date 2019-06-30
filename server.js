@@ -15,7 +15,6 @@ const methodOverride = require('method-override');
 
 const db = require('./config/keys').mongoURI;
 
-const sqlDB = require("./models");
 
 mongoose.connect(db,{useNewUrlParser: true})
   .then(() => {
