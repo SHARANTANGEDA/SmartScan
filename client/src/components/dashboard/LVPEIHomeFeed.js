@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { Collapse } from 'react-collapse'
-import PatientRow from '../display/Patients/PatientRow'
 import Spinner from '../common/Spinner'
 import PatientItem from '../display/Patients/PatientItem'
 
@@ -15,14 +14,21 @@ class LVPEIHomeFeed extends Component {
       isOpenLastWeek: true,
       isOpenLastMonth: true,
       isOpenPrevious: true,
-
+      currentPage: 1,
+      todosPerPage: 25
     }
     this.toggle = this.toggle.bind(this)
     this.toggle1 = this.toggle1.bind(this)
     this.toggle2 = this.toggle2.bind(this)
     this.toggle3 = this.toggle3.bind(this)
     this.toggle4 = this.toggle4.bind(this)
+    this.handleClick = this.handleClick.bind(this);
 
+  }
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
   }
   componentDidMount () {
     // if(this.props.patients.today.length===0) {
@@ -58,7 +64,11 @@ class LVPEIHomeFeed extends Component {
 
   render () {
     const { patients } = this.props
-    let content;
+    const {  currentPage, todosPerPage } = this.state;
+    const indexOfLastTodo = currentPage * todosPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+    const pageNumbers = [];
+    let content,renderpn=null;
     if(patients===null) {
       content=(<Spinner/>)
     } else {
@@ -67,11 +77,71 @@ class LVPEIHomeFeed extends Component {
           <h5> Nothing is uploaded/modified in this time</h5>
         )
       }else {
-        console.log(this.props.campusCode)
+        if (this.props.campusCode === 'all') {
+        const currentFolder = patients.slice(indexOfFirstTodo, indexOfLastTodo);
+        const render = ( currentFolder.map(folder => (
+          <PatientItem patient={folder} key={folder.mrNo}/>
+        )))
+        for (let i = 1; i <= Math.ceil(patients.length / todosPerPage); i++) {
+          pageNumbers.push(i);
+        }
+        const renderPageNumbers = (
+          pageNumbers.map(number => {
+            return (
+              <button className='page-item page-link'
+                      key={number}
+                      id={number}
+                      onClick={this.handleClick}
+              >
+                {number}
+              </button>
+            );
+        }))
           content=(
-            <PatientRow folders={patients} code={this.props.campusCode}/>
+            <tbody>
+            {render}
+            </tbody>
           )
-
+          renderpn= (
+            <nav aria-label="...">
+              <ul className="pagination pagination-sm">
+                {renderPageNumbers}
+              </ul>
+            </nav>
+          )
+      } else {
+        let newFolders = patients.filter(folder => folder.centreCode === this.props.campusCode.toString())
+        const currentFolder = newFolders.slice(indexOfFirstTodo, indexOfLastTodo);
+        const render = ( currentFolder.map(folder => (
+          <PatientItem patient={folder} key={folder.mrNo}/>
+        )))
+        for (let i = 1; i <= Math.ceil(newFolders.length / todosPerPage); i++) {
+          pageNumbers.push(i);
+        }
+        const renderPageNumbers = pageNumbers.map(number => {
+          return (
+            <button className='page-item page-link'
+                    key={number}
+                    id={number}
+                    onClick={this.handleClick}
+            >
+              {number}
+            </button>
+          );
+        })
+          content=(
+            <tbody>
+            {render}
+            </tbody>
+          )
+          renderpn = (
+            <nav aria-label="...">
+              <ul className="pagination pagination-sm">
+                {renderPageNumbers}
+              </ul>
+            </nav>
+          )
+        }
       }
     }
     return (
@@ -93,6 +163,9 @@ class LVPEIHomeFeed extends Component {
             </thead>
             {content}
           </table>
+          <div className='d-flex justify-content-end'>
+            {renderpn}
+          </div>
         </div>
       </div>
 
@@ -103,7 +176,6 @@ class LVPEIHomeFeed extends Component {
 LVPEIHomeFeed.defaultProps = {
   showActions: true
 }
-
 LVPEIHomeFeed.propTypes = {
   auth: PropTypes.object.isRequired,
   patients: PropTypes.array.isRequired,

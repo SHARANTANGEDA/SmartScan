@@ -4,9 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {  getHomeFolders } from '../../../actions/homeActions'
 import { Link } from 'react-router-dom'
-import FolderRow from './FolderRow'
-import classnames from 'classnames'
-import Select from 'react-select'
+import FolderItem from './FolderItem'
 
 
 class DisplayFolder extends Component {
@@ -14,10 +12,17 @@ class DisplayFolder extends Component {
     super(props)
     this.state= {
       campusCode: { value: 'all', label: 'Choose Campus' },
+      currentPage: 1,
+      todosPerPage: 25
     }
-    this.codeSelect = this.codeSelect.bind(this)
+    this.codeSelect = this.codeSelect.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
-
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
+  }
   componentDidMount () {
     if (this.props.auth.user.role === 'lvpei') {
       this.props.getHomeFolders(this.props.match.params.centre,this.props.match.params.id)
@@ -29,11 +34,13 @@ class DisplayFolder extends Component {
 
   render() {
     const {folders, loading, notFound} = this.props.folder
-    let allFoldersContent, heading;
+    const {  currentPage, todosPerPage } = this.state;
+    const indexOfLastTodo = currentPage * todosPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+    const pageNumbers = [];
+    let allFoldersContent, heading, renderpn;
     if (loading || folders===null) {
-      allFoldersContent = (
-        <Spinner/>
-        )
+      allFoldersContent = (<Spinner/>)
     } else {
       if(notFound) {
         allFoldersContent = (
@@ -41,29 +48,69 @@ class DisplayFolder extends Component {
         )
         heading=null
       }else {
-        allFoldersContent = (
-          <table className="table table-bordered  mb-0">
-            <thead>
-            <tr>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Centre</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Campus Code</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>MR No</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Patient Name</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Age/Gender</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}} >Date of upload</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}} >Time of upload</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>type</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Remarks</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Incoming Folder</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Selected Folder</th>
-              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Delete</th>
-            </tr>
-            </thead>
-            <FolderRow folders={folders.contents} code={this.state.campusCode.value}/>
-          </table>
-
-        )
+        // allFoldersContent = (
         heading = (<h5 className='text-center'>{folders.contents[0].firstName+' '+folders.contents[0].lastName}</h5>)
+
+        if(this.state.campusCode.value==='all') {
+          const currentFolder = folders.contents.slice(indexOfFirstTodo, indexOfLastTodo);
+          const render = (  currentFolder.map(folder => (
+            <FolderItem folder={folder} key={folder._id}/>
+          )))
+          for (let i = 1; i <= Math.ceil(folders.contents.length / todosPerPage); i++) {
+            pageNumbers.push(i);
+          }
+          const renderPageNumbers = (
+            pageNumbers.map(number => {
+              return (
+                <button className='page-item page-link'
+                        key={number}
+                        id={number}
+                        onClick={this.handleClick}
+                >
+                  {number}
+                </button>
+              );
+            }))
+          allFoldersContent=render
+          renderpn = (
+            <nav aria-label="...">
+              <ul className="pagination pagination-sm">
+                {renderPageNumbers}
+              </ul>
+            </nav>
+
+          )
+
+        } else {
+          let newFolders = folders.contents.filter(folder => folder.centreCode === this.state.campusCode.value.toString())
+          const currentFolder = newFolders.slice(indexOfFirstTodo, indexOfLastTodo);
+          const render = (  currentFolder.map(folder => (
+            <FolderItem folder={folder} key={folder._id}/>
+          )))
+          for (let i = 1; i <= Math.ceil(newFolders.length / todosPerPage); i++) {
+            pageNumbers.push(i);
+          }
+          const renderPageNumbers = pageNumbers.map(number => {
+            return (
+              <button className='page-item page-link'
+                      key={number}
+                      id={number}
+                      onClick={this.handleClick}
+              >
+                {number}
+              </button>
+            );
+          })
+          allFoldersContent=render
+          renderpn = (
+            <nav aria-label="...">
+              <ul className="pagination pagination-sm">
+                {renderPageNumbers}
+              </ul>
+            </nav>
+
+          )
+        }
       }
     }
     return (
@@ -84,24 +131,30 @@ class DisplayFolder extends Component {
             <Link to='/dashboard' className='btn' style={{background:'#ffa726', color: 'green'}}>
               BACK</Link>
           </nav>
-          {/*<table className="table table-bordered table-striped mb-0">*/}
-          {/*  <thead>*/}
-          {/*  <tr>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>Centre</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>MR No</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>Patient Name</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>Age/Gender</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}} >Date of upload</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>type</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>Remarks</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>View</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>Download</th>*/}
-          {/*    <th scope="col" style={{ fontSize: '10pt'}}>Delete</th>*/}
-          {/*  </tr>*/}
-          {/*  </thead>*/}
-          {/*  {allFoldersContent}*/}
-          {/*</table>*/}
-          {allFoldersContent}
+          <table className="table table-bordered  mb-0">
+            <thead>
+            <tr>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Centre</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Campus Code</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>MR No</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Patient Name</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Age/Gender</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}} >Date of upload</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}} >Time of upload</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>type</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Remarks</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Incoming Folder</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Selected Folder</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {allFoldersContent}
+            </tbody>
+          </table>
+        </div>
+        <div className='d-flex justify-content-end'>
+          {renderpn}
         </div>
       </div>
     );

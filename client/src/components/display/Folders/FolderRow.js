@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import FolderItem from './FolderItem'
-import PatientItem from '../Patients/PatientItem'
 
 class FolderRow extends Component {
   constructor() {

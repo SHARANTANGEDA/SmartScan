@@ -358,18 +358,15 @@ router.get('/patientsFolders', passport.authenticate('lvpei', { session: false }
     patients.map(patient => {
       dummy.push(new Promise((resolve, reject) => {
         console.log({ MR: mrNos })
-        if (!mrNos.includes({mrNo:patient.mrNo, centreCode: patient.centreCode})) {
-
-          // if(patient.centreCode==='KAR') {
-          //   KAR.push(patient)
-          // }else if(patient.centreCode==='KVC') {
-          //   KVC.push(patient)
-          // }else if(patient.centreCode==='GMRV') {
-          //   GMRV.push(patient)
-          // }else if(patient.centreCode==='MTC') {
-          //   MTC.push(patient)
-          // }
-
+        let cnt=0
+        for (let i = 0; i < mrNos.length; i++) {
+          if (JSON.stringify(mrNos[i]) === JSON.stringify({mrNo:patient.mrNo, centreCode: patient.centreCode})) {
+            cnt+=1;
+          }
+        }
+        if(cnt===0) {
+          console.log({mr: mrNos,def:{mrNo:patient.mrNo, centreCode: patient.centreCode}})
+          console.log(patient)
           let diff = dateDiffInDays(now, patient.lastUploadAt)
           console.log(diff)
           if (diff === 0) {
@@ -421,7 +418,7 @@ router.post('/displayDicom',passport.authenticate('lvpei',{session: false}), (re
       })
     }
     const readstream = gfs.createReadStream(file.filename)
-    if(file.contentType==='application/octet-stream') {
+    if(file.contentType==='application/octet-stream' || file.contentType==='application/dicom') {
       readstream.pipe(res)
     }
   })

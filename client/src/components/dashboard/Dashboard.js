@@ -7,7 +7,6 @@ import Spinner from '../common/Spinner'
 import SADashboard from '../SuperAdmin/SADashboard'
 import { continueToUpload, deleteResidual, getDAHome, getPatientDetails } from '../../actions/dAActions'
 import Modal from 'react-modal'
-import ShowTable from '../SuperAdmin/tableDisplay/ShowTable'
 import UploadFiles from '../upload/UploadFiles'
 import LVPEIHomeFeed from './LVPEIHomeFeed'
 import classnames from 'classnames'
@@ -15,6 +14,7 @@ import Select from 'react-select'
 import Card from 'react-bootstrap/Card'
 import SearchBar from './SearchBar'
 import getAge from '../../utils/getAge'
+import TableRowDiagUser from '../SuperAdmin/tableDisplay/TableRowDiagUser'
 
 const customStyles = {
   content: {
@@ -37,7 +37,9 @@ class Dashboard extends Component {
       uploadModal: false,
       category: { value: 'all', label: 'Choose Time' },
       campusCode: { value: 'all', label: 'Choose Campus' },
-      showPatient: null
+      showPatient: null,
+      currentPage: 1,
+      todosPerPage: 25
     }
     this.changeHandler = this.changeHandler.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -50,8 +52,14 @@ class Dashboard extends Component {
     this.onSelectType = this.onSelectType.bind(this)
     this.onConfirmSelect = this.onConfirmSelect.bind(this)
     this.codeSelect = this.codeSelect.bind(this)
-  }
+    this.handleClick = this.handleClick.bind(this);
 
+  }
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
+  }
   componentDidMount () {
     if (this.props.auth.user.role === 'lvpei') {
       this.props.getAllPatients(this.props.match.params.id)
@@ -248,6 +256,11 @@ class Dashboard extends Component {
           </div>
         )
       if (this.props.auth.user.role === 'diag_admin') {
+        let tableContent, renderpn=null
+        const {  currentPage, todosPerPage } = this.state;
+        const indexOfLastTodo = currentPage * todosPerPage;
+        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+        const pageNumbers = [];
         if (loading || home === null) {
           showContent = <Spinner/>
         } else {
@@ -255,6 +268,33 @@ class Dashboard extends Component {
           if(home.users===null || home.details ===null) {
             showContent = <Spinner/>
           } else{
+            const currentFolder = home.users.slice(indexOfFirstTodo, indexOfLastTodo);
+            const render = (  currentFolder.map(folder => (
+              <TableRowDiagUser data={folder} key={folder._id}/>
+            )))
+            for (let i = 1; i <= Math.ceil(home.users.length / todosPerPage); i++) {
+              pageNumbers.push(i);
+            }
+            const renderPageNumbers = (
+              pageNumbers.map(number => {
+                return (
+                  <button className='page-item page-link'
+                          key={number}
+                          id={number}
+                          onClick={this.handleClick}
+                  >
+                    {number}
+                  </button>
+                );
+              }))
+            tableContent=render
+            renderpn= (
+              <nav aria-label="...">
+                <ul className="pagination pagination-sm">
+                  {renderPageNumbers}
+                </ul>
+              </nav>
+            )
             showContent = (
               <div className='row'>
                 <div className='row'>
@@ -318,21 +358,24 @@ class Dashboard extends Component {
                         color: 'white'
                         , borderRadius: '2px'
                       }}>Users in Your Organization</h3>
-                      <table className="table table-bordered table-striped mb-0">
+                      <table className="table table-bordered mb-0">
                         <thead>
                         <tr>
-                          <th scope="col" style={{fontSize:'10pt'}}>Username</th>
-                          <th scope="col" style={{fontSize:'10pt'}} >Full Name</th>
-                          <th scope="col" style={{fontSize:'10pt'}}>Created On</th>
-                          <th scope='col' style={{fontSize:'10pt'}}>Total Uploads</th>
-                          <th scope="col" style={{fontSize:'10pt'}} >Edit</th>
-                          <th scope="col" style={{fontSize:'10pt'}} >Manage</th>
+                          <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Username</th>
+                          <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}} >Full Name</th>
+                          <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Created On</th>
+                          <th scope='col' style={{ fontSize: '10pt', background:'#c1c1c1'}}>Total Uploads</th>
+                          <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Edit</th>
+                          <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}} >Manage</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <ShowTable data={home.users} index={{ type: 'manageDiagUser' }}/>
+                        {tableContent}
                         </tbody>
                       </table>
+                    </div>
+                    <div className='d-flex justify-content-end'>
+                      {renderpn}
                     </div>
                   </div>
                 </div>

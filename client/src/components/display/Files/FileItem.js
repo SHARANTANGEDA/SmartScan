@@ -11,6 +11,7 @@ import '../../DicomWebViewer/DwvComponent.css'
 import axios from 'axios'
 // import ReactHover from 'react-hover'
 import { Document, Page} from 'react-pdf'
+import DicomViewer from '../../dicom-viewer'
 
 
 
@@ -90,7 +91,8 @@ class FileItem extends Component {
   componentDidMount () {
     // this.props.displayDicom({ filename: this.props.file.filename })
     this.setState({pin:this.props.file.metadata.pinned})
-    if(this.props.file.contentType==='application/octet-stream') {
+    if(this.props.file.contentType==='application/octet-stream' || this.props.file.contentType==='application/dicom') {
+      console.log('here')
       if (!this.state.loaded) {
         axios.post('/api/upload/displayDicom', { filename: this.props.file.filename },
           { responseType: 'arraybuffer' }).then(res => {
@@ -204,7 +206,7 @@ class FileItem extends Component {
     const { active, loading } = this.props.view
     const { loadProgress } = this.state
     let displayFile = null,icon=null, canvas=null
-    if(this.props.file.contentType==='application/octet-stream') {
+    if(this.props.file.contentType==='application/octet-stream' || this.props.file.contentType==='application/dicom') {
       canvas = (
         <div id={this.props.file.filename} style={{width:'100%'}}>
           <div className="layerContainer">
@@ -226,7 +228,8 @@ class FileItem extends Component {
       displayFile = null
     } else {
       console.log({active:active})
-      if(this.props.file.contentType==='application/octet-stream') {
+      if(this.props.file.contentType==='application/octet-stream' || this.props.file.contentType==='application/dicom') {
+        // displayFile=(<DicomViewer file={active} />)
         displayFile = (<DwvComponent file={active}/>)
       } else if (this.props.file.contentType==='application/pdf')  {
         console.log({success:true})
@@ -253,10 +256,10 @@ class FileItem extends Component {
                       style={{ background: 'white', color: 'blue', marginRight: '10px' }}
       ><i className="far fa-check-circle fa-2x"/></button>)
     }
-    console.log({pine:file.metadata.pinned})
+    // console.log({pine:file.metadata.pinned})
 
     let name = file.filename.substr(file.filename.lastIndexOf(';') + 1, file.filename.length)
-
+    //onClick={this.onClick.bind(this)}
     return (
       //onTouchStart="this.classList.toggle('hover');
       <div className="">
@@ -269,8 +272,10 @@ class FileItem extends Component {
                       minWidth: '200', borderStyle: 'solid', maxWidth: '200px',
                     }}>
                         <div className="card-body text-center">
-                          <button className='btn-sm btn' onClick={this.onClick.bind(this)}
-                                  onMouseOver={this.onClick.bind(this)} onMouseLeave={this.closeModal.bind(this)}>
+                          <button className='btn-sm btn'
+                               onMouseOver={this.onClick.bind(this)} onMouseLeave={this.closeModal.bind(this)}
+                          >
+
                             {canvas}
                             <div className='row d-flex justify-content-center' >
                               <h4 className="card-title" style={{
@@ -310,6 +315,7 @@ class FileItem extends Component {
           ariaHideApp={false}
           shouldFocusAfterRender={false}
         >{displayFile}</Modal>
+
       </div>
     )
   }

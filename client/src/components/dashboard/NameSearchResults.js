@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import { Collapse } from 'react-collapse'
-import PatientRow from '../display/Patients/PatientRow'
-import Spinner from '../common/Spinner'
-import FolderRow from '../display/Folders/FolderRow'
 import { getNameResults } from '../../actions/homeActions'
-import getLocalDate from '../../utils/getLocalDate'
-import { Link } from 'react-router-dom'
+import FolderItem from '../display/Folders/FolderItem'
 
 class NameSearchResults extends Component {
   constructor () {
     super()
+    this.state = {
+      currentPage: 1,
+      todosPerPage: 25
+    };
+    this.handleClick = this.handleClick.bind(this);
+
+  }
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
   }
   componentDidMount () {
     console.log({param:this.props.match.params.id})
@@ -20,8 +26,13 @@ class NameSearchResults extends Component {
 
 
   render () {
+    const {  currentPage, todosPerPage } = this.state;
+    const indexOfLastTodo = currentPage * todosPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+    const pageNumbers = [];
+
     const {resultsName, loading2} = this.props.search
-    let allFoldersContent;
+    let allFoldersContent, renderpn;
     if (loading2 || resultsName===null) {
       allFoldersContent = null
     } else {
@@ -31,26 +42,32 @@ class NameSearchResults extends Component {
           <h3>No record found with name '{this.props.match.params.id}'</h3>
         )
         } else {
-          allFoldersContent = (
-            <table className="table table-bordered table-striped mb-0">
-              <thead>
-              <tr>
-                <th scope="col">Centre</th>
-                <th scope="col">MR No</th>
-                <th scope="col">Patient Name</th>
-                <th scope="col">Age/Gender</th>
-                <th scope="col">Date of upload</th>
-                <th scope="col">type</th>
-                <th scope="col">Remarks</th>
-                <th scope="col">View</th>
-                <th scope="col">Download</th>
-                <th scope="col">Delete</th>
-              </tr>
-              </thead>
-              <tbody>
-              <FolderRow folders={resultsName.name}/>
-              </tbody>
-            </table>
+          const currentFolder = resultsName.name.slice(indexOfFirstTodo, indexOfLastTodo);
+          const render = (  currentFolder.map(folder => (
+            <FolderItem folder={folder} key={folder._id}/>
+          )))
+          for (let i = 1; i <= Math.ceil(resultsName.name.length / todosPerPage); i++) {
+            pageNumbers.push(i);
+          }
+          const renderPageNumbers = (
+            pageNumbers.map(number => {
+              return (
+                <button className='page-item page-link'
+                        key={number}
+                        id={number}
+                        onClick={this.handleClick}
+                >
+                  {number}
+                </button>
+              );
+            }))
+          allFoldersContent=render
+          renderpn= (
+            <nav aria-label="...">
+              <ul className="pagination pagination-sm">
+                {renderPageNumbers}
+              </ul>
+            </nav>
           )
         }
       }
@@ -58,7 +75,28 @@ class NameSearchResults extends Component {
       <div className='nameSearchResults' style={{width: '100%'}}>
         <div style={{width: '100%'}}>
           <h2>Search Results</h2>
-          {allFoldersContent}
+          <table className="table table-bordered mb-0">
+            <thead>
+            <tr>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Centre</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Campus Code</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>MR No</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Patient Name</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Age/Gender</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}} >Date of upload</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}} >Time of upload</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>type</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Remarks</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Incoming Folder</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Selected Folder</th>
+              <th scope="col" style={{ fontSize: '10pt', background:'#c1c1c1'}}>Delete</th>
+            </tr>
+            </thead>
+            {allFoldersContent}
+          </table>
+          <div className='d-flex justify-content-end'>
+            {renderpn}
+          </div>
         </div>
       </div>
 
