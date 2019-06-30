@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "backend for ghotden",
+  "description": "This is a cloud Platform built for LVPEI",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
