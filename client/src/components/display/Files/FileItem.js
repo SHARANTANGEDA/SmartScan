@@ -11,7 +11,6 @@ import '../../DicomWebViewer/DwvComponent.css'
 import axios from 'axios'
 // import ReactHover from 'react-hover'
 import { Document, Page} from 'react-pdf'
-import DicomViewer from '../../dicom-viewer'
 
 
 
