@@ -9,7 +9,8 @@ const User = require('../../mongoModels/User')
 const Diagnostics=require('../../mongoModels/Diagnostics')
 const Patient = require('../../mongoModels/Patient')
 const uploadFilesInput = require('../../validations/uploadFiles')
-const request = require('request')
+const request = require('request-promise')
+// const request = require('request')
 const API_KEY = require('../../config/keys').mongoURI;
 
 // router.post('/registerSA',(req, res) => {
@@ -113,23 +114,40 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
   }
   console.log('here')
   console.log(req.body.patient, req.body.centre)
-  request.get({api:API_KEY, qs: req.body},(err, res, body) => {
-    if(body.status==='FAIL') {
+  // request(API_KEY,{method: 'POST', body: {mrno:req.body.patient, center_code: req.body.centre},json: true},(err, res, body) =>{
+  //   if(err) {
+  //     console.log(err)
+  //     res.status(400).json({inValid: 'Some thing is wrong try later'},err)
+  //
+  //   }
+  //   if(body.status==='FAIL') {
+  //     console.log("here")
+  //     return res.json({patient: null,invalid: true})
+  //   }
+  //   res.json({patient: body.patient_details,invalid: false, centreCode:req.body.centre})
+  //
+  // })
+  request({method: 'POST',uri:API_KEY, body: {mrno:req.body.patient, center_code: req.body.centre},json: true,
+  headers: {
+    'Content-Type': 'application/json'
+  }}).then(details => {
+    if(details.status==='FAIL') {
       console.log("here")
       return res.json({patient: null,invalid: true})
     }
-    res.json({patient: body.patient_details,invalid: false, centreCode:req.body.centre})
-
+    res.json({patient: details.patient_details,invalid: false, centreCode:req.body.centre})
   }).catch(err => {
-    res.status(400).json({inValid: 'Some thing is wrong try later'})
+      res.status(400).json({inValid: 'Some thing is wrong try later'})
   })
-  // db.Patient.findOne({where:{mrNo:req.body.patient, centreCode:req.body.centre}}).then(patient => {
-  //   if(patient===null) {
-  //         console.log("here")
-  //         return res.json({patient: null,invalid: true})
+  // request.get({api:API_KEY, qs: {mrno:req.body.patient, center_code: req.body.centre}},(err, res, body) => {
+  //   if(body.status==='FAIL') {
+  //     console.log("here")
+  //     return res.json({patient: null,invalid: true})
   //   }
-  //   console.log({all:patient})
-  //   res.json({patient: patient,invalid: false})
+  //   res.json({patient: body.patient_details,invalid: false, centreCode:req.body.centre})
+  //
+  // }).catch(err => {
+  //   res.status(400).json({inValid: 'Some thing is wrong try later'})
   // })
 })
 
@@ -138,13 +156,18 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
   console.log(req.user.id)
   User.findById(req.user.id).then(user => {
     // db.Patient.findOne({where:{mrNo:req.body.patient, centreCode:req.body.centre}}).then(patient => {
-    request.get({ api: API_KEY, qs: req.body }, (err, res, body) => {
-      if (body.status === 'FAIL') {
-        console.log(err)
-      } else {
-        console.log({ sqlPat: body.patient_details, dob: body.patient_details.dob })
+    request({method: 'POST',uri:API_KEY, body: {mrno:req.body.patient, center_code: req.body.centre},json: true,
+      headers: {
+        'Content-Type': 'application/json'
+      }}).then(details => {
+
+      if(details.status==='FAIL') {
+        console.log("here")
+        return res.json({patient: null,invalid: true})
+      }else {
+        console.log({ sqlPat: details.patient_details, dob: details.patient_details.dob })
         let today = new Date();
-        let birthDate = new Date(body.patient_details.dob);
+        let birthDate = new Date(details.patient_details.dob);
         let age = today.getFullYear() - birthDate.getFullYear();
         let m = today.getMonth() - birthDate.getMonth();
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -153,10 +176,10 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
         console.log(birthDate, age)
         const newUpload = new Patient({
           mrNo: req.body.patient,
-          firstName: body.patient_details.first_name,
-          lastName: body.patient_details.last_name,
+          firstName: details.patient_details.first_name,
+          lastName: details.patient_details.last_name,
           age: age,
-          gender: body.patient_details.gender,
+          gender: details.patient_details.gender,
           uploadedBy: user.emailId,
           diagCentreName: user.diagCentreName,
           diagCentre: user.diagCentre,
@@ -170,7 +193,42 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
           console.log(err)
         })
       }
+    }).catch(err => {
+      res.status(400).json({inValid: 'Some thing is wrong try later'})
     })
+    // request.get({ api: API_KEY, qs: req.body }, (err, res, body) => {
+    //   if (body.status === 'FAIL') {
+    //     console.log(err)
+    //   } else {
+    //     console.log({ sqlPat: body.patient_details, dob: body.patient_details.dob })
+    //     let today = new Date();
+    //     let birthDate = new Date(body.patient_details.dob);
+    //     let age = today.getFullYear() - birthDate.getFullYear();
+    //     let m = today.getMonth() - birthDate.getMonth();
+    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    //       age--;
+    //     }
+    //     console.log(birthDate, age)
+    //     const newUpload = new Patient({
+    //       mrNo: req.body.patient,
+    //       firstName: body.patient_details.first_name,
+    //       lastName: body.patient_details.last_name,
+    //       age: age,
+    //       gender: body.patient_details.gender,
+    //       uploadedBy: user.emailId,
+    //       diagCentreName: user.diagCentreName,
+    //       diagCentre: user.diagCentre,
+    //       centreShortCode: user.centreShortCode,
+    //       centreCode: user.centreCode
+    //     })
+    //     newUpload.save().then(pat => {
+    //       console.log({ "created user": pat._id })
+    //       res.json({ mid: pat._id })
+    //     }).catch(err => {
+    //       console.log(err)
+    //     })
+    //   }
+    // })
   })
 })
 router.post('/onDiscard',passport.authenticate('all_diag',{session: false}),(req, res) => {
