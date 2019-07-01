@@ -8,9 +8,6 @@
     "axios": "^0.19.0",
     "caniuse-lite": "1.0.30000974",
     "classnames": "^2.2.6",
-    "cornerstone-core": "^2.1.0",
-    "cornerstone-math": "^0.1.8",
-    "cornerstone-tools": "^2.5.0",
     "daikon": "^1.2.42",
     "dicom-parser": "1.7.4",
     "dwv": "0.26.0",
@@ -39,8 +36,7 @@
     "react-swipeable-views": "^0.13.1",
     "reactjs-popup": "^1.4.1",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "request": "latest"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
