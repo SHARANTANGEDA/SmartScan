@@ -1,4 +1,4 @@
-
+const LVPEI_API_KEY = require('../../config/keys').LVPEI_API_KEY
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
@@ -12,7 +12,7 @@ const uploadFilesInput = require('../../validations/uploadFiles')
 const request = require('request-promise')
 // const request = require('request')
 const API_KEY = require('../../config/keys').mongoURI;
-
+const axios = require('axios')
 // router.post('/registerSA',(req, res) => {
 //   // const { errors, isValid } = validateRegisterInput(req.body)
 //   // if (!isValid) {
@@ -127,9 +127,8 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
   //   res.json({patient: body.patient_details,invalid: false, centreCode:req.body.centre})
   //
   // })
-  request({method: 'POST',uri:API_KEY, body: {mrno:req.body.patient, center_code: req.body.centre},json: true,
+  request({method: 'POST',uri:LVPEI_API_KEY, form: {mrno:req.body.patient, center_code: req.body.centre},json: true,
   headers: {
-    'Content-Type': 'application/json'
   }}).then(details => {
     if(details.status==='FAIL') {
       console.log("here")
@@ -137,8 +136,34 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
     }
     res.json({patient: details.patient_details,invalid: false, centreCode:req.body.centre})
   }).catch(err => {
-      res.status(400).json({inValid: 'Some thing is wrong try later'})
+    console.log(err)
+      res.status(400).json({inValid: 'Some thing is wrong try later',err})
   })
+//   axios.post(LVPEI_API_KEY, {
+//     mrno:req.body.patient, center_code: req.body.centre
+//   }).then(details => {
+//     console.log({DETAILS:details})
+//   }).catch(err => {
+//  console.log(err)
+// res.status(400).json({inValid: 'Some thing is wrong try later',err})
+// })
+  // axios({
+  //   method: 'POST',
+  //   url: LVPEI_API_KEY,
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "*"
+  //   },
+  //   data:JSON.stringify({ mrno:req.body.patient, center_code: req.body.centre }),
+  //   validateStatus: (status) => {
+  //     return true; // I'm always returning true, you may want to do it depending on the status received
+  //   },
+  // }).then(details => {
+  //
+  //   console.log({DETAILS:details})
+  // }).catch(err => {
+  //   console.log(err.message)
+  //   res.status(400).json({inValid: 'Some thing is wrong try later',err})
+  // })
   // request.get({api:API_KEY, qs: {mrno:req.body.patient, center_code: req.body.centre}},(err, res, body) => {
   //   if(body.status==='FAIL') {
   //     console.log("here")
@@ -156,9 +181,9 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
   console.log(req.user.id)
   User.findById(req.user.id).then(user => {
     // db.Patient.findOne({where:{mrNo:req.body.patient, centreCode:req.body.centre}}).then(patient => {
-    request({method: 'POST',uri:API_KEY, body: {mrno:req.body.patient, center_code: req.body.centre},json: true,
+    console.log('THIS IS BEING CALLED')
+    request({method: 'POST',uri:LVPEI_API_KEY, form: {mrno:req.body.patient, center_code: req.body.centre},json: true,
       headers: {
-        'Content-Type': 'application/json'
       }}).then(details => {
 
       if(details.status==='FAIL') {

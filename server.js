@@ -8,6 +8,8 @@ const uploads = require('./routes/api/upload');
 const superAdmin = require('./routes/api/superAdmin')
 const diagAdmin  =require('./routes/api/diagAdmin')
 const diagUser = require('./routes/api/diagUser')
+// const cors = require('cors');
+
 // const MongoClient = require('mongodb').MongoClient;
 
 const path = require('path');
@@ -22,6 +24,7 @@ mongoose.connect(db,{useNewUrlParser: true})
   })
   .catch(err => console.log(err,'Not Connecting'));
 // Body parser middleware
+// app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
