@@ -37,7 +37,6 @@ class UploadFiles extends Component {
       .then(res => res.json())
       .then(files => {
         if (files.message) {
-          console.log('No Files');
           this.setState({ files: [] })
         } else {
           this.setState({ files })
@@ -54,8 +53,6 @@ class UploadFiles extends Component {
   uploadFile(event) {
     event.preventDefault();
     let data = new FormData()
-    console.log({files:this.state.files})
-    console.log(Array.from(this.state.files))
     if(Array.from(this.state.files).length===0)
     {
       this.setState({error: 'Please choose at least one file to upload'})

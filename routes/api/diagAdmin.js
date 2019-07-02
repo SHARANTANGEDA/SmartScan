@@ -74,7 +74,6 @@ router.post('/addMembers', passport.authenticate('diag_admin',{session: false}),
             newUser.save().then(user => {
               diagnostics.members.unshift({id:user.emailId})
               diagnostics.save().then(diag => {
-                console.log(diag)
                 res.json({success: true})
               })
             }).catch(err => {
@@ -112,8 +111,6 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
   if (!isValid) {
     return res.status(400).json(errors)
   }
-  console.log('here')
-  console.log(req.body.patient, req.body.centre)
   // request(API_KEY,{method: 'POST', body: {mrno:req.body.patient, center_code: req.body.centre},json: true},(err, res, body) =>{
   //   if(err) {
   //     console.log(err)
@@ -131,12 +128,10 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
   headers: {
   }}).then(details => {
     if(details.status==='FAIL') {
-      console.log("here")
       return res.json({patient: null,invalid: true})
     }
     res.json({patient: details.patient_details,invalid: false, centreCode:req.body.centre})
   }).catch(err => {
-    console.log(err)
       res.status(400).json({inValid: 'Some thing is wrong try later',err})
   })
 //   axios.post(LVPEI_API_KEY, {
@@ -178,19 +173,15 @@ router.post('/patientDetails',passport.authenticate('all_diag',{session: false})
 
 
 router.post('/continueToUpload',passport.authenticate('all_diag', {session: false}),(req, res) => {
-  console.log(req.user.id)
   User.findById(req.user.id).then(user => {
     // db.Patient.findOne({where:{mrNo:req.body.patient, centreCode:req.body.centre}}).then(patient => {
-    console.log('THIS IS BEING CALLED')
     request({method: 'POST',uri:LVPEI_API_KEY, form: {mrno:req.body.patient, center_code: req.body.centre},json: true,
       headers: {
       }}).then(details => {
 
       if(details.status==='FAIL') {
-        console.log("here")
         return res.json({patient: null,invalid: true})
       }else {
-        console.log({ sqlPat: details.patient_details, dob: details.patient_details.dob })
         let today = new Date();
         let birthDate = new Date(details.patient_details.dob);
         let age = today.getFullYear() - birthDate.getFullYear();
@@ -198,7 +189,6 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
           age--;
         }
-        console.log(birthDate, age)
         const newUpload = new Patient({
           mrNo: req.body.patient,
           firstName: details.patient_details.first_name,
@@ -212,10 +202,8 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
           centreCode: user.centreCode
         })
         newUpload.save().then(pat => {
-          console.log({ "created user": pat._id })
           res.json({ mid: pat._id })
         }).catch(err => {
-          console.log(err)
         })
       }
     }).catch(err => {
@@ -258,9 +246,7 @@ router.post('/continueToUpload',passport.authenticate('all_diag', {session: fals
 })
 router.post('/onDiscard',passport.authenticate('all_diag',{session: false}),(req, res) => {
   Patient.deleteOne({_id: req.body.mid}).then(patient => {
-    console.log({'Deleted User':req.body.mid});
   }).catch(err => {
-    console.log('There is an error please bear with us')
   })
 })
 
@@ -281,7 +267,7 @@ router.post('/removeUserAccess',passport.authenticate('diag_admin', {session: fa
     User.findOneAndUpdate({emailId: req.body.emailId},{access: false}).then(user => {
       res.json({success: true})
     }).catch(err => {
-      console.log({error: err})
+
     })
   })
 
@@ -290,7 +276,6 @@ router.post('/grantUserAccess',passport.authenticate('diag_admin', {session: fal
     User.findOneAndUpdate({emailId: req.body.emailId},{access: true}).then(user => {
       res.json({success: true})
     }).catch(err => {
-      console.log({error: err})
     })
   })
 

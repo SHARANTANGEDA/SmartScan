@@ -25,8 +25,7 @@ dispatch(setLoading())
 export  const deleteResidual=(id) => dispatch => {
   axios.post(`/api/diagAdmin/onDiscard`,id).then(res => {
     window.location.href='/dashboard'
-  }).catch(err =>
-    console.log('error in deleting residual')
+  }).catch(err =>{}
   )
 }
 export const getPatientDetails=(data) => dispatch => {
@@ -38,7 +37,6 @@ export const getPatientDetails=(data) => dispatch => {
         payload: res.data
       })
     }).catch(err =>{
-    console.log(err)
     dispatch({
       type: GET_INVALID_MR,
       payload: err.response.data
@@ -48,7 +46,6 @@ export const getPatientDetails=(data) => dispatch => {
 export const continueToUpload=(data) => dispatch => {
   axios.post('/api/diagAdmin/continueToUpload', data)
     .then(res => {
-      console.log('created User')
       dispatch({
         type: GET_MR,
         payload: res.data
@@ -72,19 +69,7 @@ export const createNewMembers=(data) => dispatch => {
     })
   )
 }
-export const deleteDiagUser=(data) => dispatch => {
-  dispatch(clearErrors())
-  axios.post('/api/diagAdmin/deleteMember', data)
-    .then(res => {
-      window.location.href='/dashboard'
-    }).catch(err =>
-    dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
 
-    })
-  )
-}
 
 export const removeDiagUserAccess = (userData) => dispatch => {
   dispatch(clearErrors())
@@ -121,7 +106,7 @@ export const ControlDiagUsers = () => dispatch => {
       payload: res.data
     })
   }).catch(err => {
-    console.log(err)})
+    })
 }
 
 export const InActiveDiagUsers = () => dispatch => {
@@ -132,7 +117,7 @@ export const InActiveDiagUsers = () => dispatch => {
       payload: res.data
     })
   }).catch(err => {
-    console.log(err)})
+    })
 }
 
 export const setLoading = () => {

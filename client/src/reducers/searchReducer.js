@@ -15,7 +15,6 @@ export default function(state = initialState, action) {
   // console.log({'Search Reducer':action.payload});
   switch (action.type) {
     case SEARCH_LOADING:
-      console.log("IN File Reducer loading")
       return {
         ...state,
         loading: true,

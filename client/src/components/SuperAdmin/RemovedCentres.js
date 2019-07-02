@@ -21,10 +21,7 @@ class RemovedCentres extends Component {
     });
   }
   componentDidMount () {
-    console.log({COMP: 'Mounted'})
-
     this.props.removedCentres(this.props.match.params.id)
-    console.log({COMP: 'Mounted'})
   }
 
   render () {

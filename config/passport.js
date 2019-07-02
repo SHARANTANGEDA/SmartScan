@@ -21,7 +21,9 @@ module.exports = passport => {
             }          }
           return done(null,false);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+
+        });
     })
   );
   passport.use('diag_admin',
@@ -36,7 +38,9 @@ module.exports = passport => {
             }          }
           return done(null,false);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+
+        });
     })
   );
   passport.use('diag',
@@ -51,7 +55,9 @@ module.exports = passport => {
             }          }
           return done(null,false);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+
+        });
     })
   );
   passport.use('lvpei',
@@ -66,7 +72,9 @@ module.exports = passport => {
             }          }
           return done(null,false);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+
+        });
     })
   );
   passport.use('all',
@@ -78,7 +86,9 @@ module.exports = passport => {
           }
           return done(null,false);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+
+        });
     })
   );
   passport.use('all_diag',
@@ -93,7 +103,9 @@ module.exports = passport => {
             }          }
           return done(null,false);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+
+        });
     })
   );
   passport.use('non_super',
@@ -108,7 +120,9 @@ module.exports = passport => {
             }          }
           return done(null,false);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+
+        });
     })
   );
   passport.serializeUser(function(user, cb) {

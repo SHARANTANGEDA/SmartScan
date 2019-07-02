@@ -20,7 +20,6 @@ class NameSearchResults extends Component {
     });
   }
   componentDidMount () {
-    console.log({param:this.props.match.params.id})
     this.props.getNameResults(this.props.match.params.id)
   }
 

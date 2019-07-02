@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 class ContactUs extends Component {
 
   render () {
-    console.log("In contact us")
     return (
       <div className="container-fluid contactUs">
         <div className="row">

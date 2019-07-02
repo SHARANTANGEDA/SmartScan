@@ -66,7 +66,6 @@ router.post('/register', passport.authenticate('super_admin',{session: false}),(
           newUser.save().then(user => {
             res.json({success: true})
           }).catch(err => {
-            console.log(err)
             res.json({error: 'creating the user'})
           })
         })
@@ -119,10 +118,8 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
                   if (err) throw err
                   newUser.password = hash
                   newUser.save().then(user => {
-                    console.log({diag: diagnostics, user: user})
                     res.json({ success: true })
                   }).catch(err => {
-                    console.log(err)
                     res.json({ error: 'creating the user' })
                   })
                 })
@@ -138,16 +135,13 @@ router.post('/addDiagnostic',passport.authenticate('super_admin', {session: fals
 
 router.post('/removeAccess',passport.authenticate('super_admin', {session: false}),
   (req, res) => {
-  console.log(Date.now())
   Diagnostics.findOneAndUpdate({adminId: req.body.emailId},{access: false, lastUpdate: Date.now()}).
   then(diagnostics => {
     User.findOneAndUpdate({emailId: req.body.emailId},{access: false}).then(admin => {
       User.find({admin: req.body.emailId}).then(users => {
         users.map(user => {
           User.findByIdAndUpdate(user._id,{access: false}).then(newUser => {
-            console.log(user)
           }).catch(err => {
-            console.log('Error in removing')
           })
         })
         res.json({success: true})
@@ -164,9 +158,7 @@ router.post('/grantAccess',passport.authenticate('super_admin', {session: false}
         User.find({admin: req.body.emailId}).then(users => {
           users.map(user => {
             User.findByIdAndUpdate(user._id,{access: true}).then(newUser => {
-              console.log(user)
             }).catch(err => {
-              console.log('Error in adding')
             })
           })
           res.json({success: true})
@@ -190,20 +182,15 @@ router.get('/activeCentres',passport.authenticate('super_admin', {session: false
   Diagnostics.find({access: true}).then(diagnostics => {
     res.json(diagnostics)
   }).catch(err => {
-    console.log(err,'IN ACTIVE')
     res.json({fail: true})
   })
 })
 
 router.get('/inactiveDiags',passport.authenticate('super_admin', {session: false}),
   (req, res) => {
-  console.log('here')
     Diagnostics.find({access: false}).then(diagnostics => {
-      console.log('IN INACTIVE SUCCESS')
       res.json(diagnostics)
     }).catch(err => {
-      console.log(err,'IN IN-ACTIVE')
-
       res.json({fail: true})
     })
   })
@@ -272,14 +259,12 @@ router.get('/home', passport.authenticate('super_admin', { session: false }), (r
 
 router.get('/lvpeiUsers', passport.authenticate('super_admin', { session: false }), (req, res) => {
   User.find({role: 'lvpei',access: true}).then(users => {
-    console.log(users)
     res.json(users)
   })
 });
 
 router.get('/deAssignedUsers', passport.authenticate('super_admin', { session: false }), (req, res) => {
   User.find({role: 'lvpei',access: false}).then(users => {
-    console.log(users)
     res.json(users)
   })
 });
@@ -289,7 +274,6 @@ router.post('/removeLVPEIAccess',passport.authenticate('super_admin', {session: 
     User.findOneAndUpdate({emailId: req.body.emailId},{access: false}).then(user => {
       res.json({success: true})
     }).catch(err => {
-      console.log({error: err})
     })
   })
 
@@ -298,7 +282,6 @@ router.post('/grantLVPEIAccess',passport.authenticate('super_admin', {session: f
     User.findOneAndUpdate({emailId: req.body.emailId},{access: true}).then(user => {
       res.json({success: true})
     }).catch(err => {
-      console.log({error: err})
     })
   })
 
@@ -316,7 +299,6 @@ router.post('/resetPassword',passport.authenticate('super_admin', {session: fals
         user.save().then(user => {
           res.json({ success: true })
         }).catch(err => {
-          console.log(err)
           res.json({ error: 'creating the user' })
         })
       })

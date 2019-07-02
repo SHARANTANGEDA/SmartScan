@@ -105,7 +105,6 @@ class FileItem extends Component {
               }
               let self = this
               app.addEventListener('load-progress', event => {
-                console.log({ progress: event.loaded })
                 self.setState({ loadProgress: event.loaded })
               })
               app.addEventListener('load-end', event => {
@@ -121,11 +120,9 @@ class FileItem extends Component {
             }
 
           } catch (e) {
-            console.log(e)
           }
         }
       }).catch(err => {
-          console.log({ err: err })
         }
       )
     }
@@ -142,13 +139,11 @@ class FileItem extends Component {
   //   }
   // }
   pinFile (e) {
-    console.log({f:this.props.file.filename})
     this.props.pinFile({filename:this.props.file.filename})
     this.setState({pin:true})
   }
 
   unPinFile (e) {
-    console.log({f:this.props.file.filename})
     this.props.unPinFile({filename:this.props.file.filename})
     this.setState({pin:false})
 
@@ -210,7 +205,6 @@ class FileItem extends Component {
                       style={{ background: 'white', color: 'blue', marginRight: '10px' }}
       ><i className="far fa-check-circle fa-2x"/></button>)
     }
-    console.log({pine:file.metadata.pinned})
 
     let name = file.filename.substr(file.filename.lastIndexOf(';') + 1, file.filename.length)
 

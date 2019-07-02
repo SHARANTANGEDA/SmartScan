@@ -116,9 +116,7 @@ class Dashboard extends Component {
       patient: this.state.patient,
       centre: this.props.auth.user.campusCode
     }
-    console.log({ user: userData })
     if (this.state.patient.length !== 0) {
-      console.log({ len: 'not zero' })
       // this.props.getDetails(userData);
       this.props.getPatientDetails(userData)
       this.setState({ patient: userData.patient})
@@ -166,13 +164,11 @@ class Dashboard extends Component {
             </div>
           )
         } else {
-          console.log({p:patients})
             if(this.state.showPatient === null) {
               allFoldersContent = (
                 <LVPEIHomeFeed patients={this.props.folder.patients.all} campusCode={this.state.campusCode.value}/>
               )
             }else {
-              console.log({'HELLO':this.state.showPatient})
               allFoldersContent = (
                 <LVPEIHomeFeed patients={this.state.showPatient} campusCode={this.state.campusCode.value}/>
               )
@@ -264,7 +260,6 @@ class Dashboard extends Component {
         if (loading || home === null) {
           showContent = <Spinner/>
         } else {
-          console.log(home.users)
           if(home.users===null || home.details ===null) {
             showContent = <Spinner/>
           } else{
@@ -536,7 +531,6 @@ class Dashboard extends Component {
           }
         }
       } else {
-        console.log(this.props.home.patientData)
         if(this.props.home.patientData.mid===null) {
           showModal=<Spinner/>
         }else {

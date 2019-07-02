@@ -57,7 +57,6 @@ class CreateLVPEIUsers extends Component {
       short: this.state.short,
       centreCode: this.state.category.value
     }
-    console.log(newDiagnostic)
      this.props.addDiagnostics(newDiagnostic);
   }
   onSelectType (e) {

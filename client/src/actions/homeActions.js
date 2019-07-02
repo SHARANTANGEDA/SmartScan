@@ -51,7 +51,6 @@ export const getSADetails = () => dispatch => {
 }
 export const deleteFile = (id) => dispatch => {
   axios.get(`/api/upload/deleteFile/${id}`).then(res => {
-    console.log(res)
     window.location.reload()
   }).catch(err =>
     dispatch({
@@ -63,7 +62,6 @@ export const deleteFile = (id) => dispatch => {
 
 export const deleteFolder = (id) => dispatch => {
   axios.get(`/api/upload/deleteFolder/${id}`).then(res => {
-    console.log(res)
     window.location.reload()
   }).catch(err =>
     dispatch({
@@ -75,7 +73,6 @@ export const deleteFolder = (id) => dispatch => {
 
 export const deletePatient = (id) => dispatch => {
   axios.get(`/api/upload/deletePatient/${id}`).then(res => {
-    console.log(res)
     window.location.reload()
   }).catch(err =>
     dispatch({
@@ -99,7 +96,6 @@ export const downloadFile = (id) => dispatch => {
   axios.get(`/api/upload/downloadFile/${id}`, { responseType: 'blob' }).then(res => {
     const url = window.URL.createObjectURL(new Blob([res.data], { type: 'octet/stream' }))
     const link = document.createElement('a')
-    console.log(url)
     link.href = url
     link.setAttribute('download', id.substr(id.lastIndexOf(';') + 1, id.length))
     document.body.appendChild(link)
@@ -119,12 +115,9 @@ export const downloadFile = (id) => dispatch => {
 }
 
 export const downloadFolder = (id) => dispatch => {
-  console.log('In download folder')
   axios.get(`/api/upload/downloadFolder/${id}`, { responseType: 'blob' }).then(res => {
-    console.log(res)
     const url = window.URL.createObjectURL(new Blob([res.data]))
     const link = document.createElement('a')
-    console.log(url)
     link.href = url
     link.setAttribute('download', id + '.zip')
     document.body.appendChild(link)
@@ -142,7 +135,6 @@ export const downloadFolder = (id) => dispatch => {
 export const getHomeFolders = (centre,id) => dispatch => {
   dispatch(setLoading())
   dispatch(homeLoading())
-  console.log(centre,id)
   axios.get(`/api/upload/folders/${centre}/${id}`).then(res => {
     dispatch({
       type: GET_FILES,
@@ -164,8 +156,7 @@ export const getDiagUserHome=() => dispatch => {
         type: GET_DIAG_USER_HOME,
         payload: res.data
       })
-    }).catch(err =>
-   console.log(err)
+    }).catch(err =>{}
   )
 }
 
@@ -188,17 +179,13 @@ export const getNameResults = (data) => dispatch => {
   dispatch(setSearchLoading())
   dispatch(homeLoading())
   axios.get(`/api/users/searchName/${data}`).then(res => {
-    console.log({result: res})
     dispatch({
       type: GET_NAME_RESULTS,
       payload: res.data
     })
-  }).catch(err =>
-    console.log({sErr: err})
-    // dispatch({
-    //   type: GET_SEARCH_ERRORS,
-    //   payload: err.data
-    // })
+  }).catch(err =>{
+
+    }
   )
 }
 export const getAllPatients = () => dispatch => {
@@ -219,12 +206,9 @@ export const getAllPatients = () => dispatch => {
 
 
 export const downloadSelectedFiles = (id) => dispatch => {
-  console.log('In download folder')
   axios.get(`/api/upload/downloadSelected/${id}`, { responseType: 'blob' }).then(res => {
-    console.log(res)
     const url = window.URL.createObjectURL(new Blob([res.data]))
     const link = document.createElement('a')
-    console.log(url)
     link.href = url
     link.setAttribute('download',
       id + '.zip')
@@ -271,7 +255,6 @@ export const displayDicom = (id) => dispatch => {
   dispatch(viewLoading())
 
   axios.post('/api/upload/displayDicom', id, {responseType: 'arraybuffer'}).then(res => {
-    console.log(res)
     dispatch({
       type: GET_ACTIVE,
       payload: res
@@ -287,16 +270,15 @@ export const displayDicom = (id) => dispatch => {
 
 export const pinFile = (id) => dispatch => {
   axios.post(`/api/upload/pinFile`,id).then(res => {
-    console.log(res.data)
-  }).catch(err =>
-    {console.log(err)}
+  }).catch(err => {
+
+    }
   )
 }
 export const unPinFile = (id) => dispatch => {
   axios.post(`/api/upload/unPinFile`,id).then(res => {
-    console.log(res.data)
   }).catch(err =>
-    {console.log(err)}
+    {}
   )
 }
 

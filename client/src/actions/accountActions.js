@@ -13,8 +13,8 @@ export const getProfileInfo = () => dispatch => {
         type: GET_ACCOUNT_DETAILS,
         payload: res.data
       })
-    }).catch(err =>
-    {console.log(err)}
+    }).catch(err => {
+    }
   )
 }
 

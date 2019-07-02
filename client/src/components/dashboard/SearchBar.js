@@ -26,18 +26,15 @@ class SearchBar extends Component {
       category: this.state.category.value,
       search: this.state.search,
     }
-    console.log({search:newSearch})
     if(this.state.category.value==='mr.No') {
       this.props.getSearchResults(newSearch)
     }else if(this.state.category.value==='name') {
-      console.log({name:`/nameSearchResults/${this.state.search}`})
       window.location.href=`/nameSearchResults/${this.state.search}`
     }
   }
 
   onChange (e) {
     this.setState({ [e.target.name]: e.target.value })
-    console.log({ [e.target.name]: e.target.value })
 
   }
 
@@ -48,7 +45,6 @@ class SearchBar extends Component {
   }
 
   onCatChange (e) {
-    console.log({ category: e })
     this.setState({ category: e })
   }
 
@@ -59,7 +55,6 @@ class SearchBar extends Component {
     if(loading || results ===null) {
 
     }else {
-      console.log({results:results})
       if(!results.success) {
         window.location.href='/detailsNotFound'
       } else {

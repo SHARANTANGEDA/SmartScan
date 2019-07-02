@@ -27,7 +27,7 @@ export const ControlLvpeiUsers = () => dispatch => {
       payload: res.data
     })
   }).catch(err => {
-    console.log(err)})
+  })
 }
 
 export const InactiveLVPEIUsers = () => dispatch => {
@@ -38,7 +38,7 @@ export const InactiveLVPEIUsers = () => dispatch => {
       payload: res.data
     })
   }).catch(err => {
-    console.log(err)})
+  })
 }
 
 export const removeDiagAccess = (userData) => dispatch => {
@@ -123,7 +123,6 @@ export const activeCentres = () => dispatch => {
 }
 
 export const removedCentres = () => dispatch => {
-  console.log('In inactive')
   dispatch(setLoading())
   axios.get('/api/superAdmin/inactiveDiags')
     .then(res => {

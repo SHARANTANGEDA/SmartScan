@@ -20,7 +20,6 @@ class TableRowDiagUser extends Component {
   }
 
   onRemoveAccess(e) {
-    console.log(this.props.data.emailId)
     this.props.removeDiagUserAccess({emailId: this.props.data.emailId})
     this.setState({removeClick: true})
   }
