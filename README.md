@@ -64,4 +64,4 @@ the application.
 - This code can be used by any individual for development purposes without consent of author(_**#Keeps the spirit 
 alive!!!**_). 
 - But any organization or individual of any kind other than _**LVPEI or the Author**_ using it for commercial purposes 
-must take permission of the _**author**_ or above mentioned _**Dr. Tarjani Vivek Dave**_ and _**Dr. Vipin Das**_.
+must take permission of the _**author**_ or above mentioned _**Dr. Tarjani Vivek Dave**_.S
