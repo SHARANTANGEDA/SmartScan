@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 import getLocalDate from '../../../utils/getLocalDate'
 import FileItem from './FileItem'
 import Modal from 'react-modal'
+import EnterMedicalReport from './EnterMedicalReport'
+import ViewMedicalReport from './ViewMedicalReport'
 
 const customStyles = {
   content: {
@@ -29,7 +31,7 @@ class Display extends Component {
       selected: [],
       patientId: null,
       downloading: false,
-
+      openEnterModal: false
     }
     this.onSelectedDownload = this.onSelectedDownload.bind(this)
     this.openModal = this.openModal.bind(this)
@@ -38,6 +40,7 @@ class Display extends Component {
     this.onBack = this.onBack.bind(this)
     this.loadSelected =this.loadSelected.bind(this)
     this.loadFolders = this.loadFolders.bind(this)
+    this.openEnterModal = this.openEnterModal.bind(this)
 
   }
   componentDidMount () {
@@ -47,25 +50,29 @@ class Display extends Component {
   }
 
   openModal () {
-    this.setState({ modalIsOpen: true })
+    this.setState({ modalIsOpen: true, openEnterModal: false })
   }
 
   afterOpenModal () {}
 
   closeModal () {
-    this.setState({ modalIsOpen: false })
+    this.setState({ modalIsOpen: false,openEnterModal: false })
   }
   loadSelected () {
-    window.location.href=`/displaySelectedFiles/${this.props.folder._id}`
+    window.location.href=`/displaySelectedFiles/${this.props.folder.files.patient._id}`
 
   }
+
+  openEnterModal () {
+    this.setState({ modalIsOpen: true, openEnterModal: true})
+  }
   loadFolders () {
-    window.location.href=`/displayFiles/${this.props.folder._id}`
+    window.location.href=`/displayFiles/${this.props.folder.files.patient._id}`
   }
 
   onSelectedDownload (e) {
     // console.log(this.state.selected)
-    this.props.downloadSelectedFiles({id:this.props.folder.files.patient._id})
+    this.props.downloadSelectedFiles(this.props.folder.files.patient._id)
     this.setState({downloading: true})
   }
   onBack (e) {
@@ -129,47 +136,61 @@ class Display extends Component {
       content=<Spinner/>
 
     } else {
-      modalContent = (
-        <div id="mainbar" className='row d-flex justify-content-center'>
-          <div className="grid text-center col-md-10">
-            <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
-              color: 'black'
-            }}>Details</h3>
+      if(this.state.openEnterModal) {
+        if(files.patient.reportDetailed.length!==0) {
+          modalContent = (
+            <ViewMedicalReport patientId={files.patient._id} report={files.patient.reportDetailed}/>
+          )
+        } else {
+          modalContent = (
+            <EnterMedicalReport patientId={files.patient._id}/>
+          )
+        }
+
+      }else {
+        modalContent = (
+          <div id="mainbar" className='row d-flex justify-content-center'>
+            <div className="grid text-center col-md-10">
+              <h3 className="grid--cell fl1 fs-headline1 text-center" style={{
+                color: 'black'
+              }}>Details</h3>
+            </div>
+            <table className="table">
+              <tbody>
+              <tr>
+                <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Uploaded By:</h6></td>
+                <td><h6>{files.patient.diagCentreName}</h6></td>
+              </tr>
+              <tr>
+                <td><h6 style={{ color: 'grey', opacity: '0.9' }}>age/gender</h6></td>
+                <td><h6>{files.patient.age + '/' + files.patient.gender}</h6></td>
+              </tr>
+              <tr>
+                <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Scan Type:</h6></td>
+                <td><h6>{files.patient.scanType}</h6></td>
+              </tr>
+              <tr>
+                <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Organization email Address:</h6></td>
+                <td><h6>{files.patient.diagCentre}</h6></td>
+              </tr>
+              <tr>
+                <td><h6 style={{ color: 'grey', opacity: '0.9' }}>uploaded by user:</h6></td>
+                <td><h6>{files.patient.uploadedBy}</h6></td>
+              </tr>
+              <tr>
+                <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Remarks</h6></td>
+                <td><h6>{files.patient.remarks}</h6></td>
+              </tr>
+              </tbody>
+            </table>
+            <div className="col-md-6 text-center" style={{ width: '100%' }}>
+              <button onClick={this.closeModal} className='btn btn-sm' style={{ background: 'red', color: 'white' }}>Close
+              </button>
+            </div>
           </div>
-          <table className="table">
-            <tbody>
-            <tr>
-              <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Uploaded By:</h6></td>
-              <td><h6>{files.patient.diagCentreName}</h6></td>
-            </tr>
-            <tr>
-              <td><h6 style={{ color: 'grey', opacity: '0.9' }}>age/gender</h6></td>
-              <td><h6>{files.patient.age + '/' + files.patient.gender}</h6></td>
-            </tr>
-            <tr>
-              <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Scan Type:</h6></td>
-              <td><h6>{files.patient.scanType}</h6></td>
-            </tr>
-            <tr>
-              <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Organization email Address:</h6></td>
-              <td><h6>{files.patient.diagCentre}</h6></td>
-            </tr>
-            <tr>
-              <td><h6 style={{ color: 'grey', opacity: '0.9' }}>uploaded by user:</h6></td>
-              <td><h6>{files.patient.uploadedBy}</h6></td>
-            </tr>
-            <tr>
-              <td><h6 style={{ color: 'grey', opacity: '0.9' }}>Remarks</h6></td>
-              <td><h6>{files.patient.remarks}</h6></td>
-            </tr>
-            </tbody>
-          </table>
-          <div className="col-md-6 text-center" style={{ width: '100%' }}>
-            <button onClick={this.closeModal} className='btn btn-sm' style={{ background: 'red', color: 'white' }}>Close
-            </button>
-          </div>
-        </div>
-      )
+        )
+      }
+
       // if(this.state.show) {
       //   // displayBar = (
       //   //
@@ -212,57 +233,71 @@ class Display extends Component {
       //   //   </div>
       //   // )
       // }
-      if(notFound) {
-        content=(<div className="App-content row d-flex justify-content-center" >
-          <div className="grid text-center col-md-12">
-            <div className='row '>
-              <div style={{margin: '10px'}}>
-                <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
-                  <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
-              </div>
-              {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
-              {/*  color: 'black'*/}
-              {/*}}> Welcome to L V Prasad Cloud</h1>*/}
-            </div>
-          </div>
-          <div>
-            <p>Nothing is uploaded yet, please check back later</p>
-          </div>
-        </div>)
+      if(this.props.folder===null) {
+        content=(<Spinner/>)
       }else {
-        content=(
+        if(notFound) {
+          content=(<div className="App-content row d-flex justify-content-center" >
+            <div className="grid text-center col-md-12">
+              <div className='row '>
+                <div style={{margin: '10px'}}>
+                  <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} className='btn' style={{background: 'white', color: 'green'}}>
+                    <i className="fas fa-arrow-alt-circle-left fa-2x"/></Link>
+                </div>
+                {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
+                {/*  color: 'black'*/}
+                {/*}}> Welcome to L V Prasad Cloud</h1>*/}
+              </div>
+            </div>
+            <div>
+              <p>Nothing is uploaded yet, please check back later</p>
+            </div>
+          </div>)
+        }else {
+          content=(
             <div className="w-100"
                  style={{minWidth: '100%', border:'none', margin:'0px',padding:'0px'
-              , left:0, right:0}} >
+                   , left:0, right:0}} >
               <div className="App-content row d-flex justify-content-center">
-              <nav className='container-fluid navbar col-md-12 w-100  d-flex justify-content-between '
-                   style={{ minWidth:'100%', background:'#ffa726', left:0, right:0,border:'none', margin:'0px',height:'50px',
-                     padding:'0px'}}>
-                <div className='row col-md-10  d-flex justify-content-center'>
-                  <div className='d-flex justify-content-center'>
-                    <button onClick={this.openModal} className='btn btn-primary'
-                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
-                      <i className="fas fa-info-circle"/>Upload Information</button>
-                    <button className='btn btn-primary' onClick={this.loadSelected}
-                      style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
-                      View Selected Files</button>
-                    <button className='btn btn-primary' onClick={this.onSelectedDownload}
-                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
-                      Download Selected Files</button>
-                    <button className='btn btn-primary' onClick={this.loadFolders}
-                      style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>
-                      View All Files</button>
-                    <button className='btn btn-primary'
-                            style={{ background: '#0BC107', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>
-                      Tumor Volume</button>
+                <nav className='container-fluid navbar col-md-12 w-100  d-flex justify-content-between '
+                     style={{ minWidth:'100%', background:'#ffa726', left:0, right:0,border:'none', margin:'0px',height:'50px',
+                       padding:'0px'}}>
+                  <div className='col-md-2 d-flex justify-content-start'>
+                    <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
+                          style={{background: '#ffa726', color: 'green'}}>
+                      <i className="fas fa-arrow-alt-circle-left fa-2x"/></Link>
                   </div>
-                </div>
-                <div className='col-md-2 d-flex justify-content-end'>
-                  <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
-                        style={{background: '#ffa726', color: 'green'}}>
-                    <i className="fa fa-chevron-circle-left fa-2x" aria-hidden="true"/></Link>
-                </div>
-              </nav>
+                  <div className='row col-md-10  d-flex justify-content-center'>
+                    <div className='d-flex justify-content-center'>
+                      <button onClick={this.openModal} className='btn btn-primary'
+                              style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
+                        <i className="fas fa-info-circle"/>Info</button>
+                      <button className='btn btn-primary' onClick={this.loadSelected}
+                              style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
+                        View Selected Files</button>
+                      <button className='btn btn-primary' onClick={this.onSelectedDownload}
+                              style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
+                        Download Selected Files</button>
+                      <button className='btn btn-primary' onClick={this.loadFolders}
+                              style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>
+                        View All Files</button>
+                      {files.patient.reportDetailed.length!==0 ?
+                        (<button className='btn btn-primary' onClick={this.openEnterModal}
+                          style={{ background: '#ffa726', color: 'white', borderStyle: 'solid',
+                          marginRight:'10px'}}>
+                        View Medical Report</button>) : (
+                        <button className='btn btn-primary' onClick={this.openEnterModal}
+                                style={{ background: '#ffa726', color: 'white', borderStyle: 'solid',
+                                  marginRight:'10px'}}>
+                          Enter Medical Report</button>
+                      )}
+
+                      {/*<button className='btn btn-primary'*/}
+                      {/*        style={{ background: '#0BC107', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>*/}
+                      {/*  Download Software</button>*/}
+                    </div>
+                  </div>
+                </nav>
                 <nav className='container-fluid navbar col-md-12 w-100  d-flex justify-content-between '
                      style={{ minWidth:'100%', background:'#c1c1c1', left:0, right:0,border:'none', margin:'0px',height:'50px',
                        padding:'0px'}}>
@@ -279,12 +314,13 @@ class Display extends Component {
                         ,getLocalDate(files.patient.lastUploadAt).length)}</h6>
                   </div>
                 </nav>
-            </div>
+              </div>
 
 
               <FileRow files={files.files} patient={files.patient} check={true}/>
             </div>
-        )
+          )
+        }
       }
     }
     return (
@@ -300,7 +336,8 @@ class Display extends Component {
           contentLabel="Patient Data"
           shouldCloseOnOverlayClick={true}
           ariaHideApp={false}
-        >{modalContent}</Modal>
+        >{modalContent}
+        <button onClick={this.closeModal} style={{color:'white', background:'red'}}>Close</button></Modal>
       </div>
     );
   }

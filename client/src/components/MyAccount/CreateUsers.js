@@ -59,15 +59,17 @@ class CreateUsers extends Component {
     const { errors } = this.state
     let heading
     if(this.props.auth.user.role==='super_admin') {
-      heading=(<h2>Create a new LVPEI user account</h2>)
+      heading=(<h2 style={{color: 'white', background:'green', padding:'5px', borderRadius: '10px'}}>
+        Create a new LVPEI user account</h2>)
     } else if(this.props.auth.user.role==='diag_admin') {
-      heading=(<h2>Create new user for Your Diagnostics</h2>)
+      heading=(<h2 style={{color: 'white', background:'green', padding:'5px', borderRadius: '10px'}}>
+          Create new user for Your Diagnostics</h2>)
     }    return (
       <div className="createUser">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <div className="col-sm-12" style={{ color: 'black' }}>
+              <div className="col-sm-12 text-center" style={{ color: 'black' }}>
                 {heading}</div>
               <form className='col-md-12 text-center' noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="User name" error={errors.emailId}
@@ -94,8 +96,9 @@ class CreateUsers extends Component {
                                 type="password" onChange={this.onChange} value={this.state.repassword}
                                 name="repassword"
                 />
-                <div className="col-xs-12">
-                   <input type="submit" className="btn btn-info btn-block mt-4 btn-primary w-30 my-1"/>
+                <div className="col-md-12 d-flex justify-content-center text-center">
+                   <input style={{maxWidth:'250px'}}
+                     type="submit" value='Create Account' className="btn btn-info btn-block mt-4 btn-primary w-30 my-1"/>
                 </div>
               </form>
             </div>

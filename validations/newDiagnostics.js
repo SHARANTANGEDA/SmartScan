@@ -43,8 +43,8 @@ module.exports = (data) => {
 
   }
 
-  if (!Validator.isLength(data.short, { min: 3, max: 5 })) {
-    errors.short = 'shortcut must be between 3 to 5 characters';
+  if (!Validator.isLength(data.short, { min: 2, max: 5 })) {
+    errors.short = 'shortcut must be between 2 to 5 characters';
   }
 
   if (Validator.isEmpty(data.password)) {

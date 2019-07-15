@@ -173,7 +173,7 @@ class Navbar extends Component {
                 <li><Link className='nav-link' to="/activeCentres" style={{color: 'white'}}>
                   Current</Link></li>
                 <li><Link className='nav-link' to="/removedCentres" style={{color: 'white'}}>
-                 De Assigned</Link></li>
+                 De-assigned</Link></li>
               </ul>
             </li>
             <li className="nav-item dropdown" style={{color: 'white', borderRadius: '5px'
@@ -188,7 +188,7 @@ class Navbar extends Component {
                 <li><Link className='nav-link' to="/activeLVP" style={{color: 'white'}}>
                   Current</Link></li>
                 <li><Link className='nav-link' to="/deAssignedLVP" style={{color: 'white'}}>
-                  De Assigned</Link></li>
+                  De-assigned</Link></li>
 
               </ul>
             </li>
@@ -234,7 +234,7 @@ class Navbar extends Component {
               <li><Link className='nav-link' to="/activeUser" style={{color: 'white'}}>
                 Current</Link></li>
               <li><Link className='nav-link' to="/deAssignedUser" style={{color: 'white'}}>
-                De Assigned</Link></li>
+                De-assigned</Link></li>
 
             </ul>
           </li>
@@ -272,11 +272,6 @@ class Navbar extends Component {
             <Link className='nav-link' to="/dashboard" style={{color: 'white', borderRadius: '5px' }}>
               Home
             </Link>
-          </li>
-          <li>
-            <Link className="nav-link" to="/" onClick={this.onLogoutClick.bind(this)}
-                  style={{color: 'white', borderRadius: '5px' }}>
-              Tumor Volume</Link>
           </li>
           <li className="nav-item dropdown " style={{color: 'white',background:'#008cff' , borderRadius: '5px'
             ,minWidth:'150px' }}>

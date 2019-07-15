@@ -72,8 +72,9 @@ class CreateLVPEIUsers extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-6 m-auto">
-              <div className="col-sm-12" style={{ color: 'black'}}>
-                <h2>Add a new Diagnostic Centre</h2></div>
+              <div className="col-sm-12 text-center" style={{ color: 'black'}}>
+                <h2 style={{color: 'white', background:'green', padding:'5px', borderRadius: '10px'}}>
+                  Add a new Diagnostic Centre</h2></div>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="Enter centre Admin user name" error={errors.adminId}
                                 info="Please use unique username"
@@ -106,16 +107,17 @@ class CreateLVPEIUsers extends Component {
                 <TextFieldGroup placeholder="Enter organization Email" error={errors.orgEmail}
                                 type="text" onChange={this.onChange} value={this.state.orgEmail} name="orgEmail"
                 />
-                <TextFieldGroup placeholder="Enter centre shortcut" error={errors.short}
+                <TextFieldGroup placeholder="Enter centre short code" error={errors.short}
                                 type="text" onChange={this.onChange} value={this.state.short} name="short"
-                                info='Please try to make it unique for better classification'
+                                info='Please try to make it unique for better classification Ex. LCD, CNC'
                 />
                 <Select options={scanTypeArray} className={classnames('isSearchable')}
                         placeholder="Choose the centre to allocate" style={{minWidth:'250px'}}
                         name="category" value={this.state.category} onChange={this.onSelectType}>
                 </Select>
-                <div className="col-xs-12">
-                  <input type="submit" className="btn btn-info btn-block mt-4 btn-primary w-30 my-1"/>
+                  <div className="col-md-12 d-flex justify-content-center text-center">
+                  <input style={{maxWidth:'300px'}} type="submit" value='Confirm Details'
+                         className="btn btn-info btn-block mt-4 btn-primary w-30 my-1"/>
                 </div>
               </form>
             </div>

@@ -35,6 +35,8 @@ class DisplaySelected extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.onBack = this.onBack.bind(this)
+    this.loadSelected =this.loadSelected.bind(this)
+    this.loadFolders = this.loadFolders.bind(this)
 
   }
   componentDidMount () {
@@ -50,6 +52,13 @@ class DisplaySelected extends Component {
 
   closeModal () {
     this.setState({ modalIsOpen: false })
+  }
+  loadSelected () {
+    window.location.href=`/displaySelectedFiles/${this.props.folder.files.patient._id}`
+
+  }
+  loadFolders () {
+    window.location.href=`/displayFiles/${this.props.folder.files.patient._id}`
   }
 
   onSelectedDownload (e) {
@@ -225,39 +234,47 @@ class DisplaySelected extends Component {
                  , left:0, right:0}} >
             <div className="App-content row d-flex justify-content-center">
               <nav className='container-fluid navbar col-md-12 w-100  d-flex justify-content-between '
-                   style={{ minWidth:'100%', background:'#ffa726', left:0, right:0,border:'none', margin:'0px',
+                   style={{ minWidth:'100%', background:'#ffa726', left:0, right:0,border:'none', margin:'0px',height:'50px',
                      padding:'0px'}}>
-                <div className='row col-md-12  d-flex justify-content-between '>
+                <div className='col-md-2 d-flex justify-content-start'>
                   <Link to={`/displayFolder/${files.patient.centreCode}/${files.patient.mrNo}`} onClick={this.onBack} className='btn'
                         style={{background: '#ffa726', color: 'green'}}>
-                    <i className="fa fa-chevron-circle-left fa-3x" aria-hidden="true"/></Link>
-                  <div>
+                    <i className="fas fa-arrow-alt-circle-left fa-2x"/></Link>
+                </div>
+                <div className='row col-md-10  d-flex justify-content-center'>
+                  <div className='d-flex justify-content-center'>
                     <button onClick={this.openModal} className='btn btn-primary'
-                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' }}>
-                      <i className="fas fa-info-circle"/>Upload Information</button>
-                    <button className='btn btn-primary'
-                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' }}>
+                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
+                      <i className="fas fa-info-circle"/>Info</button>
+                    <button className='btn btn-primary' onClick={this.loadSelected}
+                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
                       View Selected Files</button>
                     <button className='btn btn-primary' onClick={this.onSelectedDownload}
-                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' }}>
+                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid', marginRight:'10px' }}>
                       Download Selected Files</button>
-                    <button className='btn btn-primary'
-                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' }}>
+                    <button className='btn btn-primary' onClick={this.loadFolders}
+                            style={{ background: '#ffa726', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>
                       View All Files</button>
+                    <button className='btn btn-primary'
+                            style={{ background: '#0BC107', color: 'white', borderStyle: 'solid' , marginRight:'10px'}}>
+                      Download Software</button>
                   </div>
                 </div>
-
+              </nav>
+              <nav className='container-fluid navbar col-md-12 w-100  d-flex justify-content-between '
+                   style={{ minWidth:'100%', background:'#c1c1c1', left:0, right:0,border:'none', margin:'0px',height:'50px',
+                     padding:'0px'}}>
                 <div className='row  col-md-12 d-flex justify-content-between'>
-                  <h6 style={{color: 'white'}}>Patient Name: {files.patient.firstName+' '+ files.patient.lastName}</h6>
-                  <h5  style={{color: 'white'}}>Uploaded on:
+                  <h6 >Patient Name: {files.patient.firstName+' '+ files.patient.lastName}</h6>
+                  <h6  >MR No: {files.patient.mrNo}</h6>
+                  <h6>Scan Type:{files.patient.scanType}</h6>
+                  <h6 >Uploaded on:
                     {getLocalDate(files.patient.lastUploadAt).
-                    substring(0, getLocalDate(files.patient.lastUploadAt).indexOf(','))}</h5>
-                  <h5  style={{color: 'white'}}>Uploaded at:
+                    substring(0, getLocalDate(files.patient.lastUploadAt).indexOf(','))}</h6>
+                  <h6 >Uploaded at:
                     {getLocalDate(files.patient.lastUploadAt).
                     substring(getLocalDate(files.patient.lastUploadAt).indexOf(',')+1
-                      ,getLocalDate(files.patient.lastUploadAt).length)}</h5>
-
-                  <h5  style={{color: 'white'}}>MR No: {files.patient.mrNo}</h5>
+                      ,getLocalDate(files.patient.lastUploadAt).length)}</h6>
                 </div>
               </nav>
             </div>

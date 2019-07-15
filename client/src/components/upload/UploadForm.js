@@ -231,7 +231,9 @@ class UploadForm extends Component {
             <TextFieldGroup placeholder="Enter Patient MR.No" error={errors.patient}
                             type="text" onChange={this.changeHandler} value={this.state.patient} name="patient"
             />
-            <input type="submit" className="btn btn-info btn-block mt-4"/>
+            <div className="col-md-12 d-flex justify-content-center text-center">
+            <input style={{maxWidth:'250px'}} type="submit" value='Confirm' className="btn btn-info btn-block mt-4"/>
+            </div>
           </form>
         </div>
         <Modal

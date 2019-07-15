@@ -68,8 +68,10 @@ class Landing extends Component {
                   <TextFieldGroup placeholder="Password" error={errors.password}
                                   type="password" onChange={this.changeHandler} value={this.state.password} name="password"
                   />
-                  <input type="submit" className="btn btn-info btn-block mt-4"/>
-                </form>
+                  <div className="col-md-12 d-flex justify-content-center text-center">
+                    <input style={{maxWidth:'250px'}} type="submit" value='Login' className="btn btn-info btn-block mt-4"/>
+                  </div>
+                  </form>
                 <p style={{color: 'white'}}>Forgot Password,
                   <Link  to={"/ContactUs"} className={"text-primary"}> Click Here </Link> to contact Admins</p>
               </div>

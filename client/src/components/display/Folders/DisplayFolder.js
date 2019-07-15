@@ -116,7 +116,9 @@ class DisplayFolder extends Component {
     return (
       <div className="displayFolder">
         <div className="App-content row d-flex justify-content-center" >
-          <nav className='navbar navbar-expand-sm justify-content-between col-md-12' style={{ background:'#ffa726', width:'100%', height:'40px'}}>
+          <nav className='navbar navbar-expand-sm justify-content-between col-md-12' style={{ background:'#ffa726', width:'100%', height:'50px'}}>
+            <Link to='/dashboard' className='btn' style={{background:'#ffa726', color: 'green'}}>
+              <i className="fas fa-arrow-alt-circle-left fa-2x"/></Link>
             {heading}
             {/*<div className='col-md-3'>*/}
             {/*  <Select*/}
@@ -128,8 +130,7 @@ class DisplayFolder extends Component {
             {/*  </Select>*/}
             {/*</div>*/}
 
-            <Link to='/dashboard' className='btn' style={{background:'#ffa726', color: 'green'}}>
-              BACK</Link>
+
           </nav>
           <table className="table table-bordered  mb-0">
             <thead>

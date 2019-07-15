@@ -9,6 +9,7 @@ const validatePassword = require('../../validations/ChangePassword')
 const validateLoginInput = require('../../validations/login')
 const validateSearchInput = require('../../validations/search')
 const validateChangeInput = require('../../validations/editProfile')
+const validateReportInput = require('../../validations/medicalReport')
 const User = require('../../mongoModels/User');
 const Patient = require('../../mongoModels/Patient');
 
@@ -215,4 +216,18 @@ router.post('/myAccount/change', passport.authenticate('non_super', { session: f
   })
   }
 );
+
+router.post('/medicalReport/:id', passport.authenticate('lvpei', {session: false}), (req, res) => {
+  Patient.findById(req.params.id).then(patient => {
+    const { errors, isValid } = validateReportInput(req.body)
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    patient.reportDetailed=req.body.reportDetailed
+    patient.save().then(user => {
+      console.log({here:user})
+      res.json({success: true})
+    })
+  })
+})
 module.exports = router

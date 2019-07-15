@@ -91,16 +91,16 @@ class TableRowDiagUser extends Component {
     // }
     return (
       <tr className="">
-        <td><span style={{ fontFamily: 'Arial', fontSize: '12px' }}>{data.emailId}</span></td>
+        <td><span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.emailId}</span></td>
         <td>
-          <span style={{ fontFamily: 'Arial', fontSize: '12px' }}>{data.firstName + ' ' + data.lastName}</span>
+          <span style={{ fontFamily: 'Arial', fontSize: '14px' }}>{data.firstName + ' ' + data.lastName}</span>
         </td>
         <td>
-          <span  style={{ fontFamily: 'Arial', fontSize: '12px' }}>
+          <span  style={{ fontFamily: 'Arial', fontSize: '14px' }}>
             {getLocalDate(data.time).substring(0,getLocalDate(data.time).indexOf(','))}</span>
         </td>
         <td>
-          <span  style={{ fontFamily: 'Arial', fontSize: '12px' }}>
+          <span  style={{ fontFamily: 'Arial', fontSize: '14px' }}>
             {getLocalDate(data.time).substring(getLocalDate(data.time).indexOf(',')+1,getLocalDate(data.time).length)}
           </span>
         </td>

@@ -56,7 +56,10 @@ const PatientSchema = new Schema({
     type: String,
     default: ''
   },
-
+  reportDetailed: {
+    type: String,
+    default: ''
+  }
 });
 
 module.exports = Patient = mongoose.model('patient',PatientSchema);

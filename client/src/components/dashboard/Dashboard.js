@@ -181,8 +181,8 @@ class Dashboard extends Component {
             <nav className='navbar navbar-expand-sm  col-md-12' style={{background:'#ffa726', width:'100%'}}>
               <div className='row col-md-8 d-flex justify-content-start'>
                 <div className='col-md-4'>
-                  <Select options={[{ value: 'all', label: 'All' },{value:'today', label: 'today'},
-                    {value:'yesterday', label: 'yesterday'},
+                  <Select options={[{ value: 'all', label: 'All' },{value:'today', label: 'Today'},
+                    {value:'yesterday', label: 'Yesterday'},
                     {value: 'lastweek', label: 'Last Week'}, {value: 'lastMonth', label: 'Last Month'},
                     {value: 'earlier', label: 'earlier'}]} className={classnames('isSearchable',
                     { 'is-invalid': errors.category })}
@@ -209,14 +209,11 @@ class Dashboard extends Component {
           </div>
 
           <div className="App-content row d-flex justify-content-center">
+            {allFoldersContent}
 
-              {/*<h1 className="grid--cell fl1 fs-headline1 text-center" style={{*/}
-              {/*  color: 'black'*/}
-              {/*}}> Welcome to L V Prasad Cloud</h1>*/}
           </div>
 
 
-            {allFoldersContent}
           </div>
       )
     } else if (this.props.auth.user.role === 'super_admin') {
@@ -247,8 +244,10 @@ class Dashboard extends Component {
               <TextFieldGroup placeholder="Enter Patient MR.No" error={errors.patient}
                               type="text" onChange={this.changeHandler} value={this.state.patient} name="patient"
               />
-              <input type="submit" className="btn btn-info btn-block mt-4"/>
-            </form>
+              <div className="col-md-12 d-flex justify-content-center text-center">
+              <input style={{maxWidth:'300px'}} type="submit" value='Confirm Details' className="btn btn-info btn-block mt-4"/>
+              </div>
+              </form>
           </div>
         )
       if (this.props.auth.user.role === 'diag_admin') {

@@ -3,7 +3,7 @@ import axios from 'axios'
 import {
   CLEAR_ERRORS,
   FOLDER_LOADING,
-  GET_ACTIVE, GET_DIAG_USER_HOME,
+  GET_ACTIVE, GET_DIAG_USER_HOME, GET_ERRORS,
   GET_FILES,
   GET_FILES_SINGLE_FOLDER, GET_NAME_RESULTS,
   GET_PATIENTS_HOME,
@@ -200,6 +200,19 @@ export const getAllPatients = () => dispatch => {
     dispatch({
       type: NO_FILES,
       payload: err.data
+    })
+  )
+}
+
+export const submitMedicalReport = (id, data) => dispatch => {
+  dispatch(setSearchLoading())
+  dispatch(homeLoading())
+  axios.post(`/api/users/medicalReport/${id}`, data).then(res => {
+    window.location.reload()
+  }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
     })
   )
 }
