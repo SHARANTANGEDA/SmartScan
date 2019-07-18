@@ -56,7 +56,9 @@ After these files are added run the following commands from project folder
 That's it you are set up...........
 ## Author
 **_`Sai Sharan Tangeda`_** - [Github profile](https://github.com/SHARANTANGEDA?tab=repositories)
-
+## Offline Tumor, orbital Volume of eye Analysis Tools
+If you would like to take a look at our offline volume/ distance analysis tool. below is the Link.
+[Git Hub Repository Link](https://github.com/PandaBoi/Tkinter_GUI)
 ## Acknowledgements
 I would like to thank **Dr. Tarjani Vivek Dave** and **Dr. Vipin Das** for their support and guidance in building 
 the application.
